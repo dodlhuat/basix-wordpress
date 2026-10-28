@@ -4,7 +4,7 @@
             <?php the_post_thumbnail('medium_large'); ?>
         </a>
     <?php endif; ?>
-    <?php basix_post_terms(); ?>
+    <div class="card-header"><?php basix_post_terms(); ?></div>
     <h2 class="card-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
     <?php basix_post_meta(); ?>
     <div class="card-excerpt"><?php the_excerpt(); ?></div>

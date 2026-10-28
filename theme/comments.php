@@ -4,7 +4,7 @@
     <?php if (have_comments()) : ?>
         <h2><?php printf(esc_html(_n('%s comment', '%s comments', get_comments_number(), 'basix')), number_format_i18n(get_comments_number())); ?></h2>
         <ol class="comment-list">
-            <?php wp_list_comments(['style' => 'ol', 'avatar_size' => 40]); ?>
+            <?php wp_list_comments(['style' => 'ol', 'callback' => 'basix_comment']); ?>
         </ol>
         <?php the_comments_pagination(); ?>
     <?php endif; ?>

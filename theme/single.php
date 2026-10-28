@@ -19,17 +19,17 @@
         <?php wp_link_pages(); ?>
 
         <?php if (has_tag()) : ?>
-            <footer class="entry-footer">
+            <footer class="entry-footer chips">
                 <?php foreach (get_the_tags() as $tag) : ?>
-                    <a class="badge" href="<?php echo esc_url(get_tag_link($tag)); ?>"><?php echo esc_html($tag->name); ?></a>
+                    <a class="chip clickable" href="<?php echo esc_url(get_tag_link($tag)); ?>"><?php echo esc_html($tag->name); ?></a>
                 <?php endforeach; ?>
             </footer>
         <?php endif; ?>
     </article>
 
-    <nav class="post-nav row" aria-label="<?php esc_attr_e('Post navigation', 'basix'); ?>">
-        <div class="column"><?php previous_post_link('%link', '← %title'); ?></div>
-        <div class="column text-right"><?php next_post_link('%link', '%title →'); ?></div>
+    <nav class="post-nav" aria-label="<?php esc_attr_e('Post navigation', 'basix'); ?>">
+        <div><?php previous_post_link('%link', '← %title'); ?></div>
+        <div class="text-right"><?php next_post_link('%link', '%title →'); ?></div>
     </nav>
 
     <?php if (comments_open() || get_comments_number()) comments_template(); ?>
