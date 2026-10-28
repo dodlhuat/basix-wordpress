@@ -78,6 +78,25 @@ add_action('pre_get_posts', function (WP_Query $q) {
     }
 });
 
+/**
+ * Attributes that make assets/js/loader.js start a Basix component on an element.
+ *
+ * Usage: <div <?php echo basix_component_attrs('calendar', ['view' => 'month']); ?>>
+ * The component must have an entry in assets/js/components.js.
+ *
+ * @param string $name   Component key in components.js.
+ * @param array  $config Optional settings, passed to the component as JSON.
+ * @return string Escaped attributes.
+ */
+function basix_component_attrs(string $name, array $config = []): string
+{
+    $attrs = sprintf('data-basix="%s"', esc_attr($name));
+    if ($config) {
+        $attrs .= sprintf(' data-config="%s"', esc_attr(wp_json_encode($config)));
+    }
+    return $attrs;
+}
+
 /** Opening wrapper for templates with a sidebar; pair with basix_layout_close(). */
 function basix_layout_open(): void
 {
