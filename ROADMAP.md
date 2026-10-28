@@ -49,10 +49,13 @@ Decisions so far
 - Deviation: the docs navigation does not use the Basix Tree. The Tree renders clickable divs in a file-explorer style (monospace labels, folder and file icons), so its entries are not links: no middle-click, nothing for search engines to follow. The template uses the Basix sidebar-nav shell (mobile drawer, backdrop, swipe) with a nested list of real links instead; the current branch is opened on the server.
 - The grid patterns (features, steps, stats) are now wide-aligned so they use the full container width.
 
-### 5. Post features
+### 5. Post features (done)
 - Reading time, table of contents, share (Popover / Bottom sheet, Toast for "link copied"), related posts, author box, reading-progress bar (Progress).
 - Lightbox on content images (`Lightbox.bind`), Code viewer for code blocks, Table block styling plus opt-in sortable table.
 - Featured-posts section (Carousel).
+- Result: reading time (on cards and posts), a table of contents built from h2 and h3 as a Basix accordion with anchors on the headings, a reading-progress bar (Basix progress), share (a button with a Basix popover on wide screens and a bottom sheet on phones, "Copy link" with a toast; plain links without JavaScript), author box (shown when the author has a biography), related posts (shared tags first, then categories), a lightbox on content images with captions, the code viewer on code blocks (language from an additional CSS class such as `language-css`, a copy button on every block), a "Sortable" block style for tables, and a featured slider from sticky posts on the front page. Every feature has a switch in the Customizer under Basix > Posts. `make check` covers all of them in a real browser.
+- Deviations: the sortable table uses a small own script (`sortable-table.js`) with Basix's sortable heading styles, not the Basix Table component, which adds its own search box and paging with fixed English labels. Sticky posts are removed from the latest-posts list so they are not shown twice.
+- Known limits: some Basix components have fixed English text that the theme cannot translate (the code viewer's "Copy" and "copied!", the lightbox button labels). The code viewer's copy button needs HTTPS or localhost, because browsers only allow clipboard access there. The code viewer highlights JavaScript, HTML and CSS only; other languages get the label and the copy button.
 
 ### 6. Discovery and media
 - **Filters:** clickable category chips on the blog index, hierarchical filter (Group picker), date range (Date picker).
