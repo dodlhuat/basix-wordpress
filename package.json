@@ -9,6 +9,7 @@
     "build": "./scripts/build-zip.sh",
     "check:editor": "node scripts/check-editor.mjs",
     "check:customizer": "node scripts/check-customizer.mjs",
+    "check:frontend": "node scripts/check-frontend.mjs",
     "postinstall": "node scripts/sync-basix.mjs"
   },
   "dependencies": {

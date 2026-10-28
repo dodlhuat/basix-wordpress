@@ -18,3 +18,4 @@ lint:
 check: lint
 	npm run --silent check:editor
 	npm run --silent check:customizer
+	npm run --silent check:frontend
