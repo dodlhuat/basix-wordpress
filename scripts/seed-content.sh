@@ -130,7 +130,10 @@ wp option update sticky_posts "[$LONG_ID,$FIRST]" --format=json >/dev/null
 
 # a documentation section and a landing page built from the patterns
 DOCS_ID=$(wp eval-file /seed/docs.php | tail -1)
-wp eval-file /seed/landing.php >/dev/null
+LANDING_ID=$(wp eval-file /seed/landing.php | tail -1)
+PAGE_IDS=$(wp eval-file /seed/pages.php | tail -2)
+CALENDAR_ID=$(echo "$PAGE_IDS" | head -1)
+GALLERY_ID=$(echo "$PAGE_IDS" | tail -1)
 
 # footer widgets (three columns)
 for sb in footer-1 footer-2 footer-3; do wp widget reset "$sb" >/dev/null 2>&1 || true; done
@@ -154,7 +157,11 @@ menu_item add-term Main category "$ENG_CAT" --parent-id="$TOPICS" >/dev/null
 menu_item add-term Main category "$NOTES_CAT" --parent-id="$TOPICS" >/dev/null
 ABOUT_ITEM=$(menu_item add-post Main "$ABOUT")
 menu_item add-post Main "$SHOWCASE_ID" --parent-id="$ABOUT_ITEM" >/dev/null
-menu_item add-post Main "$DOCS_ID" >/dev/null
+EXPLORE=$(menu_item add-custom Main Explore '#')
+menu_item add-post Main "$CALENDAR_ID" --parent-id="$EXPLORE" >/dev/null
+menu_item add-post Main "$GALLERY_ID" --parent-id="$EXPLORE" >/dev/null
+menu_item add-post Main "$DOCS_ID" --parent-id="$EXPLORE" >/dev/null
+menu_item add-post Main "$LANDING_ID" --parent-id="$EXPLORE" >/dev/null
 menu_item add-post Main "$CONTACT" >/dev/null
 wp menu location assign Main primary >/dev/null
 

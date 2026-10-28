@@ -31,6 +31,17 @@ foreach ( [ 0, 1, 2 ] as $i ) {
 	);
 }
 
+$masonry = '';
+foreach ( array( 0, 1, 2, 3, 4 ) as $i ) {
+	$masonry .= sprintf(
+		'<!-- wp:image {"id":%1$d,"sizeSlug":"large","linkDestination":"none"} -->' . "\n" .
+		'<figure class="wp-block-image size-large"><img src="%2$s" alt="" class="wp-image-%1$d"/></figure>' . "\n" .
+		'<!-- /wp:image -->' . "\n\n",
+		$id( $i ),
+		esc_url( $src( $i ) )
+	);
+}
+
 $content = $pattern( 'basix/hero' ) . "\n\n" . <<<BLOCKS
 <!-- wp:heading -->
 <h2 class="wp-block-heading">Text and lists</h2>
@@ -95,6 +106,15 @@ $content = $pattern( 'basix/hero' ) . "\n\n" . <<<BLOCKS
 <!-- wp:gallery {"linkTo":"none"} -->
 <figure class="wp-block-gallery has-nested-images columns-default is-cropped">
 {$gallery}</figure>
+<!-- /wp:gallery -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Masonry gallery</h2>
+<!-- /wp:heading -->
+
+<!-- wp:gallery {"linkTo":"none","className":"is-style-masonry"} -->
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped is-style-masonry">
+{$masonry}</figure>
 <!-- /wp:gallery -->
 
 <!-- wp:separator -->
