@@ -284,3 +284,24 @@ input, textarea, select, button { font-family: inherit; }
 .wp-block-table.is-style-sortable th { cursor: pointer; }
 .sort-button { padding: 0; border: 0; background: none; color: inherit; font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer; }
 .sort-button:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; }
+
+/* Filters: chips are links, the Filter button opens a form (modal with JavaScript, a panel without) */
+.filter-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem 1rem; margin-bottom: 1.5rem; }
+.filter-chips { flex: 1 1 auto; }
+.filter-chips a.chip,
+.filter-active a.chip { display: inline-flex; width: auto; padding: calc(var(--spacing) * .3) calc(var(--spacing) * .75); font-size: .8125rem; font-weight: 500; letter-spacing: .01em; text-transform: none; text-decoration: none; }
+.filter-active { margin: -.5rem 0 1.5rem; }
+.filter { position: relative; margin-left: auto; }
+.filter-toggle { display: inline-flex; align-items: center; gap: .5rem; cursor: pointer; list-style: none; }
+.filter-toggle::-webkit-details-marker { display: none; }
+.filter[open] .filter-form { position: absolute; right: 0; top: calc(100% + .5rem); z-index: 20; width: min(22rem, calc(100vw - 2rem)); padding: 1rem; border: 1px solid var(--divider); border-radius: var(--radius-lg); background: var(--background); box-shadow: 0 8px 24px rgba(0, 0, 0, .12); }
+.filter-form fieldset { margin: 0 0 1rem; padding: 0; border: 0; }
+.filter-form legend { margin-bottom: .5rem; padding: 0; font-size: .875rem; font-weight: 600; }
+.filter-cat-sub { margin-left: 1.5rem; }
+.filter-dates { display: grid; gap: .75rem; }
+.filter-dates label { display: grid; gap: .25rem; }
+.filter-actions { display: flex; gap: .5rem; }
+.filter-actions .button { text-decoration: none; }
+.filter-host .filter-form { padding: 1rem 1.25rem 1.25rem; }
+.filter-section { margin-bottom: 1.25rem; }
+.filter-section-title { margin: 0 0 .5rem; font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--secondary-text); }
