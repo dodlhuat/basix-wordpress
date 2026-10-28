@@ -25,10 +25,13 @@ Decisions so far
 - Result: `npm run sync` scans the theme for the Basix modules and icons it uses and copies only those. Icon sprite 3 MB to 1.3 KB, JS 36 modules to 7, release zip 1.1 MB to 352 KB.
 - Adding a component later: add an entry to `theme/assets/js/components.js` and print `basix_component_attrs()` in the template; sync picks up the module and its icons by itself. Icons chosen dynamically go in `scripts/basix-assets.json`.
 
-### 2. Editor foundation
+### 2. Editor foundation (done)
 - `theme.json` mirroring Basix tokens (palette, type), `add_editor_style`, wide and full alignment, `wp-block-styles`, responsive embeds.
 - Style core blocks with Basix: buttons, quote, pullquote, table, code, image, gallery, columns, cover, separator, details, embeds.
 - First block patterns: hero, features, FAQ (Accordion), steps (Stepper), timeline, CTA, stats (Chart).
+- Result: `theme.json` (Basix palette, Outfit, 46rem content / 72rem wide), `assets/css/content.css` shared by the site and the editor, wide and full alignment, `editor-styles`, responsive embeds, block styles (Card, Bordered card, Lead text), seven patterns in `/patterns`, a seeded "Block showcase" page. `make check` runs PHPCS and opens the editor in headless Chrome to confirm every pattern and the showcase page are valid blocks.
+- Differences from the plan: the FAQ uses the core Details block styled like the Basix accordion (the Basix accordion needs paired ids that core blocks cannot produce); Steps are numbered cards using `.stepper-indicator` (the connectors come from JS); Stats are big numbers, and a real Chart block waits for milestone 6; `wp-block-styles` is deliberately off because its default colours fight Basix.
+- Known gap: in the editor, the code block has no tinted background and table headers are larger than on the site.
 
 ### 3. Settings and menus
 - Customizer: logo, accent colour (overrides `--accent-color`), default light/dark/system, sidebar left/right/none, footer text, social links.
