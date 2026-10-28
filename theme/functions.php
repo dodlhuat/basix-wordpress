@@ -15,6 +15,7 @@ require_once __DIR__ . '/inc/filters.php';
 require_once __DIR__ . '/inc/calendar.php';
 require_once __DIR__ . '/inc/gallery.php';
 require_once __DIR__ . '/inc/seo.php';
+require_once __DIR__ . '/inc/starter-content.php';
 
 add_action('after_setup_theme', function () {
     load_theme_textdomain('basix', get_template_directory() . '/languages');
