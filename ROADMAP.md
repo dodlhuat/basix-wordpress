@@ -17,11 +17,13 @@ Decisions so far
 - Build script that syncs Basix and produces a clean theme zip (no `node_modules`, no dev files): `make zip`.
 - Result: PHPCS clean (`make lint`), Theme Check has no required items or warnings. Remaining recommendations (block patterns/styles, editor style, custom logo, `responsive-embeds`, `align-wide`, `wp-block-styles`) belong to milestones 2 and 3.
 
-### 1.5. Asset pipeline
+### 1.5. Asset pipeline (done)
 - **Trimmed icon sprite.** Basix `icons.svg` is 3.07 MB (6,446 icons) and is currently fetched on every page. Generate a sprite with only the used icons.
 - **Component loader.** PHP prints `data-basix="<component>"` plus a JSON config; `main.js` lazy-loads that component only on pages that use it.
 - Ship only the Basix JS files that are used.
-- Every JS-built component gets a no-JS fallback (for example a data table behind a chart).
+- Every JS-built component gets a no-JS fallback (for example a data table behind a chart). This is a convention for the milestones below; the loader does not enforce it.
+- Result: `npm run sync` scans the theme for the Basix modules and icons it uses and copies only those. Icon sprite 3 MB to 1.3 KB, JS 36 modules to 7, release zip 1.1 MB to 352 KB.
+- Adding a component later: add an entry to `theme/assets/js/components.js` and print `basix_component_attrs()` in the template; sync picks up the module and its icons by itself. Icons chosen dynamically go in `scripts/basix-assets.json`.
 
 ### 2. Editor foundation
 - `theme.json` mirroring Basix tokens (palette, type), `add_editor_style`, wide and full alignment, `wp-block-styles`, responsive embeds.
