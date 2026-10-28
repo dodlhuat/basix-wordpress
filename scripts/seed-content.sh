@@ -16,6 +16,7 @@ echo "Clearing existing content..."
 wp post delete $(wp post list --post_type=post,page --post_status=any --format=ids) --force >/dev/null 2>&1 || true
 wp media regenerate --yes >/dev/null 2>&1 || true
 
+wp user update 1 --display_name="Basix Editor" >/dev/null
 wp option update blogdescription "Notes on design systems, interfaces and the web." >/dev/null
 for c in Design Engineering Notes; do wp term create category "$c" >/dev/null 2>&1 || true; done
 
@@ -23,7 +24,7 @@ for c in Design Engineering Notes; do wp term create category "$c" >/dev/null 2>
 post() {
   local id
   id=$(wp post create - --post_type=post --post_status=publish --post_title="$1" \
-    --post_category="$2" --tags_input="$3" --post_date="$(days_ago "$6")" --porcelain)
+    --post_author=1 --post_category="$2" --tags_input="$3" --post_date="$(days_ago "$6")" --porcelain)
   wp media import "/sample-images/$4.jpg" --post_id="$id" --featured_image --title="$1" --alt="$5" --porcelain >/dev/null
   echo "$id"
 }
@@ -91,14 +92,14 @@ BODY
 
 # password-protected post (password: secret)
 PROTECTED=$(wp post create - --post_type=post --post_status=publish --post_title="Members only" \
-  --post_password=secret --post_category=Notes --post_date="$(days_ago 2)" --porcelain <<'BODY'
+  --post_author=1 --post_password=secret --post_category=Notes --post_date="$(days_ago 2)" --porcelain <<'BODY'
 <p>You found the secret content. This post exists to show how the theme styles the password form and its error state.</p>
 BODY
 )
 wp media import /sample-images/slate.jpg --post_id="$PROTECTED" --featured_image --title="Members only" --alt="Soft lavender gradient" --porcelain >/dev/null
 
 # pages
-ABOUT=$(wp post create - --post_type=page --post_status=publish --post_title="About" --porcelain <<'BODY'
+ABOUT=$(wp post create - --post_type=page --post_status=publish --post_author=1 --post_title="About" --porcelain <<'BODY'
 <p>This is a small publication about design systems, interface craft and the web platform. It is also a demo site for a WordPress theme built entirely from the Basix component library.</p>
 <h2>What you'll find here</h2>
 <ul><li>Short essays on design and engineering.</li><li>Notes from building real interfaces.</li><li>Practical, copy-able techniques.</li></ul>
@@ -106,7 +107,7 @@ ABOUT=$(wp post create - --post_type=page --post_status=publish --post_title="Ab
 BODY
 )
 wp media import /sample-images/lagoon.jpg --post_id="$ABOUT" --featured_image --title="About" --alt="Teal and blue gradient" --porcelain >/dev/null
-CONTACT=$(wp post create - --post_type=page --post_status=publish --post_title="Contact" --porcelain <<'BODY'
+CONTACT=$(wp post create - --post_type=page --post_status=publish --post_author=1 --post_title="Contact" --porcelain <<'BODY'
 <p>Questions, ideas or corrections are always welcome. Leave a comment on any post, or get in touch through the form below once you've connected a mail plugin.</p>
 BODY
 )
