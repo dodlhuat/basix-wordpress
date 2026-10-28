@@ -1,4 +1,4 @@
-.PHONY: up setup seed down reset sync zip lint
+.PHONY: up setup seed down reset sync zip lint check
 up:
 	npm install
 	docker compose up -d
@@ -15,3 +15,5 @@ zip:
 	./scripts/build-zip.sh
 lint:
 	vendor/bin/phpcs
+check: lint
+	npm run --silent check:editor
