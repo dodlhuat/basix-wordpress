@@ -1,5 +1,7 @@
 <?php get_header(); ?>
 
+<?php basix_layout_open(); ?>
+
 <?php while (have_posts()) : the_post(); ?>
     <article <?php post_class('entry'); ?>>
         <header class="entry-header">
@@ -32,5 +34,7 @@
 
     <?php if (comments_open() || get_comments_number()) comments_template(); ?>
 <?php endwhile; ?>
+
+<?php basix_layout_close(); ?>
 
 <?php get_footer(); ?>
