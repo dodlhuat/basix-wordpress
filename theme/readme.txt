@@ -57,7 +57,7 @@ Copyright The Outfit Project Authors
 License: SIL Open Font License 1.1
 Source: https://github.com/Outfitio/Outfit-Fonts
 
-Material Symbols icons (svg-icons)
+Google Material Icons (svg-icons, bundled with Basix)
 License: Apache License 2.0
 Source: https://github.com/google/material-design-icons
 
