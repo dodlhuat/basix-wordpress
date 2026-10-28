@@ -1,0 +1,1084 @@
+# Copyright (C) 2026 Andi Bauer
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Basix 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/dodlhuat/basix/issues\n"
+"Last-Translator: Andi Bauer\n"
+"Language-Team: German\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-28T15:32:48+00:00\n"
+"PO-Revision-Date: 2026-10-28 12:00+0000\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Domain: basix\n"
+
+#. Theme Name of the theme
+#: style.css
+#: functions.php:46
+#: inc/customizer.php:77
+msgid "Basix"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://github.com/dodlhuat/basix"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "A fast, accessible blog and magazine theme built entirely from the Basix component library, with light and dark mode, a flyout menu, image cards and a sidebar with widgets."
+msgstr "Ein schnelles, barrierefreies Blog- und Magazin-Theme, komplett aus der Basix-Komponentenbibliothek gebaut, mit hellem und dunklem Modus, Flyout-Menü, Bildkarten und einer Seitenleiste mit Widgets."
+
+#. Author of the theme
+#: style.css
+msgid "Andi Bauer"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://www.andibauer.at"
+msgstr ""
+
+#: 404.php:5
+msgid "This page could not be found."
+msgstr "Diese Seite wurde nicht gefunden."
+
+#: 404.php:6
+msgid "Search the site"
+msgstr "Website durchsuchen"
+
+#: 404.php:7
+msgid "Back to home"
+msgstr "Zurück zur Startseite"
+
+#. translators: %s: number of comments.
+#: comments.php:9
+#, php-format
+msgid "%s comment"
+msgid_plural "%s comments"
+msgstr[0] "%s Kommentar"
+msgstr[1] "%s Kommentare"
+
+#: comments.php:21
+msgid "Comments are closed."
+msgstr "Kommentare sind geschlossen."
+
+#: footer.php:11
+#: header.php:52
+#: searchform.php:1
+#: searchform.php:3
+#: searchform.php:4
+msgid "Search"
+msgstr "Suchen"
+
+#: footer.php:14
+msgid "Press Enter to search, Esc to close."
+msgstr "Zum Suchen die Eingabetaste drücken, zum Schließen Esc."
+
+#: footer.php:35
+msgid "Back to top"
+msgstr "Nach oben"
+
+#: front-page.php:9
+msgid "Welcome"
+msgstr "Willkommen"
+
+#: front-page.php:15
+#: front-page.php:34
+msgid "Latest posts"
+msgstr "Neueste Beiträge"
+
+#: front-page.php:17
+msgid "All posts"
+msgstr "Alle Beiträge"
+
+#: front-page.php:43
+msgid "Nothing published yet."
+msgstr "Noch nichts veröffentlicht."
+
+#: functions.php:48
+msgid "Card"
+msgstr "Karte"
+
+#: functions.php:49
+msgid "Bordered card"
+msgstr "Karte mit Rahmen"
+
+#: functions.php:50
+msgid "Lead text"
+msgstr "Einleitungstext"
+
+#: functions.php:51
+msgid "Sortable"
+msgstr "Sortierbar"
+
+#: functions.php:52
+msgid "Masonry"
+msgstr "Mauerwerk"
+
+#: functions.php:53
+msgid "Framed"
+msgstr "Mit Rahmen"
+
+#: functions.php:54
+msgid "Soft shadow"
+msgstr "Weicher Schatten"
+
+#: functions.php:55
+msgid "Circle"
+msgstr "Kreis"
+
+#: functions.php:74
+#: inc/customizer.php:195
+#: sidebar.php:3
+msgid "Sidebar"
+msgstr "Seitenleiste"
+
+#: functions.php:76
+msgid "Shown next to blog posts and archives."
+msgstr "Wird neben Beiträgen und Archiven angezeigt."
+
+#. translators: %d: column number.
+#: functions.php:88
+#, php-format
+msgid "Footer column %d"
+msgstr "Footer-Spalte %d"
+
+#: functions.php:92
+msgid "Shown in the footer."
+msgstr "Wird im Footer angezeigt."
+
+#: functions.php:132
+msgid "Category"
+msgstr "Kategorie"
+
+#: functions.php:133
+msgid "Tag"
+msgstr "Schlagwort"
+
+#: functions.php:134
+msgid "Author"
+msgstr "Autor"
+
+#: functions.php:135
+#: functions.php:136
+#: functions.php:137
+msgid "Archive"
+msgstr "Archiv"
+
+#: functions.php:220
+msgid "Home"
+msgstr "Startseite"
+
+#: functions.php:234
+msgid "Not found"
+msgstr "Nicht gefunden"
+
+#: functions.php:236
+msgid "Search results"
+msgstr "Suchergebnisse"
+
+#: functions.php:244
+msgid "Breadcrumb"
+msgstr "Brotkrumennavigation"
+
+#: functions.php:258
+msgid "Pagination"
+msgstr "Seitennavigation"
+
+#: functions.php:295
+msgid "Your comment is awaiting moderation."
+msgstr "Dein Kommentar wartet auf Freischaltung."
+
+#: functions.php:332
+msgid "Your comment could not be submitted"
+msgstr "Dein Kommentar konnte nicht gesendet werden"
+
+#: functions.php:334
+msgid "Go back"
+msgstr "Zurück"
+
+#: functions.php:350
+msgid "Please fill out this field."
+msgstr "Bitte fülle dieses Feld aus."
+
+#: functions.php:351
+msgid "Please enter a valid email address."
+msgstr "Bitte gib eine gültige E-Mail-Adresse ein."
+
+#: functions.php:352
+msgid "Please enter a valid URL."
+msgstr "Bitte gib eine gültige URL ein."
+
+#: functions.php:353
+msgid "View larger image"
+msgstr "Bild vergrößern"
+
+#: functions.php:354
+msgid "Open image"
+msgstr "Bild öffnen"
+
+#: functions.php:355
+msgid "Code"
+msgstr "Code"
+
+#: functions.php:356
+msgid "Table"
+msgstr "Tabelle"
+
+#: functions.php:357
+msgid "Featured posts"
+msgstr "Ausgewählte Beiträge"
+
+#. translators: 1: number of this slide, 2: number of slides.
+#: functions.php:359
+#, php-format
+msgid "Slide %1$d of %2$d"
+msgstr "Folie %1$d von %2$d"
+
+#: functions.php:371
+msgid "This content is password-protected. To view it, please enter the password below."
+msgstr "Dieser Inhalt ist passwortgeschützt. Gib unten das Passwort ein, um ihn zu sehen."
+
+#: functions.php:373
+msgid "Password"
+msgstr "Passwort"
+
+#: functions.php:376
+msgctxt "post password form"
+msgid "Enter"
+msgstr "Öffnen"
+
+#: header.php:20
+msgid "Skip to content"
+msgstr "Zum Inhalt springen"
+
+#: header.php:23
+#: inc/menus.php:13
+#: inc/menus.php:63
+msgid "Primary menu"
+msgstr "Hauptmenü"
+
+#: header.php:35
+msgid "Toggle menu"
+msgstr "Menü umschalten"
+
+#: header.php:52
+msgid "Search (press /)"
+msgstr "Suchen (Taste /)"
+
+#: header.php:55
+msgid "Toggle dark mode"
+msgstr "Dunklen Modus umschalten"
+
+#: header.php:60
+msgid "Open menu"
+msgstr "Menü öffnen"
+
+#: header.php:70
+msgid "Menu"
+msgstr "Menü"
+
+#: inc/calendar.php:52
+msgid "Today"
+msgstr "Heute"
+
+#: inc/calendar.php:53
+msgid "Month"
+msgstr "Monat"
+
+#: inc/calendar.php:54
+msgid "Week"
+msgstr "Woche"
+
+#: inc/calendar.php:55
+msgid "Agenda"
+msgstr "Agenda"
+
+#: inc/calendar.php:56
+msgid "All day"
+msgstr "Ganztägig"
+
+#: inc/calendar.php:57
+msgid "No posts"
+msgstr "Keine Beiträge"
+
+#: inc/calendar.php:58
+msgid "Previous"
+msgstr "Zurück"
+
+#: inc/calendar.php:59
+msgid "Next"
+msgstr "Weiter"
+
+#: inc/calendar.php:60
+msgid "Calendar view"
+msgstr "Kalenderansicht"
+
+#: inc/calendar.php:61
+msgid "Posts calendar"
+msgstr "Beitragskalender"
+
+#: inc/calendar.php:62
+msgid "The posts could not be loaded. Please try again."
+msgstr "Die Beiträge konnten nicht geladen werden. Bitte versuche es erneut."
+
+#: inc/customizer.php:86
+msgid "Header"
+msgstr "Header"
+
+#: inc/customizer.php:101
+msgid "Menu layout"
+msgstr "Menülayout"
+
+#: inc/customizer.php:102
+msgid "How the primary menu is shown."
+msgstr "Wie das Hauptmenü angezeigt wird."
+
+#: inc/customizer.php:105
+msgid "Inline links with dropdowns (menu button on small screens)"
+msgstr "Links in der Kopfzeile mit Dropdowns (Menüknopf auf kleinen Bildschirmen)"
+
+#: inc/customizer.php:106
+msgid "Menu button opening a side panel"
+msgstr "Menüknopf, der ein Seitenpanel öffnet"
+
+#: inc/customizer.php:107
+msgid "Menu button pushing the page aside, with drill-down panels"
+msgstr "Menüknopf, der die Seite zur Seite schiebt, mit Ebenen zum Hineinklicken"
+
+#: inc/customizer.php:116
+msgid "Colours"
+msgstr "Farben"
+
+#: inc/customizer.php:131
+msgid "Default colour mode"
+msgstr "Standard-Farbmodus"
+
+#: inc/customizer.php:132
+msgid "What visitors see first. They can always switch with the button in the header."
+msgstr "Was Besucher zuerst sehen. Sie können jederzeit mit dem Knopf im Header wechseln."
+
+#: inc/customizer.php:135
+msgid "Follow the visitor's device"
+msgstr "Dem Gerät des Besuchers folgen"
+
+#: inc/customizer.php:136
+msgid "Light"
+msgstr "Hell"
+
+#: inc/customizer.php:137
+msgid "Dark"
+msgstr "Dunkel"
+
+#: inc/customizer.php:154
+msgid "Accent colour (light mode)"
+msgstr "Akzentfarbe (heller Modus)"
+
+#: inc/customizer.php:171
+msgid "Accent colour (dark mode)"
+msgstr "Akzentfarbe (dunkler Modus)"
+
+#: inc/customizer.php:180
+msgid "Layout"
+msgstr "Layout"
+
+#: inc/customizer.php:198
+msgid "Right"
+msgstr "Rechts"
+
+#: inc/customizer.php:199
+msgid "Left"
+msgstr "Links"
+
+#: inc/customizer.php:200
+msgid "No sidebar"
+msgstr "Keine Seitenleiste"
+
+#: inc/customizer.php:216
+msgid "Post list layout"
+msgstr "Layout der Beitragsliste"
+
+#: inc/customizer.php:217
+msgid "How posts are shown on the blog, in archives and in search."
+msgstr "Wie Beiträge im Blog, in Archiven und in der Suche angezeigt werden."
+
+#: inc/customizer.php:220
+msgid "Grid of cards"
+msgstr "Raster aus Karten"
+
+#: inc/customizer.php:221
+msgid "List, with the picture beside the text"
+msgstr "Liste, mit dem Bild neben dem Text"
+
+#: inc/customizer.php:222
+msgid "Magazine: a large first post, then a grid"
+msgstr "Magazin: ein großer erster Beitrag, dann ein Raster"
+
+#: inc/customizer.php:231
+msgid "Front page"
+msgstr "Startseite"
+
+#: inc/customizer.php:246
+msgid "Introduction at the top"
+msgstr "Einleitung oben"
+
+#: inc/customizer.php:247
+msgid "It shows the site title and tagline (Settings, General)."
+msgstr "Sie zeigt Titel und Untertitel der Website (Einstellungen, Allgemein)."
+
+#: inc/customizer.php:250
+msgid "Centred, in a card"
+msgstr "Zentriert, in einer Karte"
+
+#: inc/customizer.php:251
+msgid "Left-aligned, without a card"
+msgstr "Linksbündig, ohne Karte"
+
+#: inc/customizer.php:252
+msgid "None"
+msgstr "Keine"
+
+#: inc/customizer.php:261
+msgid "Footer"
+msgstr "Footer"
+
+#: inc/customizer.php:276
+msgid "Footer text"
+msgstr "Footer-Text"
+
+#: inc/customizer.php:277
+msgid "Leave empty for the default copyright line. {year} and {site} are replaced."
+msgstr "Leer lassen für die Standard-Copyright-Zeile. {year} und {site} werden ersetzt."
+
+#: inc/customizer.php:292
+msgid "Show the back to top button"
+msgstr "Den Nach-oben-Knopf anzeigen"
+
+#. translators: %s: date.
+#: inc/filters.php:144
+#, php-format
+msgid "From %s"
+msgstr "Ab %s"
+
+#. translators: %s: date.
+#: inc/filters.php:147
+#, php-format
+msgid "Until %s"
+msgstr "Bis %s"
+
+#: inc/filters.php:239
+msgid "Filter posts"
+msgstr "Beiträge filtern"
+
+#: inc/filters.php:240
+msgid "Search categories…"
+msgstr "Kategorien durchsuchen …"
+
+#: inc/filters.php:241
+msgid "Select all"
+msgstr "Alle auswählen"
+
+#: inc/filters.php:242
+#: template-parts/filters.php:78
+msgid "Clear"
+msgstr "Zurücksetzen"
+
+#: inc/filters.php:243
+msgid "No categories found"
+msgstr "Keine Kategorien gefunden"
+
+#: inc/filters.php:244
+msgid "Any category"
+msgstr "Beliebige Kategorie"
+
+#: inc/filters.php:245
+msgid "Choose a date range"
+msgstr "Zeitraum wählen"
+
+#: inc/filters.php:246
+#: template-parts/filters.php:26
+#: template-parts/filters.php:51
+msgid "Categories"
+msgstr "Kategorien"
+
+#: inc/filters.php:247
+#: template-parts/filters.php:69
+msgid "Published between"
+msgstr "Veröffentlicht zwischen"
+
+#: inc/gallery.php:41
+msgid "The images could not be loaded. Please try again."
+msgstr "Die Bilder konnten nicht geladen werden. Bitte versuche es erneut."
+
+#: inc/menus.php:14
+#: inc/menus.php:104
+msgid "Footer menu"
+msgstr "Footer-Menü"
+
+#: inc/menus.php:15
+#: inc/menus.php:118
+msgid "Social links"
+msgstr "Soziale Links"
+
+#: inc/menus.php:120
+msgid "Follow on"
+msgstr "Folge auf"
+
+#: inc/post-features.php:16
+msgid "Show the reading time"
+msgstr "Lesezeit anzeigen"
+
+#: inc/post-features.php:17
+msgid "Show a table of contents on long posts"
+msgstr "Inhaltsverzeichnis bei langen Beiträgen anzeigen"
+
+#: inc/post-features.php:18
+msgid "Show a reading progress bar"
+msgstr "Lesefortschrittsbalken anzeigen"
+
+#: inc/post-features.php:19
+msgid "Show share links"
+msgstr "Teilen-Links anzeigen"
+
+#: inc/post-features.php:20
+msgid "Show the author box (when the author has a biography)"
+msgstr "Autorenbox anzeigen (wenn der Autor eine Biografie hat)"
+
+#: inc/post-features.php:21
+msgid "Show related posts"
+msgstr "Ähnliche Beiträge anzeigen"
+
+#: inc/post-features.php:22
+msgid "Show sticky posts as a featured slider on the front page"
+msgstr "Angeheftete Beiträge als Slider auf der Startseite anzeigen"
+
+#: inc/post-features.php:42
+msgid "Posts"
+msgstr "Beiträge"
+
+#. translators: %s: number of minutes.
+#: inc/post-features.php:86
+#, php-format
+msgid "%s min read"
+msgstr "%s Min. Lesezeit"
+
+#: inc/post-features.php:164
+msgid "On this page"
+msgstr "Auf dieser Seite"
+
+#: inc/post-features.php:222
+msgid "Email"
+msgstr "E-Mail"
+
+#. Template Name of the theme
+msgid "Calendar"
+msgstr "Kalender"
+
+#: page-templates/calendar.php:57
+msgid "No posts this month."
+msgstr "Keine Beiträge in diesem Monat."
+
+#. Template Name of the theme
+#: page-templates/docs.php:18
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: page-templates/docs.php:35
+msgid "Navigation"
+msgstr "Navigation"
+
+#: page-templates/docs.php:50
+msgid "Documentation pages"
+msgstr "Seiten der Dokumentation"
+
+#. Template Name of the theme
+msgid "Full width"
+msgstr "Volle Breite"
+
+#. Template Name of the theme
+msgid "Photo gallery"
+msgstr "Fotogalerie"
+
+#: page-templates/gallery.php:34
+msgid "Loading more…"
+msgstr "Lade weitere …"
+
+#. Template Name of the theme
+msgid "Landing page"
+msgstr "Landingpage"
+
+#: patterns/cta.php
+msgctxt "Pattern title"
+msgid "Call to action"
+msgstr "Handlungsaufforderung"
+
+#: patterns/cta.php
+msgctxt "Pattern description"
+msgid "A highlighted box with a headline, a sentence and a button."
+msgstr "Ein hervorgehobener Kasten mit Überschrift, einem Satz und einem Knopf."
+
+#: patterns/cta.php:12
+msgctxt "CTA pattern"
+msgid "Ready when you are"
+msgstr "Bereit, wenn du es bist"
+
+#: patterns/cta.php:16
+msgctxt "CTA pattern"
+msgid "One sentence that makes the next step feel easy."
+msgstr "Ein Satz, der den nächsten Schritt leicht wirken lässt."
+
+#: patterns/cta.php:21
+msgctxt "CTA pattern"
+msgid "Get in touch"
+msgstr "Kontakt aufnehmen"
+
+#: patterns/faq.php
+msgctxt "Pattern title"
+msgid "FAQ"
+msgstr "FAQ"
+
+#: patterns/faq.php
+msgctxt "Pattern description"
+msgid "Frequently asked questions as collapsible items."
+msgstr "Häufige Fragen als aufklappbare Einträge."
+
+#: patterns/faq.php:12
+msgctxt "FAQ pattern"
+msgid "Frequently asked questions"
+msgstr "Häufig gestellte Fragen"
+
+#: patterns/faq.php:16
+msgctxt "FAQ pattern"
+msgid "What is this about?"
+msgstr "Worum geht es hier?"
+
+#: patterns/faq.php:17
+#: patterns/faq.php:23
+#: patterns/faq.php:29
+msgctxt "FAQ pattern"
+msgid "Give a short, direct answer."
+msgstr "Gib eine kurze, direkte Antwort."
+
+#: patterns/faq.php:22
+msgctxt "FAQ pattern"
+msgid "How do I get started?"
+msgstr "Wie fange ich an?"
+
+#: patterns/faq.php:28
+msgctxt "FAQ pattern"
+msgid "Can I change my mind later?"
+msgstr "Kann ich es mir später anders überlegen?"
+
+#: patterns/features.php
+msgctxt "Pattern title"
+msgid "Features"
+msgstr "Funktionen"
+
+#: patterns/features.php
+msgctxt "Pattern description"
+msgid "Three feature cards in a responsive grid."
+msgstr "Drei Funktionskarten in einem responsiven Raster."
+
+#: patterns/features.php:13
+msgctxt "Features pattern"
+msgid "Fast by default"
+msgstr "Von Haus aus schnell"
+
+#: patterns/features.php:17
+msgctxt "Features pattern"
+msgid "Describe the first benefit in a sentence or two."
+msgstr "Beschreibe den ersten Vorteil in ein oder zwei Sätzen."
+
+#: patterns/features.php:23
+msgctxt "Features pattern"
+msgid "Easy to use"
+msgstr "Einfach zu bedienen"
+
+#: patterns/features.php:27
+msgctxt "Features pattern"
+msgid "Describe the second benefit in a sentence or two."
+msgstr "Beschreibe den zweiten Vorteil in ein oder zwei Sätzen."
+
+#: patterns/features.php:33
+msgctxt "Features pattern"
+msgid "Made to last"
+msgstr "Für die Ewigkeit gemacht"
+
+#: patterns/features.php:37
+msgctxt "Features pattern"
+msgid "Describe the third benefit in a sentence or two."
+msgstr "Beschreibe den dritten Vorteil in ein oder zwei Sätzen."
+
+#: patterns/hero-cover.php
+msgctxt "Pattern title"
+msgid "Hero on a picture"
+msgstr "Hero auf einem Bild"
+
+#: patterns/hero-cover.php
+msgctxt "Pattern description"
+msgid "A headline and a button on top of a full picture."
+msgstr "Eine Überschrift und ein Knopf auf einem Bild in voller Größe."
+
+#: patterns/hero-cover.php:14
+#: patterns/hero-minimal.php:16
+#: patterns/hero-split.php:19
+#: patterns/hero.php:16
+msgctxt "Hero pattern"
+msgid "A clear headline for your site"
+msgstr "Eine klare Überschrift für deine Website"
+
+#: patterns/hero-cover.php:18
+#: patterns/hero-minimal.php:20
+#: patterns/hero-split.php:23
+#: patterns/hero.php:20
+msgctxt "Hero pattern"
+msgid "Say what you do in one or two sentences, and point people to the next step."
+msgstr "Sag in ein oder zwei Sätzen, was du machst, und zeige den nächsten Schritt."
+
+#: patterns/hero-cover.php:23
+#: patterns/hero-minimal.php:25
+#: patterns/hero-split.php:28
+#: patterns/hero.php:25
+msgctxt "Hero pattern"
+msgid "Get started"
+msgstr "Loslegen"
+
+#: patterns/hero-minimal.php
+msgctxt "Pattern title"
+msgid "Hero, minimal"
+msgstr "Hero, minimal"
+
+#: patterns/hero-minimal.php
+msgctxt "Pattern description"
+msgid "A large left-aligned headline with no box around it."
+msgstr "Eine große linksbündige Überschrift ohne Kasten."
+
+#: patterns/hero-minimal.php:12
+#: patterns/hero-split.php:15
+#: patterns/hero.php:12
+msgctxt "Hero pattern"
+msgid "Welcome"
+msgstr "Willkommen"
+
+#: patterns/hero-minimal.php:29
+#: patterns/hero-split.php:32
+#: patterns/hero.php:29
+msgctxt "Hero pattern"
+msgid "Learn more"
+msgstr "Mehr erfahren"
+
+#: patterns/hero-split.php
+msgctxt "Pattern title"
+msgid "Hero with picture"
+msgstr "Hero mit Bild"
+
+#: patterns/hero-split.php
+msgctxt "Pattern description"
+msgid "A headline and two buttons beside a picture."
+msgstr "Eine Überschrift und zwei Knöpfe neben einem Bild."
+
+#: patterns/hero.php
+msgctxt "Pattern title"
+msgid "Hero"
+msgstr "Hero"
+
+#: patterns/hero.php
+msgctxt "Pattern description"
+msgid "A centred introduction with a headline, a short lead and two buttons."
+msgstr "Eine zentrierte Einleitung mit Überschrift, kurzem Einleitungstext und zwei Knöpfen."
+
+#: patterns/stats.php
+msgctxt "Pattern title"
+msgid "Stats"
+msgstr "Kennzahlen"
+
+#: patterns/stats.php
+msgctxt "Pattern description"
+msgid "Three large numbers with short labels."
+msgstr "Drei große Zahlen mit kurzen Beschriftungen."
+
+#: patterns/stats.php:17
+msgctxt "Stats pattern"
+msgid "Articles published"
+msgstr "Veröffentlichte Artikel"
+
+#: patterns/stats.php:27
+msgctxt "Stats pattern"
+msgid "Monthly readers"
+msgstr "Leser pro Monat"
+
+#: patterns/stats.php:37
+msgctxt "Stats pattern"
+msgid "Reader satisfaction"
+msgstr "Zufriedenheit der Leser"
+
+#: patterns/steps.php
+msgctxt "Pattern title"
+msgid "Steps"
+msgstr "Schritte"
+
+#: patterns/steps.php
+msgctxt "Pattern description"
+msgid "Three numbered steps that explain how something works."
+msgstr "Drei nummerierte Schritte, die erklären, wie etwas funktioniert."
+
+#: patterns/steps.php:17
+msgctxt "Steps pattern"
+msgid "Sign up"
+msgstr "Registrieren"
+
+#: patterns/steps.php:21
+msgctxt "Steps pattern"
+msgid "Explain the first step."
+msgstr "Erkläre den ersten Schritt."
+
+#: patterns/steps.php:31
+msgctxt "Steps pattern"
+msgid "Set things up"
+msgstr "Einrichten"
+
+#: patterns/steps.php:35
+msgctxt "Steps pattern"
+msgid "Explain the second step."
+msgstr "Erkläre den zweiten Schritt."
+
+#: patterns/steps.php:45
+msgctxt "Steps pattern"
+msgid "Go live"
+msgstr "Live gehen"
+
+#: patterns/steps.php:49
+msgctxt "Steps pattern"
+msgid "Explain the third step."
+msgstr "Erkläre den dritten Schritt."
+
+#: patterns/timeline.php
+msgctxt "Pattern title"
+msgid "Timeline"
+msgstr "Zeitleiste"
+
+#: patterns/timeline.php
+msgctxt "Pattern description"
+msgid "A vertical timeline of dated events."
+msgstr "Eine vertikale Zeitleiste mit datierten Ereignissen."
+
+#: patterns/timeline.php:18
+msgctxt "Timeline pattern"
+msgid "January 2026"
+msgstr "Januar 2026"
+
+#: patterns/timeline.php:22
+msgctxt "Timeline pattern"
+msgid "The beginning"
+msgstr "Der Anfang"
+
+#: patterns/timeline.php:26
+#: patterns/timeline.php:46
+msgctxt "Timeline pattern"
+msgid "What happened, in a sentence."
+msgstr "Was passiert ist, in einem Satz."
+
+#: patterns/timeline.php:38
+msgctxt "Timeline pattern"
+msgid "April 2026"
+msgstr "April 2026"
+
+#: patterns/timeline.php:42
+msgctxt "Timeline pattern"
+msgid "A big step forward"
+msgstr "Ein großer Schritt nach vorn"
+
+#: patterns/timeline.php:58
+msgctxt "Timeline pattern"
+msgid "Today"
+msgstr "Heute"
+
+#: patterns/timeline.php:62
+msgctxt "Timeline pattern"
+msgid "Where we are now"
+msgstr "Wo wir jetzt stehen"
+
+#: patterns/timeline.php:66
+msgctxt "Timeline pattern"
+msgid "What is happening now, in a sentence."
+msgstr "Was gerade passiert, in einem Satz."
+
+#. translators: %s: search query.
+#: search.php:10
+#, php-format
+msgid "Search results for “%s”"
+msgstr "Suchergebnisse für „%s“"
+
+#: search.php:15
+msgid "Refine your search"
+msgstr "Suche verfeinern"
+
+#: searchform.php:3
+msgid "Search…"
+msgstr "Suchen …"
+
+#: single.php:38
+msgid "Post navigation"
+msgstr "Beitragsnavigation"
+
+#: template-parts/author-box.php:15
+msgid "About the author"
+msgstr "Über den Autor"
+
+#: template-parts/content-card.php:12
+msgid "Read more"
+msgstr "Weiterlesen"
+
+#. translators: %s: post title.
+#: template-parts/content-card.php:16
+#, php-format
+msgid "about “%s”"
+msgstr "über „%s“"
+
+#: template-parts/filters.php:27
+msgid "All"
+msgstr "Alle"
+
+#: template-parts/filters.php:37
+msgid "Filter"
+msgstr "Filtern"
+
+#: template-parts/filters.php:70
+msgid "From"
+msgstr "Von"
+
+#: template-parts/filters.php:72
+msgid "To"
+msgstr "Bis"
+
+#: template-parts/filters.php:77
+msgid "Apply"
+msgstr "Anwenden"
+
+#: template-parts/filters.php:85
+msgid "Active filters"
+msgstr "Aktive Filter"
+
+#. translators: %s: filter, for example a category name.
+#: template-parts/filters.php:90
+#, php-format
+msgid "Remove filter: %s"
+msgstr "Filter entfernen: %s"
+
+#: template-parts/filters.php:94
+msgid "Clear all"
+msgstr "Alle zurücksetzen"
+
+#: template-parts/loop.php:16
+msgid "Nothing found."
+msgstr "Nichts gefunden."
+
+#: template-parts/related.php:23
+msgid "Related posts"
+msgstr "Ähnliche Beiträge"
+
+#: template-parts/share.php:15
+msgid "Share"
+msgstr "Teilen"
+
+#: template-parts/share.php:16
+msgid "Copy link"
+msgstr "Link kopieren"
+
+#: template-parts/share.php:17
+msgid "Link copied"
+msgstr "Link kopiert"
+
+#: template-parts/share.php:19
+msgid "Share this post"
+msgstr "Diesen Beitrag teilen"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Text"
+msgstr "Text"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Secondary text"
+msgstr "Sekundärtext"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Background"
+msgstr "Hintergrund"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Surface"
+msgstr "Fläche"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Accent"
+msgstr "Akzent"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Accent tint"
+msgstr "Akzenttönung"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Divider"
+msgstr "Trennlinie"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Success"
+msgstr "Erfolg"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Warning"
+msgstr "Warnung"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Error"
+msgstr "Fehler"
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Outfit"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Monospace"
+msgstr "Festbreitenschrift"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr "Klein"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Base"
+msgstr "Normal"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr "Groß"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Extra large"
+msgstr "Sehr groß"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Huge"
+msgstr "Riesig"
