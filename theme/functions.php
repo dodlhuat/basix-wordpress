@@ -7,10 +7,19 @@ const BASIX_VENDOR = 'assets/vendor/basix';
 
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
+    add_theme_support('automatic-feed-links');
     add_theme_support('post-thumbnails');
     add_theme_support('html5', ['search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script']);
     register_nav_menus(['primary' => __('Primary menu', 'basix')]);
+
+    // Reading column width in px (46rem), used by WordPress to size embeds and images.
+    $GLOBALS['content_width'] = 736;
 });
+
+// Apply a saved dark/light choice before first paint so the page never flashes the wrong theme.
+add_action('wp_head', function () {
+    wp_print_inline_script_tag("try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}");
+}, 1);
 
 add_action('widgets_init', function () {
     register_sidebar([
@@ -37,6 +46,10 @@ add_action('wp_enqueue_scripts', function () {
 });
 
 add_action('wp_enqueue_scripts', function () {
+    if (is_singular() && comments_open() && get_option('thread_comments')) {
+        wp_enqueue_script('comment-reply');
+    }
+
     if (!is_dir(get_theme_file_path(BASIX_VENDOR))) {
         return;
     }
