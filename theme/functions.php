@@ -12,6 +12,18 @@ add_action('after_setup_theme', function () {
     register_nav_menus(['primary' => __('Primary menu', 'basix')]);
 });
 
+add_action('widgets_init', function () {
+    register_sidebar([
+        'name'          => __('Sidebar', 'basix'),
+        'id'            => 'sidebar-1',
+        'description'   => __('Shown next to blog posts and archives.', 'basix'),
+        'before_widget' => '<section id="%1$s" class="widget card card-bordered %2$s">',
+        'after_widget'  => '</section>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
+    ]);
+});
+
 add_action('wp_enqueue_scripts', function () {
     $dir = get_theme_file_path(BASIX_VENDOR);
     $uri = get_theme_file_uri(BASIX_VENDOR);
@@ -30,6 +42,19 @@ add_action('wp_enqueue_scripts', function () {
     }
     wp_enqueue_script_module('basix-theme-main', get_theme_file_uri('assets/js/main.js'), [], wp_get_theme()->get('Version'));
 });
+
+/** Opening wrapper for templates with a sidebar; pair with basix_layout_close(). */
+function basix_layout_open(): void
+{
+    printf('<div class="layout%s"><div class="layout-main">', is_active_sidebar('sidebar-1') ? ' has-sidebar' : '');
+}
+
+function basix_layout_close(): void
+{
+    echo '</div>';
+    get_sidebar();
+    echo '</div>';
+}
 
 add_filter('excerpt_length', fn() => 28);
 add_filter('excerpt_more', fn() => '…');
