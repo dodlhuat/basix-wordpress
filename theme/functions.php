@@ -12,6 +12,8 @@ require_once __DIR__ . '/inc/customizer.php';
 require_once __DIR__ . '/inc/docs.php';
 require_once __DIR__ . '/inc/post-features.php';
 require_once __DIR__ . '/inc/filters.php';
+require_once __DIR__ . '/inc/calendar.php';
+require_once __DIR__ . '/inc/gallery.php';
 
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
@@ -29,7 +31,7 @@ add_action('after_setup_theme', function () {
 
 // Apply a saved dark/light choice before first paint so the page never flashes the wrong theme.
 add_action('wp_head', function () {
-    wp_print_inline_script_tag("try{var d=document.documentElement,t=localStorage.getItem('theme')||d.dataset.defaultTheme;if(t)d.setAttribute('data-theme',t)}catch(e){}");
+    wp_print_inline_script_tag("document.documentElement.classList.add('js');try{var d=document.documentElement,t=localStorage.getItem('theme')||d.dataset.defaultTheme;if(t)d.setAttribute('data-theme',t)}catch(e){}");
 }, 1);
 
 // The Customizer's default colour mode, read by the init script above and by assets/js/main.js.
@@ -45,6 +47,7 @@ add_action('init', function () {
     register_block_style('core/group', ['name' => 'card-bordered', 'label' => __('Bordered card', 'basix')]);
     register_block_style('core/paragraph', ['name' => 'lead', 'label' => __('Lead text', 'basix')]);
     register_block_style('core/table', ['name' => 'sortable', 'label' => __('Sortable', 'basix')]);
+    register_block_style('core/gallery', ['name' => 'masonry', 'label' => __('Masonry', 'basix')]);
 });
 
 /** Core buttons use the Basix button classes, so hover, focus and active states come from Basix. */
