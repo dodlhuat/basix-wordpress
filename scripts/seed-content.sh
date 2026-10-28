@@ -113,15 +113,35 @@ BODY
 )
 
 # block showcase page (patterns and the core blocks the theme styles)
-wp eval-file /seed/showcase.php >/dev/null
+SHOWCASE_ID=$(wp eval-file /seed/showcase.php)
 
-# menu
-wp menu delete Main >/dev/null 2>&1 || true
-wp menu create Main >/dev/null
-wp menu item add-custom Main Home / >/dev/null
-wp menu item add-post Main "$ABOUT" >/dev/null
-wp menu item add-post Main "$CONTACT" >/dev/null
+# menus: a nested primary menu (three levels), a footer menu and social links
+menu_item() { wp menu item "$@" --porcelain; }
+for m in Main Footer Social; do wp menu delete "$m" >/dev/null 2>&1 || true; wp menu create "$m" >/dev/null; done
+
+menu_item add-custom Main Home / >/dev/null
+TOPICS=$(menu_item add-custom Main Topics '#')
+DESIGN_CAT=$(wp term get category Design --by=slug --field=term_id)
+ENG_CAT=$(wp term get category Engineering --by=slug --field=term_id)
+NOTES_CAT=$(wp term get category Notes --by=slug --field=term_id)
+DESIGN_ITEM=$(menu_item add-term Main category "$DESIGN_CAT" --parent-id="$TOPICS")
+menu_item add-term Main post_tag "$(wp term get post_tag tokens --by=slug --field=term_id)" --parent-id="$DESIGN_ITEM" >/dev/null
+menu_item add-term Main post_tag "$(wp term get post_tag css --by=slug --field=term_id)" --parent-id="$DESIGN_ITEM" >/dev/null
+menu_item add-term Main category "$ENG_CAT" --parent-id="$TOPICS" >/dev/null
+menu_item add-term Main category "$NOTES_CAT" --parent-id="$TOPICS" >/dev/null
+ABOUT_ITEM=$(menu_item add-post Main "$ABOUT")
+menu_item add-post Main "$SHOWCASE_ID" --parent-id="$ABOUT_ITEM" >/dev/null
+menu_item add-post Main "$CONTACT" >/dev/null
 wp menu location assign Main primary >/dev/null
+
+menu_item add-post Footer "$ABOUT" >/dev/null
+menu_item add-post Footer "$CONTACT" >/dev/null
+wp menu location assign Footer footer >/dev/null
+
+menu_item add-custom Social Mastodon https://mastodon.social/ >/dev/null
+menu_item add-custom Social GitHub https://github.com/dodlhuat >/dev/null
+menu_item add-custom Social RSS "$(wp option get home)/feed/" >/dev/null
+wp menu location assign Social social >/dev/null
 
 # comments on the first post
 wp comment create --comment_post_ID="$FIRST" --comment_author="Maya" --comment_author_email="maya@example.com" --comment_content="Two layers is exactly what worked for us. Three just confused everyone." --comment_approved=1 >/dev/null
