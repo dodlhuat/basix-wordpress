@@ -4,6 +4,18 @@ import { components } from './components.js';
 
 // Dark/light mode is needed on every page, so it is the only Basix module loaded up front.
 Theme.init();
+
+// The Customizer can set a default colour mode. It applies until the visitor makes their own choice.
+const defaultMode = document.documentElement.dataset.defaultTheme;
+if (defaultMode && !Theme.hasSavedPreference()) {
+    Theme.setTheme(defaultMode);
+    try {
+        localStorage.removeItem('theme');
+    } catch {
+        // Storage unavailable: the default simply isn't remembered.
+    }
+}
+
 loadComponents(components);
 
 // Without menu items there is no drawer to open.
