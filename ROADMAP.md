@@ -1,0 +1,67 @@
+# Roadmap
+
+Goal: a distributable, premium-feeling WordPress theme built from the Basix component library.
+
+Decisions so far
+- **Audience:** sell / distribute (GPL theme, Basix is MIT, Outfit font is OFL).
+- **Editor:** hybrid. Keep PHP templates that use Basix markup, add `theme.json`, styled core blocks and block patterns.
+- **WooCommerce:** out of scope for now.
+- **Principle:** only Basix components and tokens; theme CSS stays layout glue.
+
+## Milestones
+
+### 1. Compliance baseline
+- Theme Check (WordPress.org and Envato rules) and PHPCS clean.
+- Known findings: inline `<script>` in `header.php`, `date('Y')` instead of `wp_date`, unescaped `echo` in `basix_pagination`.
+- Missing support: `automatic-feed-links`, `$content_width`, `comment-reply` script, `style.css` header tags, `license.txt` (credits for Basix, Outfit, sample images).
+- Build script that syncs Basix and produces a clean theme zip (no `node_modules`, no dev files).
+
+### 1.5. Asset pipeline
+- **Trimmed icon sprite.** Basix `icons.svg` is 3.07 MB (6,446 icons) and is currently fetched on every page. Generate a sprite with only the used icons.
+- **Component loader.** PHP prints `data-basix="<component>"` plus a JSON config; `main.js` lazy-loads that component only on pages that use it.
+- Ship only the Basix JS files that are used.
+- Every JS-built component gets a no-JS fallback (for example a data table behind a chart).
+
+### 2. Editor foundation
+- `theme.json` mirroring Basix tokens (palette, type), `add_editor_style`, wide and full alignment, `wp-block-styles`, responsive embeds.
+- Style core blocks with Basix: buttons, quote, pullquote, table, code, image, gallery, columns, cover, separator, details, embeds.
+- First block patterns: hero, features, FAQ (Accordion), steps (Stepper), timeline, CTA, stats (Chart).
+
+### 3. Settings and menus
+- Customizer: logo, accent colour (overrides `--accent-color`), default light/dark/system, sidebar left/right/none, footer text, social links.
+- Menus: Dropdown submenus on desktop, nested drawer on mobile, footer and social menu locations.
+- **Header layouts** (Customizer choice): inline + Dropdown, Flyout, Push-menu drill-down.
+
+### 4. Layout and templates
+- Footer widget columns, full-width and landing templates.
+- Search overlay (Modal).
+- Docs template: Sidebar nav + Tree of child pages.
+
+### 5. Post features
+- Reading time, table of contents, share (Popover / Bottom sheet, Toast for "link copied"), related posts, author box, reading-progress bar (Progress).
+- Lightbox on content images (`Lightbox.bind`), Code viewer for code blocks, Table block styling plus opt-in sortable table.
+- Featured-posts section (Carousel).
+
+### 6. Discovery and media
+- **Filters:** clickable category chips on the blog index, hierarchical filter (Group picker), date range (Date picker).
+- **Calendar page:** posts by publish date, fetched from the REST API by visible range.
+- **Gallery / portfolio:** masonry infinite-scroll template fed from the media REST endpoint, plus a core Gallery block upgrade.
+- Skeleton / placeholder loading states for all AJAX features.
+
+### 7. Premium polish
+- Scroll reveals (respect `prefers-reduced-motion`), card variants (featured, list, grid), more hero variants, hover and focus polish, image treatments.
+
+### 8. Release quality
+- Translation file, `screenshot.png`, readme, starter content.
+- Lighthouse, axe and keyboard audits; full pass in light, dark and mobile.
+
+### Prototype (after 1.5)
+- **Cmd-K quick switcher:** Modal + Virtual dropdown over a lightweight title/URL index. Decide after seeing it.
+
+## Skipped
+Context menu, Chat bubbles, Editor (WYSIWYG), File uploader, Color picker, and Time-span picker (only useful as a contact or booking form field).
+
+## Risks
+- Settings scope creep (keep the Customizer small).
+- Core-block styling must be tested against real editor content.
+- Basix class names may change between versions; pin the version in `package.json`.
