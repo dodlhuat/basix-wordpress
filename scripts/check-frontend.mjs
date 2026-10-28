@@ -14,13 +14,16 @@ const check = (ok, label) => {
 };
 
 const browser = await puppeteer.launch({ executablePath: chrome, headless: true });
-const open = async (path, viewport = { width: 1280, height: 800 }) => {
+const open = async (path, viewport = { width: 1280, height: 800 }, { reducedMotion = false } = {}) => {
   const context = await browser.createBrowserContext();
   await context.overridePermissions(url, ['clipboard-read', 'clipboard-write', 'clipboard-sanitized-write']);
   const page = await context.newPage();
   // Chrome only allows clipboard writes from a focused page, and headless pages are not focused by default.
   await (await page.createCDPSession()).send('Emulation.setFocusEmulationEnabled', { enabled: true });
   await page.setViewport(viewport);
+  if (reducedMotion) {
+    await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+  }
   page.on('pageerror', (e) => failures.push(`page error on ${path}: ${e.message}`));
   await page.goto(`${url}${path}`, { waitUntil: 'networkidle0' });
   await sleep(400);
@@ -302,6 +305,43 @@ try {
   check(skeletons > 0, `the gallery shows Basix placeholder cards while images load (${skeletons})`);
   await page.waitForFunction(() => !document.querySelector('.masonry-item--skeleton') && document.querySelector('.masonry-item img'), { timeout: 15000 });
   check(true, 'the placeholder cards are replaced by the images');
+
+  // Polish: header shadow, reveal on scroll (and not for reduced motion), and visible keyboard focus.
+  page = await open('/');
+  check(await page.$eval('.site-header', (e) => !e.classList.contains('is-scrolled')), 'the header has no shadow at the top of the page');
+  const prepared = await page.$$eval('.will-reveal', (e) => e.length);
+  check(prepared > 0 && (await page.$$eval('.will-reveal.is-revealed', (e) => e.length)) === 0, `things below the fold wait to be revealed (${prepared})`);
+  check(await page.$$eval('.post-grid > .card', (cards) => cards.filter((c) => c.getBoundingClientRect().top < innerHeight).every((c) => !c.classList.contains('will-reveal'))), 'what is already on screen is not hidden');
+  await page.evaluate(() => window.scrollTo(0, 500));
+  await sleep(500);
+  check(await page.$eval('.site-header', (e) => e.classList.contains('is-scrolled')), 'the header gets a shadow once the page scrolls');
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  await sleep(900);
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await sleep(900);
+  check((await page.$$eval('.will-reveal:not(.is-revealed)', (e) => e.length)) === 0, 'nothing stays hidden after a jump to the bottom and back');
+
+  page = await open('/', { width: 1280, height: 800 }, { reducedMotion: true });
+  check((await page.$$eval('.will-reveal', (e) => e.length)) === 0 && (await page.$$eval('.is-fading', (e) => e.length)) === 0, 'reduced motion: nothing is hidden or animated in');
+
+  const missing = [];
+  for (const path of ['/', '/everything-in-one-post/', '/docs/getting-started/', '/calendar/']) {
+    const focusPage = await open(path);
+    for (let i = 0; i < 45; i++) {
+      await focusPage.keyboard.press('Tab');
+      await sleep(25);
+      const bad = await focusPage.evaluate(() => {
+        const el = document.activeElement;
+        if (!el || el === document.body) return null;
+        const cs = getComputedStyle(el);
+        const own = (cs.outlineStyle !== 'none' && parseFloat(cs.outlineWidth) > 0) || cs.boxShadow !== 'none';
+        const drawn = el.matches('input[type=checkbox],input[type=radio]') && el.nextElementSibling && getComputedStyle(el.nextElementSibling, '::before').boxShadow !== 'none';
+        return own || drawn ? null : `${el.tagName.toLowerCase()}.${String(el.className).split(' ')[0]}`;
+      });
+      if (bad) missing.push(`${path} ${bad}`);
+    }
+  }
+  check(missing.length === 0, `every element reached with Tab shows a focus indicator${missing.length ? ` (missing: ${[...new Set(missing)].join(', ')})` : ''}`);
 } catch (error) {
   failures.push(`stopped early: ${error.message}`);
 } finally {
