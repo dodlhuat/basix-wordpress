@@ -1,11 +1,23 @@
 /*
 Theme Name: Basix
-Description: WordPress theme built on the @dodlhuat/basix component library.
+Theme URI: https://github.com/dodlhuat/basix
+Author: Andi Bauer
+Author URI: https://www.andibauer.at
+Description: A fast, accessible blog and magazine theme built entirely from the Basix component library, with light and dark mode, a flyout menu, image cards and a sidebar with widgets.
 Version: 0.1.0
 Requires at least: 6.5
+Tested up to: 6.9
 Requires PHP: 8.1
-License: MIT
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: basix
+Tags: blog, grid-layout, right-sidebar, two-columns, custom-menu, featured-images, threaded-comments, translation-ready
+
+Basix WordPress theme, (C) 2026 Andi Bauer
+Basix is distributed under the terms of the GNU GPL v2 or later.
+
+This theme bundles the Basix component library (MIT, https://github.com/dodlhuat/basix)
+and the Outfit typeface (SIL Open Font License 1.1). See readme.txt for details.
 */
 
 /* Layout glue only. Colour, radius, spacing and type all come from basix tokens,
