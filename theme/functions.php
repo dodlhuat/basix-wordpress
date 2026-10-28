@@ -213,3 +213,26 @@ add_action('wp_footer', function () {
         ])
     );
 });
+
+/** Password-protected posts: basix form group, input group and error state. */
+add_filter('the_password_form', function (string $output, WP_Post $post, string $invalid_password = ''): string {
+    $id = 'pwbox-' . $post->ID;
+    ob_start();
+    ?>
+    <form action="<?php echo esc_url(site_url('wp-login.php?action=postpass', 'login_post')); ?>" class="post-password-form" method="post">
+        <input type="hidden" name="redirect_to" value="<?php echo esc_attr(get_permalink($post)); ?>">
+        <div class="alert alert-info"><?php esc_html_e('This content is password-protected. To view it, please enter the password below.', 'basix'); ?></div>
+        <div class="form-group<?php echo $invalid_password ? ' error' : ''; ?>">
+            <label for="<?php echo esc_attr($id); ?>"><?php esc_html_e('Password', 'basix'); ?></label>
+            <div class="input-group">
+                <input name="post_password" id="<?php echo esc_attr($id); ?>" type="password" spellcheck="false" required<?php echo $invalid_password ? ' aria-invalid="true" aria-describedby="error-' . esc_attr($id) . '"' : ''; ?>>
+                <button type="submit" class="button button-primary"><?php echo esc_html_x('Enter', 'post password form', 'basix'); ?></button>
+            </div>
+            <?php if ($invalid_password) : ?>
+                <div class="form-hint" id="error-<?php echo esc_attr($id); ?>" role="alert"><?php echo esc_html($invalid_password); ?></div>
+            <?php endif; ?>
+        </div>
+    </form>
+    <?php
+    return ob_get_clean();
+}, 10, 3);
