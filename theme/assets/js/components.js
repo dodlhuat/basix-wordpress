@@ -416,6 +416,70 @@ export const components = {
         }),
     },
 
+    // Things below the fold fade and rise into place as they scroll into view. Skipped entirely for visitors
+    // who prefer reduced motion, and anything already on screen is left alone so nothing flashes at load.
+    reveal: {
+        selector: '.post-grid > .card, .featured, .related, .author-box, .share, .entry-content > .wp-block-group, .entry-content > .wp-block-columns, .entry-content > .wp-block-image, .footer-widgets .cell',
+        load: async () => ({}),
+        init: (modules, elements) => {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+                return;
+            }
+            const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-revealed');
+                    observer.unobserve(entry.target);
+                }
+            }), { rootMargin: '0px 0px -8% 0px' });
+
+            // A jump (End key, back to top, an anchor) can skip elements without them ever entering the window.
+            // Once scrolling pauses, anything left behind above the window is shown, without an animation to watch.
+            let settle = 0;
+            window.addEventListener('scroll', () => {
+                clearTimeout(settle);
+                settle = setTimeout(() => document.querySelectorAll('.will-reveal:not(.is-revealed)').forEach((element) => {
+                    if (element.getBoundingClientRect().bottom < 0) {
+                        element.classList.add('is-revealed');
+                        observer.unobserve(element);
+                    }
+                }), 120);
+            }, { passive: true });
+
+            const rows = new Map(); // elements in the same row come in one after the other, 80ms apart
+            elements.forEach((element) => {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    return;
+                }
+                const row = Math.round(rect.top + window.scrollY);
+                const place = rows.get(row) ?? 0;
+                rows.set(row, place + 1);
+                element.style.setProperty('--reveal-delay', `${place * 80}ms`);
+                element.classList.add('will-reveal');
+                observer.observe(element);
+            });
+        },
+    },
+
+    'fade-images': {
+        selector: 'img[loading="lazy"]',
+        load: async () => ({}),
+        init: (modules, images) => {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                return;
+            }
+            images.forEach((image) => {
+                if (image.complete) {
+                    return;
+                }
+                image.classList.add('is-fading');
+                const done = () => image.classList.remove('is-fading');
+                image.addEventListener('load', done, { once: true });
+                image.addEventListener('error', done, { once: true });
+            });
+        },
+    },
+
     flyout: {
         selector: '#site-flyout li',
         load: () => import('../vendor/basix/js/flyout-menu.js'),
