@@ -5,6 +5,11 @@
 
 const BASIX_VENDOR = 'assets/vendor/basix';
 
+require_once __DIR__ . '/inc/class-basix-dropdown-walker.php';
+require_once __DIR__ . '/inc/class-basix-drawer-walker.php';
+require_once __DIR__ . '/inc/menus.php';
+require_once __DIR__ . '/inc/customizer.php';
+
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
     add_theme_support('automatic-feed-links');
@@ -15,16 +20,20 @@ add_action('after_setup_theme', function () {
     // Basix first (colours, type, components), then the content styles, so the editor matches the site.
     add_editor_style(['assets/vendor/basix/css/style.min.css', 'assets/css/content.css']);
     add_theme_support('html5', ['search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script']);
-    register_nav_menus(['primary' => __('Primary menu', 'basix')]);
-
     // Reading column width in px (46rem), used by WordPress to size embeds and images.
     $GLOBALS['content_width'] = 736;
 });
 
 // Apply a saved dark/light choice before first paint so the page never flashes the wrong theme.
 add_action('wp_head', function () {
-    wp_print_inline_script_tag("try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}");
+    wp_print_inline_script_tag("try{var d=document.documentElement,t=localStorage.getItem('theme')||d.dataset.defaultTheme;if(t)d.setAttribute('data-theme',t)}catch(e){}");
 }, 1);
+
+// The Customizer's default colour mode, read by the init script above and by assets/js/main.js.
+add_filter('language_attributes', function (string $output): string {
+    $mode = get_theme_mod('basix_color_mode', 'system');
+    return in_array($mode, ['light', 'dark'], true) ? $output . ' data-default-theme="' . esc_attr($mode) . '"' : $output;
+});
 
 add_action('init', function () {
     register_block_pattern_category('basix', ['label' => __('Basix', 'basix')]);
@@ -128,7 +137,11 @@ function basix_component_attrs(string $name, array $config = []): string
 /** Opening wrapper for templates with a sidebar; pair with basix_layout_close(). */
 function basix_layout_open(): void
 {
-    printf('<div class="layout%s"><div class="layout-main">', is_active_sidebar('sidebar-1') ? ' has-sidebar' : '');
+    $classes = '';
+    if (basix_has_sidebar()) {
+        $classes = ' has-sidebar sidebar-' . ('left' === get_theme_mod('basix_sidebar_position', 'right') ? 'left' : 'right');
+    }
+    printf('<div class="layout%s"><div class="layout-main">', esc_attr($classes));
 }
 
 function basix_layout_close(): void
