@@ -1,0 +1,14 @@
+<article <?php post_class('card card-bordered card-hover cell'); ?>>
+    <?php if (has_post_thumbnail()) : ?>
+        <a class="card-media" href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
+            <?php the_post_thumbnail('medium_large'); ?>
+        </a>
+    <?php endif; ?>
+    <?php basix_post_terms(); ?>
+    <h2 class="card-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+    <?php basix_post_meta(); ?>
+    <div class="card-excerpt"><?php the_excerpt(); ?></div>
+    <div class="card-footer">
+        <a class="button button-primary" href="<?php the_permalink(); ?>"><?php esc_html_e('Read more', 'basix'); ?></a>
+    </div>
+</article>
