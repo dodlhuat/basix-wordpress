@@ -14,8 +14,10 @@ require_once __DIR__ . '/inc/post-features.php';
 require_once __DIR__ . '/inc/filters.php';
 require_once __DIR__ . '/inc/calendar.php';
 require_once __DIR__ . '/inc/gallery.php';
+require_once __DIR__ . '/inc/seo.php';
 
 add_action('after_setup_theme', function () {
+    load_theme_textdomain('basix', get_template_directory() . '/languages');
     add_theme_support('title-tag');
     add_theme_support('automatic-feed-links');
     add_theme_support('post-thumbnails');
@@ -337,17 +339,24 @@ add_filter('wp_die_handler', function (string|callable $handler) {
     };
 });
 
-/** Validation messages for assets/js/form-validation.js, so they follow the site language instead of the browser's. */
+/**
+ * Text the scripts need (form errors, names for things they build). It comes from here so it follows the
+ * site language, not the browser's.
+ */
 add_action('wp_footer', function () {
-    if (!is_singular() || !comments_open()) {
-        return;
-    }
     printf(
         '<script type="application/json" id="basix-i18n">%s</script>',
         wp_json_encode([
-            'required' => __('Please fill out this field.', 'basix'),
-            'email'    => __('Please enter a valid email address.', 'basix'),
-            'url'      => __('Please enter a valid URL.', 'basix'),
+            'required'  => __('Please fill out this field.', 'basix'),
+            'email'     => __('Please enter a valid email address.', 'basix'),
+            'url'       => __('Please enter a valid URL.', 'basix'),
+            'enlarge'   => __('View larger image', 'basix'),
+            'openImage' => __('Open image', 'basix'),
+            'code'      => __('Code', 'basix'),
+            'table'     => __('Table', 'basix'),
+            'carousel'  => __('Featured posts', 'basix'),
+            /* translators: 1: number of this slide, 2: number of slides. */
+            'slide'     => __('Slide %1$d of %2$d', 'basix'),
         ])
     );
 });
