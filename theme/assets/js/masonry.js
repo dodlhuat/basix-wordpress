@@ -28,3 +28,31 @@ export function bindLightbox(host, images, Lightbox, iconBasePath) {
         }).show();
     });
 }
+
+/**
+ * Makes gallery tiles usable without a mouse: focusable, named, opened with Enter or Space. The component
+ * also uses an h3 for every title, which skips a heading level, so it becomes a plain paragraph.
+ */
+export function makeItemsAccessible(host, strings) {
+    const fix = () => host.querySelectorAll('.masonry-item:not(.masonry-item--skeleton):not([data-accessible])').forEach((item) => {
+        item.dataset.accessible = 'true';
+        item.tabIndex = 0;
+        item.setAttribute('role', 'button');
+        // The name has to contain what the tile shows (its title and description), so use exactly that.
+        const shown = [...item.querySelectorAll('.masonry-item-title, .masonry-item-desc')].map((e) => e.textContent.trim()).filter(Boolean).join(' ');
+        item.setAttribute('aria-label', shown || item.querySelector('img')?.alt || strings.openImage || 'Open image');
+        const heading = item.querySelector('h3.masonry-item-title');
+        if (heading) {
+            const paragraph = Object.assign(document.createElement('p'), { className: heading.className, textContent: heading.textContent });
+            heading.replaceWith(paragraph);
+        }
+        item.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                item.click();
+            }
+        });
+    });
+    new MutationObserver(fix).observe(host, { childList: true, subtree: true });
+    fix();
+}

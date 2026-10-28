@@ -11,6 +11,7 @@ Requires PHP: 8.1
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: basix
+Domain Path: /languages
 Tags: blog, grid-layout, right-sidebar, two-columns, custom-menu, featured-images, threaded-comments, translation-ready
 
 Basix WordPress theme, (C) 2026 Andi Bauer
@@ -362,3 +363,33 @@ input, textarea, select, button { font-family: inherit; }
     .cards-magazine .post-grid > .card.is-first:not(:has(.card-media)) { grid-template-columns: minmax(0, 1fr); }
     .cards-magazine .post-grid > .card.is-first:not(:has(.card-media)) > * { grid-column: 1; }
 }
+
+/* Contrast fixes for Basix components that use low-contrast greys */
+.code-language { color: #b4b4b4; }
+.cal__day--outside .cal__day-num,
+.cal__day--outside .cal__day-events,
+.cal__week-row .cal__day--outside .cal__day-num { opacity: .72; }
+
+/* A closed drawer is hidden after it has slid away, so its links cannot be reached with the keyboard */
+.flyout-menu.is-ready:not(.is-open) { visibility: hidden; transition: transform var(--transition-speed, .4s) cubic-bezier(.25, 1, .5, 1), visibility 0s linear var(--transition-speed, .4s); }
+.push-menu:not(.pushed) { visibility: hidden; transition: transform .4s cubic-bezier(.2, 0, 0, 1), visibility 0s linear .4s; }
+@media (max-width: 768px) {
+    .docs-layout .sidebar-nav:not(.is-open) { visibility: hidden; transition: left .25s ease, visibility 0s linear .25s; }
+}
+
+/* Basix's own docs styling sets the active link in the plain accent colour, which is too light on its tint */
+.sidebar-nav.docs-sidebar .docs-nav a.is-active { color: var(--accent-text); }
+
+/* Layout stays put while scripts load: only the first featured slide shows until the carousel takes over, and
+   the gallery's plain list is replaced by an area of the right height */
+.js .featured .carousel > .featured-slide:not(:first-child) { display: none; }
+.js .gallery-fallback { display: none; }
+.js .gallery-host { min-height: 70vh; }
+
+/* Touch targets of at least 24px: category badges, and the carousel dots (a 24px button with a small dot inside) */
+.post-terms .badge { min-height: 24px; }
+.featured .carousel-indicator { width: 24px; height: 24px; margin: 0; background: none; }
+.featured .carousel-indicator::before { display: none; }
+.featured .carousel-indicator::after { content: ""; position: absolute; top: 50%; left: 50%; width: .5rem; height: 4px; border-radius: 99px; transform: translate(-50%, -50%); background: rgba(255, 255, 255, .4); transition: width .35s cubic-bezier(.25, .46, .45, .94), background .25s ease; }
+.featured .carousel-indicator.current-slide::after { width: 20px; background: #fff; }
+.cal__event-pill { min-height: 24px; box-sizing: border-box; line-height: 1.7; }

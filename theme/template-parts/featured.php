@@ -22,13 +22,13 @@ if ( ! $basix_featured->have_posts() ) {
 	return;
 }
 ?>
-<section class="featured" aria-label="<?php esc_attr_e( 'Featured posts', 'basix' ); ?>">
+<section class="featured">
 	<div class="carousel" <?php echo basix_component_attrs( 'featured', array( 'loop' => true ) ); ?>>
 		<?php
 		while ( $basix_featured->have_posts() ) :
 			$basix_featured->the_post();
 			?>
-			<article class="featured-slide">
+			<div class="featured-slide">
 				<?php if ( has_post_thumbnail() ) : ?>
 					<?php the_post_thumbnail( 'large', array( 'class' => 'featured-image' ) ); ?>
 				<?php endif; ?>
@@ -37,7 +37,7 @@ if ( ! $basix_featured->have_posts() ) {
 					<h2 class="featured-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 					<?php basix_post_meta(); ?>
 				</div>
-			</article>
+			</div>
 		<?php endwhile; ?>
 		<?php wp_reset_postdata(); ?>
 	</div>

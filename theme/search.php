@@ -12,7 +12,7 @@
         );
         ?>
     </h1>
-    <?php get_search_form(); ?>
+    <?php get_search_form(['aria_label' => __('Refine your search', 'basix')]); ?>
 </header>
 
 <?php get_template_part('template-parts/loop'); ?>

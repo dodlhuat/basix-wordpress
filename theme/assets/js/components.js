@@ -1,7 +1,7 @@
-import { iconBasePath, readConfig } from './loader.js';
+import { iconBasePath, readConfig, strings } from './loader.js';
 import { makeSortable } from './sortable-table.js';
 import { buildFilterForm } from './filters.js';
-import { bindLightbox, neverResolves } from './masonry.js';
+import { bindLightbox, makeItemsAccessible, neverResolves } from './masonry.js';
 
 /**
  * Components the theme can load. Add an entry here when a template or block uses a new one;
@@ -178,6 +178,22 @@ export const components = {
                 if (caption) {
                     target.dataset.lightboxCaption = caption;
                 }
+                // A link around a picture without alt text has no name; a bare picture cannot be reached with the keyboard.
+                if (link) {
+                    if (!link.textContent.trim() && !image.alt?.trim() && !link.getAttribute('aria-label')) {
+                        link.setAttribute('aria-label', caption || strings.enlarge || 'View larger image');
+                    }
+                } else {
+                    image.tabIndex = 0;
+                    image.setAttribute('role', 'button');
+                    image.setAttribute('aria-label', image.alt?.trim() || caption || strings.enlarge || 'View larger image');
+                    image.addEventListener('keydown', (event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault();
+                            image.click();
+                        }
+                    });
+                }
             });
             Lightbox.bind('[data-lightbox="post"]', iconBasePath);
         },
@@ -194,6 +210,10 @@ export const components = {
             holder.className = 'code-block';
             pre.replaceWith(holder);
             new CodeViewer(holder, pre.textContent.replace(/\n$/, ''), language);
+            const scroller = holder.querySelector('.code-content');
+            scroller?.setAttribute('tabindex', '0');
+            scroller?.setAttribute('role', 'region');
+            scroller?.setAttribute('aria-label', language === 'code' ? (strings.code ?? 'Code') : `${strings.code ?? 'Code'}: ${language}`);
         }),
     },
 
@@ -209,10 +229,44 @@ export const components = {
         }),
     },
 
-    // Featured posts on the front page.
+    // A table wider than its column scrolls sideways; then it must be reachable (and named) for keyboard users.
+    'scroll-regions': {
+        selector: '.wp-block-table',
+        load: async () => ({}),
+        init: (modules, regions) => {
+            if (!('ResizeObserver' in window)) {
+                return;
+            }
+            const update = (region) => {
+                if (region.scrollWidth > region.clientWidth + 1) {
+                    region.tabIndex = 0;
+                    region.setAttribute('aria-label', region.querySelector('figcaption')?.textContent.trim() || strings.table || 'Table');
+                } else {
+                    region.removeAttribute('tabindex');
+                    region.removeAttribute('aria-label');
+                }
+            };
+            const observer = new ResizeObserver((entries) => entries.forEach((entry) => update(entry.target)));
+            regions.forEach((region) => observer.observe(region));
+        },
+    },
+
+    // Featured posts on the front page, described to assistive technology as a carousel of slides.
     featured: {
         load: () => import('../vendor/basix/js/carousel.js'),
-        init: ({ Carousel }, [element]) => new Carousel(element, { ...readConfig(element), iconBasePath }),
+        init: ({ Carousel }, [element]) => {
+            new Carousel(element, { ...readConfig(element), iconBasePath });
+            element.setAttribute('role', 'region');
+            element.setAttribute('aria-roledescription', 'carousel');
+            element.setAttribute('aria-label', strings.carousel ?? 'Featured posts');
+            element.querySelector('.carousel-track')?.setAttribute('role', 'presentation');
+            const slides = [...element.querySelectorAll('.carousel-slide')];
+            slides.forEach((slide, index) => {
+                slide.setAttribute('role', 'group');
+                slide.setAttribute('aria-roledescription', 'slide');
+                slide.setAttribute('aria-label', (strings.slide ?? 'Slide %1$d of %2$d').replace('%1$d', String(index + 1)).replace('%2$d', String(slides.length)));
+            });
+        },
     },
 
     // Filter button: the form opens in a modal (a bottom sheet on phones). The Basix pickers are only loaded on the first click.
@@ -317,6 +371,16 @@ export const components = {
                     location.href = config.dayUrl.replace('{y}', date.getFullYear()).replace('{m}', pad(date.getMonth() + 1)).replace('{d}', pad(date.getDate()));
                 },
             });
+            // The component labels every day with a short numeric date that does not contain the text shown in the
+            // cell (the day number and the posts). Name each cell by what it shows, then the full date.
+            const fullDate = new Intl.DateTimeFormat(config.dateLocale, { dateStyle: 'full' });
+            const nameCells = () => host.querySelectorAll('.cal__day[data-date]').forEach((cell) => {
+                const shown = cell.textContent.replace(/\s+/g, ' ').trim();
+                cell.setAttribute('aria-label', `${shown}, ${fullDate.format(new Date(cell.dataset.date))}`);
+            });
+            new MutationObserver(nameCells).observe(host, { childList: true, subtree: true });
+            nameCells();
+
             wrap.querySelector('.calendar-skeleton')?.remove();
             await load(calendar.getVisibleRange());
         },
@@ -372,6 +436,7 @@ export const components = {
 
             new MasonryGallery(host.id, { fetchFunction: fetchBatch, loaderSelector: '.gallery-wrap .loader', minColumnWidth: 250, reload: 0, enableLightbox: false });
             bindLightbox(host, images, Lightbox, iconBasePath);
+            makeItemsAccessible(host, strings);
         },
     },
 
@@ -413,6 +478,7 @@ export const components = {
                 enableLightbox: false,
             });
             bindLightbox(host, images, Lightbox, iconBasePath);
+            makeItemsAccessible(host, strings);
         }),
     },
 

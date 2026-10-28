@@ -17,6 +17,15 @@
 /** Where Basix components find their icon sprite (they all accept an iconBasePath option). */
 export const iconBasePath = new URL('../vendor/basix/svg-icons/', import.meta.url).href;
 
+/** Text in the site's language (printed by functions.php), for the names scripts give to things they build. */
+export const strings = (() => {
+    try {
+        return JSON.parse(document.getElementById('basix-i18n')?.textContent ?? '{}');
+    } catch {
+        return {};
+    }
+})();
+
 /** Parses the JSON in an element's data-config attribute; invalid or missing config gives {}. */
 export function readConfig(element) {
     try {
