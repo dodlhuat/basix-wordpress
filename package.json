@@ -6,6 +6,7 @@
   "description": "WordPress theme built on @dodlhuat/basix",
   "scripts": {
     "sync": "node scripts/sync-basix.mjs",
+    "build": "./scripts/build-zip.sh",
     "postinstall": "node scripts/sync-basix.mjs"
   },
   "dependencies": {

@@ -1,4 +1,4 @@
-.PHONY: up setup seed down reset sync
+.PHONY: up setup seed down reset sync zip lint
 up:
 	npm install
 	docker compose up -d
@@ -11,3 +11,7 @@ down:
 	docker compose down
 reset:
 	docker compose down -v
+zip:
+	./scripts/build-zip.sh
+lint:
+	vendor/bin/phpcs
