@@ -80,3 +80,18 @@ Text Domain: basix
 .front-content { max-width: 46rem; margin: 0 auto 3rem; }
 .front-latest { margin-top: 2rem; scroll-margin-top: 1rem; }
 .front-latest > h2 { margin-bottom: 1.5rem; }
+
+/* Sidebar */
+.layout.has-sidebar { display: grid; grid-template-columns: minmax(0, 1fr) 18rem; gap: 2rem; align-items: start; }
+.layout-main .entry, .layout-main .post-nav, .layout-main .comments { max-width: none; }
+.sidebar { display: flex; flex-direction: column; gap: 1rem; }
+.widget { padding: 1rem; }
+.widget-title { font-size: 1rem; margin: 0 0 .75rem; }
+.widget ul { list-style: none; margin: 0; padding: 0; }
+.widget li { padding-block: .25rem; }
+.widget a { color: inherit; }
+.widget a:hover { color: var(--accent-color); }
+.widget .search-form { margin: 0; max-width: none; }
+@media (max-width: 768px) {
+    .layout.has-sidebar { grid-template-columns: minmax(0, 1fr); }
+}
