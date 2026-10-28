@@ -9,6 +9,11 @@ add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
     add_theme_support('automatic-feed-links');
     add_theme_support('post-thumbnails');
+    add_theme_support('align-wide');
+    add_theme_support('responsive-embeds');
+    add_theme_support('editor-styles');
+    // Basix first (colours, type, components), then the content styles, so the editor matches the site.
+    add_editor_style(['assets/vendor/basix/css/style.min.css', 'assets/css/content.css']);
     add_theme_support('html5', ['search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script']);
     register_nav_menus(['primary' => __('Primary menu', 'basix')]);
 
@@ -20,6 +25,28 @@ add_action('after_setup_theme', function () {
 add_action('wp_head', function () {
     wp_print_inline_script_tag("try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}");
 }, 1);
+
+add_action('init', function () {
+    register_block_pattern_category('basix', ['label' => __('Basix', 'basix')]);
+
+    register_block_style('core/group', ['name' => 'card', 'label' => __('Card', 'basix')]);
+    register_block_style('core/group', ['name' => 'card-bordered', 'label' => __('Bordered card', 'basix')]);
+    register_block_style('core/paragraph', ['name' => 'lead', 'label' => __('Lead text', 'basix')]);
+});
+
+/** Core buttons use the Basix button classes, so hover, focus and active states come from Basix. */
+add_filter('render_block_core/button', function (string $content): string {
+    $processor = new WP_HTML_Tag_Processor($content);
+    if (!$processor->next_tag()) {
+        return $content;
+    }
+    $outline = $processor->has_class('is-style-outline');
+    if ($processor->next_tag(['class_name' => 'wp-block-button__link'])) {
+        $processor->add_class('button');
+        $processor->add_class($outline ? 'button-outline' : 'button-primary');
+    }
+    return $processor->get_updated_html();
+});
 
 add_action('widgets_init', function () {
     register_sidebar([
@@ -42,7 +69,8 @@ add_action('wp_enqueue_scripts', function () {
     }
 
     wp_enqueue_style('basix', "$uri/css/style.min.css", [], filemtime("$dir/css/style.min.css"));
-    wp_enqueue_style('basix-theme', get_stylesheet_uri(), ['basix'], wp_get_theme()->get('Version'));
+    wp_enqueue_style('basix-content', get_theme_file_uri('assets/css/content.css'), ['basix'], filemtime(get_theme_file_path('assets/css/content.css')));
+    wp_enqueue_style('basix-theme', get_stylesheet_uri(), ['basix', 'basix-content'], wp_get_theme()->get('Version'));
 });
 
 add_action('wp_enqueue_scripts', function () {
