@@ -2,6 +2,7 @@ import { Theme } from '../vendor/basix/js/theme.js';
 import { FlyoutMenu } from '../vendor/basix/js/flyout-menu.js';
 import { Tooltip } from '../vendor/basix/js/tooltip.js';
 import { Scroll } from '../vendor/basix/js/scroll.js';
+import './form-validation.js';
 
 Theme.init();
 Tooltip.initializeAll();
