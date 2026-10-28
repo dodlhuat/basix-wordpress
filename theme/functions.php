@@ -124,6 +124,14 @@ function basix_pagination(): void
     echo '</div></nav>';
 }
 
+/** Basix checkboxes are pure CSS and need the .styled-checkbox class on the input, right before its label. */
+add_filter('comment_form_default_fields', function (array $fields): array {
+    if (isset($fields['cookies'])) {
+        $fields['cookies'] = str_replace('type="checkbox"', 'class="styled-checkbox" type="checkbox"', $fields['cookies']);
+    }
+    return $fields;
+});
+
 /** Renders a single comment as a basix card. */
 function basix_comment($comment, $args, $depth): void
 {
