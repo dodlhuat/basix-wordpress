@@ -54,14 +54,15 @@ function basix_primary_menu( string $variant ): void {
 		case 'inline':
 			wp_nav_menu(
 				array(
-					'theme_location'  => 'primary',
-					'depth'           => 3,
-					'fallback_cb'     => false,
-					'container'       => 'nav',
-					'container_class' => 'site-nav',
-					'container_id'    => 'site-nav',
-					'menu_class'      => 'site-nav-list',
-					'walker'          => new Basix_Dropdown_Walker(),
+					'theme_location'       => 'primary',
+					'depth'                => 3,
+					'fallback_cb'          => false,
+					'container'            => 'nav',
+					'container_class'      => 'site-nav',
+					'container_id'         => 'site-nav',
+					'container_aria_label' => __( 'Primary menu', 'basix' ),
+					'menu_class'           => 'site-nav-list',
+					'walker'               => new Basix_Dropdown_Walker(),
 				)
 			);
 			break;
@@ -97,12 +98,13 @@ function basix_footer_menus(): void {
 	if ( has_nav_menu( 'footer' ) ) {
 		wp_nav_menu(
 			array(
-				'theme_location'  => 'footer',
-				'depth'           => 1,
-				'container'       => 'nav',
-				'container_class' => 'footer-nav',
-				'menu_class'      => 'footer-nav-list',
-				'fallback_cb'     => false,
+				'theme_location'       => 'footer',
+				'depth'                => 1,
+				'container'            => 'nav',
+				'container_aria_label' => __( 'Footer menu', 'basix' ),
+				'container_class'      => 'footer-nav',
+				'menu_class'           => 'footer-nav-list',
+				'fallback_cb'          => false,
 			)
 		);
 	}

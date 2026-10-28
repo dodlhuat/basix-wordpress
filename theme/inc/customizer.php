@@ -5,9 +5,16 @@
  * @package basix
  */
 
-/** Basix's own accent colours, used as the defaults. */
+/** The accent colours Basix itself ships with. */
+const BASIX_SHIPPED_ACCENT_LIGHT = '#3d63dd';
+const BASIX_SHIPPED_ACCENT_DARK  = '#1b7bb4';
+
+/**
+ * The defaults offered in the Customizer. The dark one is a little deeper than Basix's own, so buttons
+ * with light text on it meet the 4.5:1 contrast ratio (WCAG AA).
+ */
 const BASIX_DEFAULT_ACCENT_LIGHT = '#3d63dd';
-const BASIX_DEFAULT_ACCENT_DARK  = '#1b7bb4';
+const BASIX_DEFAULT_ACCENT_DARK  = '#1971a6';
 
 /**
  * Settings that are limited to a fixed set of values.
@@ -312,32 +319,106 @@ function basix_footer_text(): string {
 }
 
 /**
- * Black or white, whichever is readable on the given colour.
+ * The red, green and blue parts (0 to 255) of a colour such as #3d63dd.
+ *
+ * @param string $hex Colour.
+ * @return int[]
+ */
+function basix_rgb( string $hex ): array {
+	$hex = ltrim( $hex, '#' );
+	if ( 3 === strlen( $hex ) ) {
+		$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+	}
+	return array_map( 'hexdec', str_split( $hex, 2 ) );
+}
+
+/**
+ * Relative luminance of a colour, as defined by WCAG.
+ *
+ * @param string $hex Colour.
+ * @return float
+ */
+function basix_luminance( string $hex ): float {
+	list( $r, $g, $b ) = array_map(
+		function ( $c ) {
+			$c /= 255;
+			return $c <= 0.03928 ? $c / 12.92 : pow( ( $c + 0.055 ) / 1.055, 2.4 );
+		},
+		basix_rgb( $hex )
+	);
+	return 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
+}
+
+/**
+ * Contrast ratio between two colours (1 to 21).
+ *
+ * @param string $a Colour.
+ * @param string $b Colour.
+ * @return float
+ */
+function basix_contrast( string $a, string $b ): float {
+	$la = basix_luminance( $a );
+	$lb = basix_luminance( $b );
+	return ( max( $la, $lb ) + 0.05 ) / ( min( $la, $lb ) + 0.05 );
+}
+
+/**
+ * Mixes two colours.
+ *
+ * @param string $a        First colour.
+ * @param string $b        Second colour.
+ * @param float  $weight_a Share of the first colour, 0 to 1.
+ * @return string Hex colour.
+ */
+function basix_mix( string $a, string $b, float $weight_a ): string {
+	$ca  = basix_rgb( $a );
+	$cb  = basix_rgb( $b );
+	$hex = '#';
+	for ( $i = 0; $i < 3; $i++ ) {
+		$hex .= sprintf( '%02x', (int) round( $ca[ $i ] * $weight_a + $cb[ $i ] * ( 1 - $weight_a ) ) );
+	}
+	return $hex;
+}
+
+/**
+ * Light or dark text for a button in the given colour: whichever contrasts more.
  *
  * @param string $hex Colour such as #3d63dd.
  * @return string
  */
 function basix_readable_on( string $hex ): string {
-	$hex = ltrim( $hex, '#' );
-	if ( 3 === strlen( $hex ) ) {
-		$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
-	}
-	$channels  = array_map(
-		function ( $c ) {
-			$c = hexdec( $c ) / 255;
-			return $c <= 0.03928 ? $c / 12.92 : pow( ( $c + 0.055 ) / 1.055, 2.4 );
-		},
-		str_split( $hex, 2 )
-	);
-	$luminance = 0.2126 * $channels[0] + 0.7152 * $channels[1] + 0.0722 * $channels[2];
-	return $luminance > 0.4 ? '#1a1b1f' : '#ffffff';
+	return basix_contrast( $hex, '#ffffff' ) >= basix_contrast( $hex, '#1a1b1f' ) ? '#ffffff' : '#1a1b1f';
 }
 
 /**
- * CSS that applies the chosen accent colours. Empty when both are still Basix's defaults.
+ * A version of the accent colour that is readable as text on the page and on tinted surfaces (cards, badges,
+ * selected items): the accent, mixed towards black (light mode) or white (dark mode) until the contrast is
+ * at least 4.6 to 1 everywhere.
+ *
+ * @param string $accent Accent colour.
+ * @param bool   $dark   Whether this is for dark mode.
+ * @return string
+ */
+function basix_accent_text( string $accent, bool $dark ): string {
+	$page      = $dark ? '#111113' : '#f9f9fb';
+	$surface   = $dark ? '#19191b' : '#e7e8ec';
+	$surfaces  = array( $page, $surface, basix_mix( $accent, $surface, 0.2 ), basix_mix( $accent, $page, 0.12 ) );
+	$towards   = $dark ? '#ffffff' : '#000000';
+	for ( $step = 0; $step <= 20; $step++ ) {
+		$candidate = basix_mix( $accent, $towards, 1 - $step * 0.05 );
+		if ( min( array_map( fn( $s ) => basix_contrast( $candidate, $s ), $surfaces ) ) >= 4.6 ) {
+			return $candidate;
+		}
+	}
+	return $towards;
+}
+
+/**
+ * CSS that applies the chosen accent colours. Empty when both are still what Basix ships.
  *
  * Each mode's rule is scoped so it cannot leak into the other one, whether the mode comes from the
- * data-theme attribute or (before JavaScript runs) from the visitor's device.
+ * data-theme attribute or (before JavaScript runs) from the visitor's device. Link and badge text uses a
+ * separate, always readable version of the accent (see basix_accent_text()).
  *
  * @return string
  */
@@ -346,13 +427,13 @@ function basix_accent_css(): string {
 	$dark  = sanitize_hex_color( (string) get_theme_mod( 'basix_accent_dark', BASIX_DEFAULT_ACCENT_DARK ) );
 	$css   = '';
 
-	if ( $light && strtolower( $light ) !== BASIX_DEFAULT_ACCENT_LIGHT ) {
-		$vars = sprintf( '--accent-color:%1$s;--link-color:%1$s;--on-accent:%2$s;', $light, basix_readable_on( $light ) );
+	if ( $light && strtolower( $light ) !== BASIX_SHIPPED_ACCENT_LIGHT ) {
+		$vars = sprintf( '--accent-color:%1$s;--on-accent:%2$s;--accent-text:%3$s;', $light, basix_readable_on( $light ), basix_accent_text( $light, false ) );
 		$css .= ':root[data-theme="light"]{' . $vars . '}';
 		$css .= '@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){' . $vars . '}}';
 	}
-	if ( $dark && strtolower( $dark ) !== BASIX_DEFAULT_ACCENT_DARK ) {
-		$vars = sprintf( '--accent-color:%1$s;--link-color:color-mix(in srgb,%1$s 75%%,white);--on-accent:%2$s;', $dark, basix_readable_on( $dark ) );
+	if ( $dark && strtolower( $dark ) !== BASIX_SHIPPED_ACCENT_DARK ) {
+		$vars = sprintf( '--accent-color:%1$s;--on-accent:%2$s;--accent-text:%3$s;', $dark, basix_readable_on( $dark ), basix_accent_text( $dark, true ) );
 		$css .= ':root[data-theme="dark"]{' . $vars . '}';
 		$css .= '@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){' . $vars . '}}';
 	}

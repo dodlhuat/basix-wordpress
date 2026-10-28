@@ -67,9 +67,9 @@ $basix_sprite = get_theme_file_uri( BASIX_VENDOR . '/svg-icons/icons.svg' );
 
 <?php if ( 'push' !== $basix_layout ) : ?>
     <div class="flyout-overlay" id="site-flyout-overlay"></div>
-    <div class="flyout-menu" id="site-flyout">
+    <nav class="flyout-menu" id="site-flyout" aria-label="<?php esc_attr_e( 'Menu', 'basix' ); ?>">
         <?php basix_primary_menu( 'drawer' ); ?>
-    </div>
+    </nav>
 <?php endif; ?>
 
 <main id="content" class="container site-main">

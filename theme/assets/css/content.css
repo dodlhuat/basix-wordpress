@@ -4,6 +4,20 @@
  * Colour, radius and spacing come from Basix tokens; the Basix stylesheet is loaded first.
  */
 
+/*
+ * Text in the accent colour on a tinted surface (badges, selected items, inline code) does not reach the 4.5:1
+ * contrast of WCAG AA with the plain accent. --accent-text is the accent mixed towards black (light) or white
+ * (dark), and replaces Basix's link colour so every link and badge uses it. Chosen accents from the Customizer
+ * get a calculated value instead (see basix_accent_text() in inc/customizer.php).
+ */
+:root { --accent-text: color-mix(in srgb, var(--accent-color) 76%, black); --link-color: var(--accent-text); }
+:root[data-theme="dark"] { --accent-text: color-mix(in srgb, var(--accent-color) 70%, white); --link-color: var(--accent-text); }
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) { --accent-text: color-mix(in srgb, var(--accent-color) 70%, white); --link-color: var(--accent-text); }
+}
+code,
+.accordion-toggle:checked + .accordion-header { color: var(--accent-text); }
+
 /* Text and media */
 .entry-content,
 .editor-styles-wrapper {
