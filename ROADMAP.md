@@ -41,10 +41,13 @@ Decisions so far
 - Notes: the push layout moves the hamburger to the left so it stays on screen while the page is pushed aside. Social links are text, because Basix ships no brand icons. Icons whose names are built at runtime (`menu`, `menu_open`) are listed in `scripts/basix-assets.json`.
 - Not done: live (postMessage) preview for the Customizer settings, which currently refresh the preview; a header image and background options.
 
-### 4. Layout and templates
+### 4. Layout and templates (done)
 - Footer widget columns, full-width and landing templates.
 - Search overlay (Modal).
 - Docs template: Sidebar nav + Tree of child pages.
+- Result: three footer widget columns (only filled ones show), page templates "Full width", "Landing page" and "Documentation" in `/page-templates`, a header search button opening a Basix Modal (also on the "/" key; a plain link without JavaScript), a docs section and a landing demo in the seed content. `make check` now also drives the public site in headless Chrome (`scripts/check-frontend.mjs`).
+- Deviation: the docs navigation does not use the Basix Tree. The Tree renders clickable divs in a file-explorer style (monospace labels, folder and file icons), so its entries are not links: no middle-click, nothing for search engines to follow. The template uses the Basix sidebar-nav shell (mobile drawer, backdrop, swipe) with a nested list of real links instead; the current branch is opened on the server.
+- The grid patterns (features, steps, stats) are now wide-aligned so they use the full container width.
 
 ### 5. Post features
 - Reading time, table of contents, share (Popover / Bottom sheet, Toast for "link copied"), related posts, author box, reading-progress bar (Progress).
