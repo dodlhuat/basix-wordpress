@@ -136,3 +136,4 @@ a { color: var(--link-color); }
 .alignright { float: right; margin: 0 0 1rem 1rem; }
 .aligncenter { display: block; margin-inline: auto; }
 .screen-reader-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.comment-list .card { font-style: normal; }
