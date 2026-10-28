@@ -221,6 +221,87 @@ try {
   await plain.$eval('input[name="date_from"]', (e) => { e.value = '2026-10-20'; });
   await Promise.all([plain.waitForNavigation(), plain.click('.filter-actions .button-primary')]);
   check(new URL(plain.url()).searchParams.get('date_from') === '2026-10-20', 'the plain form submits the filter');
+
+  // Calendar: posts on their publish dates, reloaded when the visible range changes.
+  page = await open('/calendar/');
+  await page.waitForSelector('.cal__event-pill', { timeout: 10000 }).catch(() => {});
+  const pillTitles = () => page.$$eval('.cal__event-pill', (pills) => pills.map((p) => p.textContent.trim()).sort().join('|'));
+  const thisMonth = await pillTitles();
+  check(thisMonth.length > 0, 'calendar shows posts on the days they were published');
+  check(!(await page.$('.calendar-skeleton')), 'the skeleton is gone once the calendar is ready');
+  await page.click('button[aria-label="Previous"]');
+  await page.waitForFunction((before) => [...document.querySelectorAll('.cal__event-pill')].map((p) => p.textContent.trim()).sort().join('|') !== before, { timeout: 10000 }, thisMonth).catch(() => {});
+  check((await pillTitles()) !== thisMonth, 'going to the previous month loads that month\'s posts');
+  await page.click('.cal__btn--today');
+  await page.waitForFunction((before) => [...document.querySelectorAll('.cal__event-pill')].map((p) => p.textContent.trim()).sort().join('|') === before, { timeout: 10000 }, thisMonth).catch(() => {});
+  check((await pillTitles()) === thisMonth, 'Today returns to the current month');
+  await page.click('.cal__event-pill');
+  const leftCalendar = await page.waitForFunction(() => !location.pathname.startsWith('/calendar'), { timeout: 10000 }).then(() => true, () => false);
+  check(leftCalendar, 'clicking a post in the calendar opens it');
+
+  // Gallery page: masonry, endless loading that stops, and the lightbox with working icons.
+  page = await open('/photo-gallery/');
+  const mediaRequests = [];
+  page.on('request', (r) => r.url().includes('wp/v2/media') && mediaRequests.push(r.url()));
+  await page.reload({ waitUntil: 'networkidle0' });
+  await sleep(1500);
+  const tiles = await page.$$eval('.masonry-item:not(.masonry-item--skeleton)', (items) => items.length);
+  check(tiles >= 12, `gallery loads the images from the media REST endpoint (${tiles})`);
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  await sleep(2500);
+  const settled = mediaRequests.length;
+  await sleep(2000);
+  check(mediaRequests.length === settled && settled <= 3, `gallery stops asking when the images run out (${settled} requests)`);
+  check(await page.$eval('.gallery-wrap .loader', (e) => e.classList.contains('hidden')), 'the loader is hidden at the end');
+  await page.click('.masonry-item:not(.masonry-item--skeleton) img');
+  await sleep(800);
+  check(Boolean(await page.$eval('.lightbox-img', (e) => e.getAttribute('src')).catch(() => null)), 'clicking a gallery image opens the lightbox');
+  check(await page.$eval('.lightbox-close use', (u) => u.getAttribute('href').startsWith('http')).catch(() => false), 'lightbox icons use the theme icon path');
+  await page.keyboard.press('Escape');
+  const plainGallery = await (await browser.createBrowserContext()).newPage();
+  await plainGallery.setJavaScriptEnabled(false);
+  await plainGallery.goto(`${url}/photo-gallery/`, { waitUntil: 'load' });
+  check((await plainGallery.$$('.gallery-fallback a')).length > 0, 'without JavaScript the first images are listed as links');
+
+  // The Masonry style of the Gallery block.
+  page = await open('/block-showcase/');
+  await page.$eval('.wp-block-gallery.is-style-masonry', (e) => e.scrollIntoView({ block: 'center' }));
+  await sleep(1200);
+  const blockTiles = await page.$$eval('.wp-block-gallery.is-style-masonry .masonry-item:not(.masonry-item--skeleton)', (items) => items.length);
+  check(blockTiles === 5, `the Masonry gallery block lays out its images (${blockTiles})`);
+  await page.click('.wp-block-gallery.is-style-masonry .masonry-item:not(.masonry-item--skeleton) img');
+  await sleep(800);
+  check(Boolean(await page.$eval('.lightbox-img', (e) => e.getAttribute('src')).catch(() => null)), 'a masonry block image opens the lightbox');
+  check((await page.$$('.lightbox-img')).length === 1, 'only one lightbox opens (no double binding)');
+
+  // Loading states: slow the REST responses down and look at what the visitor sees meanwhile.
+  const slowPage = async (path, pattern) => {
+    const page = await open('/about/');
+    await page.setRequestInterception(true);
+    page.on('request', (request) => {
+      if (request.url().includes(pattern)) {
+        setTimeout(() => request.continue().catch(() => {}), 1800);
+      } else {
+        request.continue().catch(() => {});
+      }
+    });
+    await page.goto(`${url}${path}`, { waitUntil: 'domcontentloaded' });
+    return page;
+  };
+
+  page = await slowPage('/calendar/', 'wp/v2/posts');
+  await page.waitForSelector('.cal', { timeout: 10000 });
+  check(await page.$eval('.calendar-wrap', (e) => e.classList.contains('is-loading') && e.getAttribute('aria-busy') === 'true'), 'the calendar is marked busy while posts load');
+  check(await page.$eval('.calendar-status', (e) => !e.hidden && Boolean(e.querySelector('.progress-bar.animated'))), 'an animated Basix progress bar shows while posts load');
+  await page.waitForFunction(() => !document.querySelector('.calendar-wrap').classList.contains('is-loading'), { timeout: 10000 });
+  check(await page.$eval('.calendar-status', (e) => e.hidden), 'the progress bar is hidden again afterwards');
+
+  page = await slowPage('/photo-gallery/', 'wp/v2/media');
+  await page.waitForSelector('.masonry-item--skeleton', { timeout: 10000 });
+  const skeletons = await page.$$eval('.masonry-item--skeleton .placeholder', (e) => e.length);
+  check(skeletons > 0, `the gallery shows Basix placeholder cards while images load (${skeletons})`);
+  await page.waitForFunction(() => !document.querySelector('.masonry-item--skeleton') && document.querySelector('.masonry-item img'), { timeout: 15000 });
+  check(true, 'the placeholder cards are replaced by the images');
 } catch (error) {
   failures.push(`stopped early: ${error.message}`);
 } finally {
