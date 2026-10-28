@@ -33,10 +33,13 @@ Decisions so far
 - Differences from the plan: the FAQ uses the core Details block styled like the Basix accordion (the Basix accordion needs paired ids that core blocks cannot produce); Steps are numbered cards using `.stepper-indicator` (the connectors come from JS); Stats are big numbers, and a real Chart block waits for milestone 6; `wp-block-styles` is deliberately off because its default colours fight Basix.
 - Known gap: in the editor, the code block has no tinted background and table headers are larger than on the site.
 
-### 3. Settings and menus
+### 3. Settings and menus (done)
 - Customizer: logo, accent colour (overrides `--accent-color`), default light/dark/system, sidebar left/right/none, footer text, social links.
 - Menus: Dropdown submenus on desktop, nested drawer on mobile, footer and social menu locations.
 - **Header layouts** (Customizer choice): inline + Dropdown, Flyout, Push-menu drill-down.
+- Result: Customizer panel "Basix" (header layout, default colour mode, accent colours for light and dark, sidebar left/right/none, footer text, back-to-top) plus the core logo control. Menu locations: primary, footer, social. Primary menu supports three levels in all three layouts; a parent item that has children stops being a link and its own page becomes the first entry of its submenu (skipped for "#" placeholders). `make check` now also opens the Customizer in headless Chrome.
+- Notes: the push layout moves the hamburger to the left so it stays on screen while the page is pushed aside. Social links are text, because Basix ships no brand icons. Icons whose names are built at runtime (`menu`, `menu_open`) are listed in `scripts/basix-assets.json`.
+- Not done: live (postMessage) preview for the Customizer settings, which currently refresh the preview; a header image and background options.
 
 ### 4. Layout and templates
 - Footer widget columns, full-width and landing templates.
