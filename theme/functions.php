@@ -100,7 +100,19 @@ function basix_breadcrumb(): void
             $crumbs[] = [get_the_title($id), get_permalink($id)];
         }
     }
-    $current = is_singular() ? get_the_title() : wp_strip_all_tags(get_the_archive_title() ?: __('Search', 'basix'));
+    if (is_singular()) {
+        $current = get_the_title();
+    } elseif (is_404()) {
+        $current = __('Not found', 'basix');
+    } elseif (is_search()) {
+        $current = __('Search results', 'basix');
+    } elseif (is_category() || is_tag() || is_tax()) {
+        $current = single_term_title('', false);
+    } elseif (is_home() && !is_front_page()) {
+        $current = single_post_title('', false);
+    } else {
+        $current = wp_strip_all_tags(get_the_archive_title());
+    }
     echo '<nav class="breadcrumb" aria-label="' . esc_attr__('Breadcrumb', 'basix') . '"><ol>';
     foreach ($crumbs as [$label, $url]) {
         printf('<li><a href="%s">%s</a></li>', esc_url($url), esc_html($label));
