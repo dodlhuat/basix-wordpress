@@ -45,6 +45,7 @@
         <properties>
             <property name="customEscapingFunctions" type="array">
                 <element value="basix_component_attrs"/>
+                <element value="basix_footer_text"/>
             </property>
         </properties>
     </rule>
