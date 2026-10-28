@@ -27,6 +27,8 @@ get_header();
     <?php endwhile; ?>
 <?php endif; ?>
 
+<?php get_template_part( 'template-parts/featured' ); ?>
+
 <section id="latest" class="front-latest">
     <h2><?php esc_html_e('Latest posts', 'basix'); ?></h2>
     <?php if ($basix_static_front) : ?>
