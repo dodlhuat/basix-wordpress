@@ -284,3 +284,13 @@ p.is-style-lead { font-size: 1.25rem; color: var(--secondary-text); }
 .wp-block-image.is-style-framed img { padding: .5rem; border: 1px solid var(--divider); border-radius: var(--radius-lg); background: var(--secondary-background); }
 .wp-block-image.is-style-shadow img { box-shadow: 0 24px 48px -24px rgba(0, 0, 0, .45); }
 .wp-block-image.is-style-circle img { border-radius: 50%; aspect-ratio: 1; object-fit: cover; }
+
+/* Core Calendar block: the archive calendar, in theme colours. */
+.wp-block-calendar table { width: 100%; border-collapse: collapse; table-layout: fixed; text-align: center; }
+.wp-block-calendar caption { padding-block: .5rem; font-weight: 600; color: var(--primary-text); caption-side: top; }
+.wp-block-calendar th { padding: .5rem .25rem; font-size: .8125rem; font-weight: 600; text-transform: uppercase; color: var(--secondary-text); background: var(--secondary-background); border: 1px solid var(--divider); }
+.wp-block-calendar td { padding: .5rem .25rem; color: var(--primary-text); border: 1px solid var(--divider); }
+.wp-block-calendar td a { font-weight: 600; color: var(--accent-text); }
+.wp-block-calendar td#today { background: var(--accent-color-tint); font-weight: 600; }
+.wp-block-calendar .wp-calendar-nav { display: flex; justify-content: space-between; margin-top: .5rem; }
+.wp-block-calendar .wp-calendar-nav a { color: var(--accent-text); }
