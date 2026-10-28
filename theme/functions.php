@@ -32,6 +32,16 @@ add_action('after_setup_theme', function () {
     $GLOBALS['content_width'] = 736;
 });
 
+// The editor is always light: it sits inside the light admin, and a visitor's dark mode is not the author's choice.
+add_action('enqueue_block_assets', function () {
+    if (!is_admin()) {
+        return;
+    }
+    wp_register_script('basix-editor-light', false, [], wp_get_theme()->get('Version'), false);
+    wp_enqueue_script('basix-editor-light');
+    wp_add_inline_script('basix-editor-light', "document.documentElement.setAttribute('data-theme','light');");
+});
+
 // Apply a saved dark/light choice before first paint so the page never flashes the wrong theme.
 add_action('wp_head', function () {
     wp_print_inline_script_tag("document.documentElement.classList.add('js');try{var d=document.documentElement,t=localStorage.getItem('theme')||d.dataset.defaultTheme;if(t)d.setAttribute('data-theme',t)}catch(e){}");
