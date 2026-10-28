@@ -48,6 +48,9 @@ add_action('init', function () {
     register_block_style('core/paragraph', ['name' => 'lead', 'label' => __('Lead text', 'basix')]);
     register_block_style('core/table', ['name' => 'sortable', 'label' => __('Sortable', 'basix')]);
     register_block_style('core/gallery', ['name' => 'masonry', 'label' => __('Masonry', 'basix')]);
+    register_block_style('core/image', ['name' => 'framed', 'label' => __('Framed', 'basix')]);
+    register_block_style('core/image', ['name' => 'shadow', 'label' => __('Soft shadow', 'basix')]);
+    register_block_style('core/image', ['name' => 'circle', 'label' => __('Circle', 'basix')]);
 });
 
 /** Core buttons use the Basix button classes, so hover, focus and active states come from Basix. */
@@ -104,6 +107,7 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('basix', "$uri/css/style.min.css", [], filemtime("$dir/css/style.min.css"));
     wp_enqueue_style('basix-content', get_theme_file_uri('assets/css/content.css'), ['basix'], filemtime(get_theme_file_path('assets/css/content.css')));
     wp_enqueue_style('basix-theme', get_stylesheet_uri(), ['basix', 'basix-content'], wp_get_theme()->get('Version'));
+    wp_enqueue_style('basix-polish', get_theme_file_uri('assets/css/polish.css'), ['basix-theme'], filemtime(get_theme_file_path('assets/css/polish.css')));
 });
 
 add_action('wp_enqueue_scripts', function () {

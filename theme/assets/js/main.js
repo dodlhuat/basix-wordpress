@@ -18,6 +18,22 @@ if (defaultMode && !Theme.hasSavedPreference()) {
 
 loadComponents(components);
 
+// The header gets a shadow once the page scrolls underneath it.
+const header = document.querySelector('.site-header');
+if (header) {
+    let frame = 0;
+    const update = () => {
+        frame = 0;
+        header.classList.toggle('is-scrolled', window.scrollY > 8);
+    };
+    window.addEventListener('scroll', () => {
+        if (!frame) {
+            frame = requestAnimationFrame(update);
+        }
+    }, { passive: true });
+    update();
+}
+
 // Without menu items there is no drawer to open.
 if (!document.querySelector('#site-flyout li')) {
     document.querySelector('.site-menu-trigger')?.remove();
