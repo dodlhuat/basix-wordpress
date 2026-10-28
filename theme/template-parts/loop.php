@@ -5,5 +5,5 @@
     <?php basix_pagination(); ?>
 <?php else : ?>
     <div class="alert alert-info"><?php esc_html_e('Nothing found.', 'basix'); ?></div>
-    <?php get_search_form(); ?>
+    <?php if (!is_search()) get_search_form(); ?>
 <?php endif; ?>
