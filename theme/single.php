@@ -20,8 +20,8 @@
 
         <?php if (has_tag()) : ?>
             <footer class="entry-footer chips">
-                <?php foreach (get_the_tags() as $tag) : ?>
-                    <a class="chip clickable" href="<?php echo esc_url(get_tag_link($tag)); ?>"><?php echo esc_html($tag->name); ?></a>
+                <?php foreach (get_the_tags() as $basix_tag) : ?>
+                    <a class="chip clickable" href="<?php echo esc_url(get_tag_link($basix_tag)); ?>"><?php echo esc_html($basix_tag->name); ?></a>
                 <?php endforeach; ?>
             </footer>
         <?php endif; ?>

@@ -2,7 +2,15 @@
 
 <section id="comments" class="comments">
     <?php if (have_comments()) : ?>
-        <h2><?php printf(esc_html(_n('%s comment', '%s comments', get_comments_number(), 'basix')), number_format_i18n(get_comments_number())); ?></h2>
+        <h2>
+            <?php
+            printf(
+                /* translators: %s: number of comments. */
+                esc_html(_n('%s comment', '%s comments', get_comments_number(), 'basix')),
+                esc_html(number_format_i18n(get_comments_number()))
+            );
+            ?>
+        </h2>
         <ol class="comment-list">
             <?php wp_list_comments(['style' => 'ol', 'callback' => 'basix_comment']); ?>
         </ol>

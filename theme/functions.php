@@ -117,8 +117,8 @@ function basix_breadcrumb(): void
         if ($cat) {
             $crumbs[] = [$cat->name, get_category_link($cat)];
         }
-    } elseif (is_page() && $parents = array_reverse(get_post_ancestors(get_the_ID()))) {
-        foreach ($parents as $id) {
+    } elseif (is_page()) {
+        foreach (array_reverse(get_post_ancestors(get_the_ID())) as $id) {
             $crumbs[] = [get_the_title($id), get_permalink($id)];
         }
     }
