@@ -9,6 +9,7 @@ require_once __DIR__ . '/inc/class-basix-dropdown-walker.php';
 require_once __DIR__ . '/inc/class-basix-drawer-walker.php';
 require_once __DIR__ . '/inc/menus.php';
 require_once __DIR__ . '/inc/customizer.php';
+require_once __DIR__ . '/inc/docs.php';
 
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
@@ -67,6 +68,23 @@ add_action('widgets_init', function () {
         'before_title'  => '<h2 class="widget-title">',
         'after_title'   => '</h2>',
     ]);
+
+    // Up to three columns above the footer line; only columns with widgets are shown.
+    foreach ([1, 2, 3] as $column) {
+        register_sidebar([
+            'name'          => sprintf(
+                /* translators: %d: column number. */
+                __('Footer column %d', 'basix'),
+                $column
+            ),
+            'id'            => 'footer-' . $column,
+            'description'   => __('Shown in the footer.', 'basix'),
+            'before_widget' => '<section id="%1$s" class="widget footer-widget %2$s">',
+            'after_widget'  => '</section>',
+            'before_title'  => '<h2 class="widget-title">',
+            'after_title'   => '</h2>',
+        ]);
+    }
 });
 
 add_action('wp_enqueue_scripts', function () {
@@ -181,7 +199,7 @@ function basix_post_terms(): void
 /** Breadcrumb in basix markup. */
 function basix_breadcrumb(): void
 {
-    if (is_front_page()) {
+    if (is_front_page() || is_page_template('page-templates/landing.php')) {
         return;
     }
     $crumbs = [[__('Home', 'basix'), home_url('/')]];

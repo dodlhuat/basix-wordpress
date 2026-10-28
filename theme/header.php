@@ -49,6 +49,9 @@ $basix_sprite = get_theme_file_uri( BASIX_VENDOR . '/svg-icons/icons.svg' );
         <?php endif; ?>
 
         <div class="site-actions">
+            <a class="site-search-trigger button" href="<?php echo esc_url( home_url( '/?s=' ) ); ?>" aria-label="<?php esc_attr_e( 'Search', 'basix' ); ?>" data-tooltip="<?php esc_attr_e( 'Search (press /)', 'basix' ); ?>" data-tooltip-position="bottom">
+                <svg class="icon-svg" aria-hidden="true"><use href="<?php echo esc_url( $basix_sprite . '#search' ); ?>"/></svg>
+            </a>
             <button type="button" id="theme-toggle" class="theme-toggle button" data-tooltip="<?php esc_attr_e( 'Toggle dark mode', 'basix' ); ?>" data-tooltip-position="bottom" aria-label="<?php esc_attr_e( 'Toggle dark mode', 'basix' ); ?>">
                 <svg id="theme-icon" class="icon-svg" aria-hidden="true" data-icon-light="clear_day" data-icon-dark="bedtime"><use href="<?php echo esc_url( $basix_sprite . '#clear_day' ); ?>"/></svg>
             </button>

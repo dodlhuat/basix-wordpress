@@ -8,7 +8,24 @@
 ?>
 </main>
 
+<template id="basix-search-template" data-title="<?php esc_attr_e( 'Search', 'basix' ); ?>">
+    <div class="search-overlay">
+        <?php get_search_form(); ?>
+        <p class="search-overlay-hint text-caption"><?php esc_html_e( 'Press Enter to search, Esc to close.', 'basix' ); ?></p>
+    </div>
+</template>
+
 <footer class="site-footer">
+    <?php
+    $basix_footer_columns = array_values( array_filter( array( 'footer-1', 'footer-2', 'footer-3' ), 'is_active_sidebar' ) );
+    if ( $basix_footer_columns ) :
+        ?>
+        <div class="container footer-widgets grid cols-<?php echo esc_attr( count( $basix_footer_columns ) ); ?>">
+            <?php foreach ( $basix_footer_columns as $basix_column ) : ?>
+                <div class="cell"><?php dynamic_sidebar( $basix_column ); ?></div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
     <div class="container site-footer-inner">
         <div class="site-footer-main">
             <p class="text-caption"><?php echo basix_footer_text(); ?></p>
