@@ -3,17 +3,18 @@ $basix_static_front = get_option('show_on_front') === 'page';
 get_header();
 ?>
 
-<?php if (!is_paged()) : ?>
-<section class="hero card card-flat">
-    <p class="text-overline"><?php esc_html_e('Welcome', 'basix'); ?></p>
-    <h1 class="hero-title"><?php bloginfo('name'); ?></h1>
-    <?php if (get_bloginfo('description')) : ?>
-        <p class="hero-lead"><?php bloginfo('description'); ?></p>
+<?php $basix_hero = get_theme_mod( 'basix_hero_style', 'card' ); ?>
+<?php if ( ! is_paged() && 'none' !== $basix_hero ) : ?>
+<section class="<?php echo 'minimal' === $basix_hero ? 'hero-minimal' : 'hero card card-flat'; ?>">
+    <p class="text-overline"><?php esc_html_e( 'Welcome', 'basix' ); ?></p>
+    <h1 class="hero-title"><?php bloginfo( 'name' ); ?></h1>
+    <?php if ( get_bloginfo( 'description' ) ) : ?>
+        <p class="hero-lead"><?php bloginfo( 'description' ); ?></p>
     <?php endif; ?>
     <p class="hero-actions">
-        <a class="button button-primary" href="#latest"><?php esc_html_e('Latest posts', 'basix'); ?></a>
-        <?php if ($basix_static_front && get_option('page_for_posts')) : ?>
-            <a class="button" href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>"><?php esc_html_e('All posts', 'basix'); ?></a>
+        <a class="button button-primary" href="#latest"><?php esc_html_e( 'Latest posts', 'basix' ); ?></a>
+        <?php if ( $basix_static_front && get_option( 'page_for_posts' ) ) : ?>
+            <a class="button" href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php esc_html_e( 'All posts', 'basix' ); ?></a>
         <?php endif; ?>
     </p>
 </section>

@@ -19,6 +19,8 @@ function basix_choices(): array {
 		'basix_header_layout'    => array( 'inline', 'flyout', 'push' ),
 		'basix_color_mode'       => array( 'system', 'light', 'dark' ),
 		'basix_sidebar_position' => array( 'right', 'left', 'none' ),
+		'basix_card_layout'      => array( 'grid', 'list', 'magazine' ),
+		'basix_hero_style'       => array( 'card', 'minimal', 'none' ),
 	);
 }
 
@@ -193,6 +195,58 @@ add_action(
 			)
 		);
 
+		$wp_customize->add_setting(
+			'basix_card_layout',
+			array(
+				'default'           => 'grid',
+				'sanitize_callback' => 'basix_sanitize_choice',
+			)
+		);
+		$wp_customize->add_control(
+			'basix_card_layout',
+			array(
+				'section'     => 'basix_layout',
+				'label'       => __( 'Post list layout', 'basix' ),
+				'description' => __( 'How posts are shown on the blog, in archives and in search.', 'basix' ),
+				'type'        => 'radio',
+				'choices'     => array(
+					'grid'     => __( 'Grid of cards', 'basix' ),
+					'list'     => __( 'List, with the picture beside the text', 'basix' ),
+					'magazine' => __( 'Magazine: a large first post, then a grid', 'basix' ),
+				),
+			)
+		);
+
+		// Front page.
+		$wp_customize->add_section(
+			'basix_front',
+			array(
+				'title' => __( 'Front page', 'basix' ),
+				'panel' => 'basix',
+			)
+		);
+		$wp_customize->add_setting(
+			'basix_hero_style',
+			array(
+				'default'           => 'card',
+				'sanitize_callback' => 'basix_sanitize_choice',
+			)
+		);
+		$wp_customize->add_control(
+			'basix_hero_style',
+			array(
+				'section'     => 'basix_front',
+				'label'       => __( 'Introduction at the top', 'basix' ),
+				'description' => __( 'It shows the site title and tagline (Settings, General).', 'basix' ),
+				'type'        => 'radio',
+				'choices'     => array(
+					'card'    => __( 'Centred, in a card', 'basix' ),
+					'minimal' => __( 'Left-aligned, without a card', 'basix' ),
+					'none'    => __( 'None', 'basix' ),
+				),
+			)
+		);
+
 		// Footer.
 		$wp_customize->add_section(
 			'basix_footer',
@@ -325,5 +379,15 @@ add_filter(
 			$settings['styles'][] = array( 'css' => $css );
 		}
 		return $settings;
+	}
+);
+
+// The post list layout is a class on the page, so the stylesheet can switch it.
+add_filter(
+	'body_class',
+	function ( array $classes ): array {
+		$layout    = get_theme_mod( 'basix_card_layout', 'grid' );
+		$classes[] = 'cards-' . ( in_array( $layout, basix_choices()['basix_card_layout'], true ) ? $layout : 'grid' );
+		return $classes;
 	}
 );

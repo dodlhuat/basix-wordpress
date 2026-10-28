@@ -1,4 +1,4 @@
-<article <?php post_class('card card-bordered card-hover cell'); ?>>
+<article <?php post_class(!empty($args['first']) ? 'card card-bordered card-hover cell is-first' : 'card card-bordered card-hover cell'); ?>>
     <?php if (has_post_thumbnail()) : ?>
         <a class="card-media" href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
             <?php the_post_thumbnail('medium_large'); ?>
