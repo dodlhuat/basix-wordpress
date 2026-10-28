@@ -11,6 +11,8 @@ if ! wp core is-installed 2>/dev/null; then
   wp core install --url=http://localhost:8090 --title="Basix" \
     --admin_user=admin --admin_password=admin --admin_email=admin@example.com --skip-email
 fi
+# Don't cache theme files (patterns, theme.json) while developing.
+wp config set WP_DEVELOPMENT_MODE theme --type=constant
 wp theme activate basix
 if [ -z "$(wp widget list sidebar-1 --format=ids)" ]; then
   wp widget add search sidebar-1
