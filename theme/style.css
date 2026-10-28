@@ -97,7 +97,7 @@ a { color: var(--link-color); }
 .entry-content { overflow-wrap: anywhere; font-size: 1.0625rem; line-height: 1.7; }
 .entry-footer { margin-top: 2rem; }
 .post-nav { max-width: 46rem; margin: 3rem auto 0; display: flex; justify-content: space-between; gap: 1rem; }
-.post-nav a { color: var(--primary-text); text-decoration: none; }
+.post-nav a { color: var(--primary-text); text-decoration: none; padding: 0; }
 .post-nav a:hover { color: var(--link-color); }
 .breadcrumb { margin-bottom: 1.5rem; }
 
