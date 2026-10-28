@@ -115,6 +115,11 @@ BODY
 # block showcase page (patterns and the core blocks the theme styles)
 SHOWCASE_ID=$(wp eval-file /seed/showcase.php)
 
+# a long demo post, an author biography and sticky posts for the featured slider
+LONG_ID=$(wp eval-file /seed/long-post.php | tail -1)
+wp user update 1 --description="Writes about design systems, interface craft and the web platform. Likes small components and boring decisions made carefully." >/dev/null
+wp option update sticky_posts "[$LONG_ID,$FIRST]" --format=json >/dev/null
+
 # a documentation section and a landing page built from the patterns
 DOCS_ID=$(wp eval-file /seed/docs.php | tail -1)
 wp eval-file /seed/landing.php >/dev/null
