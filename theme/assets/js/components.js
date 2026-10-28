@@ -1,5 +1,6 @@
 import { iconBasePath, readConfig } from './loader.js';
 import { makeSortable } from './sortable-table.js';
+import { buildFilterForm } from './filters.js';
 
 /**
  * Components the theme can load. Add an entry here when a template or block uses a new one;
@@ -211,6 +212,33 @@ export const components = {
     featured: {
         load: () => import('../vendor/basix/js/carousel.js'),
         init: ({ Carousel }, [element]) => new Carousel(element, { ...readConfig(element), iconBasePath }),
+    },
+
+    // Filter button: the form opens in a modal (a bottom sheet on phones). The Basix pickers are only loaded on the first click.
+    filters: {
+        load: async () => ({}),
+        init: (modules, [details]) => {
+            const config = readConfig(details);
+            const summary = details.querySelector('summary');
+            const escape = (value) => String(value).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+
+            summary?.addEventListener('click', async (event) => {
+                event.preventDefault(); // the <details> stays closed; this is its no-JavaScript fallback
+                const [{ Modal }, { BottomSheet }, { GroupPicker }, { DatePicker }] = await Promise.all([
+                    import('../vendor/basix/js/modal.js'),
+                    import('../vendor/basix/js/bottom-sheet.js'),
+                    import('../vendor/basix/js/group-picker.js'),
+                    import('../vendor/basix/js/datepicker.js'),
+                ]);
+                const options = { content: '<div class="filter-host"></div>', header: escape(config.text.title), iconBasePath };
+                if (window.matchMedia('(max-width: 768px)').matches) {
+                    new BottomSheet({ ...options, snapHeight: 'full' }).show();
+                } else {
+                    new Modal(options).show();
+                }
+                document.querySelector('.filter-host')?.append(buildFilterForm(details, config, { GroupPicker, DatePicker, iconBasePath }));
+            });
+        },
     },
 
     flyout: {
