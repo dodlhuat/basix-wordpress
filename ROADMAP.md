@@ -10,11 +10,12 @@ Decisions so far
 
 ## Milestones
 
-### 1. Compliance baseline
+### 1. Compliance baseline (done)
 - Theme Check (WordPress.org and Envato rules) and PHPCS clean.
 - Known findings: inline `<script>` in `header.php`, `date('Y')` instead of `wp_date`, unescaped `echo` in `basix_pagination`.
 - Missing support: `automatic-feed-links`, `$content_width`, `comment-reply` script, `style.css` header tags, `license.txt` (credits for Basix, Outfit, sample images).
-- Build script that syncs Basix and produces a clean theme zip (no `node_modules`, no dev files).
+- Build script that syncs Basix and produces a clean theme zip (no `node_modules`, no dev files): `make zip`.
+- Result: PHPCS clean (`make lint`), Theme Check has no required items or warnings. Remaining recommendations (block patterns/styles, editor style, custom logo, `responsive-embeds`, `align-wide`, `wp-block-styles`) belong to milestones 2 and 3.
 
 ### 1.5. Asset pipeline
 - **Trimmed icon sprite.** Basix `icons.svg` is 3.07 MB (6,446 icons) and is currently fetched on every page. Generate a sprite with only the used icons.
