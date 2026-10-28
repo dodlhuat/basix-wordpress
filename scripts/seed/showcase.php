@@ -109,6 +109,30 @@ $content = $pattern( 'basix/hero' ) . "\n\n" . <<<BLOCKS
 <!-- /wp:gallery -->
 
 <!-- wp:heading -->
+<h2 class="wp-block-heading">Image treatments</h2>
+<!-- /wp:heading -->
+
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"id":{$id(1)},"sizeSlug":"large","linkDestination":"none","className":"is-style-framed"} -->
+<figure class="wp-block-image size-large is-style-framed"><img src="{$src(1)}" alt="" class="wp-image-{$id(1)}"/><figcaption class="wp-element-caption">Framed</figcaption></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"id":{$id(2)},"sizeSlug":"large","linkDestination":"none","className":"is-style-shadow"} -->
+<figure class="wp-block-image size-large is-style-shadow"><img src="{$src(2)}" alt="" class="wp-image-{$id(2)}"/><figcaption class="wp-element-caption">Soft shadow</figcaption></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"id":{$id(3)},"sizeSlug":"large","linkDestination":"none","className":"is-style-circle"} -->
+<figure class="wp-block-image size-large is-style-circle"><img src="{$src(3)}" alt="" class="wp-image-{$id(3)}"/><figcaption class="wp-element-caption">Circle</figcaption></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:heading -->
 <h2 class="wp-block-heading">Masonry gallery</h2>
 <!-- /wp:heading -->
 

@@ -92,7 +92,7 @@ BODY
 
 # password-protected post (password: secret)
 PROTECTED=$(wp post create - --post_type=post --post_status=publish --post_title="Members only" \
-  --post_author=1 --post_password=secret --post_category=Notes --post_date="$(days_ago 2)" --porcelain <<'BODY'
+  --post_author=1 --post_password=secret --post_category=Notes --post_date="$(days_ago 30)" --porcelain <<'BODY'
 <p>You found the secret content. This post exists to show how the theme styles the password form and its error state.</p>
 BODY
 )

@@ -11,7 +11,7 @@ $pattern = static function ( string $slug ): string {
 
 $content = implode(
 	"\n\n",
-	array_map( $pattern, array( 'basix/hero', 'basix/features', 'basix/stats', 'basix/steps', 'basix/faq', 'basix/cta' ) )
+	array_map( $pattern, array( 'basix/hero-cover', 'basix/features', 'basix/stats', 'basix/steps', 'basix/faq', 'basix/cta' ) )
 );
 
 foreach ( get_posts( array( 'post_type' => 'page', 'name' => 'landing-demo', 'post_status' => 'any', 'numberposts' => -1 ) ) as $old ) {
