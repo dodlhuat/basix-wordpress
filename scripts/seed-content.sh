@@ -112,6 +112,9 @@ CONTACT=$(wp post create - --post_type=page --post_status=publish --post_author=
 BODY
 )
 
+# block showcase page (patterns and the core blocks the theme styles)
+wp eval-file /seed/showcase.php >/dev/null
+
 # menu
 wp menu delete Main >/dev/null 2>&1 || true
 wp menu create Main >/dev/null

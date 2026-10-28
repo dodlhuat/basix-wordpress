@@ -38,6 +38,7 @@ services:
       - wp_data:/var/www/html
       - ./theme:/var/www/html/wp-content/themes/basix
       - ./scripts/sample-images:/sample-images:ro
+      - ./scripts/seed:/seed:ro
     depends_on:
       - db
 
