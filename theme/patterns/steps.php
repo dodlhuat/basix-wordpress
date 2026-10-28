@@ -7,8 +7,8 @@
  * Keywords: steps, how it works, process, stepper
  */
 ?>
-<!-- wp:group {"className":"grid cols-3"} -->
-<div class="wp-block-group grid cols-3"><!-- wp:group {"className":"card card-bordered"} -->
+<!-- wp:group {"align":"wide","className":"grid cols-3"} -->
+<div class="wp-block-group alignwide grid cols-3"><!-- wp:group {"className":"card card-bordered"} -->
 <div class="wp-block-group card card-bordered"><!-- wp:paragraph {"className":"stepper-indicator"} -->
 <p class="stepper-indicator">1</p>
 <!-- /wp:paragraph -->

@@ -7,8 +7,8 @@
  * Keywords: stats, numbers, figures, metrics
  */
 ?>
-<!-- wp:group {"className":"grid cols-3"} -->
-<div class="wp-block-group grid cols-3"><!-- wp:group {"className":"card card-flat"} -->
+<!-- wp:group {"align":"wide","className":"grid cols-3"} -->
+<div class="wp-block-group alignwide grid cols-3"><!-- wp:group {"className":"card card-flat"} -->
 <div class="wp-block-group card card-flat"><!-- wp:paragraph {"className":"stat-value"} -->
 <p class="stat-value">120+</p>
 <!-- /wp:paragraph -->

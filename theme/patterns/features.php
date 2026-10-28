@@ -7,8 +7,8 @@
  * Keywords: features, cards, grid, services
  */
 ?>
-<!-- wp:group {"className":"grid cols-3"} -->
-<div class="wp-block-group grid cols-3"><!-- wp:group {"className":"card card-bordered"} -->
+<!-- wp:group {"align":"wide","className":"grid cols-3"} -->
+<div class="wp-block-group alignwide grid cols-3"><!-- wp:group {"className":"card card-bordered"} -->
 <div class="wp-block-group card card-bordered"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading"><?php echo esc_html_x( 'Fast by default', 'Features pattern', 'basix' ); ?></h3>
 <!-- /wp:heading -->
