@@ -23,7 +23,7 @@ and the Outfit typeface (SIL Open Font License 1.1). See readme.txt for details.
 /* Layout glue only. Colour, radius, spacing and type all come from basix tokens,
    so light and dark mode follow [data-theme] / prefers-color-scheme automatically. */
 
-body { background: var(--background); color: var(--primary-text); display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
+body { overflow-x: clip; background: var(--background); color: var(--primary-text); display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
 .container { width: min(100% - 2rem, 72rem); margin-inline: auto; }
 .site-main { padding-block: 2rem 4rem; flex: 1 0 auto; }
 .site-header, .site-footer { flex-shrink: 0; }
@@ -65,22 +65,6 @@ input, textarea, select, button { font-family: inherit; }
 .site-footer p { margin: 0; }
 .back-to-top { display: inline-flex; align-items: center; padding-inline: .6rem; }
 
-/* Hero */
-.hero {
-    text-align: center; max-width: 52rem; margin: 1rem auto 3rem;
-    padding: clamp(2.5rem, 9vw, 6rem) clamp(1.25rem, 5vw, 3rem);
-    background:
-        radial-gradient(ellipse at 50% 0%, var(--accent-color-tint), transparent 70%),
-        var(--secondary-background);
-    border: 1px solid var(--divider);
-    border-radius: var(--radius-xl);
-    align-items: center;
-}
-.hero .text-overline { color: var(--link-color); margin: 0 0 1rem; }
-.hero-title { font-size: clamp(2.25rem, 6vw, 3.75rem); line-height: 1.05; letter-spacing: -.03em; margin: 0 0 1rem; }
-.hero-lead { font-size: 1.25rem; color: var(--secondary-text); margin: 0 0 2rem; max-width: 36rem; }
-.hero-actions { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; margin: 0; }
-.hero-actions .button { text-decoration: none; }
 .front-content { max-width: 46rem; margin: 0 auto 3rem; }
 .front-latest { margin-top: 2rem; scroll-margin-top: 5rem; }
 .front-latest > h2 { margin-bottom: 1.5rem; }
@@ -108,8 +92,6 @@ input, textarea, select, button { font-family: inherit; }
 .entry-header h1 { letter-spacing: -.02em; line-height: 1.1; }
 .entry-media { margin: 0 0 1.5rem; }
 .entry-media img { display: block; width: 100%; height: auto; border-radius: var(--radius-lg); }
-.entry-content img { max-width: 100%; height: auto; border-radius: var(--radius-md); }
-.entry-content { overflow-wrap: anywhere; font-size: 1.0625rem; line-height: 1.7; }
 .entry-footer { margin-top: 2rem; }
 .post-nav { max-width: 46rem; margin: 3rem auto 0; display: flex; justify-content: space-between; gap: 1rem; }
 .post-nav a { color: var(--primary-text); text-decoration: none; padding: 0; }
@@ -153,15 +135,9 @@ input, textarea, select, button { font-family: inherit; }
 .comment-form > p { margin: 0; }
 .comment-form .form-hint { margin-top: .25rem; }
 .comment-form input[type=text], .comment-form input[type=email], .comment-form input[type=url], .comment-form textarea { width: 100%; }
-.alignleft { float: left; margin: 0 1rem 1rem 0; }
-.alignright { float: right; margin: 0 0 1rem 1rem; }
-.aligncenter { display: block; margin-inline: auto; }
 .screen-reader-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .comment-list .card { font-style: normal; }
 
 /* Core classes WordPress adds to content */
 .sticky.card { border-color: var(--accent-color); }
 .bypostauthor > .card { border-color: var(--accent-color); }
-.wp-caption { max-width: 100%; }
-.wp-caption img { display: block; max-width: 100%; height: auto; }
-.wp-caption-text, .gallery-caption { margin-top: .5rem; font-size: .8125rem; color: var(--secondary-text); }
