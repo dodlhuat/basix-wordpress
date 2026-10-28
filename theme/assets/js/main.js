@@ -1,36 +1,27 @@
 import { Theme } from '../vendor/basix/js/theme.js';
-import { FlyoutMenu } from '../vendor/basix/js/flyout-menu.js';
-import { Tooltip } from '../vendor/basix/js/tooltip.js';
-import { Scroll } from '../vendor/basix/js/scroll.js';
-import './form-validation.js';
+import { loadComponents } from './loader.js';
+import { components } from './components.js';
 
+// Dark/light mode is needed on every page, so it is the only Basix module loaded up front.
 Theme.init();
-Tooltip.initializeAll();
+loadComponents(components);
 
-if (document.querySelector('#site-flyout li')) {
-    new FlyoutMenu({
-        triggerSelector: '.site-menu-trigger',
-        menuSelector: '#site-flyout',
-        overlaySelector: '#site-flyout-overlay',
-        direction: 'right',
-        title: document.title.split(' – ')[0],
-        enableHeader: true,
-        enableFooter: false,
-    });
-    const drawer = document.getElementById('site-flyout');
-    requestAnimationFrame(() => requestAnimationFrame(() => drawer.classList.add('is-ready')));
-} else {
+// Without menu items there is no drawer to open.
+if (!document.querySelector('#site-flyout li')) {
     document.querySelector('.site-menu-trigger')?.remove();
 }
 
-document.querySelector('.back-to-top')?.addEventListener('click', () => Scroll.to(document.body));
+// Smooth scrolling is only needed on click, so it is imported then.
+const scrollTo = async (target) => (await import('../vendor/basix/js/scroll.js')).Scroll.to(target);
+
+document.querySelector('.back-to-top')?.addEventListener('click', () => scrollTo(document.body));
 
 document.querySelectorAll('a[href^="#"]').forEach((a) => {
     const target = a.getAttribute('href').length > 1 && document.querySelector(a.getAttribute('href'));
     if (target) {
         a.addEventListener('click', (e) => {
             e.preventDefault();
-            Scroll.to(target);
+            scrollTo(target);
         });
     }
 });
