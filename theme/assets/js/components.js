@@ -299,7 +299,8 @@ export const components = {
     // Calendar page: posts by publish date. The posts of the visible range are fetched from the REST API.
     calendar: {
         load: () => import('../vendor/basix/js/calendar.js'),
-        init: async ({ Calendar }, [wrap]) => {
+        // Every calendar on the page gets its own instance (the block and shortcode can be used more than once).
+        init: ({ Calendar }, wraps) => Promise.all(wraps.map(async (wrap) => {
             const config = readConfig(wrap);
             const host = wrap.querySelector('.calendar-host');
             const status = wrap.querySelector('.calendar-status');
@@ -352,7 +353,7 @@ export const components = {
 
             const calendar = new Calendar({
                 container: host,
-                view: 'month',
+                view: ['month', 'week', 'agenda'].includes(config.view) ? config.view : 'month',
                 iconBasePath,
                 dateLocale: config.dateLocale,
                 hour12: config.hour12,
@@ -383,7 +384,7 @@ export const components = {
 
             wrap.querySelector('.calendar-skeleton')?.remove();
             await load(calendar.getVisibleRange());
-        },
+        })),
     },
 
     // Photo gallery page: masonry with endless scrolling, fed from the media REST endpoint.

@@ -63,3 +63,43 @@ function basix_calendar_config(): array {
 		),
 	);
 }
+
+/**
+ * The calendar's markup, for the block and the shortcode.
+ *
+ * @param string $view Starting view: month, week or agenda.
+ * @return string
+ */
+function basix_calendar_html( string $view = 'month' ): string {
+	if ( ! in_array( $view, array( 'month', 'week', 'agenda' ), true ) ) {
+		$view = 'month';
+	}
+	ob_start();
+	get_template_part( 'template-parts/calendar', null, array( 'view' => $view ) );
+	return (string) ob_get_clean();
+}
+
+// The "Posts calendar" block. It renders on the server, so the editor shows its options in the sidebar.
+add_action(
+	'init',
+	function () {
+		register_block_type(
+			get_theme_file_path( 'blocks/calendar' ),
+			array(
+				'render_callback' => function ( array $attributes ): string {
+					$wrapper = get_block_wrapper_attributes();
+					return '<div ' . $wrapper . '>' . basix_calendar_html( (string) ( $attributes['view'] ?? 'month' ) ) . '</div>';
+				},
+			)
+		);
+	}
+);
+
+// Shortcode: basix_calendar, with an optional view attribute.
+add_shortcode(
+	'basix_calendar',
+	function ( $atts ): string {
+		$atts = shortcode_atts( array( 'view' => 'month' ), $atts, 'basix_calendar' );
+		return basix_calendar_html( (string) $atts['view'] );
+	}
+);
