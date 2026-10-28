@@ -14,6 +14,7 @@ $images = get_posts([
 $img = static fn( int $i ) => $images[ $i % max( 1, count( $images ) ) ] ?? null;
 $src = static fn( int $i ) => $img( $i ) ? wp_get_attachment_image_url( $img( $i )->ID, 'large' ) : '';
 $id  = static fn( int $i ) => $img( $i ) ? $img( $i )->ID : 0;
+$alt = static fn( int $i ) => esc_attr( (string) get_post_meta( $id( $i ), '_wp_attachment_image_alt', true ) );
 
 $pattern = static function ( string $slug ): string {
 	$p = WP_Block_Patterns_Registry::get_instance()->get_registered( $slug );
@@ -24,10 +25,11 @@ $gallery = '';
 foreach ( [ 0, 1, 2 ] as $i ) {
 	$gallery .= sprintf(
 		'<!-- wp:image {"id":%1$d,"sizeSlug":"large","linkDestination":"none"} -->' . "\n" .
-		'<figure class="wp-block-image size-large"><img src="%2$s" alt="" class="wp-image-%1$d"/></figure>' . "\n" .
+		'<figure class="wp-block-image size-large"><img src="%2$s" alt="%3$s" class="wp-image-%1$d"/></figure>' . "\n" .
 		'<!-- /wp:image -->' . "\n\n",
 		$id( $i ),
-		esc_url( $src( $i ) )
+		esc_url( $src( $i ) ),
+		$alt( $i )
 	);
 }
 
@@ -35,10 +37,11 @@ $masonry = '';
 foreach ( array( 0, 1, 2, 3, 4 ) as $i ) {
 	$masonry .= sprintf(
 		'<!-- wp:image {"id":%1$d,"sizeSlug":"large","linkDestination":"none"} -->' . "\n" .
-		'<figure class="wp-block-image size-large"><img src="%2$s" alt="" class="wp-image-%1$d"/></figure>' . "\n" .
+		'<figure class="wp-block-image size-large"><img src="%2$s" alt="%3$s" class="wp-image-%1$d"/></figure>' . "\n" .
 		'<!-- /wp:image -->' . "\n\n",
 		$id( $i ),
-		esc_url( $src( $i ) )
+		esc_url( $src( $i ) ),
+		$alt( $i )
 	);
 }
 
@@ -100,7 +103,7 @@ $content = $pattern( 'basix/hero' ) . "\n\n" . <<<BLOCKS
 <!-- /wp:heading -->
 
 <!-- wp:image {"id":{$id(0)},"sizeSlug":"large","linkDestination":"none"} -->
-<figure class="wp-block-image size-large"><img src="{$src(0)}" alt="" class="wp-image-{$id(0)}"/><figcaption class="wp-element-caption">A single image with a caption</figcaption></figure>
+<figure class="wp-block-image size-large"><img src="{$src(0)}" alt="{$alt(0)}" class="wp-image-{$id(0)}"/><figcaption class="wp-element-caption">A single image with a caption</figcaption></figure>
 <!-- /wp:image -->
 
 <!-- wp:gallery {"linkTo":"none"} -->
@@ -115,19 +118,19 @@ $content = $pattern( 'basix/hero' ) . "\n\n" . <<<BLOCKS
 <!-- wp:columns -->
 <div class="wp-block-columns"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":{$id(1)},"sizeSlug":"large","linkDestination":"none","className":"is-style-framed"} -->
-<figure class="wp-block-image size-large is-style-framed"><img src="{$src(1)}" alt="" class="wp-image-{$id(1)}"/><figcaption class="wp-element-caption">Framed</figcaption></figure>
+<figure class="wp-block-image size-large is-style-framed"><img src="{$src(1)}" alt="{$alt(1)}" class="wp-image-{$id(1)}"/><figcaption class="wp-element-caption">Framed</figcaption></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":{$id(2)},"sizeSlug":"large","linkDestination":"none","className":"is-style-shadow"} -->
-<figure class="wp-block-image size-large is-style-shadow"><img src="{$src(2)}" alt="" class="wp-image-{$id(2)}"/><figcaption class="wp-element-caption">Soft shadow</figcaption></figure>
+<figure class="wp-block-image size-large is-style-shadow"><img src="{$src(2)}" alt="{$alt(2)}" class="wp-image-{$id(2)}"/><figcaption class="wp-element-caption">Soft shadow</figcaption></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"id":{$id(3)},"sizeSlug":"large","linkDestination":"none","className":"is-style-circle"} -->
-<figure class="wp-block-image size-large is-style-circle"><img src="{$src(3)}" alt="" class="wp-image-{$id(3)}"/><figcaption class="wp-element-caption">Circle</figcaption></figure>
+<figure class="wp-block-image size-large is-style-circle"><img src="{$src(3)}" alt="{$alt(3)}" class="wp-image-{$id(3)}"/><figcaption class="wp-element-caption">Circle</figcaption></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
@@ -168,7 +171,7 @@ $content = $pattern( 'basix/hero' ) . "\n\n" . <<<BLOCKS
 <!-- /wp:columns -->
 
 <!-- wp:cover {"url":"{$src(1)}","id":{$id(1)},"dimRatio":50,"minHeight":260,"align":"wide"} -->
-<div class="wp-block-cover alignwide" style="min-height:260px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim"></span><img class="wp-block-cover__image-background wp-image-{$id(1)}" alt="" src="{$src(1)}" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:heading {"textAlign":"center","level":2} -->
+<div class="wp-block-cover alignwide" style="min-height:260px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim"></span><img class="wp-block-cover__image-background wp-image-{$id(1)}" alt="{$alt(1)}" src="{$src(1)}" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:heading {"textAlign":"center","level":2} -->
 <h2 class="wp-block-heading has-text-align-center">A wide cover block</h2>
 <!-- /wp:heading --></div></div>
 <!-- /wp:cover -->

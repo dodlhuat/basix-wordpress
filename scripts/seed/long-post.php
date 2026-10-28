@@ -18,6 +18,7 @@ $count  = max( 1, count( $images ) );
 $full   = static fn( int $i ) => wp_get_attachment_url( $images[ $i % $count ]->ID );
 $large  = static fn( int $i ) => wp_get_attachment_image_url( $images[ $i % $count ]->ID, 'large' );
 $id     = static fn( int $i ) => $images[ $i % $count ]->ID;
+$alt    = static fn( int $i ) => esc_attr( (string) get_post_meta( $id( $i ), '_wp_attachment_image_alt', true ) );
 
 $p  = static fn( string $text ): string => "<!-- wp:paragraph -->\n<p>{$text}</p>\n<!-- /wp:paragraph -->\n\n";
 $h2 = static fn( string $text ): string => "<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">{$text}</h2>\n<!-- /wp:heading -->\n\n";
@@ -27,10 +28,11 @@ $code = static fn( string $lang, string $source ): string => "<!-- wp:code {\"cl
 $gallery = '';
 foreach ( array( 1, 2, 3 ) as $i ) {
 	$gallery .= sprintf(
-		"<!-- wp:image {\"id\":%1\$d,\"sizeSlug\":\"large\",\"linkDestination\":\"media\"} -->\n<figure class=\"wp-block-image size-large\"><a href=\"%2\$s\"><img src=\"%3\$s\" alt=\"\" class=\"wp-image-%1\$d\"/></a></figure>\n<!-- /wp:image -->\n\n",
+		"<!-- wp:image {\"id\":%1\$d,\"sizeSlug\":\"large\",\"linkDestination\":\"media\"} -->\n<figure class=\"wp-block-image size-large\"><a href=\"%2\$s\"><img src=\"%3\$s\" alt=\"%4\$s\" class=\"wp-image-%1\$d\"/></a></figure>\n<!-- /wp:image -->\n\n",
 		$id( $i ),
 		esc_url( $full( $i ) ),
-		esc_url( $large( $i ) )
+		esc_url( $large( $i ) ),
+		$alt( $i )
 	);
 }
 
@@ -54,9 +56,10 @@ $content =
 	. $h2( 'A few pictures' )
 	. $p( 'Click any image to open it full size. Use the arrow keys, or the buttons, to move between them.' )
 	. sprintf(
-		"<!-- wp:image {\"id\":%1\$d,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"%2\$s\" alt=\"\" class=\"wp-image-%1\$d\"/><figcaption class=\"wp-element-caption\">An image with a caption</figcaption></figure>\n<!-- /wp:image -->\n\n",
+		"<!-- wp:image {\"id\":%1\$d,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"%2\$s\" alt=\"%3\$s\" class=\"wp-image-%1\$d\"/><figcaption class=\"wp-element-caption\">An image with a caption</figcaption></figure>\n<!-- /wp:image -->\n\n",
 		$id( 0 ),
-		esc_url( $large( 0 ) )
+		esc_url( $large( 0 ) ),
+		$alt( 0 )
 	)
 	. $gallery
 	. $h2( 'Wrapping up' )
