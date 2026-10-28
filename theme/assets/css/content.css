@@ -246,3 +246,27 @@ p.is-style-lead { font-size: 1.25rem; color: var(--secondary-text); }
 .timeline-marker { margin: 0; }
 /* An empty paragraph is the marker dot; keep the editor's "Type / to choose a block" hint off it. */
 .timeline-marker[data-rich-text-placeholder]::after { content: none; }
+
+/* Hero variants: minimal (no card), split (text beside a picture), cover (text on a picture) */
+.hero-minimal { max-width: 52rem; padding-block: clamp(2rem, 6vw, 4.5rem) clamp(1.5rem, 4vw, 3rem); }
+.hero-minimal .text-overline { margin: 0 0 1rem; color: var(--link-color); }
+.hero-minimal .hero-title { max-width: 14ch; margin: 0 0 1.25rem; font-size: clamp(2.5rem, 7vw, 4.5rem); line-height: 1.02; letter-spacing: -.035em; }
+.hero-minimal .hero-lead { max-width: 34rem; margin: 0 0 2rem; font-size: 1.3rem; color: var(--secondary-text); }
+.hero-minimal .hero-actions,
+.hero-minimal .wp-block-buttons { justify-content: flex-start; }
+
+.hero-split { gap: clamp(1.5rem, 5vw, 4rem); margin-block: 2rem; }
+.hero-split .hero-title { margin: 0 0 1rem; font-size: clamp(2rem, 4.5vw, 3rem); }
+.hero-split .hero-lead { margin: 0 0 1.5rem; max-width: none; }
+.hero-split .wp-block-buttons { justify-content: flex-start; margin-block: 0; }
+.hero-split .wp-block-image { margin: 0; }
+.hero-split .wp-block-image img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-xl); box-shadow: 0 24px 48px -28px rgba(0, 0, 0, .45); }
+
+.hero-cover { margin-block: 2rem; }
+.hero-cover .hero-title { margin: 0 0 1rem; text-shadow: 0 2px 24px rgba(0, 0, 0, .35); }
+.hero-cover .hero-lead { max-width: 36rem; margin: 0 auto 1.5rem; color: inherit; opacity: .92; }
+
+/* Image treatments (block styles on the Image block) */
+.wp-block-image.is-style-framed img { padding: .5rem; border: 1px solid var(--divider); border-radius: var(--radius-lg); background: var(--secondary-background); }
+.wp-block-image.is-style-shadow img { box-shadow: 0 24px 48px -24px rgba(0, 0, 0, .45); }
+.wp-block-image.is-style-circle img { border-radius: 50%; aspect-ratio: 1; object-fit: cover; }
