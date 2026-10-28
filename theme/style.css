@@ -132,6 +132,9 @@ a { color: var(--link-color); }
 .comment-head { display: flex; align-items: center; gap: .75rem; }
 .comment-head time { margin-left: auto; }
 .comment-avatar { border-radius: var(--radius-full); }
+.comment-form { display: flex; flex-direction: column; gap: 1rem; }
+.comment-form > p { margin: 0; }
+.comment-form .form-hint { margin-top: .25rem; }
 .comment-form input[type=text], .comment-form input[type=email], .comment-form input[type=url], .comment-form textarea { width: 100%; }
 .alignleft { float: left; margin: 0 1rem 1rem 0; }
 .alignright { float: right; margin: 0 0 1rem 1rem; }

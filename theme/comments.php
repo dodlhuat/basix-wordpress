@@ -13,5 +13,5 @@
         <div class="alert alert-default"><?php esc_html_e('Comments are closed.', 'basix'); ?></div>
     <?php endif; ?>
 
-    <?php comment_form(['class_submit' => 'button button-primary', 'class_form' => 'comment-form form-group']); ?>
+    <?php comment_form(['class_submit' => 'button button-primary', 'class_form' => 'comment-form']); ?>
 </section>

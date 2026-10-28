@@ -124,6 +124,14 @@ function basix_pagination(): void
     echo '</div></nav>';
 }
 
+/** Basix validation states live on .form-group, so every comment field gets one. */
+function basix_form_group(string $field): string
+{
+    return preg_replace('/<p class="(comment-form-(?!cookies)[a-z-]+)"/', '<p class="$1 form-group"', $field);
+}
+add_filter('comment_form_field_comment', 'basix_form_group');
+add_filter('comment_form_default_fields', fn(array $fields): array => array_map('basix_form_group', $fields));
+
 /** Basix checkboxes are pure CSS and need the .styled-checkbox class on the input, right before its label. */
 add_filter('comment_form_default_fields', function (array $fields): array {
     if (isset($fields['cookies'])) {
@@ -165,3 +173,43 @@ function basix_module(string $name): void
         null
     );
 }
+
+/**
+ * Render comment submission errors (empty fields, duplicates, flooding) inside the theme
+ * with a basix alert, instead of WordPress's bare error screen.
+ */
+add_filter('wp_die_handler', function (string|callable $handler) {
+    if (basename($_SERVER['SCRIPT_NAME'] ?? '') !== 'wp-comments-post.php') {
+        return $handler;
+    }
+    return function ($message, $title = '', $args = []) {
+        $message = is_wp_error($message) ? $message->get_error_message() : (string) $message;
+        status_header((int) ($args['response'] ?? 200));
+        nocache_headers();
+        get_header();
+        ?>
+        <section class="entry comment-error">
+            <h1><?php esc_html_e('Your comment could not be submitted', 'basix'); ?></h1>
+            <div class="alert alert-error"><?php echo wp_kses_post($message); ?></div>
+            <p><button type="button" class="button button-primary" onclick="history.back()"><?php esc_html_e('Go back', 'basix'); ?></button></p>
+        </section>
+        <?php
+        get_footer();
+        exit;
+    };
+});
+
+/** Validation messages for assets/js/form-validation.js, so they follow the site language instead of the browser's. */
+add_action('wp_footer', function () {
+    if (!is_singular() || !comments_open()) {
+        return;
+    }
+    printf(
+        '<script type="application/json" id="basix-i18n">%s</script>',
+        wp_json_encode([
+            'required' => __('Please fill out this field.', 'basix'),
+            'email'    => __('Please enter a valid email address.', 'basix'),
+            'url'      => __('Please enter a valid URL.', 'basix'),
+        ])
+    );
+});
