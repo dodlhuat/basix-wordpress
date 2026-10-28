@@ -169,6 +169,58 @@ try {
   await sleep(700);
   check((await trackPosition()) !== before, 'slider moves to the next slide');
   check(await page.$eval('.featured-title a', (e) => getComputedStyle(e).color === 'rgb(255, 255, 255)'), 'featured titles are white on the image');
+
+  // Filters: chips, the modal with the Basix pickers, applying, and the results.
+  page = await open('/');
+  const chipNames = await page.$$eval('.filter-chips a.chip', (chips) => chips.map((c) => c.textContent.trim()));
+  check(chipNames[0] === 'All' && chipNames.includes('Design') && chipNames.includes('Engineering'), `category chips are shown (${chipNames.join(', ')})`);
+  await page.click('.filter-toggle');
+  await sleep(900);
+  check(Boolean(await page.$('.filter-host .filter-picker .group-picker, .filter-host .filter-picker')), 'Filter opens a modal with the category picker');
+  await page.evaluate(() => [...document.querySelectorAll('.filter-picker button')].find((b) => /select all/i.test(b.textContent))?.click());
+  await sleep(300);
+  const chosen = await page.$eval('.filter-host input[name="categories"]', (e) => e.value);
+  check(/^\d+$/.test(chosen), `choosing a category group sets the filter (${chosen})`);
+  await page.click('.filter-host .datepicker-input');
+  await sleep(500);
+  const pickDay = (day) => page.evaluate((d) => [...document.querySelectorAll('.datepicker .datepicker-day:not(.other-month)')].find((e) => e.textContent.trim() === String(d))?.click(), day);
+  await pickDay(5);
+  await sleep(200);
+  await pickDay(12);
+  await sleep(400);
+  const dates = await page.evaluate(() => [document.querySelector('.filter-host input[name="date_from"]').value, document.querySelector('.filter-host input[name="date_to"]').value]);
+  check(/-05$/.test(dates[0]) && /-12$/.test(dates[1]), `the date picker sets a range (${dates.join(' to ')})`);
+  await page.evaluate(() => document.querySelector('.filter-host button[type="submit"]').click());
+  const applied = await page.waitForFunction(() => location.search.includes('categories=') && location.search.includes('date_from='), { timeout: 10000 }).then(() => true, () => false);
+  check(applied, 'Apply loads the filtered list');
+  await sleep(500);
+  const activeChips = await page.$$eval('.filter-active a.chip', (chips) => chips.map((c) => c.textContent.trim()));
+  check(activeChips.length >= 3 && /Design/.test(activeChips[0]), `active filters are shown as chips (${activeChips.join(' | ')})`);
+  check((await page.$eval('.filter-toggle .badge', (e) => e.textContent.trim()).catch(() => '')) === '2', 'the Filter button shows how many filters are on');
+  await page.click('.filter-active a.chip');
+  await page.waitForFunction(() => !location.search.includes('categories='), { timeout: 10000 }).catch(() => {});
+  check(!new URL(page.url()).searchParams.has('categories') && new URL(page.url()).searchParams.has('date_from'), 'removing a chip removes only that filter');
+
+  // The filter actually filters.
+  page = await open('/?categories=3');
+  const badges = await page.$$eval('.post-grid .card', (cards) => cards.map((c) => c.querySelector('.post-terms')?.textContent ?? ''));
+  check(badges.length > 0 && badges.every((t) => t.includes('Design')), `the category filter only lists posts in that category (${badges.length})`);
+  page = await open('/?date_from=2026-10-20&date_to=2026-10-28');
+  const days = await page.$$eval('.post-grid .card time', (times) => times.map((t) => t.getAttribute('datetime').slice(0, 10)));
+  check(days.length > 0 && days.every((d) => d >= '2026-10-20' && d <= '2026-10-28'), `the date filter only lists posts in the range (${days.length})`);
+  page = await open('/?categories=999999&date_from=nonsense');
+  check((await page.$$('.post-grid .card')).length > 0 && !(await page.$('.filter-active')), 'unknown filter values are ignored, the normal list shows');
+
+  // Without JavaScript the same filter is a plain form.
+  const plain = await (await browser.createBrowserContext()).newPage();
+  await plain.setJavaScriptEnabled(false);
+  await plain.setViewport({ width: 1280, height: 800 });
+  await plain.goto(`${url}/`, { waitUntil: 'load' });
+  await plain.click('.filter-toggle');
+  check(await plain.$eval('details.filter', (e) => e.open), 'without JavaScript the Filter button opens a plain form');
+  await plain.$eval('input[name="date_from"]', (e) => { e.value = '2026-10-20'; });
+  await Promise.all([plain.waitForNavigation(), plain.click('.filter-actions .button-primary')]);
+  check(new URL(plain.url()).searchParams.get('date_from') === '2026-10-20', 'the plain form submits the filter');
 } catch (error) {
   failures.push(`stopped early: ${error.message}`);
 } finally {

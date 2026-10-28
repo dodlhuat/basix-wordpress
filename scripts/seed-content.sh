@@ -115,6 +115,14 @@ BODY
 # block showcase page (patterns and the core blocks the theme styles)
 SHOWCASE_ID=$(wp eval-file /seed/showcase.php)
 
+# subcategories, so the category filter has a hierarchy to show
+term_id() { wp term get category "$1" --by=slug --field=term_id; }
+wp term create category Typography --slug=typography --parent="$(term_id design)" >/dev/null 2>&1 || true
+wp term create category Performance --slug=performance --parent="$(term_id engineering)" >/dev/null 2>&1 || true
+set_categories() { wp post term set "$(wp post list --post_type=post --name="$1" --field=ID)" category "${@:2}" >/dev/null; }
+set_categories choosing-a-type-scale design typography
+set_categories shipping-a-wordpress-theme-with-npm engineering performance
+
 # a long demo post, an author biography and sticky posts for the featured slider
 LONG_ID=$(wp eval-file /seed/long-post.php | tail -1)
 wp user update 1 --description="Writes about design systems, interface craft and the web platform. Likes small components and boring decisions made carefully." >/dev/null
