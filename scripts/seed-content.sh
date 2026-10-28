@@ -115,6 +115,16 @@ BODY
 # block showcase page (patterns and the core blocks the theme styles)
 SHOWCASE_ID=$(wp eval-file /seed/showcase.php)
 
+# a documentation section and a landing page built from the patterns
+DOCS_ID=$(wp eval-file /seed/docs.php | tail -1)
+wp eval-file /seed/landing.php >/dev/null
+
+# footer widgets (three columns)
+for sb in footer-1 footer-2 footer-3; do wp widget reset "$sb" >/dev/null 2>&1 || true; done
+wp widget add text footer-1 --title="About" --text="A small publication about design systems, interfaces and the web." >/dev/null
+wp widget add recent-posts footer-2 --title="Latest posts" --number=3 >/dev/null
+wp widget add tag_cloud footer-3 --title="Tags" >/dev/null
+
 # menus: a nested primary menu (three levels), a footer menu and social links
 menu_item() { wp menu item "$@" --porcelain; }
 for m in Main Footer Social; do wp menu delete "$m" >/dev/null 2>&1 || true; wp menu create "$m" >/dev/null; done
@@ -131,6 +141,7 @@ menu_item add-term Main category "$ENG_CAT" --parent-id="$TOPICS" >/dev/null
 menu_item add-term Main category "$NOTES_CAT" --parent-id="$TOPICS" >/dev/null
 ABOUT_ITEM=$(menu_item add-post Main "$ABOUT")
 menu_item add-post Main "$SHOWCASE_ID" --parent-id="$ABOUT_ITEM" >/dev/null
+menu_item add-post Main "$DOCS_ID" >/dev/null
 menu_item add-post Main "$CONTACT" >/dev/null
 wp menu location assign Main primary >/dev/null
 
