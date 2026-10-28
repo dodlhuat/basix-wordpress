@@ -10,6 +10,7 @@ require_once __DIR__ . '/inc/class-basix-drawer-walker.php';
 require_once __DIR__ . '/inc/menus.php';
 require_once __DIR__ . '/inc/customizer.php';
 require_once __DIR__ . '/inc/docs.php';
+require_once __DIR__ . '/inc/post-features.php';
 
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
@@ -42,6 +43,7 @@ add_action('init', function () {
     register_block_style('core/group', ['name' => 'card', 'label' => __('Card', 'basix')]);
     register_block_style('core/group', ['name' => 'card-bordered', 'label' => __('Bordered card', 'basix')]);
     register_block_style('core/paragraph', ['name' => 'lead', 'label' => __('Lead text', 'basix')]);
+    register_block_style('core/table', ['name' => 'sortable', 'label' => __('Sortable', 'basix')]);
 });
 
 /** Core buttons use the Basix button classes, so hover, focus and active states come from Basix. */
@@ -179,6 +181,9 @@ function basix_post_meta(): void
     printf('<time datetime="%s">%s</time>', esc_attr(get_the_date(DATE_W3C)), esc_html(get_the_date()));
     if (get_the_author()) {
         echo ' · ' . esc_html(get_the_author());
+    }
+    if ('post' === get_post_type() && basix_feature('basix_show_reading_time')) {
+        echo ' · ' . esc_html(basix_reading_time());
     }
     echo '</p>';
 }
