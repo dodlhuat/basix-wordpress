@@ -19,6 +19,7 @@ body { background: var(--background); color: var(--primary-text); display: flex;
 .skip-link:focus { left: 1rem; top: 1rem; z-index: 1000; background: var(--background); padding: .5rem 1rem; border-radius: var(--radius-md); }
 .text-right { text-align: right; }
 a { color: var(--link-color); }
+input, textarea, select, button { font-family: inherit; }
 
 /* Header */
 .site-header {
@@ -125,6 +126,7 @@ a { color: var(--link-color); }
 
 /* Misc */
 .search-form { max-width: 28rem; margin-block: 1rem; }
+.post-password-form { display: flex; flex-direction: column; gap: 1rem; max-width: 28rem; }
 .not-found { padding-block: 4rem; }
 .comments { max-width: 46rem; margin: 3rem auto 0; }
 .comment-list li { list-style: none; margin: 0; }
