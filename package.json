@@ -8,6 +8,7 @@
     "sync": "node scripts/sync-basix.mjs",
     "build": "./scripts/build-zip.sh",
     "check:editor": "node scripts/check-editor.mjs",
+    "check:customizer": "node scripts/check-customizer.mjs",
     "postinstall": "node scripts/sync-basix.mjs"
   },
   "dependencies": {
