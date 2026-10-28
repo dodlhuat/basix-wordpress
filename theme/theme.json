@@ -1,0 +1,70 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": false,
+		"layout": {
+			"contentSize": "46rem",
+			"wideSize": "72rem"
+		},
+		"color": {
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"defaultDuotone": false,
+			"custom": true,
+			"palette": [
+				{ "slug": "text", "name": "Text", "color": "var(--primary-text)" },
+				{ "slug": "text-secondary", "name": "Secondary text", "color": "var(--secondary-text)" },
+				{ "slug": "background", "name": "Background", "color": "var(--background)" },
+				{ "slug": "surface", "name": "Surface", "color": "var(--secondary-background)" },
+				{ "slug": "accent", "name": "Accent", "color": "var(--accent-color)" },
+				{ "slug": "accent-tint", "name": "Accent tint", "color": "var(--accent-color-tint)" },
+				{ "slug": "divider", "name": "Divider", "color": "var(--divider)" },
+				{ "slug": "success", "name": "Success", "color": "var(--success)" },
+				{ "slug": "warning", "name": "Warning", "color": "var(--warning)" },
+				{ "slug": "error", "name": "Error", "color": "var(--error)" }
+			]
+		},
+		"typography": {
+			"defaultFontSizes": false,
+			"fontFamilies": [
+				{
+					"slug": "outfit",
+					"name": "Outfit",
+					"fontFamily": "\"Outfit\", helvetica, arial, sans-serif"
+				},
+				{
+					"slug": "mono",
+					"name": "Monospace",
+					"fontFamily": "ui-monospace, \"Cascadia Code\", \"SF Mono\", Menlo, monospace"
+				}
+			],
+			"fontSizes": [
+				{ "slug": "small", "name": "Small", "size": "0.875rem" },
+				{ "slug": "base", "name": "Base", "size": "1rem" },
+				{ "slug": "large", "name": "Large", "size": "1.25rem" },
+				{ "slug": "x-large", "name": "Extra large", "size": "clamp(1.5rem, 1.2rem + 1.2vw, 2rem)" },
+				{ "slug": "xx-large", "name": "Huge", "size": "clamp(2rem, 1.4rem + 2.4vw, 3.25rem)" }
+			]
+		},
+		"spacing": {
+			"units": [ "px", "em", "rem", "%", "vw" ],
+			"padding": true,
+			"margin": true,
+			"blockGap": true
+		},
+		"border": {
+			"radius": true
+		},
+		"blocks": {
+			"core/button": {
+				"border": { "radius": false }
+			}
+		}
+	},
+	"styles": {
+		"spacing": {
+			"blockGap": "1.5rem"
+		}
+	}
+}
