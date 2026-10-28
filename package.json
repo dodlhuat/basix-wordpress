@@ -1,0 +1,14 @@
+{
+  "name": "basix-wordpress",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "WordPress theme built on @dodlhuat/basix",
+  "scripts": {
+    "sync": "node scripts/sync-basix.mjs",
+    "postinstall": "node scripts/sync-basix.mjs"
+  },
+  "dependencies": {
+    "@dodlhuat/basix": "^1.6.0"
+  }
+}
