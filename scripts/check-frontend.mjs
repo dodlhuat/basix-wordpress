@@ -15,7 +15,11 @@ const check = (ok, label) => {
 
 const browser = await puppeteer.launch({ executablePath: chrome, headless: true });
 const open = async (path, viewport = { width: 1280, height: 800 }) => {
-  const page = await (await browser.createBrowserContext()).newPage();
+  const context = await browser.createBrowserContext();
+  await context.overridePermissions(url, ['clipboard-read', 'clipboard-write', 'clipboard-sanitized-write']);
+  const page = await context.newPage();
+  // Chrome only allows clipboard writes from a focused page, and headless pages are not focused by default.
+  await (await page.createCDPSession()).send('Emulation.setFocusEmulationEnabled', { enabled: true });
   await page.setViewport(viewport);
   page.on('pageerror', (e) => failures.push(`page error on ${path}: ${e.message}`));
   await page.goto(`${url}${path}`, { waitUntil: 'networkidle0' });
@@ -80,6 +84,91 @@ try {
   page = await open('/docs/');
   const sideBySide = await page.evaluate(() => document.querySelector('#docs-sidebar').getBoundingClientRect().right <= document.querySelector('.docs-main').getBoundingClientRect().left + 1);
   check(sideBySide, 'docs sidebar is beside the content on desktop');
+
+  // Post features, on the long demo post.
+  page = await open('/everything-in-one-post/');
+  check(/min read/.test(await page.$eval('.entry-header .post-meta', (e) => e.textContent)), 'reading time is shown');
+
+  const tocLinks = await page.$$eval('.toc a', (links) => links.map((a) => a.getAttribute('href')));
+  check(tocLinks.length >= 5, 'table of contents lists the headings');
+  check(await page.evaluate((hrefs) => hrefs.every((h) => document.querySelector(h)), tocLinks), 'every table of contents link has a heading to go to');
+  await page.click('.toc a[href$="comparing-the-options"]');
+  await sleep(1000);
+  check(await page.$eval('#comparing-the-options', (e) => Math.abs(e.getBoundingClientRect().top) < 220), 'table of contents link scrolls to its heading');
+
+  const barWidth = () => page.$eval('.reading-progress .progress-bar', (e) => parseFloat(e.style.width));
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await sleep(400);
+  const atTop = await barWidth();
+  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight / 2));
+  await sleep(400);
+  const inMiddle = await barWidth();
+  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+  await sleep(400);
+  const atEnd = await barWidth();
+  check(atTop < 5 && inMiddle > 20 && inMiddle < 95 && atEnd === 100, `reading progress follows the scroll (${atTop}% / ${inMiddle}% / ${atEnd}%)`);
+
+  const blocks = await page.$$eval('.code-display .code-language', (labels) => labels.map((l) => l.textContent));
+  check(['css', 'js', 'html', 'php'].every((l) => blocks.includes(l)), `code blocks get a language label (${blocks.join(', ')})`);
+  await page.click('.code-display .copy-button');
+  await sleep(300);
+  const copied = await page.evaluate(() => navigator.clipboard.readText());
+  check(copied.startsWith(':root {') && !copied.includes('<span'), 'the code copy button copies the plain code');
+
+  const firstCell = () => page.$eval('.is-style-sortable tbody tr td', (e) => e.textContent);
+  const ariaSort = () => page.$eval('.is-style-sortable th:first-child', (e) => e.getAttribute('aria-sort'));
+  check((await firstCell()) === 'Hard-coded values', 'sortable table starts in its original order');
+  await page.click('.is-style-sortable th:first-child .sort-button');
+  check((await firstCell()) === 'Full theming engine' && (await ariaSort()) === 'ascending', 'first click sorts ascending');
+  await page.click('.is-style-sortable th:first-child .sort-button');
+  check((await firstCell()) === 'Two token layers' && (await ariaSort()) === 'descending', 'second click sorts descending');
+  await page.click('.is-style-sortable th:first-child .sort-button');
+  check((await firstCell()) === 'Hard-coded values' && (await ariaSort()) === 'none', 'third click restores the order');
+
+  await page.$eval('.entry-content .wp-block-image img', (e) => e.scrollIntoView({ block: 'center' }));
+  await page.click('.entry-content .wp-block-image img');
+  await sleep(700);
+  const lightboxSrc = () => page.$eval('.lightbox-img', (e) => e.getAttribute('src')).catch(() => null);
+  const firstSrc = await lightboxSrc();
+  check(Boolean(firstSrc), 'clicking an image opens the lightbox');
+  await page.keyboard.press('ArrowRight');
+  await sleep(500);
+  check((await lightboxSrc()) !== firstSrc, 'arrow key moves to the next image');
+  await page.keyboard.press('Escape');
+  await sleep(700);
+  check((await lightboxSrc()) === null, 'Escape closes the lightbox');
+
+  await page.$eval('.share', (e) => e.scrollIntoView({ block: 'center' }));
+  await page.click('.share-button');
+  await sleep(500);
+  check(await page.$eval('.popover.is-open', (e) => e.textContent.includes('LinkedIn')).catch(() => false), 'share button opens a popover with the networks');
+  await page.click('[data-share-copy]');
+  await sleep(600);
+  const shared = await page.evaluate(() => navigator.clipboard.readText());
+  check(shared === page.url(), 'copy link copies the post address');
+  check(await page.$eval('.toast', (e) => e.textContent.includes('Link copied')).catch(() => false), 'a toast confirms the copied link');
+
+  check((await page.$eval('.author-box .author-name', (e) => e.textContent)) === 'Basix Editor', 'author box shows the author');
+  const related = await page.$$eval('.related .card-title a', (links) => links.map((a) => a.href));
+  check(related.length >= 1 && !related.includes(page.url()), `related posts are listed and exclude this post (${related.length})`);
+
+  // Share on a phone uses a bottom sheet.
+  page = await open('/everything-in-one-post/', { width: 390, height: 800 });
+  await page.$eval('.share', (e) => e.scrollIntoView({ block: 'center' }));
+  await page.click('.share-button');
+  await sleep(700);
+  check(await page.$eval('.bottom-sheet', (e) => e.textContent.includes('Copy link')).catch(() => false), 'share opens a bottom sheet on a phone');
+
+  // Featured slider on the front page.
+  page = await open('/');
+  const slides = await page.$$eval('.featured .carousel-slide', (s) => s.length);
+  check(slides >= 2, `front page shows a featured slider (${slides} slides)`);
+  const trackPosition = () => page.$eval('.featured .carousel-track', (e) => e.style.transform);
+  const before = await trackPosition();
+  await page.click('.featured .carousel-button--right');
+  await sleep(700);
+  check((await trackPosition()) !== before, 'slider moves to the next slide');
+  check(await page.$eval('.featured-title a', (e) => getComputedStyle(e).color === 'rgb(255, 255, 255)'), 'featured titles are white on the image');
 } catch (error) {
   failures.push(`stopped early: ${error.message}`);
 } finally {

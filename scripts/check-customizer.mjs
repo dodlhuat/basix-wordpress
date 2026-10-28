@@ -6,7 +6,7 @@ import puppeteer from 'puppeteer-core';
 
 const url = process.env.WP_URL ?? 'http://localhost:8090';
 const chrome = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const expectedControls = ['custom_logo', 'basix_header_layout', 'basix_color_mode', 'basix_accent_light', 'basix_accent_dark', 'basix_sidebar_position', 'basix_footer_text', 'basix_back_to_top'];
+const expectedControls = ['custom_logo', 'basix_header_layout', 'basix_color_mode', 'basix_accent_light', 'basix_accent_dark', 'basix_sidebar_position', 'basix_footer_text', 'basix_back_to_top', 'basix_show_reading_time', 'basix_show_toc', 'basix_show_progress', 'basix_show_share', 'basix_show_author_box', 'basix_show_related', 'basix_show_featured'];
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const browser = await puppeteer.launch({ executablePath: chrome, headless: true, defaultViewport: { width: 1400, height: 900 } });
@@ -28,7 +28,7 @@ try {
     missing: ids.filter((id) => !wp.customize.control(id)),
   }), expectedControls);
   console.log(`Panel sections: ${found.sections.join(', ')}`);
-  if (found.sections.length !== 4) failures.push(`expected 4 sections, got ${found.sections.length}`);
+  if (found.sections.length !== 5) failures.push(`expected 5 sections, got ${found.sections.length}`);
   if (found.missing.length) failures.push(`missing controls: ${found.missing.join(', ')}`);
 
   const original = await page.evaluate(() => wp.customize('basix_header_layout').get());
