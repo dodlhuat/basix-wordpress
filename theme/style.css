@@ -11,9 +11,10 @@ Text Domain: basix
 /* Layout glue only. Colour, radius, spacing and type all come from basix tokens,
    so light and dark mode follow [data-theme] / prefers-color-scheme automatically. */
 
-body { background: var(--background); color: var(--primary-text); }
+body { background: var(--background); color: var(--primary-text); display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
 .container { width: min(100% - 2rem, 72rem); margin-inline: auto; }
-.site-main { padding-block: 2rem 4rem; min-height: 60vh; }
+.site-main { padding-block: 2rem 4rem; flex: 1 0 auto; }
+.site-header, .site-footer { flex-shrink: 0; }
 .skip-link { position: absolute; left: -999px; }
 .skip-link:focus { left: 1rem; top: 1rem; z-index: 1000; background: var(--background); padding: .5rem 1rem; border-radius: var(--radius-md); }
 .text-right { text-align: right; }
