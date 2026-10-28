@@ -31,11 +31,15 @@ async function walk(dir, exts) {
 }
 
 const read = (file) => readFile(file, 'utf8');
+
+// Examples in comments must not count as usage.
+const stripComments = (text) => text.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+const readSource = async (file) => (file.endsWith('.js') ? stripComments(await read(file)) : read(file));
 const matches = (text, re) => [...text.matchAll(re)].map((m) => m[1]);
 
 // 1. Source of truth: everything in the theme (PHP templates and its own JS).
 const themeFiles = await walk(themeDir, ['.php', '.js']);
-const themeText = (await Promise.all(themeFiles.map(read))).join('\n');
+const themeText = (await Promise.all(themeFiles.map(readSource))).join('\n');
 
 // 2. JS modules: the ones the theme imports, plus their imports, recursively.
 const modules = new Set(matches(themeText, /vendor\/basix\/js\/([a-z0-9-]+)\.js/g));
