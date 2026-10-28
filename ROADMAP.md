@@ -57,11 +57,14 @@ Decisions so far
 - Deviations: the sortable table uses a small own script (`sortable-table.js`) with Basix's sortable heading styles, not the Basix Table component, which adds its own search box and paging with fixed English labels. Sticky posts are removed from the latest-posts list so they are not shown twice.
 - Known limits: some Basix components have fixed English text that the theme cannot translate (the code viewer's "Copy" and "copied!", the lightbox button labels). The code viewer's copy button needs HTTPS or localhost, because browsers only allow clipboard access there. The code viewer highlights JavaScript, HTML and CSS only; other languages get the label and the copy button.
 
-### 6. Discovery and media
+### 6. Discovery and media (done)
 - **Filters:** clickable category chips on the blog index, hierarchical filter (Group picker), date range (Date picker).
 - **Calendar page:** posts by publish date, fetched from the REST API by visible range.
 - **Gallery / portfolio:** masonry infinite-scroll template fed from the media REST endpoint, plus a core Gallery block upgrade.
 - Skeleton / placeholder loading states for all AJAX features.
+- Result: **Filters** above every post list (blog, archives, search): category chips that are plain links, a Filter button that opens a modal (a bottom sheet on phones) with the Basix group picker for categories and the Basix range date picker, active filters as removable chips; without JavaScript the same filter is a plain `<details>` form. Query variables `categories`, `date_from`, `date_to`, all validated. **Calendar** page template (Basix calendar: month, week, agenda) that loads the posts of the visible range from the REST API, in the site's language. **Photo gallery** page template (Basix masonry gallery with endless scrolling from the media REST endpoint, using the images uploaded to the page, or the whole library) and a **Masonry** style for the Gallery block. **Loading states:** the gallery's own Basix placeholder cards, and for the calendar an animated Basix progress bar plus skeleton cells.
+- Basix workarounds: the masonry gallery has no notion of "no more images" and would ask again every frame, so the last fetch never answers (`masonry.js`); its own lightbox cannot be given an icon path, so it is switched off and the theme's lightbox is used.
+- Known limits: the group picker has two levels, so deeper categories are flattened below their top-level category. The filter bar is part of the shared post list, so a static front page's "latest posts" strip does not have it. The gallery shows every image in the library when none are uploaded to its page. Calendar and gallery need the REST API; if a security plugin blocks it, they show an error message.
 
 ### 7. Premium polish
 - Scroll reveals (respect `prefers-reduced-motion`), card variants (featured, list, grid), more hero variants, hover and focus polish, image treatments.
