@@ -1,0 +1,18 @@
+{
+  "name": "basix/basix-wordpress",
+  "description": "WordPress theme built on the Basix component library",
+  "license": "GPL-2.0-or-later",
+  "require-dev": {
+    "wp-coding-standards/wpcs": "^3.1",
+    "phpcompatibility/phpcompatibility-wp": "^2.1",
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "scripts": {
+    "lint": "phpcs"
+  }
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<ruleset name="Basix theme">
+    <description>Coding standards for the Basix WordPress theme.</description>
+
+    <file>theme</file>
+    <exclude-pattern>*/assets/vendor/*</exclude-pattern>
+
+    <arg name="extensions" value="php"/>
+    <arg name="colors"/>
+    <arg value="sp"/>
+
+    <rule ref="WordPress-Extra">
+        <!-- The theme keeps 4-space indentation and short array syntax; formatting-only sniffs are off. -->
+        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent"/>
+        <exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+        <exclude name="PEAR.Functions.FunctionCallSignature"/>
+        <exclude name="WordPress.WhiteSpace.ControlStructureSpacing"/>
+        <exclude name="WordPress.WhiteSpace.OperatorSpacing"/>
+        <exclude name="WordPress.Arrays.ArrayDeclarationSpacing"/>
+        <exclude name="NormalizedArrays.Arrays.ArrayBraceSpacing"/>
+        <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing"/>
+        <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie"/>
+        <exclude name="Generic.WhiteSpace.ArbitraryParenthesesSpacing"/>
+        <exclude name="Generic.Formatting.MultipleStatementAlignment"/>
+        <exclude name="Squiz.ControlStructures.ControlSignature"/>
+        <exclude name="WordPress.WhiteSpace.CastStructureSpacing"/>
+        <exclude name="Generic.ControlStructures.InlineControlStructure"/>
+        <exclude name="Generic.Formatting.DisallowMultipleStatements"/>
+        <exclude name="Squiz.PHP.EmbeddedPhp"/>
+        <exclude name="WordPress.PHP.YodaConditions"/>
+    </rule>
+
+    <config name="testVersion" value="8.1-"/>
+    <rule ref="PHPCompatibilityWP"/>
+    <config name="minimum_wp_version" value="6.5"/>
+
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array">
+                <element value="basix"/>
+            </property>
+        </properties>
+    </rule>
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+        <properties>
+            <property name="prefixes" type="array">
+                <element value="basix"/>
+                <element value="BASIX"/>
+            </property>
+        </properties>
+    </rule>
+</ruleset>
