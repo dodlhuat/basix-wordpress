@@ -89,6 +89,14 @@ post "Choosing a type scale" Design "typography" citrus "Warm yellow and green g
 <p>Fluid sizes with <code>clamp()</code> remove most breakpoints from headings, which keeps the stylesheet short.</p>
 BODY
 
+# password-protected post (password: secret)
+PROTECTED=$(wp post create - --post_type=post --post_status=publish --post_title="Members only" \
+  --post_password=secret --post_category=Notes --post_date="$(days_ago 2)" --porcelain <<'BODY'
+<p>You found the secret content. This post exists to show how the theme styles the password form and its error state.</p>
+BODY
+)
+wp media import /sample-images/slate.jpg --post_id="$PROTECTED" --featured_image --title="Members only" --alt="Soft lavender gradient" --porcelain >/dev/null
+
 # pages
 ABOUT=$(wp post create - --post_type=page --post_status=publish --post_title="About" --porcelain <<'BODY'
 <p>This is a small publication about design systems, interface craft and the web platform. It is also a demo site for a WordPress theme built entirely from the Basix component library.</p>
@@ -116,4 +124,4 @@ wp comment create --comment_post_ID="$FIRST" --comment_author="Maya" --comment_a
 wp comment create --comment_post_ID="$FIRST" --comment_author="Jonas" --comment_author_email="jonas@example.com" --comment_content="Do you document tokens in the same repo as the components?" --comment_approved=1 >/dev/null
 
 wp option update basix_seeded 1 >/dev/null
-echo "Done: 8 posts, 2 pages, a menu and sample comments."
+echo "Done: 9 posts (one password-protected, password: secret), 2 pages, a menu and sample comments."
