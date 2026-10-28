@@ -43,6 +43,28 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script_module('basix-theme-main', get_theme_file_uri('assets/js/main.js'), [], wp_get_theme()->get('Version'));
 });
 
+// The archive type is shown as an eyebrow label instead of a "Category:" title prefix.
+add_filter('get_the_archive_title_prefix', '__return_empty_string');
+
+function basix_archive_label(): string
+{
+    return match (true) {
+        is_category() => __('Category', 'basix'),
+        is_tag()      => __('Tag', 'basix'),
+        is_author()   => __('Author', 'basix'),
+        is_date()     => __('Archive', 'basix'),
+        is_tax()      => get_taxonomy(get_queried_object()->taxonomy)->labels->singular_name ?? __('Archive', 'basix'),
+        default       => __('Archive', 'basix'),
+    };
+}
+
+// Six cards fill the front page grid evenly; archives use the Reading setting.
+add_action('pre_get_posts', function (WP_Query $q) {
+    if (!is_admin() && $q->is_main_query() && $q->is_home()) {
+        $q->set('posts_per_page', 6);
+    }
+});
+
 /** Opening wrapper for templates with a sidebar; pair with basix_layout_close(). */
 function basix_layout_open(): void
 {
