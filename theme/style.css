@@ -305,3 +305,34 @@ input, textarea, select, button { font-family: inherit; }
 .filter-host .filter-form { padding: 1rem 1.25rem 1.25rem; }
 .filter-section { margin-bottom: 1.25rem; }
 .filter-section-title { margin: 0 0 .5rem; font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--secondary-text); }
+
+/* Calendar and gallery pages use the full container width */
+.page-template-calendar .entry,
+.page-template-gallery .entry { max-width: none; }
+.page-template-calendar .site-main > .breadcrumb,
+.page-template-gallery .site-main > .breadcrumb { max-width: none; margin-inline: 0; }
+
+/* Calendar: a loading bar and skeleton cells (Basix's skeleton and animated progress bar) */
+.calendar-wrap { position: relative; margin-top: 1.5rem; }
+.calendar-status { position: absolute; inset: 0 0 auto 0; z-index: 5; height: 3px; border-radius: 0; background: transparent; }
+.calendar-status .progress-bar { border-radius: 0; }
+.calendar-skeleton { display: none; }
+.js .calendar-skeleton { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .5rem; }
+.calendar-skeleton .skeleton { height: 5.5rem; }
+.calendar-host { transition: opacity .2s ease; }
+.calendar-wrap.is-loading .calendar-host { opacity: .6; }
+.calendar-host[data-error]::before { content: attr(data-error); display: block; margin-bottom: 1rem; padding: .75rem 1rem; border-radius: var(--radius-md); background: var(--error-tint); color: var(--error-text); }
+.calendar-list { list-style: none; margin: 0; padding: 0; }
+.calendar-list li { margin: 0 0 .5rem; list-style: none; }
+
+/* Gallery: the loader is Basix's, the list is what shows without JavaScript */
+.gallery-wrap { margin-top: 1.5rem; }
+.gallery-fallback { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 1rem; list-style: none; margin: 0; padding: 0; }
+.gallery-fallback li { margin: 0; list-style: none; }
+.gallery-fallback img { display: block; width: 100%; height: auto; border-radius: var(--radius-md); }
+.masonry-item:not(.masonry-item--skeleton) { cursor: zoom-in; }
+.wp-block-gallery.is-style-masonry { display: block; }
+.wp-block-gallery.is-style-masonry .gallery-host { width: 100%; }
+/* Masonry items without a title or description (such as images in a Gallery block) get no empty caption strip */
+.masonry-item-info:not(:has(.masonry-item-title:not(:empty), .masonry-item-desc:not(:empty))) { display: none; }
+.masonry-item:has(> .masonry-item-info:not(:has(.masonry-item-title:not(:empty), .masonry-item-desc:not(:empty)))) { box-shadow: none; background: none; }
