@@ -158,3 +158,10 @@ input, textarea, select, button { font-family: inherit; }
 .aligncenter { display: block; margin-inline: auto; }
 .screen-reader-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 .comment-list .card { font-style: normal; }
+
+/* Core classes WordPress adds to content */
+.sticky.card { border-color: var(--accent-color); }
+.bypostauthor > .card { border-color: var(--accent-color); }
+.wp-caption { max-width: 100%; }
+.wp-caption img { display: block; max-width: 100%; height: auto; }
+.wp-caption-text, .gallery-caption { margin-top: .5rem; font-size: .8125rem; color: var(--secondary-text); }
