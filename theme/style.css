@@ -70,3 +70,13 @@ Text Domain: basix
 .alignright { float: right; margin: 0 0 1rem 1rem; }
 .aligncenter { display: block; margin-inline: auto; }
 .screen-reader-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* Front page */
+.hero { text-align: center; padding-block: clamp(3rem, 10vw, 7rem); max-width: 46rem; margin-inline: auto; }
+.hero-title { font-size: clamp(2.25rem, 6vw, 3.75rem); margin: 0 0 1rem; }
+.hero-lead { font-size: 1.25rem; color: var(--secondary-text); margin: 0 0 2rem; }
+.hero-actions { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+.hero-actions .button { text-decoration: none; }
+.front-content { max-width: 46rem; margin: 0 auto 3rem; }
+.front-latest { margin-top: 2rem; scroll-margin-top: 1rem; }
+.front-latest > h2 { margin-bottom: 1.5rem; }
