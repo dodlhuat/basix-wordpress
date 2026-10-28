@@ -4,7 +4,7 @@ Theme URI: https://github.com/dodlhuat/basix
 Author: Andi Bauer
 Author URI: https://www.andibauer.at
 Description: A fast, accessible blog and magazine theme built entirely from the Basix component library, with light and dark mode, a flyout menu, image cards and a sidebar with widgets.
-Version: 0.1.0
+Version: 1.0.0
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
@@ -12,7 +12,7 @@ License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: basix
 Domain Path: /languages
-Tags: blog, grid-layout, right-sidebar, two-columns, custom-menu, featured-images, threaded-comments, translation-ready
+Tags: blog, news, grid-layout, right-sidebar, two-columns, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, threaded-comments, translation-ready, block-patterns, block-styles, wide-blocks, editor-style, accessibility-ready
 
 Basix WordPress theme, (C) 2026 Andi Bauer
 Basix is distributed under the terms of the GNU GPL v2 or later.

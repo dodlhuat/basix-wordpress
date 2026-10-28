@@ -3,10 +3,10 @@ Contributors: dodlhuat
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 0.1.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Tags: blog, grid-layout, right-sidebar, two-columns, custom-menu, featured-images, threaded-comments, translation-ready
+Tags: blog, news, grid-layout, right-sidebar, two-columns, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, threaded-comments, translation-ready, block-patterns, block-styles, wide-blocks, editor-style, accessibility-ready
 
 A fast, accessible blog and magazine theme built entirely from the Basix component library.
 
@@ -18,6 +18,10 @@ Basix is a classic WordPress theme made from the components of the Basix library
 * Sticky header with an accessible flyout menu on small screens
 * Image cards, a hero section and a sidebar with widgets
 * Styled comments, password-protected posts, search and 404 pages
+* Header layouts, a featured-post slider, a calendar page, a gallery and portfolio page, and post filters
+* Ten block patterns and block styles, plus starter content for new sites
+* Accent colour, logo and layout options in the Customizer
+* Checked with axe and Lighthouse, ready for translation, with a German translation included
 
 == Installation ==
 
@@ -37,8 +41,11 @@ Yes. It follows the visitor's system preference, and the toggle in the header le
 
 == Changelog ==
 
+= 1.0.0 =
+* First public release.
+
 = 0.1.0 =
-* Initial release.
+* Initial development version.
 
 == Copyright ==
 
