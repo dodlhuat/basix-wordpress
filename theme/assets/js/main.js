@@ -14,7 +14,10 @@ if (document.querySelector('#site-flyout li')) {
         direction: 'right',
         title: document.title.split(' – ')[0],
         enableHeader: true,
+        enableFooter: false,
     });
+    const drawer = document.getElementById('site-flyout');
+    requestAnimationFrame(() => requestAnimationFrame(() => drawer.classList.add('is-ready')));
 } else {
     document.querySelector('.site-menu-trigger')?.remove();
 }

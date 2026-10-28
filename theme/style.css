@@ -38,8 +38,8 @@ a { color: var(--link-color); }
 .site-actions .site-menu-trigger { display: none; }
 /* drawer shadow would bleed in while closed */
 .flyout-menu:not(.is-open) { box-shadow: none; }
-/* hidden until FlyoutMenu attaches its direction class */
-.flyout-menu:not([class*="flyout-from"]) { visibility: hidden; }
+/* keep the drawer hidden and static until main.js has set it up, so it doesn't slide in on load */
+.flyout-menu:not(.is-ready) { visibility: hidden; transition: none; }
 @media (max-width: 768px) {
     .site-nav { display: none; }
     .site-actions .site-menu-trigger { display: inline-flex; }
@@ -100,6 +100,7 @@ a { color: var(--link-color); }
 .post-nav a { color: var(--primary-text); text-decoration: none; padding: 0; }
 .post-nav a:hover { color: var(--link-color); }
 .breadcrumb { margin-bottom: 1.5rem; }
+.page .site-main > .breadcrumb { max-width: 46rem; margin-inline: auto; }
 
 /* Sidebar */
 .layout.has-sidebar { display: grid; grid-template-columns: minmax(0, 1fr) 18rem; gap: 2rem; align-items: start; }
