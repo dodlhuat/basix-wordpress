@@ -81,6 +81,43 @@ Decisions so far
 - An **Event** post type (Events in the admin menu) with start and end date, optional times and a location; no times means an all-day event. The calendar block, the `[basix_calendar]` shortcode and the Calendar page template show events by default, with month, week and agenda views and multi-day events. `source="posts"` (or the block's Source option) shows blog posts by publish date instead. Events have their own page (`/event/<name>/`), and `/events/` lists what is still to come. Events are read from a public endpoint, `/wp-json/basix/v1/events?from=&to=`.
 - Limits: the post type lives in the theme, so events are hidden (not deleted) if the site switches theme; no recurring events, no categories, no time zone per event (times are the site's local time); clicking a day does nothing for events; no ICS export.
 
+### 10. Event extras (planned)
+Order matters: each step builds on the one before. Every step ends with `make check`, new checks for what it adds, German strings, and a small commit per piece.
+
+**0. Decide where events live.** Theme Check lists the post type, block and shortcode as plugin territory. If the theme should go on WordPress.org, move them first into a companion plugin (`basix-events`) so the steps below are not moved twice. For a sold theme they can stay.
+
+**1. Event categories (small).**
+- A hierarchical `basix-event-category` taxonomy (`/events/category/<name>/`), shown in the editor sidebar automatically.
+- The events endpoint takes `categories=` and returns each event's categories; the calendar badge becomes the first category (the location stays in the pill's tooltip and on the event page).
+- Block option and shortcode attribute `category` (slugs, comma separated); chips above the calendar filter what is already loaded, without another request. Event cards and the single page show the category badges.
+
+**2. Time zones per event (medium, the base for 3 to 5).**
+- New field `basix_event_timezone` (a select from `wp_timezone_choice()`; empty means the site's zone). Existing events keep working as they are.
+- Store the wall-clock times as now, plus derived UTC start and end (`basix_event_start_utc`, `basix_event_end_utc`), written on save. Queries and sorting use the UTC fields; a version option backfills old events.
+- All-day events stay "floating" (no zone, no conversion).
+- Display rule: the calendar grid shows the site's time zone. An event in another zone is placed by its real moment, and its own local time with the zone name is shown on its page, in its tooltip and in the list ("6:30 pm – 8:00 pm CET").
+- Edge cases to test: daylight saving gaps and repeats, events that cross midnight after conversion, zones with half-hour offsets.
+
+**3. Recurring events (large).**
+- A rule on the event, stored as one JSON meta field: frequency (daily, weekly, monthly by date, monthly by weekday such as "second Tuesday", yearly), every N, weekdays for weekly, an end (never, until a date, after N times) and a list of skipped dates. This is a subset of the standard iCalendar rule, so it can be exported unchanged.
+- Occurrences are computed when read, not saved as posts: `basix_event_occurrences($event, $from, $to)` expands the rule in the event's own zone, so 6:30 pm stays 6:30 pm across daylight saving. It is capped (about 500 per event and range) so a bad rule cannot loop forever.
+- The events endpoint returns occurrences with unique ids (`<id>-<date>`) and links to the event with `?date=`; the event page shows the rule in words ("Every week on Tuesday, until 20 Dec") and the next dates.
+- The archive lists each recurring event once, by its next date; a derived `basix_event_next` field is refreshed on save and by a daily cron job.
+- Meta box: a "Repeat" section with a live summary sentence. Editing one single occurrence is out of scope (skip a date instead).
+- Tests: a PHP check script with fixed cases (month end, 31st, leap day, nth weekday, until and count, skipped dates, multi-day events that repeat, daylight saving).
+
+**4. Clicking a day (small, after 3).**
+- A day opens `/events/?event_day=2026-11-05`: the archive template listing that day's occurrences (recurring ones included), with a "No events on this day" state, and working without JavaScript.
+- The calendar's day click and Enter key go there. Alternative to consider: add a `goToDate()` method to the Basix calendar itself (the library is yours) and open the week view instead.
+
+**5. ICS export (medium, after 2 and 3).**
+- An "Add to calendar" button on each event page (`?ics=1`), and a subscribe feed `/events/feed.ics` (all upcoming events; `?category=` for one category) with a `webcal://` link in the events archive.
+- Output follows the standard: CRLF lines folded at 75 bytes, escaped text, stable `UID`, `SEQUENCE` from the modified time, all-day events with exclusive end dates, `TZID` with generated `VTIMEZONE` blocks (so Outlook accepts it), `RRULE` and `EXDATE` for repeats, `CATEGORIES`, `URL`, `LOCATION`.
+- Password-protected and private events are left out. The feed is cached and cleared when an event is saved, with ETag support.
+- Test: parse the output with an independent iCalendar parser in a check script, and compare occurrences with the PHP expansion.
+
+**Risks.** Recurrence and daylight saving are where bugs hide, so they get fixed-case tests before any UI. Meta queries for recurring events can get slow with thousands of events (fine for a typical site; the derived fields keep it bounded). Calendar apps differ in how strictly they read ICS, so a few real imports (Apple, Google, Outlook) are needed by hand at the end.
+
 ### Prototype (after 1.5)
 - **Cmd-K quick switcher:** Modal + Virtual dropdown over a lightweight title/URL index. Decide after seeing it.
 
