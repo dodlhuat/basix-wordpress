@@ -91,7 +91,7 @@ Order matters: each step builds on the one before. Every step ends with `make ch
 - The events endpoint takes `categories=` and returns each event's categories; the calendar badge becomes the first category (the location stays on the event page; the calendar component has no tooltip text to put it in).
 - Block option and shortcode attribute `category` (slugs, comma separated); chips above the calendar filter what is already loaded, without another request. Event cards and the single page show the category badges.
 
-**2. Time zones per event (medium, the base for 3 to 5).**
+**2. Time zones per event (medium, the base for 3 to 5, done; `scripts/php/check-events.php` tests it and runs in `make check`).**
 - New field `basix_event_timezone` (a select from `wp_timezone_choice()`; empty means the site's zone). Existing events keep working as they are.
 - Store the wall-clock times as now, plus derived UTC start and end (`basix_event_start_utc`, `basix_event_end_utc`), written on save. Queries and sorting use the UTC fields; a version option backfills old events.
 - All-day events stay "floating" (no zone, no conversion).
