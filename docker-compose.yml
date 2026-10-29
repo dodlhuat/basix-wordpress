@@ -39,6 +39,7 @@ services:
       - ./theme:/var/www/html/wp-content/themes/basix
       - ./scripts/sample-images:/sample-images:ro
       - ./scripts/seed:/seed:ro
+      - ./scripts/php:/php:ro
     depends_on:
       - db
 

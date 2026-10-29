@@ -16,6 +16,7 @@ zip:
 lint:
 	vendor/bin/phpcs
 check: lint
+	docker compose run --rm -T wpcli wp eval-file /php/check-events.php
 	npm run --silent check:editor
 	npm run --silent check:customizer
 	npm run --silent check:frontend
