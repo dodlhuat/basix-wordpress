@@ -1,4 +1,6 @@
-<?php get_template_part( 'template-parts/filters' ); ?>
+<?php if ( ! is_post_type_archive( BASIX_EVENT ) ) : ?>
+    <?php get_template_part( 'template-parts/filters' ); ?>
+<?php endif; ?>
 
 <?php if ( have_posts() ) : ?>
     <div class="post-list"><div class="grid post-grid">

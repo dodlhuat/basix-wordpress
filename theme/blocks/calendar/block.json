@@ -2,17 +2,22 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "basix/calendar",
-	"title": "Posts calendar",
+	"title": "Events calendar",
 	"category": "widgets",
 	"icon": "calendar-alt",
-	"description": "A calendar of your posts by publish date, with month, week and agenda views.",
-	"keywords": [ "calendar", "posts", "archive", "agenda" ],
+	"description": "A calendar of your events, or of your posts by publish date, with month, week and agenda views.",
+	"keywords": [ "calendar", "events", "posts", "agenda" ],
 	"textdomain": "basix",
 	"attributes": {
 		"view": {
 			"type": "string",
 			"enum": [ "month", "week", "agenda" ],
 			"default": "month"
+		},
+		"source": {
+			"type": "string",
+			"enum": [ "events", "posts" ],
+			"default": "events"
 		}
 	},
 	"supports": {

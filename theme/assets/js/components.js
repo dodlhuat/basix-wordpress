@@ -296,7 +296,7 @@ export const components = {
         },
     },
 
-    // Calendar page: posts by publish date. The posts of the visible range are fetched from the REST API.
+    // Calendar: events (or posts by publish date). What is in the visible range is fetched from the REST API.
     calendar: {
         load: () => import('../vendor/basix/js/calendar.js'),
         // Every calendar on the page gets its own instance (the block and shortcode can be used more than once).
@@ -310,6 +310,20 @@ export const components = {
             const decode = (html) => Object.assign(document.createElement('textarea'), { innerHTML: html }).value;
 
             // The REST API returns at most 100 posts a page, so keep asking until every page is read.
+            // Events come from the theme's own endpoint, with their real start and end (local time, no time zone).
+            const fetchEvents = async ({ from, to }) => {
+                const day = (date) => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+                const query = new URLSearchParams({ from: day(from), to: day(to) });
+                const response = await fetch(`${config.eventsUrl}${config.eventsUrl.includes('?') ? '&' : '?'}${query}`);
+                if (!response.ok) {
+                    throw new Error(`REST request failed (${response.status})`);
+                }
+                return (await response.json()).map((event) => {
+                    links.set(String(event.id), event.link);
+                    return { id: String(event.id), title: event.title, start: new Date(event.start), end: new Date(event.end), allDay: event.allDay, badge: event.location || undefined };
+                });
+            };
+
             const fetchPosts = async ({ from, to }) => {
                 const posts = [];
                 for (let page = 1, pages = 1; page <= pages; page++) {
@@ -335,7 +349,7 @@ export const components = {
                 wrap.setAttribute('aria-busy', 'true');
                 status.hidden = false;
                 try {
-                    const events = await fetchPosts(range);
+                    const events = await (config.source === 'posts' ? fetchPosts(range) : fetchEvents(range));
                     if (request === latest) {
                         calendar.setEvents(events);
                     }
@@ -368,7 +382,11 @@ export const components = {
                 onEventClick: (event) => {
                     location.href = links.get(event.id) ?? '#';
                 },
+                // A day of posts opens that day's archive; events have no such page.
                 onDayClick: (date) => {
+                    if (config.source !== 'posts') {
+                        return;
+                    }
                     location.href = config.dayUrl.replace('{y}', date.getFullYear()).replace('{m}', pad(date.getMonth() + 1)).replace('{d}', pad(date.getDate()));
                 },
             });

@@ -1,6 +1,6 @@
 <?php
 /**
- * Settings for the Calendar page template: posts by publish date, loaded for the visible range.
+ * Settings for the calendar: events (or posts by publish date), loaded for the visible range.
  *
  * @package basix
  */
@@ -40,6 +40,7 @@ function basix_calendar_config(): array {
 
 	return array(
 		'restUrl'    => rest_url( 'wp/v2/posts' ),
+		'eventsUrl'  => rest_url( 'basix/v1/events' ),
 		'dayUrl'     => $day_url,
 		'categories' => (object) $categories,
 		'firstDay'   => (int) get_option( 'start_of_week' ),
@@ -67,15 +68,23 @@ function basix_calendar_config(): array {
 /**
  * The calendar's markup, for the block and the shortcode.
  *
- * @param string $view Starting view: month, week or agenda.
+ * @param string $view   Starting view: month, week or agenda.
+ * @param string $source What it shows: events (the Event post type) or posts (blog posts by publish date).
  * @return string
  */
-function basix_calendar_html( string $view = 'month' ): string {
+function basix_calendar_html( string $view = 'month', string $source = 'events' ): string {
 	if ( ! in_array( $view, array( 'month', 'week', 'agenda' ), true ) ) {
 		$view = 'month';
 	}
 	ob_start();
-	get_template_part( 'template-parts/calendar', null, array( 'view' => $view ) );
+	get_template_part(
+		'template-parts/calendar',
+		null,
+		array(
+			'view'   => $view,
+			'source' => 'posts' === $source ? 'posts' : 'events',
+		)
+	);
 	return (string) ob_get_clean();
 }
 
@@ -88,18 +97,25 @@ add_action(
 			array(
 				'render_callback' => function ( array $attributes ): string {
 					$wrapper = get_block_wrapper_attributes();
-					return '<div ' . $wrapper . '>' . basix_calendar_html( (string) ( $attributes['view'] ?? 'month' ) ) . '</div>';
+					return '<div ' . $wrapper . '>' . basix_calendar_html( (string) ( $attributes['view'] ?? 'month' ), (string) ( $attributes['source'] ?? 'events' ) ) . '</div>';
 				},
 			)
 		);
 	}
 );
 
-// Shortcode: basix_calendar, with an optional view attribute.
+// Shortcode: basix_calendar, with optional view (month, week, agenda) and source (events, posts) attributes.
 add_shortcode(
 	'basix_calendar',
 	function ( $atts ): string {
-		$atts = shortcode_atts( array( 'view' => 'month' ), $atts, 'basix_calendar' );
-		return basix_calendar_html( (string) $atts['view'] );
+		$atts = shortcode_atts(
+			array(
+				'view'   => 'month',
+				'source' => 'events',
+			),
+			$atts,
+			'basix_calendar'
+		);
+		return basix_calendar_html( (string) $atts['view'], (string) $atts['source'] );
 	}
 );
