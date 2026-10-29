@@ -208,6 +208,12 @@ function basix_post_meta(): void
         }
         $place = (string) get_post_meta(get_the_ID(), 'basix_event_location', true);
         echo $place ? ' · ' . esc_html($place) : '';
+        // An event in another time zone also says what time that is for the site.
+        $site_time = is_singular(BASIX_EVENT) && basix_event_zone(get_the_ID())->getName() !== wp_timezone()->getName() ? basix_event_when(get_the_ID(), true) : '';
+        if ($site_time) {
+            /* translators: %s: the event's time in the site's time zone. */
+            echo ' · ' . esc_html(sprintf(__('%s in site time', 'basix'), $site_time));
+        }
         echo '</p>';
         return;
     }

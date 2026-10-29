@@ -8,21 +8,21 @@ foreach ( get_posts( array( 'post_type' => 'basix-event', 'post_status' => 'any'
 	wp_delete_post( $old->ID, true );
 }
 
-// title, days from today, start time, end days from today, end time, location, text, category
+// title, days from today, start time, end days from today, end time, location, text, category, time zone (optional)
 $events = array(
 	array( 'Design systems meetup', 3, '18:30', 3, '20:30', 'Studio 4, Vienna', 'An evening of short talks on tokens, components and keeping a system alive.', 'Meetups' ),
 	array( 'Accessibility clinic', 6, '10:00', 6, '12:00', 'Online', 'Bring a page and we will audit it together, live.', 'Workshops' ),
 	array( 'WordPress theme workshop', 9, '', 9, '', 'Library hall', 'A full day of building a block-friendly theme from components.', 'Workshops' ),
 	array( 'Conference: Interfaces 2026', 14, '', 16, '', 'Congress Center', 'Three days of talks and workshops about interface craft.', 'Conferences' ),
 	array( 'Open office hours', 1, '15:00', 1, '16:00', 'Online', 'Ask anything about the Basix components.', 'Meetups' ),
-	array( 'Release party', 21, '19:00', 21, '', 'Rooftop bar', 'Celebrating the next release.', 'Meetups' ),
+	array( 'Release party', 21, '19:00', 21, '', 'Rooftop bar, New York', 'Celebrating the next release.', 'Meetups', 'America/New_York' ),
 	array( 'Year in review', -35, '', -35, '', 'Online', 'Looking back at what shipped.', 'Conferences' ),
 	array( 'Typography reading group', -5, '17:00', -5, '18:30', 'Café Letter', 'Last week: notes on variable fonts.', 'Meetups' ),
 );
 
 $ids = array();
 foreach ( $events as $e ) {
-	list( $title, $from, $from_time, $to, $to_time, $place, $text, $category ) = $e;
+	list( $title, $from, $from_time, $to, $to_time, $place, $text, $category, $zone ) = array_pad( $e, 9, '' );
 	$ids[] = wp_insert_post(
 		array(
 			'post_type'    => 'basix-event',
@@ -37,6 +37,7 @@ foreach ( $events as $e ) {
 				'basix_event_end'        => wp_date( 'Y-m-d', strtotime( "{$to} days" ) ),
 				'basix_event_end_time'   => $to_time,
 				'basix_event_location'   => $place,
+				'basix_event_timezone'   => $zone,
 			),
 		)
 	);

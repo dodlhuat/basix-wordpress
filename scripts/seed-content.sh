@@ -134,6 +134,7 @@ LANDING_ID=$(wp eval-file /seed/landing.php | tail -1)
 PAGE_IDS=$(wp eval-file /seed/pages.php | tail -2)
 CALENDAR_ID=$(echo "$PAGE_IDS" | head -1)
 GALLERY_ID=$(echo "$PAGE_IDS" | tail -1)
+wp option update timezone_string Europe/Vienna >/dev/null
 wp eval-file /seed/events.php >/dev/null
 
 # footer widgets (three columns)

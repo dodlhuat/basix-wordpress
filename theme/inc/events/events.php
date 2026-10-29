@@ -18,6 +18,7 @@ function basix_event_fields(): array {
 		'basix_event_start_time' => __( 'Start time', 'basix' ),
 		'basix_event_end'        => __( 'Ends on', 'basix' ),
 		'basix_event_end_time'   => __( 'End time', 'basix' ),
+		'basix_event_timezone'   => __( 'Time zone', 'basix' ),
 		'basix_event_location'   => __( 'Location', 'basix' ),
 	);
 }
@@ -36,6 +37,9 @@ function basix_event_sanitize( string $key, $value ): string {
 	}
 	if ( 'basix_event_start_time' === $key || 'basix_event_end_time' === $key ) {
 		return preg_match( '/^([01]\d|2[0-3]):[0-5]\d$/', $value ) ? $value : '';
+	}
+	if ( 'basix_event_timezone' === $key ) {
+		return in_array( $value, timezone_identifiers_list(), true ) ? $value : '';
 	}
 	return sanitize_text_field( $value );
 }
@@ -168,11 +172,21 @@ function basix_event_meta_box( WP_Post $post ): void {
 			<input type="time" id="basix_event_end_time" name="basix_event_end_time" value="<?php echo esc_attr( $value( 'basix_event_end_time' ) ); ?>">
 		</div>
 		<div class="basix-event-wide">
+			<label for="basix_event_timezone"><?php esc_html_e( 'Time zone', 'basix' ); ?></label>
+			<select id="basix_event_timezone" name="basix_event_timezone">
+				<?php /* translators: %s: the site's time zone, for example Europe/Vienna. */ ?>
+				<option value=""><?php echo esc_html( sprintf( __( 'Site time zone (%s)', 'basix' ), wp_timezone_string() ) ); ?></option>
+				<?php foreach ( timezone_identifiers_list() as $basix_zone ) : ?>
+					<option value="<?php echo esc_attr( $basix_zone ); ?>"<?php selected( $value( 'basix_event_timezone' ), $basix_zone ); ?>><?php echo esc_html( str_replace( '_', ' ', $basix_zone ) ); ?></option>
+				<?php endforeach; ?>
+			</select>
+		</div>
+		<div class="basix-event-wide">
 			<label for="basix_event_location"><?php esc_html_e( 'Location', 'basix' ); ?></label>
 			<input type="text" id="basix_event_location" name="basix_event_location" value="<?php echo esc_attr( $value( 'basix_event_location' ) ); ?>">
 		</div>
 	</div>
-	<p class="description"><?php esc_html_e( 'Leave the times empty for an all-day event. Leave the end date empty for an event on one day.', 'basix' ); ?></p>
+	<p class="description"><?php esc_html_e( 'Leave the times empty for an all-day event. Leave the end date empty for an event on one day. The time zone applies to timed events; all-day events follow the site.', 'basix' ); ?></p>
 	<?php
 }
 
@@ -201,6 +215,138 @@ add_action(
 		}
 	}
 );
+
+/**
+ * The time zone an event's times are in: its own, or the site's.
+ *
+ * @param int $post_id Event id.
+ * @return DateTimeZone
+ */
+function basix_event_zone( int $post_id ): DateTimeZone {
+	$name = (string) get_post_meta( $post_id, 'basix_event_timezone', true );
+	try {
+		return $name ? new DateTimeZone( $name ) : wp_timezone();
+	} catch ( Exception $e ) {
+		return wp_timezone();
+	}
+}
+
+/**
+ * When an event happens, in the site's time zone (what the calendar grid shows).
+ * All-day events are not converted; timed events move into the site's zone.
+ *
+ * @param int $post_id Event id.
+ * @return array{start: string, end: string, all_day: bool}|null
+ */
+function basix_event_range_site( int $post_id ): ?array {
+	$range = basix_event_range( $post_id );
+	if ( ! $range || $range['all_day'] ) {
+		return $range;
+	}
+	$zone = basix_event_zone( $post_id );
+	$site = wp_timezone();
+	return array(
+		'start'   => ( new DateTimeImmutable( $range['start'], $zone ) )->setTimezone( $site )->format( 'Y-m-d\TH:i' ),
+		'end'     => ( new DateTimeImmutable( $range['end'], $zone ) )->setTimezone( $site )->format( 'Y-m-d\TH:i' ),
+		'all_day' => false,
+	);
+}
+
+/**
+ * Writes the start and end as UTC moments (hidden fields), which queries and sorting use. All-day events
+ * count as the whole day in the site's time zone.
+ *
+ * @param int $post_id Event id.
+ */
+function basix_event_update_derived( int $post_id ): void {
+	$range = basix_event_range( $post_id );
+	if ( ! $range ) {
+		delete_post_meta( $post_id, '_basix_event_start_utc' );
+		delete_post_meta( $post_id, '_basix_event_end_utc' );
+		return;
+	}
+	$zone  = $range['all_day'] ? wp_timezone() : basix_event_zone( $post_id );
+	$utc   = new DateTimeZone( 'UTC' );
+	$start = new DateTimeImmutable( $range['start'], $zone );
+	$end   = new DateTimeImmutable( $range['end'], $zone );
+	if ( $range['all_day'] ) {
+		$end = $end->setTime( 23, 59, 59 );
+	}
+	update_post_meta( $post_id, '_basix_event_start_utc', $start->setTimezone( $utc )->format( 'Y-m-d H:i:s' ) );
+	update_post_meta( $post_id, '_basix_event_end_utc', $end->setTimezone( $utc )->format( 'Y-m-d H:i:s' ) );
+}
+
+// Keep the hidden fields right whenever an event field changes (the editor, the REST API, WP-CLI).
+add_action(
+	'added_post_meta',
+	'basix_event_meta_changed',
+	10,
+	3
+);
+add_action(
+	'updated_post_meta',
+	'basix_event_meta_changed',
+	10,
+	3
+);
+add_action(
+	'deleted_post_meta',
+	'basix_event_meta_changed',
+	10,
+	3
+);
+
+/**
+ * Recomputes the hidden fields when one of the event fields changes.
+ *
+ * @param mixed  $meta_id Meta id (or ids).
+ * @param int    $post_id Post id.
+ * @param string $key     Meta key.
+ */
+function basix_event_meta_changed( $meta_id, $post_id, $key ): void {
+	if ( array_key_exists( $key, basix_event_fields() ) && BASIX_EVENT === get_post_type( $post_id ) ) {
+		basix_event_update_derived( (int) $post_id );
+	}
+}
+
+/** Bump this when the hidden fields change, so existing events get them again. */
+const BASIX_EVENTS_DERIVED = 2;
+
+/** Recomputes the hidden fields of every event. */
+function basix_events_rebuild_derived(): void {
+	foreach ( get_posts(
+		array(
+			'post_type'      => BASIX_EVENT,
+			'post_status'    => 'any',
+			'posts_per_page' => -1,
+			'fields'         => 'ids',
+			'no_found_rows'  => true,
+		)
+	) as $id ) {
+		basix_event_update_derived( (int) $id );
+	}
+	update_option( 'basix_events_derived', BASIX_EVENTS_DERIVED, false );
+}
+
+// Existing events get the hidden fields once, and again when the site's time zone changes.
+add_action(
+	'init',
+	function () {
+		if ( (int) get_option( 'basix_events_derived' ) !== BASIX_EVENTS_DERIVED ) {
+			basix_events_rebuild_derived();
+		}
+	},
+	98
+);
+foreach ( array( 'timezone_string', 'gmt_offset' ) as $basix_tz_option ) {
+	add_action(
+		'update_option_' . $basix_tz_option,
+		function () {
+			delete_option( 'basix_events_derived' );
+		}
+	);
+}
+unset( $basix_tz_option );
 
 /**
  * When an event happens, as the calendar needs it.
@@ -242,32 +388,35 @@ function basix_event_range( int $post_id ): ?array {
 /**
  * The time of an event as readable text, for example "Nov 5, 2026, 6:30 pm – 8:00 pm" or "Nov 5 – Nov 7, 2026".
  *
- * @param int $post_id Event id, defaults to the current post.
+ * @param int  $post_id      Event id, defaults to the current post.
+ * @param bool $in_site_zone Show the time in the site's time zone instead of the event's own.
  * @return string
  */
-function basix_event_when( int $post_id = 0 ): string {
+function basix_event_when( int $post_id = 0, bool $in_site_zone = false ): string {
 	$post_id = $post_id ? $post_id : (int) get_the_ID();
-	$range   = basix_event_range( $post_id );
+	$range   = $in_site_zone ? basix_event_range_site( $post_id ) : basix_event_range( $post_id );
 	if ( ! $range ) {
 		return '';
 	}
-	$zone   = wp_timezone();
+	$zone   = $in_site_zone ? wp_timezone() : basix_event_zone( $post_id );
 	$start  = new DateTimeImmutable( $range['start'], $zone );
 	$end    = new DateTimeImmutable( $range['end'], $zone );
 	$date   = get_option( 'date_format' );
 	$time   = get_option( 'time_format' );
 	$same   = $start->format( 'Y-m-d' ) === $end->format( 'Y-m-d' );
-	$format = static function ( DateTimeImmutable $moment, string $pattern ): string {
-		return wp_date( $pattern, $moment->getTimestamp(), wp_timezone() );
+	$format = static function ( DateTimeImmutable $moment, string $pattern ) use ( $zone ): string {
+		return wp_date( $pattern, $moment->getTimestamp(), $zone );
 	};
 
 	if ( $range['all_day'] ) {
 		return $same ? $format( $start, $date ) : $format( $start, $date ) . ' – ' . $format( $end, $date );
 	}
+	// An event in another time zone than the site's says which one.
+	$label = $zone->getName() !== wp_timezone()->getName() ? ' ' . $format( $end, 'T' ) : '';
 	if ( $same ) {
-		return $format( $start, $date ) . ', ' . $format( $start, $time ) . ' – ' . $format( $end, $time );
+		return $format( $start, $date ) . ', ' . $format( $start, $time ) . ' – ' . $format( $end, $time ) . $label;
 	}
-	return $format( $start, $date . ' ' . $time ) . ' – ' . $format( $end, $date . ' ' . $time );
+	return $format( $start, $date . ' ' . $time ) . ' – ' . $format( $end, $date . ' ' . $time ) . $label;
 }
 
 /**
@@ -315,31 +464,35 @@ function basix_event_category_list(): array {
  * @return WP_Post[]
  */
 function basix_events_between( string $from, string $to, int $max = 300, array $categories = array() ): array {
-	$args = array(
-		'post_type'               => BASIX_EVENT,
-		'post_status'             => 'publish',
-		'has_password'            => false,
-		'posts_per_page'          => $max,
-		'orderby'                 => 'meta_value',
-		'meta_key'                => 'basix_event_start', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- the events list is small and bounded.
-			'order'               => 'ASC',
-			'ignore_sticky_posts' => true,
-			'no_found_rows'       => true,
-			'meta_query'          => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- small, bounded query.
-				'relation' => 'AND',
-				array(
-					'key'     => 'basix_event_start',
-					'value'   => $to,
-					'compare' => '<=',
-					'type'    => 'CHAR',
-				),
-				array(
-					'key'     => 'basix_event_end',
-					'value'   => $from,
-					'compare' => '>=',
-					'type'    => 'CHAR',
-				),
+	// The days are the site's; events are compared as moments in UTC.
+	$utc         = new DateTimeZone( 'UTC' );
+	$window_from = ( new DateTimeImmutable( $from . ' 00:00:00', wp_timezone() ) )->setTimezone( $utc )->format( 'Y-m-d H:i:s' );
+	$window_to   = ( new DateTimeImmutable( $to . ' 23:59:59', wp_timezone() ) )->setTimezone( $utc )->format( 'Y-m-d H:i:s' );
+	$args        = array(
+		'post_type'           => BASIX_EVENT,
+		'post_status'         => 'publish',
+		'has_password'        => false,
+		'posts_per_page'      => $max,
+		'orderby'             => 'meta_value',
+		'meta_key'            => '_basix_event_start_utc', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- the events list is small and bounded.
+		'order'               => 'ASC',
+		'ignore_sticky_posts' => true,
+		'no_found_rows'       => true,
+		'meta_query'          => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- small, bounded query.
+			'relation' => 'AND',
+			array(
+				'key'     => '_basix_event_start_utc',
+				'value'   => $window_to,
+				'compare' => '<=',
+				'type'    => 'CHAR',
 			),
+			array(
+				'key'     => '_basix_event_end_utc',
+				'value'   => $window_from,
+				'compare' => '>=',
+				'type'    => 'CHAR',
+			),
+		),
 	);
 	if ( $categories ) {
 		$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- the visitor's own category filter.
@@ -381,7 +534,7 @@ add_action(
 				'callback'            => static function ( WP_REST_Request $request ) {
 					$out = array();
 					foreach ( basix_events_between( $request['from'], $request['to'], 300, basix_event_category_slugs( (string) $request['category'] ) ) as $event ) {
-						$range = basix_event_range( $event->ID );
+						$range = basix_event_range_site( $event->ID );
 						if ( ! $range ) {
 							continue;
 						}
@@ -392,6 +545,7 @@ add_action(
 							'start'      => $range['start'],
 							'end'        => $range['end'],
 							'allDay'     => $range['all_day'],
+							'timezone'   => basix_event_zone( $event->ID )->getName(),
 							'location'   => (string) get_post_meta( $event->ID, 'basix_event_location', true ),
 							'categories' => wp_list_pluck( (array) get_the_terms( $event, BASIX_EVENT_CAT ), 'slug' ),
 						);
@@ -414,13 +568,13 @@ add_action(
 			'meta_query', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- the events list is small.
 			array(
 				'start_clause' => array(
-					'key'     => 'basix_event_start',
+					'key'     => '_basix_event_start_utc',
 					'type'    => 'CHAR',
 					'compare' => 'EXISTS',
 				),
 				'end_clause'   => array(
-					'key'     => 'basix_event_end',
-					'value'   => wp_date( 'Y-m-d' ),
+					'key'     => '_basix_event_end_utc',
+					'value'   => gmdate( 'Y-m-d H:i:s' ),
 					'compare' => '>=',
 					'type'    => 'CHAR',
 				),
