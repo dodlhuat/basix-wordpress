@@ -242,6 +242,21 @@ try {
   const leftCalendar = await page.waitForFunction(() => !location.pathname.startsWith('/calendar'), { timeout: 10000 }).then(() => true, () => false);
   check(leftCalendar, 'clicking an event in the calendar opens it');
 
+  // Event categories: chips filter the loaded events, the category page lists only its events.
+  page = await open('/calendar/');
+  await page.waitForSelector('.calendar-chips button', { timeout: 10000 });
+  const chip = (name) => page.evaluateHandle((n) => [...document.querySelectorAll('.calendar-chips button')].find((b) => b.textContent === n), name);
+  const shown = () => page.$$eval('.cal__event-pill', (pills) => pills.map((p) => p.textContent.trim()).join('|'));
+  await (await chip('Workshops')).click();
+  check(!(await shown()).includes('Open office hours'), 'a category chip hides events of other categories');
+  check((await page.$eval('.calendar-chips button[aria-pressed="true"]', (b) => b.textContent)) === 'Workshops', 'the chosen chip is marked as pressed');
+  await (await chip('Workshops')).click();
+  await (await chip('Meetups')).click();
+  check((await shown()).includes('Open office hours'), 'choosing a category shows its events');
+  page = await open('/events/category/workshops/');
+  const workshopCards = await page.$$eval('.post-list .card-title', (e) => e.map((x) => x.textContent.trim()));
+  check(workshopCards.length > 0 && !workshopCards.includes('Open office hours'), 'an event category page lists only its events');
+
   // Events: the calendar block can show posts too, and events have their own page and archive.
   page = await open('/event/design-systems-meetup/');
   check((await page.$eval('h1', (e) => e.textContent)).includes('Design systems meetup'), 'an event has its own page');
