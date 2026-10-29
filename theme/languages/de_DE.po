@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Basix 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/basix\n"
-"POT-Creation-Date: 2026-10-29T08:30:16+00:00\n"
+"POT-Creation-Date: 2026-10-29T08:49:21+00:00\n"
 "PO-Revision-Date: 2026-10-28 12:00+0000\n"
 "Last-Translator: Andi Bauer\n"
 "Language-Team: German\n"
@@ -166,81 +166,81 @@ msgstr "Autor"
 msgid "Archive"
 msgstr "Archiv"
 
-#: functions.php:148 inc/events.php:49 inc/events.php:60
+#: functions.php:148 inc/events/events.php:50 inc/events/events.php:61
 msgid "Events"
 msgstr "Veranstaltungen"
 
-#: functions.php:243
+#: functions.php:247
 msgid "Home"
 msgstr "Startseite"
 
-#: functions.php:257
+#: functions.php:261
 msgid "Not found"
 msgstr "Nicht gefunden"
 
-#: functions.php:259
+#: functions.php:263
 msgid "Search results"
 msgstr "Suchergebnisse"
 
-#: functions.php:267
+#: functions.php:271
 msgid "Breadcrumb"
 msgstr "Brotkrumennavigation"
 
-#: functions.php:281
+#: functions.php:285
 msgid "Pagination"
 msgstr "Seitennavigation"
 
-#: functions.php:318
+#: functions.php:322
 msgid "Your comment is awaiting moderation."
 msgstr "Dein Kommentar wartet auf Freischaltung."
 
-#: functions.php:355
+#: functions.php:359
 msgid "Your comment could not be submitted"
 msgstr "Dein Kommentar konnte nicht gesendet werden"
 
-#: functions.php:357
+#: functions.php:361
 msgid "Go back"
 msgstr "Zurück"
 
-#: functions.php:373
+#: functions.php:377
 msgid "Please fill out this field."
 msgstr "Bitte fülle dieses Feld aus."
 
-#: functions.php:374
+#: functions.php:378
 msgid "Please enter a valid email address."
 msgstr "Bitte gib eine gültige E-Mail-Adresse ein."
 
-#: functions.php:375
+#: functions.php:379
 msgid "Please enter a valid URL."
 msgstr "Bitte gib eine gültige URL ein."
 
-#: functions.php:376
+#: functions.php:380
 msgid "View larger image"
 msgstr "Bild vergrößern"
 
-#: functions.php:377
+#: functions.php:381
 msgid "Open image"
 msgstr "Bild öffnen"
 
-#: functions.php:378
+#: functions.php:382
 msgid "Code"
 msgstr "Code"
 
-#: functions.php:379
+#: functions.php:383
 msgid "Table"
 msgstr "Tabelle"
 
-#: functions.php:380
+#: functions.php:384
 msgid "Featured posts"
 msgstr "Ausgewählte Beiträge"
 
 #. translators: 1: number of this slide, 2: number of slides.
-#: functions.php:382
+#: functions.php:386
 #, php-format
 msgid "Slide %1$d of %2$d"
 msgstr "Folie %1$d von %2$d"
 
-#: functions.php:394
+#: functions.php:398
 msgid ""
 "This content is password-protected. To view it, please enter the password "
 "below."
@@ -248,11 +248,11 @@ msgstr ""
 "Dieser Inhalt ist passwortgeschützt. Gib unten das Passwort ein, um ihn zu "
 "sehen."
 
-#: functions.php:396
+#: functions.php:400
 msgid "Password"
 msgstr "Passwort"
 
-#: functions.php:399
+#: functions.php:403
 msgctxt "post password form"
 msgid "Enter"
 msgstr "Öffnen"
@@ -285,49 +285,54 @@ msgstr "Menü öffnen"
 msgid "Menu"
 msgstr "Menü"
 
-#: inc/calendar.php:53
+#: inc/calendar.php:54
 msgid "Today"
 msgstr "Heute"
 
-#: inc/calendar.php:54
+#: inc/calendar.php:55
 msgid "Month"
 msgstr "Monat"
 
-#: inc/calendar.php:55
+#: inc/calendar.php:56
 msgid "Week"
 msgstr "Woche"
 
-#: inc/calendar.php:56
+#: inc/calendar.php:57
 msgid "Agenda"
 msgstr "Agenda"
 
-#: inc/calendar.php:57
+#: inc/calendar.php:58
 msgid "All day"
 msgstr "Ganztägig"
 
-#: inc/calendar.php:58
+#: inc/calendar.php:59
 msgid "No posts"
 msgstr "Keine Beiträge"
 
-#: inc/calendar.php:59
+#: inc/calendar.php:60
 msgid "Previous"
 msgstr "Zurück"
 
-#: inc/calendar.php:60
+#: inc/calendar.php:61
 msgid "Next"
 msgstr "Weiter"
 
-#: inc/calendar.php:61
+#: inc/calendar.php:62
 msgid "Calendar view"
 msgstr "Kalenderansicht"
 
-#: inc/calendar.php:62
+#: inc/calendar.php:63
 msgid "Posts calendar"
 msgstr "Beitragskalender"
 
-#: inc/calendar.php:63
+#: inc/calendar.php:64
 msgid "The posts could not be loaded. Please try again."
 msgstr "Die Beiträge konnten nicht geladen werden. Bitte versuche es erneut."
+
+#: inc/calendar.php:65 inc/events/events.php:78
+#: template-parts/event-categories.php:15
+msgid "Event categories"
+msgstr "Veranstaltungskategorien"
 
 #: inc/customizer.php:86
 msgid "Header"
@@ -471,71 +476,104 @@ msgstr ""
 msgid "Show the back to top button"
 msgstr "Den Nach-oben-Knopf anzeigen"
 
-#: inc/events.php:16 inc/events.php:132
+#: inc/events/events.php:17 inc/events/events.php:155
 msgid "Starts on"
 msgstr "Beginnt am"
 
-#: inc/events.php:17 inc/events.php:136
+#: inc/events/events.php:18 inc/events/events.php:159
 msgid "Start time"
 msgstr "Beginn"
 
-#: inc/events.php:18 inc/events.php:140
+#: inc/events/events.php:19 inc/events/events.php:163
 msgid "Ends on"
 msgstr "Endet am"
 
-#: inc/events.php:19 inc/events.php:144
+#: inc/events/events.php:20 inc/events/events.php:167
 msgid "End time"
 msgstr "Ende"
 
-#: inc/events.php:20 inc/events.php:148
+#: inc/events/events.php:21 inc/events/events.php:171
 msgid "Location"
 msgstr "Ort"
 
-#: inc/events.php:50 single-basix-event.php:8
+#: inc/events/events.php:51 single-basix-event.php:9
 msgid "Event"
 msgstr "Veranstaltung"
 
-#: inc/events.php:51
+#: inc/events/events.php:52
 msgid "Add new"
 msgstr "Neu hinzufügen"
 
-#: inc/events.php:52
+#: inc/events/events.php:53
 msgid "Add new event"
 msgstr "Neue Veranstaltung hinzufügen"
 
-#: inc/events.php:53
+#: inc/events/events.php:54
 msgid "Edit event"
 msgstr "Veranstaltung bearbeiten"
 
-#: inc/events.php:54
+#: inc/events/events.php:55
 msgid "New event"
 msgstr "Neue Veranstaltung"
 
-#: inc/events.php:55
+#: inc/events/events.php:56
 msgid "View event"
 msgstr "Veranstaltung ansehen"
 
-#: inc/events.php:56
+#: inc/events/events.php:57
 msgid "Search events"
 msgstr "Veranstaltungen suchen"
 
-#: inc/events.php:57
+#: inc/events/events.php:58
 msgid "No events found"
 msgstr "Keine Veranstaltungen gefunden"
 
-#: inc/events.php:58
+#: inc/events/events.php:59
 msgid "No events found in the bin"
 msgstr "Keine Veranstaltungen im Papierkorb gefunden"
 
-#: inc/events.php:59 single-basix-event.php:21
+#: inc/events/events.php:60 single-basix-event.php:22
 msgid "All events"
 msgstr "Alle Veranstaltungen"
 
-#: inc/events.php:114
+#: inc/events/events.php:79
+msgid "Event category"
+msgstr "Veranstaltungskategorie"
+
+#: inc/events/events.php:80
+msgid "Search event categories"
+msgstr "Veranstaltungskategorien suchen"
+
+#: inc/events/events.php:81
+msgid "All event categories"
+msgstr "Alle Veranstaltungskategorien"
+
+#: inc/events/events.php:82
+msgid "Edit event category"
+msgstr "Veranstaltungskategorie bearbeiten"
+
+#: inc/events/events.php:83
+msgid "Update event category"
+msgstr "Veranstaltungskategorie aktualisieren"
+
+#: inc/events/events.php:84
+msgid "Add new event category"
+msgstr "Neue Veranstaltungskategorie hinzufügen"
+
+#: inc/events/events.php:85
+msgid "New event category name"
+msgstr "Name der neuen Veranstaltungskategorie"
+
+#: inc/events/events.php:86 inc/filters.php:246 template-parts/filters.php:26
+#: template-parts/filters.php:51
+msgid "Categories"
+msgstr "Kategorien"
+
+#: inc/events/events.php:137
 msgid "Event details"
 msgstr "Details zur Veranstaltung"
 
-#: inc/events.php:152
+#: inc/events/events.php:175
 msgid ""
 "Leave the times empty for an all-day event. Leave the end date empty for an "
 "event on one day."
@@ -582,11 +620,6 @@ msgstr "Beliebige Kategorie"
 #: inc/filters.php:245
 msgid "Choose a date range"
 msgstr "Zeitraum wählen"
-
-#: inc/filters.php:246 template-parts/filters.php:26
-#: template-parts/filters.php:51
-msgid "Categories"
-msgstr "Kategorien"
 
 #: inc/filters.php:247 template-parts/filters.php:69
 msgid "Published between"
@@ -1060,7 +1093,7 @@ msgstr "Suche verfeinern"
 msgid "Search…"
 msgstr "Suchen …"
 
-#: single-basix-event.php:20
+#: single-basix-event.php:21
 msgid "Back to the events"
 msgstr "Zurück zu den Veranstaltungen"
 
@@ -1072,11 +1105,11 @@ msgstr "Beitragsnavigation"
 msgid "About the author"
 msgstr "Über den Autor"
 
-#: template-parts/calendar.php:62
+#: template-parts/calendar.php:64
 msgid "No events this month."
 msgstr "Keine Veranstaltungen in diesem Monat."
 
-#: template-parts/calendar.php:62
+#: template-parts/calendar.php:64
 msgid "No posts this month."
 msgstr "Keine Beiträge in diesem Monat."
 
@@ -1090,7 +1123,7 @@ msgstr "Weiterlesen"
 msgid "about “%s”"
 msgstr "über „%s“"
 
-#: template-parts/filters.php:27
+#: template-parts/event-categories.php:16 template-parts/filters.php:27
 msgid "All"
 msgstr "Alle"
 
@@ -1124,7 +1157,7 @@ msgstr "Filter entfernen: %s"
 msgid "Clear all"
 msgstr "Alle zurücksetzen"
 
-#: template-parts/loop.php:18
+#: template-parts/loop.php:20
 msgid "Nothing found."
 msgstr "Nichts gefunden."
 
