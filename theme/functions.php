@@ -12,6 +12,7 @@ require_once __DIR__ . '/inc/customizer.php';
 require_once __DIR__ . '/inc/docs.php';
 require_once __DIR__ . '/inc/post-features.php';
 require_once __DIR__ . '/inc/filters.php';
+require_once __DIR__ . '/inc/events.php';
 require_once __DIR__ . '/inc/calendar.php';
 require_once __DIR__ . '/inc/gallery.php';
 require_once __DIR__ . '/inc/seo.php';
@@ -144,6 +145,7 @@ function basix_archive_label(): string
         is_tag()      => __('Tag', 'basix'),
         is_author()   => __('Author', 'basix'),
         is_date()     => __('Archive', 'basix'),
+        is_post_type_archive(BASIX_EVENT) => __('Events', 'basix'),
         is_tax()      => get_taxonomy(get_queried_object()->taxonomy)->labels->singular_name ?? __('Archive', 'basix'),
         default       => __('Archive', 'basix'),
     };
@@ -199,6 +201,16 @@ add_filter('excerpt_more', fn() => '…');
 function basix_post_meta(): void
 {
     echo '<p class="post-meta text-caption">';
+    if (BASIX_EVENT === get_post_type()) {
+        $range = basix_event_range(get_the_ID());
+        if ($range) {
+            printf('<time datetime="%s">%s</time>', esc_attr($range['start']), esc_html(basix_event_when()));
+        }
+        $place = (string) get_post_meta(get_the_ID(), 'basix_event_location', true);
+        echo $place ? ' · ' . esc_html($place) : '';
+        echo '</p>';
+        return;
+    }
     printf('<time datetime="%s">%s</time>', esc_attr(get_the_date(DATE_W3C)), esc_html(get_the_date()));
     if (get_the_author()) {
         echo ' · ' . esc_html(get_the_author());

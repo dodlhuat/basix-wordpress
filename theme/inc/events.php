@@ -1,0 +1,364 @@
+<?php
+/**
+ * Events: a post type with a start and end (date, optional time) and a location, shown on the calendar.
+ *
+ * Dates are stored as plain local text (Y-m-d and H:i) in the site's own time zone, so what an editor types is
+ * what the calendar shows. A missing time means an all-day event.
+ *
+ * @package basix
+ */
+
+const BASIX_EVENT = 'basix-event';
+
+/** The event fields saved with each event: meta key => label. */
+function basix_event_fields(): array {
+	return array(
+		'basix_event_start'      => __( 'Starts on', 'basix' ),
+		'basix_event_start_time' => __( 'Start time', 'basix' ),
+		'basix_event_end'        => __( 'Ends on', 'basix' ),
+		'basix_event_end_time'   => __( 'End time', 'basix' ),
+		'basix_event_location'   => __( 'Location', 'basix' ),
+	);
+}
+
+/**
+ * Cleans an event field: dates and times must be valid, a location is plain text.
+ *
+ * @param string $key   Meta key.
+ * @param mixed  $value Raw value.
+ * @return string
+ */
+function basix_event_sanitize( string $key, $value ): string {
+	$value = is_string( $value ) ? trim( $value ) : '';
+	if ( 'basix_event_start' === $key || 'basix_event_end' === $key ) {
+		return basix_is_date( $value ) ? $value : '';
+	}
+	if ( 'basix_event_start_time' === $key || 'basix_event_end_time' === $key ) {
+		return preg_match( '/^([01]\d|2[0-3]):[0-5]\d$/', $value ) ? $value : '';
+	}
+	return sanitize_text_field( $value );
+}
+
+add_action(
+	'init',
+	function () {
+		register_post_type(
+			BASIX_EVENT,
+			array(
+				'labels'              => array(
+					'name'               => __( 'Events', 'basix' ),
+					'singular_name'      => __( 'Event', 'basix' ),
+					'add_new'            => __( 'Add new', 'basix' ),
+					'add_new_item'       => __( 'Add new event', 'basix' ),
+					'edit_item'          => __( 'Edit event', 'basix' ),
+					'new_item'           => __( 'New event', 'basix' ),
+					'view_item'          => __( 'View event', 'basix' ),
+					'search_items'       => __( 'Search events', 'basix' ),
+					'not_found'          => __( 'No events found', 'basix' ),
+					'not_found_in_trash' => __( 'No events found in the bin', 'basix' ),
+					'all_items'          => __( 'All events', 'basix' ),
+					'menu_name'          => __( 'Events', 'basix' ),
+				),
+				'public'              => true,
+				'has_archive'         => 'events',
+				'rewrite'             => array( 'slug' => 'event' ),
+				'menu_icon'           => 'dashicons-calendar-alt',
+				'menu_position'       => 5,
+				'show_in_rest'        => true,
+				'exclude_from_search' => false,
+				'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
+			)
+		);
+		foreach ( array_keys( basix_event_fields() ) as $key ) {
+			register_post_meta(
+				BASIX_EVENT,
+				$key,
+				array(
+					'type'              => 'string',
+					'single'            => true,
+					'show_in_rest'      => true,
+					'sanitize_callback' => static function ( $value ) use ( $key ) {
+						return basix_event_sanitize( $key, $value );
+					},
+					'auth_callback'     => static function () {
+						return current_user_can( 'edit_posts' );
+					},
+				)
+			);
+		}
+	}
+);
+
+// Event addresses need flushing once when the theme is switched on: mark it, and flush after the post type exists.
+add_action(
+	'after_switch_theme',
+	function () {
+		update_option( 'basix_flush_rewrite', 1, false );
+	}
+);
+add_action(
+	'init',
+	function () {
+		if ( get_option( 'basix_flush_rewrite' ) ) {
+			delete_option( 'basix_flush_rewrite' );
+			flush_rewrite_rules();
+		}
+	},
+	99
+);
+
+// The "Event details" box under the editor.
+add_action(
+	'add_meta_boxes',
+	function () {
+		add_meta_box( 'basix_event_details', __( 'Event details', 'basix' ), 'basix_event_meta_box', BASIX_EVENT, 'normal', 'high' );
+	}
+);
+
+/**
+ * Prints the event fields.
+ *
+ * @param WP_Post $post The event.
+ */
+function basix_event_meta_box( WP_Post $post ): void {
+	wp_nonce_field( 'basix_event_save', 'basix_event_nonce' );
+	$value = static function ( string $key ) use ( $post ): string {
+		return (string) get_post_meta( $post->ID, $key, true );
+	};
+	?>
+	<style>.basix-event-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:1rem}.basix-event-grid label{display:block;font-weight:600;margin-bottom:.25rem}.basix-event-grid input{width:100%}.basix-event-wide{grid-column:1/-1}</style>
+	<div class="basix-event-grid">
+		<div>
+			<label for="basix_event_start"><?php esc_html_e( 'Starts on', 'basix' ); ?></label>
+			<input type="date" id="basix_event_start" name="basix_event_start" value="<?php echo esc_attr( $value( 'basix_event_start' ) ); ?>" required>
+		</div>
+		<div>
+			<label for="basix_event_start_time"><?php esc_html_e( 'Start time', 'basix' ); ?></label>
+			<input type="time" id="basix_event_start_time" name="basix_event_start_time" value="<?php echo esc_attr( $value( 'basix_event_start_time' ) ); ?>">
+		</div>
+		<div>
+			<label for="basix_event_end"><?php esc_html_e( 'Ends on', 'basix' ); ?></label>
+			<input type="date" id="basix_event_end" name="basix_event_end" value="<?php echo esc_attr( $value( 'basix_event_end' ) ); ?>">
+		</div>
+		<div>
+			<label for="basix_event_end_time"><?php esc_html_e( 'End time', 'basix' ); ?></label>
+			<input type="time" id="basix_event_end_time" name="basix_event_end_time" value="<?php echo esc_attr( $value( 'basix_event_end_time' ) ); ?>">
+		</div>
+		<div class="basix-event-wide">
+			<label for="basix_event_location"><?php esc_html_e( 'Location', 'basix' ); ?></label>
+			<input type="text" id="basix_event_location" name="basix_event_location" value="<?php echo esc_attr( $value( 'basix_event_location' ) ); ?>">
+		</div>
+	</div>
+	<p class="description"><?php esc_html_e( 'Leave the times empty for an all-day event. Leave the end date empty for an event on one day.', 'basix' ); ?></p>
+	<?php
+}
+
+add_action(
+	'save_post_' . BASIX_EVENT,
+	function ( int $post_id ) {
+		if ( ! isset( $_POST['basix_event_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['basix_event_nonce'] ) ), 'basix_event_save' ) ) {
+			return;
+		}
+		if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+		$clean = array();
+		foreach ( array_keys( basix_event_fields() ) as $key ) {
+			$clean[ $key ] = basix_event_sanitize( $key, isset( $_POST[ $key ] ) ? wp_unslash( $_POST[ $key ] ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- sanitised by basix_event_sanitize().
+		}
+		// An event ends on the day it starts unless it says otherwise, and never before it starts.
+		if ( '' === $clean['basix_event_end'] || $clean['basix_event_end'] < $clean['basix_event_start'] ) {
+			$clean['basix_event_end'] = $clean['basix_event_start'];
+		}
+		if ( $clean['basix_event_end'] === $clean['basix_event_start'] && $clean['basix_event_end_time'] && $clean['basix_event_end_time'] < $clean['basix_event_start_time'] ) {
+			$clean['basix_event_end_time'] = '';
+		}
+		foreach ( $clean as $key => $value ) {
+			update_post_meta( $post_id, $key, $value );
+		}
+	}
+);
+
+/**
+ * When an event happens, as the calendar needs it.
+ *
+ * @param int $post_id Event id.
+ * @return array{start: string, end: string, all_day: bool}|null Local date-times (Y-m-dTH:i), or null without a start date.
+ */
+function basix_event_range( int $post_id ): ?array {
+	$start_date = (string) get_post_meta( $post_id, 'basix_event_start', true );
+	if ( '' === $start_date ) {
+		return null;
+	}
+	$end_date   = (string) get_post_meta( $post_id, 'basix_event_end', true );
+	$end_date   = '' === $end_date ? $start_date : $end_date;
+	$start_time = (string) get_post_meta( $post_id, 'basix_event_start_time', true );
+	$end_time   = (string) get_post_meta( $post_id, 'basix_event_end_time', true );
+
+	if ( '' === $start_time ) {
+		return array(
+			'start'   => $start_date . 'T00:00',
+			'end'     => $end_date . 'T23:59',
+			'all_day' => true,
+		);
+	}
+	if ( '' === $end_time ) {
+		// No end time: show a one hour slot, but stay inside the day.
+		$end_time = $end_date === $start_date ? min( '23:59', gmdate( 'H:i', strtotime( '1970-01-01 ' . $start_time . ' UTC' ) + HOUR_IN_SECONDS ) ) : $start_time;
+		if ( $end_time < $start_time && $end_date === $start_date ) {
+			$end_time = '23:59';
+		}
+	}
+	return array(
+		'start'   => $start_date . 'T' . $start_time,
+		'end'     => $end_date . 'T' . $end_time,
+		'all_day' => false,
+	);
+}
+
+/**
+ * The time of an event as readable text, for example "Nov 5, 2026, 6:30 pm – 8:00 pm" or "Nov 5 – Nov 7, 2026".
+ *
+ * @param int $post_id Event id, defaults to the current post.
+ * @return string
+ */
+function basix_event_when( int $post_id = 0 ): string {
+	$post_id = $post_id ? $post_id : (int) get_the_ID();
+	$range   = basix_event_range( $post_id );
+	if ( ! $range ) {
+		return '';
+	}
+	$zone   = wp_timezone();
+	$start  = new DateTimeImmutable( $range['start'], $zone );
+	$end    = new DateTimeImmutable( $range['end'], $zone );
+	$date   = get_option( 'date_format' );
+	$time   = get_option( 'time_format' );
+	$same   = $start->format( 'Y-m-d' ) === $end->format( 'Y-m-d' );
+	$format = static function ( DateTimeImmutable $moment, string $pattern ): string {
+		return wp_date( $pattern, $moment->getTimestamp(), wp_timezone() );
+	};
+
+	if ( $range['all_day'] ) {
+		return $same ? $format( $start, $date ) : $format( $start, $date ) . ' – ' . $format( $end, $date );
+	}
+	if ( $same ) {
+		return $format( $start, $date ) . ', ' . $format( $start, $time ) . ' – ' . $format( $end, $time );
+	}
+	return $format( $start, $date . ' ' . $time ) . ' – ' . $format( $end, $date . ' ' . $time );
+}
+
+/**
+ * The events that touch a date range.
+ *
+ * @param string $from First day (Y-m-d).
+ * @param string $to   Last day (Y-m-d).
+ * @param int    $max  Most events to return.
+ * @return WP_Post[]
+ */
+function basix_events_between( string $from, string $to, int $max = 300 ): array {
+	return get_posts(
+		array(
+			'post_type'           => BASIX_EVENT,
+			'post_status'         => 'publish',
+			'has_password'        => false,
+			'posts_per_page'      => $max,
+			'orderby'             => 'meta_value',
+			'meta_key'            => 'basix_event_start', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- the events list is small and bounded.
+			'order'               => 'ASC',
+			'ignore_sticky_posts' => true,
+			'no_found_rows'       => true,
+			'meta_query'          => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- small, bounded query.
+				'relation' => 'AND',
+				array(
+					'key'     => 'basix_event_start',
+					'value'   => $to,
+					'compare' => '<=',
+					'type'    => 'CHAR',
+				),
+				array(
+					'key'     => 'basix_event_end',
+					'value'   => $from,
+					'compare' => '>=',
+					'type'    => 'CHAR',
+				),
+			),
+		)
+	);
+}
+
+// GET /wp-json/basix/v1/events?from=2026-11-01&to=2026-11-30, the public list the calendar reads.
+add_action(
+	'rest_api_init',
+	function () {
+		$date_arg = array(
+			'required'          => true,
+			'validate_callback' => static function ( $value ) {
+				return basix_is_date( $value );
+			},
+		);
+		register_rest_route(
+			'basix/v1',
+			'/events',
+			array(
+				'methods'             => 'GET',
+				'permission_callback' => '__return_true',
+				'args'                => array(
+					'from' => $date_arg,
+					'to'   => $date_arg,
+				),
+				'callback'            => static function ( WP_REST_Request $request ) {
+					$out = array();
+					foreach ( basix_events_between( $request['from'], $request['to'] ) as $event ) {
+						$range = basix_event_range( $event->ID );
+						if ( ! $range ) {
+							continue;
+						}
+						$out[] = array(
+							'id'       => $event->ID,
+							'title'    => html_entity_decode( get_the_title( $event ), ENT_QUOTES, 'UTF-8' ),
+							'link'     => get_permalink( $event ),
+							'start'    => $range['start'],
+							'end'      => $range['end'],
+							'allDay'   => $range['all_day'],
+							'location' => (string) get_post_meta( $event->ID, 'basix_event_location', true ),
+						);
+					}
+					return rest_ensure_response( $out );
+				},
+			)
+		);
+	}
+);
+
+// The events archive lists what is still to come (or running now), soonest first.
+add_action(
+	'pre_get_posts',
+	function ( WP_Query $query ) {
+		if ( is_admin() || ! $query->is_main_query() || ! $query->is_post_type_archive( BASIX_EVENT ) ) {
+			return;
+		}
+		$query->set(
+			'meta_query', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- the events list is small.
+			array(
+				'start_clause' => array(
+					'key'     => 'basix_event_start',
+					'type'    => 'CHAR',
+					'compare' => 'EXISTS',
+				),
+				'end_clause'   => array(
+					'key'     => 'basix_event_end',
+					'value'   => wp_date( 'Y-m-d' ),
+					'compare' => '>=',
+					'type'    => 'CHAR',
+				),
+			)
+		);
+		$query->set(
+			'orderby',
+			array(
+				'start_clause' => 'ASC',
+				'title'        => 'ASC',
+			)
+		);
+	}
+);

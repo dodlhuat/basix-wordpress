@@ -21,5 +21,5 @@ $make = static function ( string $title, string $slug, string $template, string 
 	);
 };
 
-echo $make( 'Calendar', 'calendar', 'page-templates/calendar.php', 'Every post on a calendar, by the day it was published. Switch between month, week and agenda, and click a post to read it or a day to see everything from that day.' ), "\n";
+echo $make( 'Calendar', 'calendar', 'page-templates/calendar.php', 'What is coming up, on a calendar. Switch between month, week and agenda, and click an event for the details.' ), "\n";
 echo $make( 'Photo gallery', 'photo-gallery', 'page-templates/gallery.php', 'All the images on this site, in a gallery that keeps loading as you scroll. Click an image to see it full size.' ), "\n";
