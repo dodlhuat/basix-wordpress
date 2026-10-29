@@ -39,17 +39,18 @@ function basix_calendar_config(): array {
 	}
 
 	return array(
-		'restUrl'    => rest_url( 'wp/v2/posts' ),
-		'eventsUrl'  => rest_url( 'basix/v1/events' ),
-		'dayUrl'     => $day_url,
-		'categories' => (object) $categories,
-		'firstDay'   => (int) get_option( 'start_of_week' ),
-		'dateLocale' => str_replace( '_', '-', get_locale() ),
-		'hour12'     => (bool) preg_match( '/[aA]/', (string) get_option( 'time_format' ) ),
-		'months'     => $months,
-		'daysFull'   => $days_full,
-		'daysShort'  => $days_short,
-		'text'       => array(
+		'restUrl'         => rest_url( 'wp/v2/posts' ),
+		'eventsUrl'       => rest_url( 'basix/v1/events' ),
+		'eventCategories' => basix_event_category_list(),
+		'dayUrl'          => $day_url,
+		'categories'      => (object) $categories,
+		'firstDay'        => (int) get_option( 'start_of_week' ),
+		'dateLocale'      => str_replace( '_', '-', get_locale() ),
+		'hour12'          => (bool) preg_match( '/[aA]/', (string) get_option( 'time_format' ) ),
+		'months'          => $months,
+		'daysFull'        => $days_full,
+		'daysShort'       => $days_short,
+		'text'            => array(
 			'today'      => __( 'Today', 'basix' ),
 			'month'      => __( 'Month', 'basix' ),
 			'week'       => __( 'Week', 'basix' ),
@@ -61,6 +62,7 @@ function basix_calendar_config(): array {
 			'viewSwitch' => __( 'Calendar view', 'basix' ),
 			'calendar'   => __( 'Posts calendar', 'basix' ),
 			'error'      => __( 'The posts could not be loaded. Please try again.', 'basix' ),
+			'categories' => __( 'Event categories', 'basix' ),
 		),
 	);
 }
@@ -70,9 +72,10 @@ function basix_calendar_config(): array {
  *
  * @param string $view   Starting view: month, week or agenda.
  * @param string $source What it shows: events (the Event post type) or posts (blog posts by publish date).
+ * @param string $category Event category slugs, comma separated (only these events; the category chips are then left out).
  * @return string
  */
-function basix_calendar_html( string $view = 'month', string $source = 'events' ): string {
+function basix_calendar_html( string $view = 'month', string $source = 'events', string $category = '' ): string {
 	if ( ! in_array( $view, array( 'month', 'week', 'agenda' ), true ) ) {
 		$view = 'month';
 	}
@@ -81,8 +84,9 @@ function basix_calendar_html( string $view = 'month', string $source = 'events' 
 		'template-parts/calendar',
 		null,
 		array(
-			'view'   => $view,
-			'source' => 'posts' === $source ? 'posts' : 'events',
+			'view'     => $view,
+			'source'   => 'posts' === $source ? 'posts' : 'events',
+			'category' => implode( ',', basix_event_category_slugs( $category ) ),
 		)
 	);
 	return (string) ob_get_clean();
@@ -97,25 +101,26 @@ add_action(
 			array(
 				'render_callback' => function ( array $attributes ): string {
 					$wrapper = get_block_wrapper_attributes();
-					return '<div ' . $wrapper . '>' . basix_calendar_html( (string) ( $attributes['view'] ?? 'month' ), (string) ( $attributes['source'] ?? 'events' ) ) . '</div>';
+					return '<div ' . $wrapper . '>' . basix_calendar_html( (string) ( $attributes['view'] ?? 'month' ), (string) ( $attributes['source'] ?? 'events' ), (string) ( $attributes['category'] ?? '' ) ) . '</div>';
 				},
 			)
 		);
 	}
 );
 
-// Shortcode: basix_calendar, with optional view (month, week, agenda) and source (events, posts) attributes.
+// Shortcode: basix_calendar, with optional view (month, week, agenda), source (events, posts) and category (event category slugs) attributes.
 add_shortcode(
 	'basix_calendar',
 	function ( $atts ): string {
 		$atts = shortcode_atts(
 			array(
-				'view'   => 'month',
-				'source' => 'events',
+				'view'     => 'month',
+				'source'   => 'events',
+				'category' => '',
 			),
 			$atts,
 			'basix_calendar'
 		);
-		return basix_calendar_html( (string) $atts['view'], (string) $atts['source'] );
+		return basix_calendar_html( (string) $atts['view'], (string) $atts['source'], (string) $atts['category'] );
 	}
 );

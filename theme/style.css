@@ -315,6 +315,7 @@ input, textarea, select, button { font-family: inherit; }
 
 /* Calendar: a loading bar and skeleton cells (Basix's skeleton and animated progress bar) */
 .calendar-wrap { position: relative; margin-top: 1.5rem; }
+.calendar-chips { margin-bottom: 1rem; }
 .calendar-status { position: absolute; inset: 0 0 auto 0; z-index: 5; height: 3px; border-radius: 0; background: transparent; }
 .calendar-status .progress-bar { border-radius: 0; }
 .calendar-skeleton { display: none; }

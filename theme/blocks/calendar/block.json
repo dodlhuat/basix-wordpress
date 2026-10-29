@@ -18,6 +18,10 @@
 			"type": "string",
 			"enum": [ "events", "posts" ],
 			"default": "events"
+		},
+		"category": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {

@@ -314,13 +314,17 @@ export const components = {
             const fetchEvents = async ({ from, to }) => {
                 const day = (date) => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
                 const query = new URLSearchParams({ from: day(from), to: day(to) });
+                if (config.category) {
+                    query.set('category', config.category);
+                }
                 const response = await fetch(`${config.eventsUrl}${config.eventsUrl.includes('?') ? '&' : '?'}${query}`);
                 if (!response.ok) {
                     throw new Error(`REST request failed (${response.status})`);
                 }
                 return (await response.json()).map((event) => {
                     links.set(String(event.id), event.link);
-                    return { id: String(event.id), title: event.title, start: new Date(event.start), end: new Date(event.end), allDay: event.allDay, badge: event.location || undefined };
+                    const category = config.eventCategories?.find((item) => item.slug === event.categories?.[0]);
+                    return { id: String(event.id), title: event.title, start: new Date(event.start), end: new Date(event.end), allDay: event.allDay, badge: category?.name, categories: event.categories ?? [] };
                 });
             };
 
@@ -342,6 +346,27 @@ export const components = {
                 });
             };
 
+            // Category chips (several categories, no fixed category): toggle what is shown, without a new request.
+            let loaded = [];
+            const chosen = new Set();
+            const showLoaded = () => calendar.setEvents(chosen.size ? loaded.filter((event) => event.categories?.some((slug) => chosen.has(slug))) : loaded);
+            if (config.source !== 'posts' && !config.category && config.eventCategories?.length >= 2) {
+                const nav = Object.assign(document.createElement('nav'), { className: 'chips calendar-chips' });
+                nav.setAttribute('aria-label', config.text.categories);
+                for (const item of config.eventCategories) {
+                    const chip = Object.assign(document.createElement('button'), { type: 'button', className: 'chip clickable', textContent: item.name });
+                    chip.setAttribute('aria-pressed', 'false');
+                    chip.addEventListener('click', () => {
+                        chosen.has(item.slug) ? chosen.delete(item.slug) : chosen.add(item.slug);
+                        chip.setAttribute('aria-pressed', String(chosen.has(item.slug)));
+                        chip.classList.toggle('selected', chosen.has(item.slug));
+                        showLoaded();
+                    });
+                    nav.append(chip);
+                }
+                host.before(nav);
+            }
+
             let latest = 0;
             const load = async (range) => {
                 const request = ++latest;
@@ -351,7 +376,8 @@ export const components = {
                 try {
                     const events = await (config.source === 'posts' ? fetchPosts(range) : fetchEvents(range));
                     if (request === latest) {
-                        calendar.setEvents(events);
+                        loaded = events;
+                        showLoaded();
                     }
                 } catch (error) {
                     console.error(error);

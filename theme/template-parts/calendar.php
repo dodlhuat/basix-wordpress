@@ -2,17 +2,19 @@
 /**
  * The posts calendar: markup for the calendar component, used by the page template, the block and the shortcode.
  *
- * Args: view (month, week or agenda) and source (events or posts).
+ * Args: view (month, week or agenda), source (events or posts) and category (event category slugs).
  *
  * @package basix
  */
 
 $basix_view   = isset( $args['view'] ) ? $args['view'] : 'month';
 $basix_source = isset( $args['source'] ) ? $args['source'] : 'events';
+$basix_cats   = isset( $args['category'] ) ? $args['category'] : '';
 ?>
 <div class="calendar-wrap" <?php echo basix_component_attrs( 'calendar', array_merge( basix_calendar_config(), array(
-	'view'   => $basix_view,
-	'source' => $basix_source,
+	'view'     => $basix_view,
+	'source'   => $basix_source,
+	'category' => $basix_cats,
 ) ) ); ?>>
 	<div class="calendar-status progress" hidden><div class="progress-bar animated accent"></div></div>
 	<div class="calendar-skeleton" aria-hidden="true">
@@ -28,7 +30,7 @@ $basix_source = isset( $args['source'] ) ? $args['source'] : 'events';
 		$basix_first = wp_date( 'Y-m-01' );
 		$basix_last  = wp_date( 'Y-m-t' );
 		if ( 'events' === $basix_source ) {
-			$basix_items = basix_events_between( $basix_first, $basix_last, 100 );
+			$basix_items = basix_events_between( $basix_first, $basix_last, 100, basix_event_category_slugs( $basix_cats ) );
 		} else {
 			$basix_items = get_posts(
 				array(
