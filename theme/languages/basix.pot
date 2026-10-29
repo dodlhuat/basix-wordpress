@@ -2,21 +2,21 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Basix 0.1.0\n"
-"Report-Msgid-Bugs-To: https://github.com/dodlhuat/basix/issues\n"
+"Project-Id-Version: Basix 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/basix\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-28T15:32:48+00:00\n"
+"POT-Creation-Date: 2026-10-29T08:30:16+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: basix\n"
 
 #. Theme Name of the theme
 #: style.css
-#: functions.php:46
+#: functions.php:58
 #: inc/customizer.php:77
 msgid "Basix"
 msgstr ""
@@ -98,155 +98,161 @@ msgstr ""
 msgid "Nothing published yet."
 msgstr ""
 
-#: functions.php:48
+#: functions.php:60
 msgid "Card"
 msgstr ""
 
-#: functions.php:49
+#: functions.php:61
 msgid "Bordered card"
 msgstr ""
 
-#: functions.php:50
+#: functions.php:62
 msgid "Lead text"
 msgstr ""
 
-#: functions.php:51
+#: functions.php:63
 msgid "Sortable"
 msgstr ""
 
-#: functions.php:52
+#: functions.php:64
 msgid "Masonry"
 msgstr ""
 
-#: functions.php:53
+#: functions.php:65
 msgid "Framed"
 msgstr ""
 
-#: functions.php:54
+#: functions.php:66
 msgid "Soft shadow"
 msgstr ""
 
-#: functions.php:55
+#: functions.php:67
 msgid "Circle"
 msgstr ""
 
-#: functions.php:74
+#: functions.php:86
 #: inc/customizer.php:195
 #: sidebar.php:3
 msgid "Sidebar"
 msgstr ""
 
-#: functions.php:76
+#: functions.php:88
 msgid "Shown next to blog posts and archives."
 msgstr ""
 
 #. translators: %d: column number.
-#: functions.php:88
+#: functions.php:100
 #, php-format
 msgid "Footer column %d"
 msgstr ""
 
-#: functions.php:92
+#: functions.php:104
 msgid "Shown in the footer."
 msgstr ""
 
-#: functions.php:132
+#: functions.php:144
 msgid "Category"
 msgstr ""
 
-#: functions.php:133
+#: functions.php:145
 msgid "Tag"
 msgstr ""
 
-#: functions.php:134
+#: functions.php:146
 msgid "Author"
 msgstr ""
 
-#: functions.php:135
-#: functions.php:136
-#: functions.php:137
+#: functions.php:147
+#: functions.php:149
+#: functions.php:150
 msgid "Archive"
 msgstr ""
 
-#: functions.php:220
+#: functions.php:148
+#: inc/events.php:49
+#: inc/events.php:60
+msgid "Events"
+msgstr ""
+
+#: functions.php:243
 msgid "Home"
 msgstr ""
 
-#: functions.php:234
+#: functions.php:257
 msgid "Not found"
 msgstr ""
 
-#: functions.php:236
+#: functions.php:259
 msgid "Search results"
 msgstr ""
 
-#: functions.php:244
+#: functions.php:267
 msgid "Breadcrumb"
 msgstr ""
 
-#: functions.php:258
+#: functions.php:281
 msgid "Pagination"
 msgstr ""
 
-#: functions.php:295
+#: functions.php:318
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: functions.php:332
+#: functions.php:355
 msgid "Your comment could not be submitted"
 msgstr ""
 
-#: functions.php:334
+#: functions.php:357
 msgid "Go back"
 msgstr ""
 
-#: functions.php:350
+#: functions.php:373
 msgid "Please fill out this field."
 msgstr ""
 
-#: functions.php:351
+#: functions.php:374
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: functions.php:352
+#: functions.php:375
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: functions.php:353
+#: functions.php:376
 msgid "View larger image"
 msgstr ""
 
-#: functions.php:354
+#: functions.php:377
 msgid "Open image"
 msgstr ""
 
-#: functions.php:355
+#: functions.php:378
 msgid "Code"
 msgstr ""
 
-#: functions.php:356
+#: functions.php:379
 msgid "Table"
 msgstr ""
 
-#: functions.php:357
+#: functions.php:380
 msgid "Featured posts"
 msgstr ""
 
 #. translators: 1: number of this slide, 2: number of slides.
-#: functions.php:359
+#: functions.php:382
 #, php-format
 msgid "Slide %1$d of %2$d"
 msgstr ""
 
-#: functions.php:371
+#: functions.php:394
 msgid "This content is password-protected. To view it, please enter the password below."
 msgstr ""
 
-#: functions.php:373
+#: functions.php:396
 msgid "Password"
 msgstr ""
 
-#: functions.php:376
+#: functions.php:399
 msgctxt "post password form"
 msgid "Enter"
 msgstr ""
@@ -258,6 +264,7 @@ msgstr ""
 #: header.php:23
 #: inc/menus.php:13
 #: inc/menus.php:63
+#: inc/starter-content.php:57
 msgid "Primary menu"
 msgstr ""
 
@@ -281,47 +288,47 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: inc/calendar.php:52
+#: inc/calendar.php:53
 msgid "Today"
 msgstr ""
 
-#: inc/calendar.php:53
+#: inc/calendar.php:54
 msgid "Month"
 msgstr ""
 
-#: inc/calendar.php:54
+#: inc/calendar.php:55
 msgid "Week"
 msgstr ""
 
-#: inc/calendar.php:55
+#: inc/calendar.php:56
 msgid "Agenda"
 msgstr ""
 
-#: inc/calendar.php:56
+#: inc/calendar.php:57
 msgid "All day"
 msgstr ""
 
-#: inc/calendar.php:57
+#: inc/calendar.php:58
 msgid "No posts"
 msgstr ""
 
-#: inc/calendar.php:58
+#: inc/calendar.php:59
 msgid "Previous"
 msgstr ""
 
-#: inc/calendar.php:59
+#: inc/calendar.php:60
 msgid "Next"
 msgstr ""
 
-#: inc/calendar.php:60
+#: inc/calendar.php:61
 msgid "Calendar view"
 msgstr ""
 
-#: inc/calendar.php:61
+#: inc/calendar.php:62
 msgid "Posts calendar"
 msgstr ""
 
-#: inc/calendar.php:62
+#: inc/calendar.php:63
 msgid "The posts could not be loaded. Please try again."
 msgstr ""
 
@@ -457,6 +464,81 @@ msgstr ""
 msgid "Show the back to top button"
 msgstr ""
 
+#: inc/events.php:16
+#: inc/events.php:132
+msgid "Starts on"
+msgstr ""
+
+#: inc/events.php:17
+#: inc/events.php:136
+msgid "Start time"
+msgstr ""
+
+#: inc/events.php:18
+#: inc/events.php:140
+msgid "Ends on"
+msgstr ""
+
+#: inc/events.php:19
+#: inc/events.php:144
+msgid "End time"
+msgstr ""
+
+#: inc/events.php:20
+#: inc/events.php:148
+msgid "Location"
+msgstr ""
+
+#: inc/events.php:50
+#: single-basix-event.php:8
+msgid "Event"
+msgstr ""
+
+#: inc/events.php:51
+msgid "Add new"
+msgstr ""
+
+#: inc/events.php:52
+msgid "Add new event"
+msgstr ""
+
+#: inc/events.php:53
+msgid "Edit event"
+msgstr ""
+
+#: inc/events.php:54
+msgid "New event"
+msgstr ""
+
+#: inc/events.php:55
+msgid "View event"
+msgstr ""
+
+#: inc/events.php:56
+msgid "Search events"
+msgstr ""
+
+#: inc/events.php:57
+msgid "No events found"
+msgstr ""
+
+#: inc/events.php:58
+msgid "No events found in the bin"
+msgstr ""
+
+#: inc/events.php:59
+#: single-basix-event.php:21
+msgid "All events"
+msgstr ""
+
+#: inc/events.php:114
+msgid "Event details"
+msgstr ""
+
+#: inc/events.php:152
+msgid "Leave the times empty for an all-day event. Leave the end date empty for an event on one day."
+msgstr ""
+
 #. translators: %s: date.
 #: inc/filters.php:144
 #, php-format
@@ -515,6 +597,7 @@ msgstr ""
 
 #: inc/menus.php:14
 #: inc/menus.php:104
+#: inc/starter-content.php:61
 msgid "Footer menu"
 msgstr ""
 
@@ -573,12 +656,68 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#. Template Name of the theme
-msgid "Calendar"
+#: inc/starter-content.php:26
+msgctxt "Starter content page title"
+msgid "Welcome"
 msgstr ""
 
-#: page-templates/calendar.php:57
-msgid "No posts this month."
+#: inc/starter-content.php:27
+msgctxt "Starter content"
+msgid "Say hello"
+msgstr ""
+
+#: inc/starter-content.php:28
+msgctxt "Starter content"
+msgid "This is your front page. Edit it to say what your site is about, or add one of the ready-made sections from the Basix patterns."
+msgstr ""
+
+#: inc/starter-content.php:32
+msgctxt "Starter content page title"
+msgid "About"
+msgstr ""
+
+#: inc/starter-content.php:33
+msgctxt "Starter content"
+msgid "Tell visitors who you are and what they will find here."
+msgstr ""
+
+#: inc/starter-content.php:37
+msgctxt "Starter content page title"
+msgid "Blog"
+msgstr ""
+
+#: inc/starter-content.php:41
+msgctxt "Starter content page title"
+msgid "Contact"
+msgstr ""
+
+#: inc/starter-content.php:42
+msgctxt "Starter content"
+msgid "Say how people can reach you."
+msgstr ""
+
+#: inc/starter-content.php:46
+msgctxt "Starter content post title"
+msgid "Your first post"
+msgstr ""
+
+#: inc/starter-content.php:47
+msgctxt "Starter content"
+msgid "Write something worth reading. Headings, images, code and tables all have a place in this theme."
+msgstr ""
+
+#: inc/starter-content.php:71
+msgctxt "Starter content widget title"
+msgid "About"
+msgstr ""
+
+#: inc/starter-content.php:72
+msgctxt "Starter content"
+msgid "A few words about this site."
+msgstr ""
+
+#. Template Name of the theme
+msgid "Calendar"
 msgstr ""
 
 #. Template Name of the theme
@@ -920,12 +1059,24 @@ msgstr ""
 msgid "Search…"
 msgstr ""
 
+#: single-basix-event.php:20
+msgid "Back to the events"
+msgstr ""
+
 #: single.php:38
 msgid "Post navigation"
 msgstr ""
 
 #: template-parts/author-box.php:15
 msgid "About the author"
+msgstr ""
+
+#: template-parts/calendar.php:62
+msgid "No events this month."
+msgstr ""
+
+#: template-parts/calendar.php:62
+msgid "No posts this month."
 msgstr ""
 
 #: template-parts/content-card.php:12
@@ -972,7 +1123,7 @@ msgstr ""
 msgid "Clear all"
 msgstr ""
 
-#: template-parts/loop.php:16
+#: template-parts/loop.php:18
 msgid "Nothing found."
 msgstr ""
 
@@ -994,6 +1145,36 @@ msgstr ""
 
 #: template-parts/share.php:19
 msgid "Share this post"
+msgstr ""
+
+#: blocks/calendar/block.json
+msgctxt "block title"
+msgid "Events calendar"
+msgstr ""
+
+#: blocks/calendar/block.json
+msgctxt "block description"
+msgid "A calendar of your events, or of your posts by publish date, with month, week and agenda views."
+msgstr ""
+
+#: blocks/calendar/block.json
+msgctxt "block keyword"
+msgid "calendar"
+msgstr ""
+
+#: blocks/calendar/block.json
+msgctxt "block keyword"
+msgid "events"
+msgstr ""
+
+#: blocks/calendar/block.json
+msgctxt "block keyword"
+msgid "posts"
+msgstr ""
+
+#: blocks/calendar/block.json
+msgctxt "block keyword"
+msgid "agenda"
 msgstr ""
 
 #: theme.json
