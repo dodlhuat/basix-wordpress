@@ -86,9 +86,9 @@ Order matters: each step builds on the one before. Every step ends with `make ch
 
 **0. Decide where events live.** Theme Check lists the post type, block and shortcode as plugin territory. If the theme should go on WordPress.org, move them first into a companion plugin (`basix-events`) so the steps below are not moved twice. For a sold theme they can stay.
 
-**1. Event categories (small).**
+**1. Event categories (small, done).**
 - A hierarchical `basix-event-category` taxonomy (`/events/category/<name>/`), shown in the editor sidebar automatically.
-- The events endpoint takes `categories=` and returns each event's categories; the calendar badge becomes the first category (the location stays in the pill's tooltip and on the event page).
+- The events endpoint takes `categories=` and returns each event's categories; the calendar badge becomes the first category (the location stays on the event page; the calendar component has no tooltip text to put it in).
 - Block option and shortcode attribute `category` (slugs, comma separated); chips above the calendar filter what is already loaded, without another request. Event cards and the single page show the category badges.
 
 **2. Time zones per event (medium, the base for 3 to 5).**
