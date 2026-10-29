@@ -18,7 +18,7 @@ Basix is a classic WordPress theme made from the components of the Basix library
 * Sticky header with an accessible flyout menu on small screens
 * Image cards, a hero section and a sidebar with widgets
 * Styled comments, password-protected posts, search and 404 pages
-* Header layouts, a featured-post slider, a calendar page, a gallery and portfolio page, and post filters
+* An Events post type with an events calendar block and shortcode, header layouts, a featured-post slider, a gallery and portfolio page, and post filters
 * Ten block patterns and block styles, plus starter content for new sites
 * Accent colour, logo and layout options in the Customizer
 * Checked with axe and Lighthouse, ready for translation, with a German translation included
@@ -43,6 +43,7 @@ Yes. It follows the visitor's system preference, and the toggle in the header le
 
 = 1.0.0 =
 * First public release.
+* Events with a calendar block and the [basix_calendar] shortcode.
 
 = 0.1.0 =
 * Initial development version.
