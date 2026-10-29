@@ -225,22 +225,30 @@ try {
   await Promise.all([plain.waitForNavigation(), plain.click('.filter-actions .button-primary')]);
   check(new URL(plain.url()).searchParams.get('date_from') === '2026-10-20', 'the plain form submits the filter');
 
-  // Calendar: posts on their publish dates, reloaded when the visible range changes.
+  // Calendar: events on their dates, reloaded when the visible range changes.
   page = await open('/calendar/');
   await page.waitForSelector('.cal__event-pill', { timeout: 10000 }).catch(() => {});
   const pillTitles = () => page.$$eval('.cal__event-pill', (pills) => pills.map((p) => p.textContent.trim()).sort().join('|'));
   const thisMonth = await pillTitles();
-  check(thisMonth.length > 0, 'calendar shows posts on the days they were published');
+  check(thisMonth.length > 0, 'calendar shows events on their days');
   check(!(await page.$('.calendar-skeleton')), 'the skeleton is gone once the calendar is ready');
   await page.click('button[aria-label="Previous"]');
   await page.waitForFunction((before) => [...document.querySelectorAll('.cal__event-pill')].map((p) => p.textContent.trim()).sort().join('|') !== before, { timeout: 10000 }, thisMonth).catch(() => {});
-  check((await pillTitles()) !== thisMonth, 'going to the previous month loads that month\'s posts');
+  check((await pillTitles()) !== thisMonth, 'going to the previous month loads that month\'s events');
   await page.click('.cal__btn--today');
   await page.waitForFunction((before) => [...document.querySelectorAll('.cal__event-pill')].map((p) => p.textContent.trim()).sort().join('|') === before, { timeout: 10000 }, thisMonth).catch(() => {});
   check((await pillTitles()) === thisMonth, 'Today returns to the current month');
   await page.click('.cal__event-pill');
   const leftCalendar = await page.waitForFunction(() => !location.pathname.startsWith('/calendar'), { timeout: 10000 }).then(() => true, () => false);
-  check(leftCalendar, 'clicking a post in the calendar opens it');
+  check(leftCalendar, 'clicking an event in the calendar opens it');
+
+  // Events: the calendar block can show posts too, and events have their own page and archive.
+  page = await open('/event/design-systems-meetup/');
+  check((await page.$eval('h1', (e) => e.textContent)).includes('Design systems meetup'), 'an event has its own page');
+  check((await page.$eval('.post-meta', (e) => e.textContent)).includes('6:30 pm'), 'the event page shows when and where');
+  page = await open('/events/');
+  const cards = await page.$$eval('.post-list .card-title', (e) => e.map((x) => x.textContent.trim()));
+  check(cards.length > 0 && !cards.includes('Typography reading group'), 'the events archive lists upcoming events only');
 
   // Gallery page: masonry, endless loading that stops, and the lightbox with working icons.
   page = await open('/photo-gallery/');
@@ -292,10 +300,10 @@ try {
     return page;
   };
 
-  page = await slowPage('/calendar/', 'wp/v2/posts');
+  page = await slowPage('/calendar/', 'basix/v1/events');
   await page.waitForSelector('.cal', { timeout: 10000 });
-  check(await page.$eval('.calendar-wrap', (e) => e.classList.contains('is-loading') && e.getAttribute('aria-busy') === 'true'), 'the calendar is marked busy while posts load');
-  check(await page.$eval('.calendar-status', (e) => !e.hidden && Boolean(e.querySelector('.progress-bar.animated'))), 'an animated Basix progress bar shows while posts load');
+  check(await page.$eval('.calendar-wrap', (e) => e.classList.contains('is-loading') && e.getAttribute('aria-busy') === 'true'), 'the calendar is marked busy while events load');
+  check(await page.$eval('.calendar-status', (e) => !e.hidden && Boolean(e.querySelector('.progress-bar.animated'))), 'an animated Basix progress bar shows while events load');
   await page.waitForFunction(() => !document.querySelector('.calendar-wrap').classList.contains('is-loading'), { timeout: 10000 });
   check(await page.$eval('.calendar-status', (e) => e.hidden), 'the progress bar is hidden again afterwards');
 
