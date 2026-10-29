@@ -1,4 +1,6 @@
-<?php if ( ! is_post_type_archive( BASIX_EVENT ) ) : ?>
+<?php if ( is_post_type_archive( BASIX_EVENT ) || is_tax( BASIX_EVENT_CAT ) ) : ?>
+    <?php get_template_part( 'template-parts/event-categories' ); ?>
+<?php else : ?>
     <?php get_template_part( 'template-parts/filters' ); ?>
 <?php endif; ?>
 

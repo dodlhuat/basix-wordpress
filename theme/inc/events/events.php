@@ -8,7 +8,8 @@
  * @package basix
  */
 
-const BASIX_EVENT = 'basix-event';
+const BASIX_EVENT     = 'basix-event';
+const BASIX_EVENT_CAT = 'basix-event-category';
 
 /** The event fields saved with each event: meta key => label. */
 function basix_event_fields(): array {
@@ -67,6 +68,28 @@ add_action(
 				'show_in_rest'        => true,
 				'exclude_from_search' => false,
 				'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
+			)
+		);
+		register_taxonomy(
+			BASIX_EVENT_CAT,
+			BASIX_EVENT,
+			array(
+				'labels'            => array(
+					'name'          => __( 'Event categories', 'basix' ),
+					'singular_name' => __( 'Event category', 'basix' ),
+					'search_items'  => __( 'Search event categories', 'basix' ),
+					'all_items'     => __( 'All event categories', 'basix' ),
+					'edit_item'     => __( 'Edit event category', 'basix' ),
+					'update_item'   => __( 'Update event category', 'basix' ),
+					'add_new_item'  => __( 'Add new event category', 'basix' ),
+					'new_item_name' => __( 'New event category name', 'basix' ),
+					'menu_name'     => __( 'Categories', 'basix' ),
+				),
+				'hierarchical'      => true,
+				'public'            => true,
+				'show_in_rest'      => true,
+				'show_admin_column' => true,
+				'rewrite'           => array( 'slug' => 'events/category' ),
 			)
 		);
 		foreach ( array_keys( basix_event_fields() ) as $key ) {
@@ -248,22 +271,57 @@ function basix_event_when( int $post_id = 0 ): string {
 }
 
 /**
+ * Category slugs from a comma separated list, keeping only those that exist.
+ *
+ * @param string $csv  For example "meetups,workshops".
+ * @return string[]
+ */
+function basix_event_category_slugs( string $csv ): array {
+	$slugs = array();
+	foreach ( explode( ',', $csv ) as $slug ) {
+		$slug = sanitize_title( $slug );
+		if ( $slug && term_exists( $slug, BASIX_EVENT_CAT ) ) {
+			$slugs[] = $slug;
+		}
+	}
+	return array_values( array_unique( $slugs ) );
+}
+
+/**
+ * The event categories that have at least one event, for the calendar's chips.
+ *
+ * @return array<int, array{slug: string, name: string}>
+ */
+function basix_event_category_list(): array {
+	$out = array();
+	foreach ( get_terms( array( 'taxonomy' => BASIX_EVENT_CAT ) ) as $term ) {
+		if ( $term instanceof WP_Term ) {
+			$out[] = array(
+				'slug' => $term->slug,
+				'name' => $term->name,
+			);
+		}
+	}
+	return $out;
+}
+
+/**
  * The events that touch a date range.
  *
  * @param string $from First day (Y-m-d).
  * @param string $to   Last day (Y-m-d).
  * @param int    $max  Most events to return.
+ * @param string[] $categories Category slugs; only events in one of them (all when empty).
  * @return WP_Post[]
  */
-function basix_events_between( string $from, string $to, int $max = 300 ): array {
-	return get_posts(
-		array(
-			'post_type'           => BASIX_EVENT,
-			'post_status'         => 'publish',
-			'has_password'        => false,
-			'posts_per_page'      => $max,
-			'orderby'             => 'meta_value',
-			'meta_key'            => 'basix_event_start', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- the events list is small and bounded.
+function basix_events_between( string $from, string $to, int $max = 300, array $categories = array() ): array {
+	$args = array(
+		'post_type'               => BASIX_EVENT,
+		'post_status'             => 'publish',
+		'has_password'            => false,
+		'posts_per_page'          => $max,
+		'orderby'                 => 'meta_value',
+		'meta_key'                => 'basix_event_start', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- the events list is small and bounded.
 			'order'               => 'ASC',
 			'ignore_sticky_posts' => true,
 			'no_found_rows'       => true,
@@ -282,11 +340,20 @@ function basix_events_between( string $from, string $to, int $max = 300 ): array
 					'type'    => 'CHAR',
 				),
 			),
-		)
 	);
+	if ( $categories ) {
+		$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query -- the visitor's own category filter.
+			array(
+				'taxonomy' => BASIX_EVENT_CAT,
+				'field'    => 'slug',
+				'terms'    => $categories,
+			),
+		);
+	}
+	return get_posts( $args );
 }
 
-// GET /wp-json/basix/v1/events?from=2026-11-01&to=2026-11-30, the public list the calendar reads.
+// GET /wp-json/basix/v1/events?from=2026-11-01&to=2026-11-30&category=meetups, the public list the calendar reads.
 add_action(
 	'rest_api_init',
 	function () {
@@ -303,24 +370,30 @@ add_action(
 				'methods'             => 'GET',
 				'permission_callback' => '__return_true',
 				'args'                => array(
-					'from' => $date_arg,
-					'to'   => $date_arg,
+					'from'     => $date_arg,
+					'to'       => $date_arg,
+					'category' => array(
+						'required'          => false,
+						'default'           => '',
+						'sanitize_callback' => 'sanitize_text_field',
+					),
 				),
 				'callback'            => static function ( WP_REST_Request $request ) {
 					$out = array();
-					foreach ( basix_events_between( $request['from'], $request['to'] ) as $event ) {
+					foreach ( basix_events_between( $request['from'], $request['to'], 300, basix_event_category_slugs( (string) $request['category'] ) ) as $event ) {
 						$range = basix_event_range( $event->ID );
 						if ( ! $range ) {
 							continue;
 						}
 						$out[] = array(
-							'id'       => $event->ID,
-							'title'    => html_entity_decode( get_the_title( $event ), ENT_QUOTES, 'UTF-8' ),
-							'link'     => get_permalink( $event ),
-							'start'    => $range['start'],
-							'end'      => $range['end'],
-							'allDay'   => $range['all_day'],
-							'location' => (string) get_post_meta( $event->ID, 'basix_event_location', true ),
+							'id'         => $event->ID,
+							'title'      => html_entity_decode( get_the_title( $event ), ENT_QUOTES, 'UTF-8' ),
+							'link'       => get_permalink( $event ),
+							'start'      => $range['start'],
+							'end'        => $range['end'],
+							'allDay'     => $range['all_day'],
+							'location'   => (string) get_post_meta( $event->ID, 'basix_event_location', true ),
+							'categories' => wp_list_pluck( (array) get_the_terms( $event, BASIX_EVENT_CAT ), 'slug' ),
 						);
 					}
 					return rest_ensure_response( $out );
@@ -330,11 +403,11 @@ add_action(
 	}
 );
 
-// The events archive lists what is still to come (or running now), soonest first.
+// The events archive and its categories list what is still to come (or running now), soonest first.
 add_action(
 	'pre_get_posts',
 	function ( WP_Query $query ) {
-		if ( is_admin() || ! $query->is_main_query() || ! $query->is_post_type_archive( BASIX_EVENT ) ) {
+		if ( is_admin() || ! $query->is_main_query() || ! ( $query->is_post_type_archive( BASIX_EVENT ) || $query->is_tax( BASIX_EVENT_CAT ) ) ) {
 			return;
 		}
 		$query->set(
@@ -362,3 +435,18 @@ add_action(
 		);
 	}
 );
+
+/**
+ * Prints the event's categories as badges (links to the category's list).
+ */
+function basix_event_terms(): void {
+	$terms = get_the_terms( get_the_ID(), BASIX_EVENT_CAT );
+	if ( ! $terms || is_wp_error( $terms ) ) {
+		return;
+	}
+	echo '<p class="post-terms">';
+	foreach ( $terms as $term ) {
+		printf( '<a class="badge badge-info" href="%s">%s</a> ', esc_url( get_term_link( $term ) ), esc_html( $term->name ) );
+	}
+	echo '</p>';
+}

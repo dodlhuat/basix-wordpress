@@ -5,6 +5,7 @@
 <?php while ( have_posts() ) : the_post(); ?>
 	<article <?php post_class( 'entry' ); ?>>
 		<header class="entry-header">
+			<?php basix_post_terms(); ?>
 			<p class="text-overline"><?php esc_html_e( 'Event', 'basix' ); ?></p>
 			<h1><?php the_title(); ?></h1>
 			<?php basix_post_meta(); ?>

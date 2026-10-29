@@ -12,7 +12,7 @@ require_once __DIR__ . '/inc/customizer.php';
 require_once __DIR__ . '/inc/docs.php';
 require_once __DIR__ . '/inc/post-features.php';
 require_once __DIR__ . '/inc/filters.php';
-require_once __DIR__ . '/inc/events.php';
+require_once __DIR__ . '/inc/events/events.php';
 require_once __DIR__ . '/inc/calendar.php';
 require_once __DIR__ . '/inc/gallery.php';
 require_once __DIR__ . '/inc/seo.php';
@@ -145,7 +145,7 @@ function basix_archive_label(): string
         is_tag()      => __('Tag', 'basix'),
         is_author()   => __('Author', 'basix'),
         is_date()     => __('Archive', 'basix'),
-        is_post_type_archive(BASIX_EVENT) => __('Events', 'basix'),
+        is_post_type_archive(BASIX_EVENT), is_tax(BASIX_EVENT_CAT) => __('Events', 'basix'),
         is_tax()      => get_taxonomy(get_queried_object()->taxonomy)->labels->singular_name ?? __('Archive', 'basix'),
         default       => __('Archive', 'basix'),
     };
@@ -223,6 +223,10 @@ function basix_post_meta(): void
 
 function basix_post_terms(): void
 {
+    if (BASIX_EVENT === get_post_type()) {
+        basix_event_terms();
+        return;
+    }
     $cats = get_the_category();
     if (!$cats) {
         return;
