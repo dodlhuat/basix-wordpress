@@ -119,6 +119,56 @@ Order matters: each step builds on the one before. Every step ends with `make ch
 
 **Risks.** Recurrence and daylight saving are where bugs hide, so they get fixed-case tests before any UI. Meta queries for recurring events can get slow with thousands of events (fine for a typical site; the derived fields keep it bounded). Calendar apps differ in how strictly they read ICS, so a few real imports (Apple, Google, Outlook) are needed by hand at the end.
 
+### 11. Premium breadth (planned)
+Where section 7 added polish, this adds what premium buyers expect to find: looks to choose from, more sections to build with, a guided start, flexible headers, structured data and a way to sell it. Order matters: each step builds on the one before. Every step ends with `make check`, new checks for what it adds, German strings, and a small commit per piece. Sources for the list: premium theme roundups (demos, builders, patterns, schema, support) and a look at what our theme lacks.
+
+**Already strong, so not on this list:** accessibility (axe, keyboard), performance (Lighthouse 95-100), dark mode, filters, gallery, and events with repeats, time zones and ICS.
+
+**1. Style variations and design controls (small to medium).**
+- `theme.json` style variations in `/styles` (four or five looks: colours and type together, for example a calm default, a bold dark one, a warm editorial one). They show in the Site Editor's Styles panel and in the Customizer's Basix panel as a "Look" choice, so a classic-theme user can pick one too.
+- A font choice (a few self-hosted families, OFL licensed, no calls to a font CDN) and a type scale (small, medium, large) in the Customizer.
+- Check: every look passes the axe contrast check in light and dark; a script switches each look and loads the main pages.
+
+**2. Pattern and block library (medium, grows over time).**
+- From 10 to about 40 patterns, in groups: pricing, testimonials, team, logo strip, counters, contact, newsletter, portfolio grid, blog sections, call to action bands, footers. Each uses only Basix components and tokens, and each is valid in the editor (`check-editor.mjs` already inserts every pattern).
+- Pattern categories and a "Basix" category in the inserter, with a preview image per pattern.
+- A few styled blocks where a pattern is not enough (tabs, counters), if the Basix components allow it.
+
+**3. Structured data (small, can go early).**
+- JSON-LD for articles (`Article`, author, dates, image), breadcrumbs and the organisation; `Event` for events (start and end with time zone, location, repeats as separate dates, category) so they can show as rich results.
+- Open Graph and Twitter tags as a fallback, skipped when a known SEO plugin is active (the existing check in `seo.php`).
+- Check: a script validates the JSON-LD shape and that the dates match the events endpoint.
+
+**4. Guided start and demo import (medium, after 1 and 2).**
+- A welcome screen after activation (Appearance > Basix): pick a look, pick a starter site, set the logo and menus, and links to the docs.
+- Three or four starter sites (blog, magazine, business, events) as content packs, applied without a plugin: pages, menus, widgets, front page settings, images and Customizer values. Reuses the starter content and the seed scripts. "Undo" removes only what the import created.
+- Check: import each starter site into a fresh site in the check script and run the frontend and axe checks on it.
+
+**5. Header and footer flexibility (medium).**
+- Options: transparent header over a hero, sticky or not, a call-to-action button, an optional top bar (text, social links, language), and footer layouts (columns, centred, minimal).
+- Per-page controls in a box in the editor: hide the title, choose the sidebar, choose the header (default, transparent, none).
+- A mega menu for the primary menu (a menu item class that turns its submenu into columns on wide screens; plain nested list on phones and without JavaScript).
+- Also pending from section 3: live (postMessage) preview for the Customizer, a header image and background options.
+
+**6. Compatibility (medium).**
+- RTL: `rtl.css` or logical properties throughout, and a check that renders the pages with `dir="rtl"`.
+- Multilingual: a `wpml-config.xml` (and Polylang strings) for options and custom fields.
+- Forms: styling for Contact Form 7, WPForms and Fluent Forms output with the Basix form components.
+- Page builders: a canvas template for Elementor and similar, with no header or footer.
+- Open question: Site Editor support. We are a classic theme with `theme.json` (decided in section 2). Block templates and template parts would let people edit headers, footers and templates in the Site Editor. It is the biggest structural gap against block themes and a large piece of work, so decide with step 4 done and real feedback in hand.
+
+**7. WooCommerce (large, undecided).** Out of scope today (see decisions at the top). It is the biggest buyer segment, so decide before the theme is on sale. A first step could be shop, product and cart styling with Basix components and no builder features.
+
+**8. Selling infrastructure (medium, after 1 to 5).**
+- Licence key and update delivery (a service such as Freemius, or our own update server through `Update URI`), a changelog feed and a version policy.
+- Documentation site (setup, every option, patterns, hooks and filters, child theme), a few short videos, and a live demo site with each starter site.
+- A support channel and a refund and licence text.
+- A product page with the screenshots and the demos (this is also where the Lighthouse numbers on real hosting go).
+
+**Smaller leftovers to fold in along the way:** the carousel arrows overlapping the category badge on narrow phones, a native speaker reading the German, and the fixed English texts in some Basix components.
+
+**Risks.** Many looks and patterns multiply what has to be tested, so each one goes through the same editor, axe and frontend checks before it ships. Demo import touches a site's content, so it needs the "undo" and a clear warning. Licensing and updates are a business decision as much as a technical one, and a theme that is sold has to keep the GPL.
+
 ### Prototype (after 1.5)
 - **Cmd-K quick switcher:** Modal + Virtual dropdown over a lightweight title/URL index. Decide after seeing it.
 
