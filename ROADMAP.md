@@ -134,10 +134,11 @@ Where section 7 added polish, this adds what premium buyers expect to find: look
 - Pattern categories and a "Basix" category in the inserter, with a preview image per pattern.
 - A few styled blocks where a pattern is not enough (tabs, counters), if the Basix components allow it.
 
-**3. Structured data (small, can go early).**
+**3. Structured data (small, can go early, done; `scripts/check-schema.mjs` and `scripts/php/check-events.php` test it, both in `make check`).**
 - JSON-LD for articles (`Article`, author, dates, image), breadcrumbs and the organisation; `Event` for events (start and end with time zone, location, repeats as separate dates, category) so they can show as rich results.
 - Open Graph and Twitter tags as a fallback, skipped when a known SEO plugin is active (the existing check in `seo.php`).
 - Check: a script validates the JSON-LD shape and that the dates match the events endpoint.
+- Result: `inc/schema.php` writes one JSON-LD block (`Organization` with the social menu as `sameAs` and the logo, `WebSite` with a search action on the front page, `BreadcrumbList` on every page but the front page and the 404, `Article` on posts, `Event` on events, one per coming date for a repeating event). Open Graph and Twitter tags are written for every page (pictures from the featured image or the logo). With a known SEO plugin active only the `Event` nodes are written, since plugins do not know events. Password protected pages get nothing. Filters: `basix_schema_graph`, `basix_open_graph`. The breadcrumbs are data only; visible breadcrumbs are not part of this step.
 
 **4. Guided start and demo import (medium, after 1 and 2).**
 - A welcome screen after activation (Appearance > Basix): pick a look, pick a starter site, set the logo and menus, and links to the docs.
