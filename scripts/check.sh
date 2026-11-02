@@ -21,6 +21,7 @@ run wp eval-file /php/check-events.php
 run wp eval-file /php/check-looks.php
 run wp eval-file /php/check-starters.php
 run wp eval-file /php/check-header.php
+run wp eval-file /php/check-compat.php
 run npm run --silent check:editor
 run npm run --silent check:customizer
 run npm run --silent check:ics
@@ -28,6 +29,8 @@ run npm run --silent check:schema
 run npm run --silent check:looks
 run npm run --silent check:starters
 run npm run --silent check:header
+run npm run --silent check:compat
+run npm run --silent check:rtl
 run npm run --silent check:frontend
 run npm run --silent check:a11y
 exit "$status"
