@@ -23,6 +23,7 @@ Basix is a classic WordPress theme made from the components of the Basix library
 * Five looks (Basix, Editorial, Bold, Calm, Paper) that set colours for light and dark mode, corners and fonts together, with a choice of fonts and text size on top
 * A setup screen (Appearance > Basix setup) with four ready-made starter sites (Blog, Magazine, Business, Events) that can be imported and undone
 * Header options: sticky or static, transparent over a cover, a call-to-action button, a top bar with social links and language switcher, a mega menu, three footer layouts and a header image; per-page choices for header, sidebar, title and footer
+* Right-to-left languages (mirrored stylesheets), a Canvas template for page builders, header and footer locations for Elementor's theme builder, a configuration file for WPML and Polylang, and form styling for Contact Form 7, WPForms, Fluent Forms and Gravity Forms
 * Accent colour, logo and layout options in the Customizer
 * Checked with axe and Lighthouse, ready for translation, with a German translation included
 

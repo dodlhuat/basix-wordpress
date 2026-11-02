@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Basix 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/basix\n"
-"POT-Creation-Date: 2026-11-02T14:36:16+00:00\n"
+"POT-Creation-Date: 2026-11-02T15:18:16+00:00\n"
 "PO-Revision-Date: 2026-10-28 12:00+0000\n"
 "Last-Translator: Andi Bauer\n"
 "Language-Team: German\n"
@@ -71,7 +71,7 @@ msgstr[1] "%s Kommentare"
 msgid "Comments are closed."
 msgstr "Kommentare sind geschlossen."
 
-#: footer.php:11 header.php:63 searchform.php:1 searchform.php:3
+#: footer.php:11 header.php:69 searchform.php:1 searchform.php:3
 #: searchform.php:4
 msgid "Search"
 msgstr "Suchen"
@@ -188,7 +188,7 @@ msgstr "Weicher Schatten"
 msgid "Circle"
 msgstr "Kreis"
 
-#: functions.php:113 inc/customizer.php:191 inc/header.php:357 sidebar.php:3
+#: functions.php:113 inc/customizer.php:191 inc/header.php:360 sidebar.php:3
 msgid "Sidebar"
 msgstr "Seitenleiste"
 
@@ -206,105 +206,105 @@ msgstr "Footer-Spalte %d"
 msgid "Shown in the footer."
 msgstr "Wird im Footer angezeigt."
 
-#: functions.php:171
+#: functions.php:177
 msgid "Category"
 msgstr "Kategorie"
 
-#: functions.php:172
+#: functions.php:178
 msgid "Tag"
 msgstr "Schlagwort"
 
-#: functions.php:173
+#: functions.php:179
 msgid "Author"
 msgstr "Autor"
 
-#: functions.php:174 functions.php:176 functions.php:177
+#: functions.php:180 functions.php:182 functions.php:183
 msgid "Archive"
 msgstr "Archiv"
 
-#: functions.php:175 inc/events/events.php:59 inc/events/events.php:70
+#: functions.php:181 inc/events/events.php:59 inc/events/events.php:70
 #: inc/schema.php:114 inc/schema.php:137 inc/schema.php:140
 #: inc/setup/importer.php:370 starters/events.php:9
 msgid "Events"
 msgstr "Veranstaltungen"
 
 #. translators: %s: the event's time in the site's time zone.
-#: functions.php:244
+#: functions.php:250
 #, php-format
 msgid "%s in site time"
 msgstr "%s in der Zeit der Website"
 
-#: functions.php:282 inc/schema.php:93 inc/setup/importer.php:376
+#: functions.php:288 inc/schema.php:93 inc/setup/importer.php:376
 msgid "Home"
 msgstr "Startseite"
 
-#: functions.php:296
+#: functions.php:302
 msgid "Not found"
 msgstr "Nicht gefunden"
 
-#: functions.php:298 inc/schema.php:151
+#: functions.php:304 inc/schema.php:151
 msgid "Search results"
 msgstr "Suchergebnisse"
 
-#: functions.php:306
+#: functions.php:312
 msgid "Breadcrumb"
 msgstr "Brotkrumennavigation"
 
-#: functions.php:320
+#: functions.php:326
 msgid "Pagination"
 msgstr "Seitennavigation"
 
-#: functions.php:357
+#: functions.php:363
 msgid "Your comment is awaiting moderation."
 msgstr "Dein Kommentar wartet auf Freischaltung."
 
-#: functions.php:394
+#: functions.php:400
 msgid "Your comment could not be submitted"
 msgstr "Dein Kommentar konnte nicht gesendet werden"
 
-#: functions.php:396
+#: functions.php:402
 msgid "Go back"
 msgstr "Zurück"
 
-#: functions.php:412
+#: functions.php:418
 msgid "Please fill out this field."
 msgstr "Bitte fülle dieses Feld aus."
 
-#: functions.php:413
+#: functions.php:419
 msgid "Please enter a valid email address."
 msgstr "Bitte gib eine gültige E-Mail-Adresse ein."
 
-#: functions.php:414
+#: functions.php:420
 msgid "Please enter a valid URL."
 msgstr "Bitte gib eine gültige URL ein."
 
-#: functions.php:415
+#: functions.php:421
 msgid "View larger image"
 msgstr "Bild vergrößern"
 
-#: functions.php:416
+#: functions.php:422
 msgid "Open image"
 msgstr "Bild öffnen"
 
-#: functions.php:417
+#: functions.php:423
 msgid "Code"
 msgstr "Code"
 
-#: functions.php:418
+#: functions.php:424
 msgid "Table"
 msgstr "Tabelle"
 
-#: functions.php:419
+#: functions.php:425
 msgid "Featured posts"
 msgstr "Ausgewählte Beiträge"
 
 #. translators: 1: number of this slide, 2: number of slides.
-#: functions.php:421
+#: functions.php:427
 #, php-format
 msgid "Slide %1$d of %2$d"
 msgstr "Folie %1$d von %2$d"
 
-#: functions.php:433
+#: functions.php:439
 msgid ""
 "This content is password-protected. To view it, please enter the password "
 "below."
@@ -312,11 +312,11 @@ msgstr ""
 "Dieser Inhalt ist passwortgeschützt. Gib unten das Passwort ein, um ihn zu "
 "sehen."
 
-#: functions.php:435
+#: functions.php:441
 msgid "Password"
 msgstr "Passwort"
 
-#: functions.php:438
+#: functions.php:444
 msgctxt "post password form"
 msgid "Enter"
 msgstr "Öffnen"
@@ -325,27 +325,27 @@ msgstr "Öffnen"
 msgid "Skip to content"
 msgstr "Zum Inhalt springen"
 
-#: header.php:30 inc/menus.php:13 inc/menus.php:63 inc/starter-content.php:57
+#: header.php:36 inc/menus.php:13 inc/menus.php:63 inc/starter-content.php:57
 msgid "Primary menu"
 msgstr "Hauptmenü"
 
-#: header.php:43
+#: header.php:49
 msgid "Toggle menu"
 msgstr "Menü umschalten"
 
-#: header.php:63
+#: header.php:69
 msgid "Search (press /)"
 msgstr "Suchen (Taste /)"
 
-#: header.php:66
+#: header.php:72
 msgid "Toggle dark mode"
 msgstr "Dunklen Modus umschalten"
 
-#: header.php:71
+#: header.php:77
 msgid "Open menu"
 msgstr "Menü öffnen"
 
-#: header.php:81
+#: header.php:87
 msgid "Menu"
 msgstr "Menü"
 
@@ -398,7 +398,7 @@ msgstr "Die Beiträge konnten nicht geladen werden. Bitte versuche es erneut."
 msgid "Event categories"
 msgstr "Veranstaltungskategorien"
 
-#: inc/customizer.php:81 inc/header.php:348
+#: inc/customizer.php:81 inc/header.php:351
 msgid "Header"
 msgstr "Header"
 
@@ -520,11 +520,11 @@ msgstr "Zentriert, in einer Karte"
 msgid "Left-aligned, without a card"
 msgstr "Linksbündig, ohne Karte"
 
-#: inc/customizer.php:248 inc/header.php:362
+#: inc/customizer.php:248 inc/header.php:365
 msgid "None"
 msgstr "Keine"
 
-#: inc/customizer.php:257 inc/header.php:367 inc/setup/importer.php:350
+#: inc/customizer.php:257 inc/header.php:370 inc/setup/importer.php:350
 msgid "Footer"
 msgstr "Footer"
 
@@ -904,124 +904,132 @@ msgstr "Veröffentlicht zwischen"
 msgid "The images could not be loaded. Please try again."
 msgstr "Die Bilder konnten nicht geladen werden. Bitte versuche es erneut."
 
-#: inc/header.php:239
+#: inc/header.php:242
 msgid "Keep the header at the top while scrolling"
 msgstr "Kopfbereich beim Scrollen oben halten"
 
-#: inc/header.php:251
+#: inc/header.php:254
 msgid "Header style"
 msgstr "Stil des Kopfbereichs"
 
-#: inc/header.php:252
+#: inc/header.php:255
 msgid ""
 "A transparent header sits over the first section of the page, with light "
 "text until you scroll. Use it with a dark picture at the top, such as the "
 "Landing page template with a cover. A single page can choose its own."
-msgstr "Ein transparenter Kopfbereich liegt über dem ersten Abschnitt der Seite, mit heller Schrift bis zum Scrollen. Nutze ihn mit einem dunklen Bild ganz oben, etwa mit der Vorlage „Landing page“ und einem Cover. Einzelne Seiten können ihre eigene Wahl treffen."
+msgstr ""
+"Ein transparenter Kopfbereich liegt über dem ersten Abschnitt der Seite, mit "
+"heller Schrift bis zum Scrollen. Nutze ihn mit einem dunklen Bild ganz oben, "
+"etwa mit der Vorlage „Landing page“ und einem Cover. Einzelne Seiten können "
+"ihre eigene Wahl treffen."
 
-#: inc/header.php:255
+#: inc/header.php:258
 msgid "Solid"
 msgstr "Deckend"
 
-#: inc/header.php:256 inc/header.php:351
+#: inc/header.php:259 inc/header.php:354
 msgid "Transparent over the first section"
 msgstr "Transparent über dem ersten Abschnitt"
 
-#: inc/header.php:260
+#: inc/header.php:263
 msgid "Button text"
 msgstr "Text der Schaltfläche"
 
-#: inc/header.php:260
+#: inc/header.php:263
 msgid "A call-to-action button in the header. It needs a text and an address."
-msgstr "Eine Handlungsaufruf-Schaltfläche im Kopfbereich. Sie braucht einen Text und eine Adresse."
+msgstr ""
+"Eine Handlungsaufruf-Schaltfläche im Kopfbereich. Sie braucht einen Text und "
+"eine Adresse."
 
-#: inc/header.php:261
+#: inc/header.php:264
 msgid "Button address"
 msgstr "Adresse der Schaltfläche"
 
-#: inc/header.php:267
+#: inc/header.php:270
 msgid "Top bar"
 msgstr "Top-Leiste"
 
-#: inc/header.php:268
+#: inc/header.php:271
 msgid ""
 "A thin line above the header for a short message, your social links and a "
 "language switcher."
-msgstr "Eine schmale Zeile über dem Kopfbereich für eine kurze Mitteilung, deine Social-Media-Links und einen Sprachwechsler."
+msgstr ""
+"Eine schmale Zeile über dem Kopfbereich für eine kurze Mitteilung, deine "
+"Social-Media-Links und einen Sprachwechsler."
 
-#: inc/header.php:272
+#: inc/header.php:275
 msgid "Show the top bar"
 msgstr "Top-Leiste anzeigen"
 
-#: inc/header.php:273
+#: inc/header.php:276
 msgid "Message"
 msgstr "Mitteilung"
 
-#: inc/header.php:274
+#: inc/header.php:277
 msgid "Show the social links menu"
 msgstr "Menü mit Social-Media-Links anzeigen"
 
-#: inc/header.php:274
+#: inc/header.php:277
 msgid "The menu in the location \"Social links\"."
 msgstr "Das Menü am Ort „Social-Media-Links“."
 
-#: inc/header.php:275
+#: inc/header.php:278
 msgid "Show the language switcher"
 msgstr "Sprachwechsler anzeigen"
 
-#: inc/header.php:275
+#: inc/header.php:278
 msgid "Shown when Polylang or WPML is active."
 msgstr "Wird angezeigt, wenn Polylang oder WPML aktiv ist."
 
-#: inc/header.php:289
+#: inc/header.php:292
 msgid "Footer layout"
 msgstr "Layout des Fußbereichs"
 
-#: inc/header.php:292
+#: inc/header.php:295
 msgid "Widget columns, then the footer line"
 msgstr "Widget-Spalten, dann die Fußzeile"
 
-#: inc/header.php:293
+#: inc/header.php:296
 msgid "Centred"
 msgstr "Zentriert"
 
-#: inc/header.php:294
+#: inc/header.php:297
 msgid "Minimal: only the footer line and menus"
 msgstr "Minimal: nur Fußzeile und Menüs"
 
-#: inc/header.php:324
+#: inc/header.php:327
 msgid "Page layout"
 msgstr "Seitenlayout"
 
-#: inc/header.php:350 inc/header.php:369
+#: inc/header.php:353 inc/header.php:372
 msgid "As in the Customizer"
 msgstr "Wie im Customizer"
 
-#: inc/header.php:352
+#: inc/header.php:355
 msgid "No header"
 msgstr "Kein Kopfbereich"
 
-#: inc/header.php:359
+#: inc/header.php:362
 msgid "Default (pages none, posts as in the Customizer)"
 msgstr "Standard (Seiten keine, Beiträge wie im Customizer)"
 
-#: inc/header.php:360
+#: inc/header.php:363
 msgid "On the right"
 msgstr "Rechts"
 
-#: inc/header.php:361
+#: inc/header.php:364
 msgid "On the left"
 msgstr "Links"
 
-#: inc/header.php:370
+#: inc/header.php:373
 msgid "No footer widgets and menus"
 msgstr "Keine Widgets und Menüs im Fußbereich"
 
-#: inc/header.php:373
+#: inc/header.php:376
 msgid "Hide the title"
 msgstr "Titel ausblenden"
 
-#: inc/header.php:373
+#: inc/header.php:376
 msgid "It stays in the page for screen readers."
 msgstr "Er bleibt für Screenreader auf der Seite."
 
@@ -1442,6 +1450,10 @@ msgstr "Ein paar Worte über diese Website."
 #. Template Name of the theme
 msgid "Calendar"
 msgstr "Kalender"
+
+#. Template Name of the theme
+msgid "Canvas"
+msgstr ""
 
 #. Template Name of the theme
 #: page-templates/docs.php:18
