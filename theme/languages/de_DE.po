@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Basix 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/basix\n"
-"POT-Creation-Date: 2026-11-02T10:58:13+00:00\n"
+"POT-Creation-Date: 2026-11-02T11:57:23+00:00\n"
 "PO-Revision-Date: 2026-10-28 12:00+0000\n"
 "Last-Translator: Andi Bauer\n"
 "Language-Team: German\n"
@@ -291,51 +291,51 @@ msgstr "Menü öffnen"
 msgid "Menu"
 msgstr "Menü"
 
-#: inc/calendar.php:54
+#: inc/calendar.php:55
 msgid "Today"
 msgstr "Heute"
 
-#: inc/calendar.php:55
+#: inc/calendar.php:56
 msgid "Month"
 msgstr "Monat"
 
-#: inc/calendar.php:56
+#: inc/calendar.php:57
 msgid "Week"
 msgstr "Woche"
 
-#: inc/calendar.php:57
+#: inc/calendar.php:58
 msgid "Agenda"
 msgstr "Agenda"
 
-#: inc/calendar.php:58
+#: inc/calendar.php:59
 msgid "All day"
 msgstr "Ganztägig"
 
-#: inc/calendar.php:59
+#: inc/calendar.php:60
 msgid "No posts"
 msgstr "Keine Beiträge"
 
-#: inc/calendar.php:60
+#: inc/calendar.php:61
 msgid "Previous"
 msgstr "Zurück"
 
-#: inc/calendar.php:61
+#: inc/calendar.php:62
 msgid "Next"
 msgstr "Weiter"
 
-#: inc/calendar.php:62
+#: inc/calendar.php:63
 msgid "Calendar view"
 msgstr "Kalenderansicht"
 
-#: inc/calendar.php:63
+#: inc/calendar.php:64
 msgid "Posts calendar"
 msgstr "Beitragskalender"
 
-#: inc/calendar.php:64
+#: inc/calendar.php:65
 msgid "The posts could not be loaded. Please try again."
 msgstr "Die Beiträge konnten nicht geladen werden. Bitte versuche es erneut."
 
-#: inc/calendar.php:65 inc/events/events.php:87
+#: inc/calendar.php:66 inc/events/events.php:87
 #: template-parts/event-categories.php:15
 msgid "Event categories"
 msgstr "Veranstaltungskategorien"
@@ -490,7 +490,7 @@ msgid "Start time"
 msgstr "Beginn"
 
 #: inc/events/events.php:19 inc/events/events.php:172
-#: inc/events/recurrence.php:577
+#: inc/events/recurrence.php:584
 msgid "Ends on"
 msgstr "Endet am"
 
@@ -506,8 +506,8 @@ msgstr "Zeitzone"
 msgid "Location"
 msgstr "Ort"
 
-#: inc/events/events.php:23 inc/events/recurrence.php:552
-#: inc/events/recurrence.php:555
+#: inc/events/events.php:23 inc/events/recurrence.php:559
+#: inc/events/recurrence.php:562
 msgid "Repeat"
 msgstr "Wiederholung"
 
@@ -603,6 +603,12 @@ msgstr ""
 "Lass die Uhrzeiten leer für eine ganztägige Veranstaltung. Lass das Enddatum "
 "leer für eine Veranstaltung an einem Tag. Die Zeitzone gilt für "
 "Veranstaltungen mit Uhrzeit; ganztägige Veranstaltungen folgen der Website."
+
+#. translators: %s: a date, for example November 5, 2026.
+#: inc/events/events.php:661
+#, php-format
+msgid "Events on %s"
+msgstr "Veranstaltungen am %s"
 
 #. translators: %d: number of days, more than one.
 #: inc/events/recurrence.php:31 inc/events/recurrence.php:375
@@ -722,59 +728,63 @@ msgstr "%s, einmal"
 msgid "%1$s, %2$d times"
 msgstr "%1$s, %2$d Mal"
 
-#: inc/events/recurrence.php:557
+#: inc/events/recurrence.php:564
 msgid "Does not repeat"
 msgstr "Wiederholt sich nicht"
 
-#: inc/events/recurrence.php:565
+#: inc/events/recurrence.php:572
 msgid "Every"
 msgstr "Alle"
 
-#: inc/events/recurrence.php:567
+#: inc/events/recurrence.php:574
 msgid "times the unit above (2 means every second day, week, month or year)"
-msgstr "× die Einheit oben (2 heißt: jeden zweiten Tag, jede zweite Woche, jeden zweiten Monat oder jedes zweite Jahr)"
+msgstr ""
+"× die Einheit oben (2 heißt: jeden zweiten Tag, jede zweite Woche, jeden "
+"zweiten Monat oder jedes zweite Jahr)"
 
-#: inc/events/recurrence.php:573
+#: inc/events/recurrence.php:580
 msgid "None ticked: the weekday of the start date."
 msgstr "Nichts gewählt: der Wochentag des Startdatums."
 
-#: inc/events/recurrence.php:576
+#: inc/events/recurrence.php:583
 msgid "Never ends"
 msgstr "Endet nie"
 
-#: inc/events/recurrence.php:578
+#: inc/events/recurrence.php:585
 msgid "Last date"
 msgstr "Letztes Datum"
 
-#: inc/events/recurrence.php:579
+#: inc/events/recurrence.php:586
 msgid "Ends after"
 msgstr "Endet nach"
 
-#: inc/events/recurrence.php:580
+#: inc/events/recurrence.php:587
 msgid "Number of times"
 msgstr "Anzahl der Wiederholungen"
 
-#: inc/events/recurrence.php:581
+#: inc/events/recurrence.php:588
 msgid "times"
 msgstr "Mal"
 
-#: inc/events/recurrence.php:584
+#: inc/events/recurrence.php:591
 msgid "Skipped dates"
 msgstr "Ausgelassene Termine"
 
-#: inc/events/recurrence.php:586
+#: inc/events/recurrence.php:593
 msgid "One date (YYYY-MM-DD) per line. These dates do not happen."
-msgstr "Ein Datum (JJJJ-MM-TT) pro Zeile. An diesen Tagen findet der Termin nicht statt."
+msgstr ""
+"Ein Datum (JJJJ-MM-TT) pro Zeile. An diesen Tagen findet der Termin nicht "
+"statt."
 
-#: inc/events/recurrence.php:653
+#: inc/events/recurrence.php:660
 msgid "Repeats"
 msgstr "Wiederholt sich"
 
-#: inc/events/recurrence.php:657
+#: inc/events/recurrence.php:664
 msgid "Next dates"
 msgstr "Nächste Termine"
 
-#: inc/events/recurrence.php:668
+#: inc/events/recurrence.php:675
 msgid "All dates of this event are over."
 msgstr "Alle Termine dieser Veranstaltung sind vorbei."
 
@@ -1322,6 +1332,14 @@ msgstr "über „%s“"
 msgid "All"
 msgstr "Alle"
 
+#: template-parts/event-day-nav.php:18
+msgid "Days"
+msgstr "Tage"
+
+#: template-parts/event-day-nav.php:20
+msgid "All coming events"
+msgstr "Alle kommenden Veranstaltungen"
+
 #: template-parts/filters.php:37
 msgid "Filter"
 msgstr "Filtern"
@@ -1352,7 +1370,11 @@ msgstr "Filter entfernen: %s"
 msgid "Clear all"
 msgstr "Alle zurücksetzen"
 
-#: template-parts/loop.php:20
+#: template-parts/loop.php:23
+msgid "No events on this day."
+msgstr "An diesem Tag gibt es keine Veranstaltungen."
+
+#: template-parts/loop.php:25
 msgid "Nothing found."
 msgstr "Nichts gefunden."
 

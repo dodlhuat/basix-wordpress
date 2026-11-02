@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-02T10:58:13+00:00\n"
+"POT-Creation-Date: 2026-11-02T11:57:23+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: basix\n"
@@ -294,51 +294,51 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: inc/calendar.php:54
+#: inc/calendar.php:55
 msgid "Today"
 msgstr ""
 
-#: inc/calendar.php:55
+#: inc/calendar.php:56
 msgid "Month"
 msgstr ""
 
-#: inc/calendar.php:56
+#: inc/calendar.php:57
 msgid "Week"
 msgstr ""
 
-#: inc/calendar.php:57
+#: inc/calendar.php:58
 msgid "Agenda"
 msgstr ""
 
-#: inc/calendar.php:58
+#: inc/calendar.php:59
 msgid "All day"
 msgstr ""
 
-#: inc/calendar.php:59
+#: inc/calendar.php:60
 msgid "No posts"
 msgstr ""
 
-#: inc/calendar.php:60
+#: inc/calendar.php:61
 msgid "Previous"
 msgstr ""
 
-#: inc/calendar.php:61
+#: inc/calendar.php:62
 msgid "Next"
 msgstr ""
 
-#: inc/calendar.php:62
+#: inc/calendar.php:63
 msgid "Calendar view"
 msgstr ""
 
-#: inc/calendar.php:63
+#: inc/calendar.php:64
 msgid "Posts calendar"
 msgstr ""
 
-#: inc/calendar.php:64
+#: inc/calendar.php:65
 msgid "The posts could not be loaded. Please try again."
 msgstr ""
 
-#: inc/calendar.php:65
+#: inc/calendar.php:66
 #: inc/events/events.php:87
 #: template-parts/event-categories.php:15
 msgid "Event categories"
@@ -488,7 +488,7 @@ msgstr ""
 
 #: inc/events/events.php:19
 #: inc/events/events.php:172
-#: inc/events/recurrence.php:577
+#: inc/events/recurrence.php:584
 msgid "Ends on"
 msgstr ""
 
@@ -508,8 +508,8 @@ msgid "Location"
 msgstr ""
 
 #: inc/events/events.php:23
-#: inc/events/recurrence.php:552
-#: inc/events/recurrence.php:555
+#: inc/events/recurrence.php:559
+#: inc/events/recurrence.php:562
 msgid "Repeat"
 msgstr ""
 
@@ -602,6 +602,12 @@ msgstr ""
 
 #: inc/events/events.php:195
 msgid "Leave the times empty for an all-day event. Leave the end date empty for an event on one day. The time zone applies to timed events; all-day events follow the site."
+msgstr ""
+
+#. translators: %s: a date, for example November 5, 2026.
+#: inc/events/events.php:661
+#, php-format
+msgid "Events on %s"
 msgstr ""
 
 #. translators: %d: number of days, more than one.
@@ -723,59 +729,59 @@ msgstr ""
 msgid "%1$s, %2$d times"
 msgstr ""
 
-#: inc/events/recurrence.php:557
+#: inc/events/recurrence.php:564
 msgid "Does not repeat"
 msgstr ""
 
-#: inc/events/recurrence.php:565
+#: inc/events/recurrence.php:572
 msgid "Every"
 msgstr ""
 
-#: inc/events/recurrence.php:567
+#: inc/events/recurrence.php:574
 msgid "times the unit above (2 means every second day, week, month or year)"
 msgstr ""
 
-#: inc/events/recurrence.php:573
+#: inc/events/recurrence.php:580
 msgid "None ticked: the weekday of the start date."
 msgstr ""
 
-#: inc/events/recurrence.php:576
+#: inc/events/recurrence.php:583
 msgid "Never ends"
 msgstr ""
 
-#: inc/events/recurrence.php:578
+#: inc/events/recurrence.php:585
 msgid "Last date"
 msgstr ""
 
-#: inc/events/recurrence.php:579
+#: inc/events/recurrence.php:586
 msgid "Ends after"
 msgstr ""
 
-#: inc/events/recurrence.php:580
+#: inc/events/recurrence.php:587
 msgid "Number of times"
 msgstr ""
 
-#: inc/events/recurrence.php:581
+#: inc/events/recurrence.php:588
 msgid "times"
 msgstr ""
 
-#: inc/events/recurrence.php:584
+#: inc/events/recurrence.php:591
 msgid "Skipped dates"
 msgstr ""
 
-#: inc/events/recurrence.php:586
+#: inc/events/recurrence.php:593
 msgid "One date (YYYY-MM-DD) per line. These dates do not happen."
 msgstr ""
 
-#: inc/events/recurrence.php:653
+#: inc/events/recurrence.php:660
 msgid "Repeats"
 msgstr ""
 
-#: inc/events/recurrence.php:657
+#: inc/events/recurrence.php:664
 msgid "Next dates"
 msgstr ""
 
-#: inc/events/recurrence.php:668
+#: inc/events/recurrence.php:675
 msgid "All dates of this event are over."
 msgstr ""
 
@@ -1328,6 +1334,14 @@ msgstr ""
 msgid "All"
 msgstr ""
 
+#: template-parts/event-day-nav.php:18
+msgid "Days"
+msgstr ""
+
+#: template-parts/event-day-nav.php:20
+msgid "All coming events"
+msgstr ""
+
 #: template-parts/filters.php:37
 msgid "Filter"
 msgstr ""
@@ -1358,7 +1372,11 @@ msgstr ""
 msgid "Clear all"
 msgstr ""
 
-#: template-parts/loop.php:20
+#: template-parts/loop.php:23
+msgid "No events on this day."
+msgstr ""
+
+#: template-parts/loop.php:25
 msgid "Nothing found."
 msgstr ""
 
