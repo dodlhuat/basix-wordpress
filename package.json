@@ -17,6 +17,7 @@
     "check:header": "node scripts/check-header.mjs",
     "check:rtl": "node scripts/build-rtl.mjs --check && node scripts/check-rtl.mjs",
     "check:compat": "node scripts/check-compat.mjs",
+    "check:no-plugin": "node scripts/check-without-plugin.mjs",
     "check:a11y": "node scripts/check-a11y.mjs",
     "postinstall": "node scripts/sync-basix.mjs && node scripts/build-rtl.mjs",
     "rtl": "node scripts/build-rtl.mjs"

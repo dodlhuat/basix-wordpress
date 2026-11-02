@@ -13,38 +13,41 @@ $check  = static function ( bool $ok, string $what ) use ( &$failed ) {
 	}
 };
 
-// The translation configuration.
-$file = get_theme_file_path( 'wpml-config.xml' );
-$dom  = new DOMDocument();
-$ok   = file_exists( $file ) && @$dom->load( $file ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- a broken file is reported below.
-$check( $ok && 'wpml-config' === $dom->documentElement->nodeName, 'wpml-config.xml is well-formed XML' );
-$xpath    = new DOMXPath( $dom );
-$names    = static function ( string $query ) use ( $xpath ): array {
+// The translation configuration: one file in the plugin (events) and one in the theme (page choices, Customizer texts).
+$load  = static function ( string $file ) use ( &$check ): ?DOMXPath {
+	$dom = new DOMDocument();
+	$ok  = file_exists( $file ) && @$dom->load( $file ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- a broken file is reported below.
+	$check( $ok && 'wpml-config' === $dom->documentElement->nodeName, basename( dirname( $file ) ) . '/wpml-config.xml is well-formed XML' );
+	return $ok ? new DOMXPath( $dom ) : null;
+};
+$names = static function ( DOMXPath $xpath, string $query ): array {
 	$out = array();
 	foreach ( $xpath->query( $query ) as $node ) {
 		$out[] = trim( $node->textContent );
 	}
 	return $out;
 };
-$fields   = $names( '//custom-fields/custom-field' );
-$expected = array_merge( array_keys( basix_event_fields() ), array_keys( BASIX_PAGE_OPTIONS ) );
-$missing  = array_diff( $expected, $fields );
-$check( ! $missing, 'every event field and per-page choice is in the configuration' . ( $missing ? ' (missing: ' . implode( ', ', $missing ) . ')' : '' ) );
-$unknown = array_diff( array_filter( $fields, static function ( $name ) {
-	return 0 !== strpos( $name, '_basix_event_' );
-} ), $expected );
+$plugin_xml = $load( BASIX_EVENTS_DIR . 'wpml-config.xml' );
+$theme_xml  = $load( get_theme_file_path( 'wpml-config.xml' ) );
+
+$event_fields = $names( $plugin_xml, '//custom-fields/custom-field' );
+$derived      = array( '_basix_event_start_utc', '_basix_event_end_utc', '_basix_event_last_utc', '_basix_event_next_utc' );
+$missing      = array_diff( array_keys( basix_event_fields() ), $event_fields );
+$check( ! $missing, 'every event field is in the plugin configuration' . ( $missing ? ' (missing: ' . implode( ', ', $missing ) . ')' : '' ) );
+$unknown = array_diff( $event_fields, array_keys( basix_event_fields() ), $derived );
 $check( ! $unknown, 'and it names no field that is gone' . ( $unknown ? ' (' . implode( ', ', $unknown ) . ')' : '' ) );
-$derived = array( '_basix_event_start_utc', '_basix_event_end_utc', '_basix_event_last_utc', '_basix_event_next_utc' );
-$check( ! array_diff( $derived, $fields ), 'the derived event fields are listed (to be ignored, they are worked out again)' );
-$check( in_array( BASIX_EVENT, $names( '//custom-types/custom-type' ), true ) && in_array( BASIX_EVENT_CAT, $names( '//taxonomies/taxonomy' ), true ), 'the event type and its categories are translatable' );
-$check( 'translate' === $xpath->query( '//custom-field[. = "basix_event_location"]' )->item( 0 )->getAttribute( 'action' ) && 'copy' === $xpath->query( '//custom-field[. = "basix_event_start"]' )->item( 0 )->getAttribute( 'action' ), 'the place of an event is translated, its dates are copied' );
+$check( ! array_diff( $derived, $event_fields ), 'the derived event fields are listed (to be ignored, they are worked out again)' );
+$check( in_array( BASIX_EVENT, $names( $plugin_xml, '//custom-types/custom-type' ), true ) && in_array( BASIX_EVENT_CAT, $names( $plugin_xml, '//taxonomies/taxonomy' ), true ), 'the event type and its categories are translatable' );
+$check( 'translate' === $plugin_xml->query( '//custom-field[. = "basix_event_location"]' )->item( 0 )->getAttribute( 'action' ) && 'copy' === $plugin_xml->query( '//custom-field[. = "basix_event_start"]' )->item( 0 )->getAttribute( 'action' ), 'the place of an event is translated, its dates are copied' );
+
+$page_fields = $names( $theme_xml, '//custom-fields/custom-field' );
+$check( ! array_diff( array_keys( BASIX_PAGE_OPTIONS ), $page_fields ) && ! array_diff( $page_fields, array_keys( BASIX_PAGE_OPTIONS ) ), 'the theme configuration lists exactly the per-page choices' );
 
 require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
 $manager = new WP_Customize_Manager();
 do_action( 'customize_register', $manager );
-$texts   = $names( '//admin-texts/key[@name="theme_mods_basix"]/key/@name' );
 $texts   = array();
-foreach ( $xpath->query( '//admin-texts/key[@name="theme_mods_basix"]/key' ) as $node ) {
+foreach ( $theme_xml->query( '//admin-texts/key[@name="theme_mods_basix"]/key' ) as $node ) {
 	$texts[] = $node->getAttribute( 'name' );
 }
 $gone = array_filter( $texts, static function ( $name ) use ( $manager ) {

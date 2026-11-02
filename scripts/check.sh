@@ -33,4 +33,5 @@ run npm run --silent check:compat
 run npm run --silent check:rtl
 run npm run --silent check:frontend
 run npm run --silent check:a11y
+run npm run --silent check:no-plugin
 exit "$status"
