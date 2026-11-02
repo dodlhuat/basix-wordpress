@@ -72,7 +72,7 @@ function basix_calendar_config(): array {
  * The calendar's markup, for the page templates and for the block and shortcode of the Basix Events plugin.
  *
  * @param string $view   Starting view: month, week or agenda.
- * @param string $source What it shows: events (the Event post type) or posts (blog posts by publish date).
+ * @param string $source What it shows: events (from the Basix Events plugin; posts when it is off) or posts (blog posts by publish date).
  * @param string $category Event category slugs, comma separated (only these events; the category chips are then left out).
  * @return string
  */
