@@ -3,7 +3,7 @@
  * Title: Call to action
  * Slug: basix/cta
  * Description: A highlighted box with a headline, a sentence and a button.
- * Categories: basix
+ * Categories: basix, basix-call-to-action
  * Keywords: cta, call to action, banner, newsletter
  */
 ?>

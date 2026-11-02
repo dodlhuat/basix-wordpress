@@ -3,7 +3,7 @@
  * Title: Steps
  * Slug: basix/steps
  * Description: Three numbered steps that explain how something works.
- * Categories: basix
+ * Categories: basix, basix-features
  * Keywords: steps, how it works, process, stepper
  */
 ?>

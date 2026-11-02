@@ -3,7 +3,7 @@
  * Title: Stats
  * Slug: basix/stats
  * Description: Three large numbers with short labels.
- * Categories: basix
+ * Categories: basix, basix-stats
  * Keywords: stats, numbers, figures, metrics
  */
 ?>

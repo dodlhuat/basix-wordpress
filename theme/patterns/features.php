@@ -3,7 +3,7 @@
  * Title: Features
  * Slug: basix/features
  * Description: Three feature cards in a responsive grid.
- * Categories: basix
+ * Categories: basix, basix-features
  * Keywords: features, cards, grid, services
  */
 ?>

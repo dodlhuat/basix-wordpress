@@ -3,7 +3,7 @@
  * Title: Hero
  * Slug: basix/hero
  * Description: A centred introduction with a headline, a short lead and two buttons.
- * Categories: basix
+ * Categories: basix, basix-hero
  * Keywords: hero, banner, intro, header
  */
 ?>

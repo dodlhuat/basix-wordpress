@@ -3,7 +3,7 @@
  * Title: Hero on a picture
  * Slug: basix/hero-cover
  * Description: A headline and a button on top of a full picture.
- * Categories: basix
+ * Categories: basix, basix-hero
  * Keywords: hero, banner, cover, picture, intro
  */
 

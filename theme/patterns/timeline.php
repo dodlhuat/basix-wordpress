@@ -3,7 +3,7 @@
  * Title: Timeline
  * Slug: basix/timeline
  * Description: A vertical timeline of dated events.
- * Categories: basix
+ * Categories: basix, basix-about
  * Keywords: timeline, history, milestones, changelog
  */
 ?>

@@ -3,7 +3,7 @@
  * Title: Hero, minimal
  * Slug: basix/hero-minimal
  * Description: A large left-aligned headline with no box around it.
- * Categories: basix
+ * Categories: basix, basix-hero
  * Keywords: hero, banner, minimal, intro, headline
  */
 ?>

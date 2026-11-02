@@ -3,7 +3,7 @@
  * Title: FAQ
  * Slug: basix/faq
  * Description: Frequently asked questions as collapsible items.
- * Categories: basix
+ * Categories: basix, basix-faq
  * Keywords: faq, questions, accordion, details
  */
 ?>

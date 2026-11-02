@@ -3,7 +3,7 @@
  * Title: Hero with picture
  * Slug: basix/hero-split
  * Description: A headline and two buttons beside a picture.
- * Categories: basix
+ * Categories: basix, basix-hero
  * Keywords: hero, banner, picture, split, intro
  */
 

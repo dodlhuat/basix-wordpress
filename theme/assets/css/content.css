@@ -294,3 +294,45 @@ p.is-style-lead { font-size: 1.25rem; color: var(--secondary-text); }
 .wp-block-calendar td#today { background: var(--accent-color-tint); font-weight: 600; }
 .wp-block-calendar .wp-calendar-nav { display: flex; justify-content: space-between; margin-top: .5rem; }
 .wp-block-calendar .wp-calendar-nav a { color: var(--accent-text); }
+
+/* Patterns: pricing, testimonials, logos, team, portfolio, contact and the like */
+.check-list { list-style: none; padding: 0; margin: 1rem 0; }
+.check-list li { padding-inline-start: 1.5rem; position: relative; margin-block: .35rem; list-style: none; }
+.check-list li::marker { content: ""; }
+.check-list li::before { content: "✓"; position: absolute; inset-inline-start: 0; color: var(--accent-text, var(--accent-color)); font-weight: 700; }
+.price { font-size: clamp(2rem, 5vw, 2.75rem); font-weight: 700; line-height: 1; letter-spacing: -.02em; margin: .25rem 0 0; }
+.card.is-featured { position: relative; border-color: var(--accent-color); box-shadow: 0 0 0 1px var(--accent-color); }
+.card.is-featured > p.badge { position: absolute; top: .75rem; inset-inline-end: .75rem; margin: 0; }
+.pricing-single { max-width: 26rem; margin-inline: auto; }
+.pricing-single .card { text-align: center; }
+.pricing-single .check-list { display: inline-block; text-align: start; }
+.pricing-single .wp-block-buttons { justify-content: center; }
+.testimonial-single { max-width: 40rem; margin-inline: auto; text-align: center; }
+.wp-block-quote.testimonial-quote { border: 0; padding: 0; margin: 0; font-size: clamp(1.25rem, 3vw, 1.75rem); line-height: 1.4; font-style: normal; }
+.wp-block-quote.testimonial-quote cite { display: block; margin-top: 1rem; font-size: .95rem; font-style: normal; color: var(--secondary-text); }
+.wp-block-quote.testimonial-quote p { font-size: inherit; margin: 0; }
+.card .wp-block-quote { border: 0; padding: 0; margin: 0; }
+.card .wp-block-quote cite { display: block; margin-top: .75rem; font-style: normal; color: var(--secondary-text); font-size: .9rem; }
+.team-card .wp-block-image { max-width: 9rem; margin-inline: auto; }
+.team-card > * + * { margin-top: .25rem; }
+.logo-strip { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem 2.5rem; margin-block: 1rem; }
+.logo-strip > p { margin: 0; font-weight: 700; font-size: 1.1rem; letter-spacing: .12em; text-transform: uppercase; color: var(--secondary-text); }
+.logo-strip.logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); justify-items: center; }
+.work-card > * + * { margin-top: .25rem; }
+.work-card h3 { margin-block: .5rem 0; }
+.cta-band { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; padding: 1.25rem 1.5rem; border-radius: var(--radius-lg); background: var(--accent-color); color: var(--on-accent); }
+.cta-band .cta-band-text { margin: 0; font-size: 1.25rem; font-weight: 600; color: inherit; }
+.cta-band .wp-block-button__link { background: var(--on-accent); color: var(--accent-text, var(--accent-color)); }
+.newsletter-form { max-width: 28rem; margin: 1.25rem auto 0; }
+.cta.card .wp-block-columns { margin: 0; text-align: start; }
+.services-list > .service-row { padding-block: 1rem; border-top: 1px solid var(--divider); }
+.services-list > .service-row:last-child { border-bottom: 1px solid var(--divider); }
+.services-list .service-row > * { margin-block: 0; }
+.latest-posts .wp-block-post-title, .latest-list .wp-block-post-title { margin-block: .5rem .25rem; font-size: 1.25rem; }
+.latest-posts .wp-block-post-date, .latest-list .wp-block-post-date { color: var(--secondary-text); font-size: .875rem; }
+.wp-block-query .wp-block-post-featured-image img { border-radius: var(--radius-md); }
+.wp-block-post-template { list-style: none; padding: 0; margin: 0; }
+.wp-block-post-template > li { margin: 0; }
+.wp-block-post-title a { color: var(--primary-text); text-decoration: none; }
+.wp-block-post-title a:hover { color: var(--accent-text, var(--accent-color)); }
+.newsletter-form .input-group input { flex: 1; min-width: 0; }

@@ -19,7 +19,7 @@ Basix is a classic WordPress theme made from the components of the Basix library
 * Image cards, a hero section and a sidebar with widgets
 * Styled comments, password-protected posts, search and 404 pages
 * An Events post type with an events calendar block and shortcode, header layouts, a featured-post slider, a gallery and portfolio page, and post filters
-* Ten block patterns and block styles, plus starter content for new sites
+* Forty block patterns in 14 groups (hero, features, pricing, testimonials, team, logos, numbers, call to action, newsletter, contact, portfolio, blog, questions, about) and block styles, plus starter content for new sites
 * Five looks (Basix, Editorial, Bold, Calm, Paper) that set colours for light and dark mode, corners and fonts together, with a choice of fonts and text size on top
 * Accent colour, logo and layout options in the Customizer
 * Checked with axe and Lighthouse, ready for translation, with a German translation included

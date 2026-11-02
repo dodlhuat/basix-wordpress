@@ -60,6 +60,24 @@ add_filter('language_attributes', function (string $output): string {
 
 add_action('init', function () {
     register_block_pattern_category('basix', ['label' => __('Basix', 'basix')]);
+    foreach ([
+        'hero'           => __('Basix: Hero', 'basix'),
+        'features'       => __('Basix: Features', 'basix'),
+        'pricing'        => __('Basix: Pricing', 'basix'),
+        'testimonials'   => __('Basix: Testimonials', 'basix'),
+        'team'           => __('Basix: Team', 'basix'),
+        'logos'          => __('Basix: Logos', 'basix'),
+        'stats'          => __('Basix: Numbers', 'basix'),
+        'call-to-action' => __('Basix: Call to action', 'basix'),
+        'newsletter'     => __('Basix: Newsletter', 'basix'),
+        'contact'        => __('Basix: Contact', 'basix'),
+        'portfolio'      => __('Basix: Portfolio and pictures', 'basix'),
+        'blog'           => __('Basix: Blog', 'basix'),
+        'faq'            => __('Basix: Questions', 'basix'),
+        'about'          => __('Basix: About', 'basix'),
+    ] as $basix_slug => $basix_label) {
+        register_block_pattern_category('basix-' . $basix_slug, ['label' => $basix_label]);
+    }
 
     register_block_style('core/group', ['name' => 'card', 'label' => __('Card', 'basix')]);
     register_block_style('core/group', ['name' => 'card-bordered', 'label' => __('Bordered card', 'basix')]);
