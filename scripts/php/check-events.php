@@ -316,6 +316,36 @@ wp_set_object_terms( $secret, 'Meetups', BASIX_EVENT_CAT );
 $check( false !== strpos( basix_events_feed_text( array() ), 'CATEGORIES:Meetups' ), 'and so does changing its categories' );
 $check( ! in_array( $secret, wp_list_pluck( basix_events_upcoming_posts( array( 'workshops' ) ), 'ID' ), true ) && in_array( $secret, wp_list_pluck( basix_events_upcoming_posts( array( 'meetups' ) ), 'ID' ), true ), 'the feed can be limited to a category' );
 
+// Structured data: the Event nodes.
+$nodes_for = static function ( int $id ): array {
+	return basix_schema_events( get_post( $id ) );
+};
+$one_node = $nodes_for( $ny );
+$check( 1 === count( $one_node ) && '2026-11-05T19:00:00-05:00' === $one_node[0]['startDate'] && '2026-11-05T20:30:00-05:00' === $one_node[0]['endDate'], 'an event node carries the offset of the event\'s own zone' );
+$all_node = $nodes_for( $day );
+$check( '2026-11-10' === $all_node[0]['startDate'] && '2026-11-10' === $all_node[0]['endDate'], 'an all-day event node has dates only' );
+$check( 3 === count( $nodes_for( $weekly ) ) && count( array_unique( array_column( $nodes_for( $weekly ), 'url' ) ) ) === 3, 'a repeating event gives one node for each coming date, each with its own address' );
+update_post_meta( $plain, 'basix_event_location', 'Online' );
+$online = $nodes_for( $plain );
+$check( 'VirtualLocation' === $online[0]['location']['@type'] && false !== strpos( $online[0]['eventAttendanceMode'], 'Online' ), 'an online event has a virtual location' );
+update_post_meta( $plain, 'basix_event_location', 'Studio 4, Vienna' );
+$check( 'Place' === $nodes_for( $plain )[0]['location']['@type'], 'and a place has an address' );
+
+// What the page head writes, with and without an SEO plugin (which writes everything but events itself).
+$_SERVER['SERVER_NAME'] = 'localhost';
+$GLOBALS['wp_query'] = new WP_Query( array( 'p' => $ny, 'post_type' => 'basix-event' ) );
+$GLOBALS['post']     = get_post( $ny );
+$head = static function (): string {
+	ob_start();
+	do_action( 'wp_head' );
+	return (string) ob_get_clean();
+};
+$page = $head();
+$check( false !== strpos( $page, '"@type":"Organization"' ) && false !== strpos( $page, '"@type":"Event"' ) && false !== strpos( $page, 'property="og:title"' ), 'the head has the organisation, the event and the social tags' );
+define( 'WPSEO_VERSION', '1' );
+$page = $head();
+$check( false !== strpos( $page, '"@type":"Event"' ) && false === strpos( $page, '"@type":"Organization"' ) && false === strpos( $page, 'property="og:title"' ), 'with an SEO plugin only the event is written' );
+
 foreach ( $ids as $id ) {
 	wp_delete_post( $id, true );
 }
