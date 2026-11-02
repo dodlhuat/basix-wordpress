@@ -238,7 +238,12 @@ try {
   await page.click('.cal__btn--today');
   await page.waitForFunction((before) => [...document.querySelectorAll('.cal__event-pill')].map((p) => p.textContent.trim()).sort().join('|') === before, { timeout: 10000 }, thisMonth).catch(() => {});
   check((await pillTitles()) === thisMonth, 'Today returns to the current month');
-  await page.click('.cal__event-pill');
+  // The calendar draws again when its events arrive, so wait until it is quiet and click again if it moved.
+  await page.waitForFunction(() => !document.querySelector('.calendar-wrap').classList.contains('is-loading'), { timeout: 10000 });
+  for (let attempt = 0; attempt < 3; attempt++) {
+    await sleep(300);
+    if (await page.click('.cal__event-pill').then(() => true, () => false)) break;
+  }
   const leftCalendar = await page.waitForFunction(() => !location.pathname.startsWith('/calendar'), { timeout: 10000 }).then(() => true, () => false);
   check(leftCalendar, 'clicking an event in the calendar opens it');
 
@@ -396,6 +401,7 @@ try {
   check(missing.length === 0, `every element reached with Tab shows a focus indicator${missing.length ? ` (missing: ${[...new Set(missing)].join(', ')})` : ''}`);
 } catch (error) {
   failures.push(`stopped early: ${error.message}`);
+  if (process.env.DEBUG) console.error(error.stack);
 } finally {
   await browser.close();
 }
