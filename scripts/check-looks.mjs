@@ -28,7 +28,8 @@ const pages = ['/', '/everything-in-one-post/', '/events/', '/calendar/', '/even
 const rgb = (hex) => `rgb(${[1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)).join(', ')})`;
 
 const original = wp('theme', 'mod', 'get', 'basix_look') || 'basix';
-const browser = await puppeteer.launch({ executablePath: chrome, headless: true });
+const launch = () => puppeteer.launch({ executablePath: chrome, headless: true });
+let browser = await launch();
 const scanPage = async (look, mode, path) => {
   const problems = [];
   const page = await (await browser.createBrowserContext()).newPage();
@@ -80,6 +81,7 @@ try {
             break;
           } catch (error) {
             if (attempt === 3) throw error;
+            if (!browser.connected) browser = await launch(); // Chrome itself went away: start a new one
             await sleep(1000);
           }
         }
