@@ -13,5 +13,6 @@ For people who use the theme:
 For developers:
 
 - [Developing the theme](developers.md): structure, hooks and filters, adding a look or a starter site, the checks
+- [Submission checklist](submission-checklist.md): what to do before, during and after submitting to the WordPress.org theme directory
 
 The plan and status of the project are in [ROADMAP.md](../ROADMAP.md). How it was built, milestone by milestone, with results and limits: [development notes](development-notes.md) (history, kept as written).

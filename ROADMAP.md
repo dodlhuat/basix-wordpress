@@ -36,7 +36,7 @@ The long version of every milestone (results, deviations, limits) is in [docs/de
 
 Needs a person:
 
-- Submit `dist/basix-1.0.0.zip` to the theme directory (the review is manual; the `accessibility-ready` tag adds an accessibility review). Decide whether `basix-events` is also submitted as a plugin.
+- Submit `dist/basix-1.0.0.zip` to the theme directory, following [the checklist](docs/submission-checklist.md) (the review is manual; the `accessibility-ready` tag adds an accessibility review). Decide whether `basix-events` is also submitted as a plugin.
 - Try the integrations by hand once: Contact Form 7, WPForms, Fluent Forms, Gravity Forms, Polylang, WPML and Elementor. The checks use their markup or stand-ins, not the plugins.
 - Import the calendar feed into Apple, Google and Outlook calendars (the checks use an independent parser only).
 - Have a native speaker read the German text, and check Lighthouse on real hosting (it ran against a local server without compression or caching).
