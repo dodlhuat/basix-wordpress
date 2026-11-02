@@ -172,6 +172,16 @@ try {
   await sleep(700);
   check((await trackPosition()) !== before, 'slider moves to the next slide');
   check(await page.$eval('.featured-title a', (e) => getComputedStyle(e).color === 'rgb(255, 255, 255)'), 'featured titles are white on the image');
+  // On a narrow phone the arrows must not cover the category badge or the title.
+  const narrow = await open('/', { width: 360, height: 800 });
+  const covered = await narrow.evaluate(() => {
+    const touches = (a, c) => a && c && !(a.right < c.left || a.left > c.right || a.bottom < c.top || a.top > c.bottom);
+    const slide = [...document.querySelectorAll('.featured .carousel-slide')].find((s) => s.getBoundingClientRect().width > 0 && s.offsetParent);
+    const parts = [slide.querySelector('.badge'), slide.querySelector('.featured-title')].map((e) => e?.getBoundingClientRect());
+    return [...document.querySelectorAll('.featured .carousel-button')].some((b) => parts.some((p) => touches(b.getBoundingClientRect(), p)));
+  });
+  check(!covered, 'on a 360px phone the carousel arrows do not cover the badge or the title');
+  await narrow.close();
 
   // Filters: chips, the modal with the Basix pickers, applying, and the results.
   page = await open('/');

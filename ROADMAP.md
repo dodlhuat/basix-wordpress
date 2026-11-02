@@ -75,7 +75,7 @@ Decisions so far
 - Translation file, `screenshot.png`, readme, starter content.
 - Lighthouse, axe and keyboard audits; full pass in light, dark and mobile.
 - Result: **axe** finds no serious or critical problems on 12 pages in light, dark, desktop and phone (`make check` runs it). **Lighthouse** (mobile and desktop): performance 95-100, accessibility 96-100, best practices 100, SEO 100, layout shift about 0 (`node scripts/audit-lighthouse.mjs`, not part of `make check`). Fixes along the way: accent text colour that meets contrast in both modes, landmark and link names, focusable code and table regions, carousel and calendar labels, a meta description fallback, steady layout and 24px touch targets. **Translation:** `languages/basix.pot` plus a German translation (`de_DE`); the front end and the scripts' strings were checked in German. **Starter content** (pages, menus, widgets, front page settings) shows on fresh sites in the Customizer. Version is 1.0.0, tags are updated, there is a root `README.md`, and a new `screenshot.png`. The built zip installs and activates on a fresh WordPress 7.1 and passes Theme Check without required items or warnings.
-- Limits: the German translation should be read by a native speaker. Lighthouse ran against a local Apache without compression or caching, so real scores depend on hosting. Social (Open Graph) tags are left to SEO plugins. On a narrow phone the carousel arrows can overlap the category badge of a featured slide.
+- Limits: the German translation should be read by a native speaker. Lighthouse ran against a local Apache without compression or caching, so real scores depend on hosting. Social (Open Graph) tags are left to SEO plugins. (The carousel arrows used to overlap the category badge of a featured slide on a phone; fixed, and checked at 360px.)
 
 ### 9. Events (done)
 - An **Event** post type (Events in the admin menu) with start and end date, optional times and a location; no times means an all-day event. The calendar block, the `[basix_calendar]` shortcode and the Calendar page template show events by default, with month, week and agenda views and multi-day events. `source="posts"` (or the block's Source option) shows blog posts by publish date instead. Events have their own page (`/event/<name>/`), and `/events/` lists what is still to come. Events are read from a public endpoint, `/wp-json/basix/v1/events?from=&to=`.
@@ -176,7 +176,7 @@ Where section 7 added polish, this adds what premium buyers expect to find: look
 - A support channel and a refund and licence text.
 - A product page with the screenshots and the demos (this is also where the Lighthouse numbers on real hosting go).
 
-**Smaller leftovers to fold in along the way:** the carousel arrows overlapping the category badge on narrow phones, a native speaker reading the German, and the fixed English texts in some Basix components.
+**Smaller leftovers to fold in along the way:** a native speaker reading the German, and the fixed English texts in some Basix components. (The carousel arrows over the badge on phones, and the picture buttons with an empty alt text that axe listed as minor, are fixed.)
 
 **Risks.** Many looks and patterns multiply what has to be tested, so each one goes through the same editor, axe and frontend checks before it ships. Demo import touches a site's content, so it needs the "undo" and a clear warning. Licensing and updates are a business decision as much as a technical one, and a theme that is sold has to keep the GPL.
 

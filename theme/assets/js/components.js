@@ -193,6 +193,10 @@ export const components = {
                     }
                 } else {
                     image.tabIndex = 0;
+                    // An empty alt marks a picture as decoration, which a button is not: the label below names it.
+                    if (image.getAttribute('alt') === '') {
+                        image.removeAttribute('alt');
+                    }
                     image.setAttribute('role', 'button');
                     image.setAttribute('aria-label', image.alt?.trim() || caption || strings.enlarge || 'View larger image');
                     image.addEventListener('keydown', (event) => {
