@@ -36,6 +36,9 @@ input, textarea, select, button { font-family: inherit; }
 /* Text on an accent-coloured button: the colour that reads best on the chosen accent (Basix would use the page or text colour, which fails on some looks). */
 .button-primary, button.button-primary, [data-theme="dark"] .button-primary, [data-theme="dark"] button.button-primary { color: var(--on-accent); }
 
+/* The "+2" in a crowded calendar day: the readable accent text, since the plain accent can be too dark on a dark page. */
+.cal__event-more { color: var(--accent-text, var(--accent-color)); }
+
 /* Header */
 .site-header {
     position: sticky; top: 0; z-index: 50;
