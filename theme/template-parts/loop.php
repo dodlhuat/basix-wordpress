@@ -1,4 +1,7 @@
-<?php if ( is_post_type_archive( BASIX_EVENT ) || is_tax( BASIX_EVENT_CAT ) ) : ?>
+<?php $basix_event_day = basix_event_day(); ?>
+<?php if ( $basix_event_day ) : ?>
+    <?php get_template_part( 'template-parts/event-day-nav', null, array( 'day' => $basix_event_day ) ); ?>
+<?php elseif ( is_post_type_archive( BASIX_EVENT ) || is_tax( BASIX_EVENT_CAT ) ) : ?>
     <?php get_template_part( 'template-parts/event-categories' ); ?>
 <?php else : ?>
     <?php get_template_part( 'template-parts/filters' ); ?>
@@ -16,6 +19,8 @@
         ?>
     </div></div>
     <?php basix_pagination(); ?>
+<?php elseif ( $basix_event_day ) : ?>
+    <div class="alert alert-info"><?php esc_html_e( 'No events on this day.', 'basix' ); ?></div>
 <?php else : ?>
     <div class="alert alert-info"><?php esc_html_e( 'Nothing found.', 'basix' ); ?></div>
     <?php if ( ! is_search() && ! basix_active_filters() ) get_search_form(); ?>

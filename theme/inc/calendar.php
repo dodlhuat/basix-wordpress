@@ -43,6 +43,7 @@ function basix_calendar_config(): array {
 		'eventsUrl'       => rest_url( 'basix/v1/events' ),
 		'eventCategories' => basix_event_category_list(),
 		'dayUrl'          => $day_url,
+		'eventDayUrl'     => str_replace( '2000-01-01', '{date}', basix_event_day_url( '2000-01-01' ) ),
 		'categories'      => (object) $categories,
 		'firstDay'        => (int) get_option( 'start_of_week' ),
 		'dateLocale'      => str_replace( '_', '-', get_locale() ),

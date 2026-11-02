@@ -606,12 +606,80 @@ add_action(
 	}
 );
 
+// /events/?event_day=2026-11-05 lists what happens on that day, recurring events included.
+add_filter(
+	'query_vars',
+	function ( array $vars ): array {
+		$vars[] = 'event_day';
+		return $vars;
+	}
+);
+
+/**
+ * The day asked for on the events archive (Y-m-d), or an empty string.
+ *
+ * @return string
+ */
+function basix_event_day(): string {
+	if ( ! is_post_type_archive( BASIX_EVENT ) ) {
+		return '';
+	}
+	$day = (string) get_query_var( 'event_day' );
+	return basix_is_date( $day ) ? $day : '';
+}
+
+/**
+ * The address of the events list for one day.
+ *
+ * @param string $day Day (Y-m-d).
+ * @return string
+ */
+function basix_event_day_url( string $day ): string {
+	return add_query_arg( 'event_day', $day, get_post_type_archive_link( BASIX_EVENT ) );
+}
+
+// The day list is not something for search engines to crawl day by day.
+add_filter(
+	'wp_robots',
+	function ( array $robots ): array {
+		if ( basix_event_day() ) {
+			$robots['noindex'] = true;
+			$robots['follow']  = true;
+		}
+		return $robots;
+	}
+);
+
+add_filter(
+	'get_the_archive_title',
+	function ( string $title ): string {
+		$day = basix_event_day();
+		if ( ! $day ) {
+			return $title;
+		}
+		/* translators: %s: a date, for example November 5, 2026. */
+		return sprintf( __( 'Events on %s', 'basix' ), wp_date( get_option( 'date_format' ), strtotime( $day . ' 12:00:00 UTC' ), new DateTimeZone( 'UTC' ) ) );
+	}
+);
+
 // The events archive and its categories list what is still to come (or running now), soonest first. A repeating
 // event appears once, by its next date.
 add_action(
 	'pre_get_posts',
 	function ( WP_Query $query ) {
 		if ( is_admin() || ! $query->is_main_query() || ! ( $query->is_post_type_archive( BASIX_EVENT ) || $query->is_tax( BASIX_EVENT_CAT ) ) ) {
+			return;
+		}
+		$day = $query->is_post_type_archive( BASIX_EVENT ) ? (string) $query->get( 'event_day' ) : '';
+		if ( basix_is_date( $day ) ) {
+			// One day: the events with a date on it (a repeating event once), in the order they start.
+			$ids = array();
+			foreach ( basix_event_occurrences_between( $day, $day ) as $occurrence ) {
+				$ids[ $occurrence['event']->ID ] = $occurrence['event']->ID;
+			}
+			$query->set( 'post__in', $ids ? array_values( $ids ) : array( 0 ) );
+			$query->set( 'orderby', 'post__in' );
+			$query->set( 'nopaging', true );
 			return;
 		}
 		$query->set(

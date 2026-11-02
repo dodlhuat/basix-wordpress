@@ -408,9 +408,10 @@ export const components = {
                 onEventClick: (event) => {
                     location.href = links.get(event.id) ?? '#';
                 },
-                // A day of posts opens that day's archive; events have no such page.
+                // A day opens its list: the day's posts, or the events of that day.
                 onDayClick: (date) => {
                     if (config.source !== 'posts') {
+                        location.href = config.eventDayUrl.replace('{date}', `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`);
                         return;
                     }
                     location.href = config.dayUrl.replace('{y}', date.getFullYear()).replace('{m}', pad(date.getMonth() + 1)).replace('{d}', pad(date.getDate()));

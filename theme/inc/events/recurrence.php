@@ -440,6 +440,13 @@ function basix_event_shown_occurrence( int $post_id ): ?array {
 			}
 		}
 	}
+	// On a day's list: the date of that day.
+	$day = basix_event_day();
+	if ( $day ) {
+		foreach ( basix_event_occurrences( $post_id, $day, $day ) as $occurrence ) {
+			return $occurrence;
+		}
+	}
 	return basix_event_next( $post_id );
 }
 
