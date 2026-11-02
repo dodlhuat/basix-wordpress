@@ -1,0 +1,34 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Editorial",
+	"settings": {
+		"custom": {
+			"basix": {
+				"order": 1,
+				"description": "Warm paper, terracotta accent and serif type, for long reading.",
+				"light": {
+					"background": "#FBF8F3",
+					"surface": "#EFE9DF",
+					"text": "#231F1A",
+					"textSecondary": "#5C554B",
+					"divider": "#DDD4C6",
+					"accent": "#B4491F"
+				},
+				"dark": {
+					"background": "#17140F",
+					"surface": "#211D17",
+					"text": "#F1EBE0",
+					"textSecondary": "#B9AFA0",
+					"divider": "#3A332A",
+					"accent": "#B84A20"
+				},
+				"radius": "sharp",
+				"fonts": {
+					"heading": "fraunces",
+					"body": "source-serif-4"
+				}
+			}
+		}
+	}
+}

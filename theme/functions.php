@@ -8,6 +8,7 @@ const BASIX_VENDOR = 'assets/vendor/basix';
 require_once __DIR__ . '/inc/class-basix-dropdown-walker.php';
 require_once __DIR__ . '/inc/class-basix-drawer-walker.php';
 require_once __DIR__ . '/inc/menus.php';
+require_once __DIR__ . '/inc/looks.php';
 require_once __DIR__ . '/inc/customizer.php';
 require_once __DIR__ . '/inc/docs.php';
 require_once __DIR__ . '/inc/post-features.php';

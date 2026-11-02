@@ -1,0 +1,34 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Paper",
+	"settings": {
+		"custom": {
+			"basix": {
+				"order": 4,
+				"description": "Black on white, square corners and a serif heading font.",
+				"light": {
+					"background": "#FFFFFF",
+					"surface": "#F3F3F3",
+					"text": "#111111",
+					"textSecondary": "#545454",
+					"divider": "#DCDCDC",
+					"accent": "#111111"
+				},
+				"dark": {
+					"background": "#0A0A0A",
+					"surface": "#151515",
+					"text": "#F2F2F2",
+					"textSecondary": "#AAAAAA",
+					"divider": "#333333",
+					"accent": "#E8E8E8"
+				},
+				"radius": "none",
+				"fonts": {
+					"heading": "source-serif-4",
+					"body": "inter"
+				}
+			}
+		}
+	}
+}

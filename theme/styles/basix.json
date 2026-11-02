@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Basix",
+	"settings": {
+		"custom": {
+			"basix": {
+				"order": 0,
+				"description": "The shipped look: calm blue, Outfit type.",
+				"light": {
+					"accent": "#3d63dd"
+				},
+				"dark": {
+					"accent": "#1971a6"
+				},
+				"radius": "default",
+				"fonts": {
+					"heading": "outfit",
+					"body": "outfit"
+				}
+			}
+		}
+	}
+}

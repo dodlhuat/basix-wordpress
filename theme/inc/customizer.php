@@ -5,17 +5,6 @@
  * @package basix
  */
 
-/** The accent colours Basix itself ships with. */
-const BASIX_SHIPPED_ACCENT_LIGHT = '#3d63dd';
-const BASIX_SHIPPED_ACCENT_DARK  = '#1b7bb4';
-
-/**
- * The defaults offered in the Customizer. The dark one is a little deeper than Basix's own, so buttons
- * with light text on it meet the 4.5:1 contrast ratio (WCAG AA).
- */
-const BASIX_DEFAULT_ACCENT_LIGHT = '#3d63dd';
-const BASIX_DEFAULT_ACCENT_DARK  = '#1971a6';
-
 /**
  * Settings that are limited to a fixed set of values.
  *
@@ -28,6 +17,10 @@ function basix_choices(): array {
 		'basix_sidebar_position' => array( 'right', 'left', 'none' ),
 		'basix_card_layout'      => array( 'grid', 'list', 'magazine' ),
 		'basix_hero_style'       => array( 'card', 'minimal', 'none' ),
+		'basix_look'             => array_keys( basix_looks() ),
+		'basix_font_heading'     => array_merge( array( 'look' ), array_keys( basix_fonts() ) ),
+		'basix_font_body'        => array_merge( array( 'look' ), array_keys( basix_fonts() ) ),
+		'basix_text_size'        => array( 'small', 'medium', 'large' ),
 	);
 }
 
@@ -141,7 +134,7 @@ add_action(
 		$wp_customize->add_setting(
 			'basix_accent_light',
 			array(
-				'default'           => BASIX_DEFAULT_ACCENT_LIGHT,
+				'default'           => basix_look()['light']['accent'] ?? '#3d63dd',
 				'sanitize_callback' => 'sanitize_hex_color',
 			)
 		);
@@ -150,15 +143,16 @@ add_action(
 				$wp_customize,
 				'basix_accent_light',
 				array(
-					'section' => 'basix_colors',
-					'label'   => __( 'Accent colour (light mode)', 'basix' ),
+					'section'     => 'basix_colors',
+					'label'       => __( 'Accent colour (light mode)', 'basix' ),
+					'description' => __( 'Leave it as it is to use the look\'s own accent colour.', 'basix' ),
 				)
 			)
 		);
 		$wp_customize->add_setting(
 			'basix_accent_dark',
 			array(
-				'default'           => BASIX_DEFAULT_ACCENT_DARK,
+				'default'           => basix_look()['dark']['accent'] ?? '#1971a6',
 				'sanitize_callback' => 'sanitize_hex_color',
 			)
 		);
@@ -397,11 +391,13 @@ function basix_readable_on( string $hex ): string {
  *
  * @param string $accent Accent colour.
  * @param bool   $dark   Whether this is for dark mode.
+ * @param string $page    Page colour (Basix's own when empty).
+ * @param string $surface Surface colour (Basix's own when empty).
  * @return string
  */
-function basix_accent_text( string $accent, bool $dark ): string {
-	$page      = $dark ? '#111113' : '#f9f9fb';
-	$surface   = $dark ? '#19191b' : '#e7e8ec';
+function basix_accent_text( string $accent, bool $dark, string $page = '', string $surface = '' ): string {
+	$page      = $page ? $page : ( $dark ? '#111113' : '#f9f9fb' );
+	$surface   = $surface ? $surface : ( $dark ? '#19191b' : '#e7e8ec' );
 	$surfaces  = array( $page, $surface, basix_mix( $accent, $surface, 0.2 ), basix_mix( $accent, $page, 0.12 ) );
 	$towards   = $dark ? '#ffffff' : '#000000';
 	for ( $step = 0; $step <= 20; $step++ ) {
@@ -412,56 +408,6 @@ function basix_accent_text( string $accent, bool $dark ): string {
 	}
 	return $towards;
 }
-
-/**
- * CSS that applies the chosen accent colours. Empty when both are still what Basix ships.
- *
- * Each mode's rule is scoped so it cannot leak into the other one, whether the mode comes from the
- * data-theme attribute or (before JavaScript runs) from the visitor's device. Link and badge text uses a
- * separate, always readable version of the accent (see basix_accent_text()).
- *
- * @return string
- */
-function basix_accent_css(): string {
-	$light = sanitize_hex_color( (string) get_theme_mod( 'basix_accent_light', BASIX_DEFAULT_ACCENT_LIGHT ) );
-	$dark  = sanitize_hex_color( (string) get_theme_mod( 'basix_accent_dark', BASIX_DEFAULT_ACCENT_DARK ) );
-	$css   = '';
-
-	if ( $light && strtolower( $light ) !== BASIX_SHIPPED_ACCENT_LIGHT ) {
-		$vars = sprintf( '--accent-color:%1$s;--on-accent:%2$s;--accent-text:%3$s;', $light, basix_readable_on( $light ), basix_accent_text( $light, false ) );
-		$css .= ':root[data-theme="light"]{' . $vars . '}';
-		$css .= '@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){' . $vars . '}}';
-	}
-	if ( $dark && strtolower( $dark ) !== BASIX_SHIPPED_ACCENT_DARK ) {
-		$vars = sprintf( '--accent-color:%1$s;--on-accent:%2$s;--accent-text:%3$s;', $dark, basix_readable_on( $dark ), basix_accent_text( $dark, true ) );
-		$css .= ':root[data-theme="dark"]{' . $vars . '}';
-		$css .= '@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){' . $vars . '}}';
-	}
-	return $css;
-}
-
-add_action(
-	'wp_enqueue_scripts',
-	function () {
-		$css = basix_accent_css();
-		if ( $css ) {
-			wp_add_inline_style( 'basix-theme', $css );
-		}
-	},
-	20
-);
-
-// The block editor shows the same accent colours.
-add_filter(
-	'block_editor_settings_all',
-	function ( array $settings ): array {
-		$css = basix_accent_css();
-		if ( $css ) {
-			$settings['styles'][] = array( 'css' => $css );
-		}
-		return $settings;
-	}
-);
 
 // The post list layout is a class on the page, so the stylesheet can switch it.
 add_filter(

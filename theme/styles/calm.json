@@ -1,0 +1,34 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Calm",
+	"settings": {
+		"custom": {
+			"basix": {
+				"order": 3,
+				"description": "Soft greens, rounded corners and friendly Inter type.",
+				"light": {
+					"background": "#F6FAF7",
+					"surface": "#E6EFE9",
+					"text": "#1B2A22",
+					"textSecondary": "#475C50",
+					"divider": "#CCDBD1",
+					"accent": "#1F7A55"
+				},
+				"dark": {
+					"background": "#0F1713",
+					"surface": "#16211B",
+					"text": "#E6F0EA",
+					"textSecondary": "#A9BDB0",
+					"divider": "#2B3C32",
+					"accent": "#24805d"
+				},
+				"radius": "round",
+				"fonts": {
+					"heading": "inter",
+					"body": "inter"
+				}
+			}
+		}
+	}
+}
