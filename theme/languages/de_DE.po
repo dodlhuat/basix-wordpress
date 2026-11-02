@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Basix 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/basix\n"
-"POT-Creation-Date: 2026-11-02T13:22:58+00:00\n"
+"POT-Creation-Date: 2026-11-02T13:48:08+00:00\n"
 "PO-Revision-Date: 2026-10-28 12:00+0000\n"
 "Last-Translator: Andi Bauer\n"
 "Language-Team: German\n"
@@ -101,153 +101,209 @@ msgid "Nothing published yet."
 msgstr "Noch nichts veröffentlicht."
 
 #: functions.php:64
+msgid "Basix: Hero"
+msgstr "Basix: Hero"
+
+#: functions.php:65
+msgid "Basix: Features"
+msgstr "Basix: Funktionen"
+
+#: functions.php:66
+msgid "Basix: Pricing"
+msgstr "Basix: Preise"
+
+#: functions.php:67
+msgid "Basix: Testimonials"
+msgstr "Basix: Stimmen"
+
+#: functions.php:68
+msgid "Basix: Team"
+msgstr "Basix: Team"
+
+#: functions.php:69
+msgid "Basix: Logos"
+msgstr "Basix: Logos"
+
+#: functions.php:70
+msgid "Basix: Numbers"
+msgstr "Basix: Zahlen"
+
+#: functions.php:71
+msgid "Basix: Call to action"
+msgstr "Basix: Handlungsaufruf"
+
+#: functions.php:72
+msgid "Basix: Newsletter"
+msgstr "Basix: Newsletter"
+
+#: functions.php:73
+msgid "Basix: Contact"
+msgstr "Basix: Kontakt"
+
+#: functions.php:74
+msgid "Basix: Portfolio and pictures"
+msgstr "Basix: Portfolio und Bilder"
+
+#: functions.php:75
+msgid "Basix: Blog"
+msgstr "Basix: Blog"
+
+#: functions.php:76
+msgid "Basix: Questions"
+msgstr "Basix: Fragen"
+
+#: functions.php:77
+msgid "Basix: About"
+msgstr "Basix: Über uns"
+
+#: functions.php:82
 msgid "Card"
 msgstr "Karte"
 
-#: functions.php:65
+#: functions.php:83
 msgid "Bordered card"
 msgstr "Karte mit Rahmen"
 
-#: functions.php:66
+#: functions.php:84
 msgid "Lead text"
 msgstr "Einleitungstext"
 
-#: functions.php:67
+#: functions.php:85
 msgid "Sortable"
 msgstr "Sortierbar"
 
-#: functions.php:68
+#: functions.php:86
 msgid "Masonry"
 msgstr "Mauerwerk"
 
-#: functions.php:69
+#: functions.php:87
 msgid "Framed"
 msgstr "Mit Rahmen"
 
-#: functions.php:70
+#: functions.php:88
 msgid "Soft shadow"
 msgstr "Weicher Schatten"
 
-#: functions.php:71
+#: functions.php:89
 msgid "Circle"
 msgstr "Kreis"
 
-#: functions.php:90 inc/customizer.php:189 sidebar.php:3
+#: functions.php:108 inc/customizer.php:189 sidebar.php:3
 msgid "Sidebar"
 msgstr "Seitenleiste"
 
-#: functions.php:92
+#: functions.php:110
 msgid "Shown next to blog posts and archives."
 msgstr "Wird neben Beiträgen und Archiven angezeigt."
 
 #. translators: %d: column number.
-#: functions.php:104
+#: functions.php:122
 #, php-format
 msgid "Footer column %d"
 msgstr "Footer-Spalte %d"
 
-#: functions.php:108
+#: functions.php:126
 msgid "Shown in the footer."
 msgstr "Wird im Footer angezeigt."
 
-#: functions.php:148
+#: functions.php:166
 msgid "Category"
 msgstr "Kategorie"
 
-#: functions.php:149
+#: functions.php:167
 msgid "Tag"
 msgstr "Schlagwort"
 
-#: functions.php:150
+#: functions.php:168
 msgid "Author"
 msgstr "Autor"
 
-#: functions.php:151 functions.php:153 functions.php:154
+#: functions.php:169 functions.php:171 functions.php:172
 msgid "Archive"
 msgstr "Archiv"
 
-#: functions.php:152 inc/events/events.php:59 inc/events/events.php:70
+#: functions.php:170 inc/events/events.php:59 inc/events/events.php:70
 #: inc/schema.php:114 inc/schema.php:137 inc/schema.php:140
 msgid "Events"
 msgstr "Veranstaltungen"
 
 #. translators: %s: the event's time in the site's time zone.
-#: functions.php:221
+#: functions.php:239
 #, php-format
 msgid "%s in site time"
 msgstr "%s in der Zeit der Website"
 
-#: functions.php:259 inc/schema.php:93
+#: functions.php:277 inc/schema.php:93
 msgid "Home"
 msgstr "Startseite"
 
-#: functions.php:273
+#: functions.php:291
 msgid "Not found"
 msgstr "Nicht gefunden"
 
-#: functions.php:275 inc/schema.php:151
+#: functions.php:293 inc/schema.php:151
 msgid "Search results"
 msgstr "Suchergebnisse"
 
-#: functions.php:283
+#: functions.php:301
 msgid "Breadcrumb"
 msgstr "Brotkrumennavigation"
 
-#: functions.php:297
+#: functions.php:315
 msgid "Pagination"
 msgstr "Seitennavigation"
 
-#: functions.php:334
+#: functions.php:352
 msgid "Your comment is awaiting moderation."
 msgstr "Dein Kommentar wartet auf Freischaltung."
 
-#: functions.php:371
+#: functions.php:389
 msgid "Your comment could not be submitted"
 msgstr "Dein Kommentar konnte nicht gesendet werden"
 
-#: functions.php:373
+#: functions.php:391
 msgid "Go back"
 msgstr "Zurück"
 
-#: functions.php:389
+#: functions.php:407
 msgid "Please fill out this field."
 msgstr "Bitte fülle dieses Feld aus."
 
-#: functions.php:390
+#: functions.php:408
 msgid "Please enter a valid email address."
 msgstr "Bitte gib eine gültige E-Mail-Adresse ein."
 
-#: functions.php:391
+#: functions.php:409
 msgid "Please enter a valid URL."
 msgstr "Bitte gib eine gültige URL ein."
 
-#: functions.php:392
+#: functions.php:410
 msgid "View larger image"
 msgstr "Bild vergrößern"
 
-#: functions.php:393
+#: functions.php:411
 msgid "Open image"
 msgstr "Bild öffnen"
 
-#: functions.php:394
+#: functions.php:412
 msgid "Code"
 msgstr "Code"
 
-#: functions.php:395
+#: functions.php:413
 msgid "Table"
 msgstr "Tabelle"
 
-#: functions.php:396
+#: functions.php:414
 msgid "Featured posts"
 msgstr "Ausgewählte Beiträge"
 
 #. translators: 1: number of this slide, 2: number of slides.
-#: functions.php:398
+#: functions.php:416
 #, php-format
 msgid "Slide %1$d of %2$d"
 msgstr "Folie %1$d von %2$d"
 
-#: functions.php:410
+#: functions.php:428
 msgid ""
 "This content is password-protected. To view it, please enter the password "
 "below."
@@ -255,11 +311,11 @@ msgstr ""
 "Dieser Inhalt ist passwortgeschützt. Gib unten das Passwort ein, um ihn zu "
 "sehen."
 
-#: functions.php:412
+#: functions.php:430
 msgid "Password"
 msgstr "Passwort"
 
-#: functions.php:415
+#: functions.php:433
 msgctxt "post password form"
 msgid "Enter"
 msgstr "Öffnen"
@@ -853,11 +909,12 @@ msgstr "Der mitgelieferte Look: ruhiges Blau, Schrift Outfit."
 
 #: inc/looks.php:87
 msgid "Editorial"
-msgstr ""
+msgstr "Editorial"
 
 #: inc/looks.php:87
 msgid "Warm paper, terracotta accent and serif type, for long reading."
-msgstr "Warmes Papier, Terrakotta als Akzent und Serifenschrift, zum langen Lesen."
+msgstr ""
+"Warmes Papier, Terrakotta als Akzent und Serifenschrift, zum langen Lesen."
 
 #: inc/looks.php:88
 msgid "Bold"
@@ -865,7 +922,8 @@ msgstr "Kräftig"
 
 #: inc/looks.php:88
 msgid "High contrast, violet accent and a geometric heading font."
-msgstr "Hoher Kontrast, Violett als Akzent und eine geometrische Überschriftschrift."
+msgstr ""
+"Hoher Kontrast, Violett als Akzent und eine geometrische Überschriftschrift."
 
 #: inc/looks.php:89
 msgid "Calm"
@@ -881,7 +939,9 @@ msgstr "Papier"
 
 #: inc/looks.php:90
 msgid "Black on white, square corners and a serif heading font."
-msgstr "Schwarz auf Weiß, ohne abgerundete Ecken und mit einer Serifenschrift für Überschriften."
+msgstr ""
+"Schwarz auf Weiß, ohne abgerundete Ecken und mit einer Serifenschrift für "
+"Überschriften."
 
 #: inc/looks.php:358 inc/looks.php:375
 msgid "Look"
@@ -891,7 +951,9 @@ msgstr "Look"
 msgid ""
 "A look sets the colours (light and dark), corners and fonts together. "
 "Everything below can still be changed on top of it."
-msgstr "Ein Look legt Farben (hell und dunkel), Ecken und Schriften gemeinsam fest. Alles darunter lässt sich zusätzlich ändern."
+msgstr ""
+"Ein Look legt Farben (hell und dunkel), Ecken und Schriften gemeinsam fest. "
+"Alles darunter lässt sich zusätzlich ändern."
 
 #: inc/looks.php:381
 msgid "Follow the look's font"
@@ -1093,6 +1155,224 @@ msgstr "Lade weitere …"
 msgid "Landing page"
 msgstr "Landingpage"
 
+#: patterns/about-split.php
+msgctxt "Pattern title"
+msgid "About, picture and text"
+msgstr "Über uns, Bild und Text"
+
+#: patterns/about-split.php
+msgctxt "Pattern description"
+msgid "A picture beside a short story about you."
+msgstr "Ein Bild neben einer kurzen Geschichte über euch."
+
+#: patterns/about-split.php:19
+msgctxt "About pattern"
+msgid "About us"
+msgstr "Über uns"
+
+#: patterns/about-split.php:23
+msgctxt "About pattern"
+msgid "A small team with a clear idea"
+msgstr "Ein kleines Team mit einer klaren Idee"
+
+#: patterns/about-split.php:27
+msgctxt "About pattern"
+msgid ""
+"Tell your story in a few short paragraphs: why you started, what you care "
+"about and who you do it for."
+msgstr "Erzähle deine Geschichte in wenigen kurzen Absätzen: warum du angefangen hast, was dir wichtig ist und für wen du es tust."
+
+#: patterns/about-split.php:32
+msgctxt "About pattern"
+msgid "Meet the team"
+msgstr "Das Team kennenlernen"
+
+#: patterns/blog-latest.php
+msgctxt "Pattern title"
+msgid "Latest posts"
+msgstr "Neueste Beiträge"
+
+#: patterns/blog-latest.php
+msgctxt "Pattern description"
+msgid "The three newest posts as cards."
+msgstr "Die drei neuesten Beiträge als Karten."
+
+#: patterns/blog-list.php
+msgctxt "Pattern title"
+msgid "Latest posts as a list"
+msgstr "Neueste Beiträge als Liste"
+
+#: patterns/blog-list.php
+msgctxt "Pattern description"
+msgid "The five newest posts as a simple list."
+msgstr "Die fünf neuesten Beiträge als einfache Liste."
+
+#: patterns/contact-cta.php
+msgctxt "Pattern title"
+msgid "Contact with a button"
+msgstr "Kontakt mit Schaltfläche"
+
+#: patterns/contact-cta.php
+msgctxt "Pattern description"
+msgid "A friendly invitation to write, with a button."
+msgstr "Eine freundliche Einladung zu schreiben, mit Schaltfläche."
+
+#: patterns/contact-cta.php:12
+msgctxt "Contact pattern"
+msgid "Questions? Write to us."
+msgstr "Fragen? Schreib uns."
+
+#: patterns/contact-cta.php:16
+msgctxt "Contact pattern"
+msgid "We answer within one working day."
+msgstr "Wir antworten innerhalb eines Werktags."
+
+#: patterns/contact-cta.php:21
+msgctxt "Contact pattern"
+msgid "Send an email"
+msgstr "E-Mail senden"
+
+#: patterns/contact-details.php
+msgctxt "Pattern title"
+msgid "Contact details"
+msgstr "Kontaktdaten"
+
+#: patterns/contact-details.php
+msgctxt "Pattern description"
+msgid "Address, email and opening hours in three columns."
+msgstr "Adresse, E-Mail und Öffnungszeiten in drei Spalten."
+
+#: patterns/contact-details.php:13
+msgctxt "Contact pattern"
+msgid "Visit"
+msgstr "Besuch"
+
+#: patterns/contact-details.php:17
+msgctxt "Contact pattern"
+msgid "Example Street 1"
+msgstr "Beispielstraße 1"
+
+#: patterns/contact-details.php:17
+msgctxt "Contact pattern"
+msgid "1010 Vienna"
+msgstr "1010 Wien"
+
+#: patterns/contact-details.php:23
+msgctxt "Contact pattern"
+msgid "Write"
+msgstr "Schreiben"
+
+#: patterns/contact-details.php:27
+msgctxt "Contact pattern"
+msgid "hello@example.com"
+msgstr "hello@example.com"
+
+#: patterns/contact-details.php:27
+msgctxt "Contact pattern"
+msgid "+43 1 234 5678"
+msgstr "+43 1 234 5678"
+
+#: patterns/contact-details.php:33
+msgctxt "Contact pattern"
+msgid "Hours"
+msgstr "Öffnungszeiten"
+
+#: patterns/contact-details.php:37
+msgctxt "Contact pattern"
+msgid "Monday to Friday"
+msgstr "Montag bis Freitag"
+
+#: patterns/contact-details.php:37
+msgctxt "Contact pattern"
+msgid "9:00 to 17:00"
+msgstr "9:00 bis 17:00"
+
+#: patterns/cta-band.php
+msgctxt "Pattern title"
+msgid "Call to action band"
+msgstr "Handlungsaufruf als Band"
+
+#: patterns/cta-band.php
+msgctxt "Pattern description"
+msgid "A short line with one button on a tinted band."
+msgstr "Eine kurze Zeile mit einer Schaltfläche auf einem getönten Band."
+
+#: patterns/cta-band.php:12
+msgctxt "Call to action pattern"
+msgid "Start your project today."
+msgstr "Starte heute dein Projekt."
+
+#: patterns/cta-band.php:17
+msgctxt "Call to action pattern"
+msgid "Get in touch"
+msgstr "Kontakt aufnehmen"
+
+#: patterns/cta-newsletter.php
+msgctxt "Pattern title"
+msgid "Newsletter sign-up"
+msgstr "Newsletter-Anmeldung"
+
+#: patterns/cta-newsletter.php
+msgctxt "Pattern description"
+msgid ""
+"A headline and an email field. Replace the form with your newsletter plugin."
+msgstr "Eine Überschrift und ein E-Mail-Feld. Ersetze das Formular durch das deines Newsletter-Plugins."
+
+#: patterns/cta-newsletter.php:12
+msgctxt "Call to action pattern"
+msgid "Stay in the loop"
+msgstr "Bleib auf dem Laufenden"
+
+#: patterns/cta-newsletter.php:16
+msgctxt "Call to action pattern"
+msgid "One short email when something new is published. No spam."
+msgstr "Eine kurze E-Mail, wenn etwas Neues erscheint. Kein Spam."
+
+#: patterns/cta-newsletter.php:20
+msgctxt "Call to action pattern"
+msgid "you@example.com"
+msgstr "du@beispiel.de"
+
+#: patterns/cta-newsletter.php:20
+msgctxt "Call to action pattern"
+msgid "Email address"
+msgstr "E-Mail-Adresse"
+
+#: patterns/cta-newsletter.php:20
+msgctxt "Call to action pattern"
+msgid "Subscribe"
+msgstr "Abonnieren"
+
+#: patterns/cta-split.php
+msgctxt "Pattern title"
+msgid "Call to action, text and button"
+msgstr "Handlungsaufruf mit Text und Schaltfläche"
+
+#: patterns/cta-split.php
+msgctxt "Pattern description"
+msgid "A headline on the left and a button on the right."
+msgstr "Eine Überschrift links und eine Schaltfläche rechts."
+
+#: patterns/cta-split.php:14
+msgctxt "Call to action pattern"
+msgid "Ready when you are"
+msgstr "Bereit, wenn du es bist"
+
+#: patterns/cta-split.php:18
+msgctxt "Call to action pattern"
+msgid "One sentence that makes the next step easy."
+msgstr "Ein Satz, der den nächsten Schritt leicht macht."
+
+#: patterns/cta-split.php:25
+msgctxt "Call to action pattern"
+msgid "Get started"
+msgstr "Loslegen"
+
+#: patterns/cta-split.php:29
+msgctxt "Call to action pattern"
+msgid "Talk to us"
+msgstr "Sprich mit uns"
+
 #: patterns/cta.php
 msgctxt "Pattern title"
 msgid "Call to action"
@@ -1119,6 +1399,48 @@ msgctxt "CTA pattern"
 msgid "Get in touch"
 msgstr "Kontakt aufnehmen"
 
+#: patterns/faq-columns.php
+msgctxt "Pattern title"
+msgid "FAQ with a heading beside"
+msgstr "FAQ mit Überschrift daneben"
+
+#: patterns/faq-columns.php
+msgctxt "Pattern description"
+msgid "A heading and intro on the left, questions on the right."
+msgstr "Überschrift und Einleitung links, Fragen rechts."
+
+#: patterns/faq-columns.php:13
+msgctxt "FAQ pattern"
+msgid "Questions?"
+msgstr "Fragen?"
+
+#: patterns/faq-columns.php:17
+msgctxt "FAQ pattern"
+msgid "The short answers to what people ask most."
+msgstr "Die kurzen Antworten auf das, was am häufigsten gefragt wird."
+
+#: patterns/faq-columns.php:23 patterns/faq.php:16
+msgctxt "FAQ pattern"
+msgid "What is this about?"
+msgstr "Worum geht es hier?"
+
+#: patterns/faq-columns.php:24 patterns/faq-columns.php:30
+#: patterns/faq-columns.php:36 patterns/faq.php:17 patterns/faq.php:23
+#: patterns/faq.php:29
+msgctxt "FAQ pattern"
+msgid "Give a short, direct answer."
+msgstr "Gib eine kurze, direkte Antwort."
+
+#: patterns/faq-columns.php:29 patterns/faq.php:22
+msgctxt "FAQ pattern"
+msgid "How do I get started?"
+msgstr "Wie fange ich an?"
+
+#: patterns/faq-columns.php:35 patterns/faq.php:28
+msgctxt "FAQ pattern"
+msgid "Can I change my mind later?"
+msgstr "Kann ich es mir später anders überlegen?"
+
 #: patterns/faq.php
 msgctxt "Pattern title"
 msgid "FAQ"
@@ -1134,25 +1456,150 @@ msgctxt "FAQ pattern"
 msgid "Frequently asked questions"
 msgstr "Häufig gestellte Fragen"
 
-#: patterns/faq.php:16
-msgctxt "FAQ pattern"
-msgid "What is this about?"
-msgstr "Worum geht es hier?"
+#: patterns/features-grid.php
+msgctxt "Pattern title"
+msgid "Features in a grid"
+msgstr "Funktionen im Raster"
 
-#: patterns/faq.php:17 patterns/faq.php:23 patterns/faq.php:29
-msgctxt "FAQ pattern"
-msgid "Give a short, direct answer."
-msgstr "Gib eine kurze, direkte Antwort."
+#: patterns/features-grid.php
+msgctxt "Pattern description"
+msgid "Four features in two columns, each with a short heading and text."
+msgstr "Vier Funktionen in zwei Spalten, jede mit kurzer Überschrift und Text."
 
-#: patterns/faq.php:22
-msgctxt "FAQ pattern"
-msgid "How do I get started?"
-msgstr "Wie fange ich an?"
+#: patterns/features-grid.php:13 patterns/features.php:13
+msgctxt "Features pattern"
+msgid "Fast by default"
+msgstr "Von Haus aus schnell"
 
-#: patterns/faq.php:28
-msgctxt "FAQ pattern"
-msgid "Can I change my mind later?"
-msgstr "Kann ich es mir später anders überlegen?"
+#: patterns/features-grid.php:17 patterns/features.php:17
+msgctxt "Features pattern"
+msgid "Describe the first benefit in a sentence or two."
+msgstr "Beschreibe den ersten Vorteil in ein oder zwei Sätzen."
+
+#: patterns/features-grid.php:23 patterns/features.php:23
+msgctxt "Features pattern"
+msgid "Easy to use"
+msgstr "Einfach zu bedienen"
+
+#: patterns/features-grid.php:27 patterns/features.php:27
+msgctxt "Features pattern"
+msgid "Describe the second benefit in a sentence or two."
+msgstr "Beschreibe den zweiten Vorteil in ein oder zwei Sätzen."
+
+#: patterns/features-grid.php:33 patterns/features.php:33
+msgctxt "Features pattern"
+msgid "Made to last"
+msgstr "Für die Ewigkeit gemacht"
+
+#: patterns/features-grid.php:37 patterns/features.php:37
+msgctxt "Features pattern"
+msgid "Describe the third benefit in a sentence or two."
+msgstr "Beschreibe den dritten Vorteil in ein oder zwei Sätzen."
+
+#: patterns/features-grid.php:43
+msgctxt "Features pattern"
+msgid "Supported"
+msgstr "Betreut"
+
+#: patterns/features-grid.php:47
+msgctxt "Features pattern"
+msgid "Describe the fourth benefit in a sentence or two."
+msgstr "Beschreibe den vierten Vorteil in ein oder zwei Sätzen."
+
+#: patterns/features-numbered.php
+msgctxt "Pattern title"
+msgid "Numbered features"
+msgstr "Nummerierte Funktionen"
+
+#: patterns/features-numbered.php
+msgctxt "Pattern description"
+msgid "Three features with large numbers."
+msgstr "Drei Funktionen mit großen Zahlen."
+
+#: patterns/features-numbered.php:13
+msgctxt "Features pattern"
+msgid "01"
+msgstr "01"
+
+#: patterns/features-numbered.php:17
+msgctxt "Features pattern"
+msgid "Plan"
+msgstr "Planen"
+
+#: patterns/features-numbered.php:21
+msgctxt "Features pattern"
+msgid "Describe the first part of what you offer."
+msgstr "Beschreibe den ersten Teil deines Angebots."
+
+#: patterns/features-numbered.php:27
+msgctxt "Features pattern"
+msgid "02"
+msgstr "02"
+
+#: patterns/features-numbered.php:31
+msgctxt "Features pattern"
+msgid "Build"
+msgstr "Bauen"
+
+#: patterns/features-numbered.php:35
+msgctxt "Features pattern"
+msgid "Describe the second part of what you offer."
+msgstr "Beschreibe den zweiten Teil deines Angebots."
+
+#: patterns/features-numbered.php:41
+msgctxt "Features pattern"
+msgid "03"
+msgstr "03"
+
+#: patterns/features-numbered.php:45
+msgctxt "Features pattern"
+msgid "Launch"
+msgstr "Starten"
+
+#: patterns/features-numbered.php:49
+msgctxt "Features pattern"
+msgid "Describe the third part of what you offer."
+msgstr "Beschreibe den dritten Teil deines Angebots."
+
+#: patterns/features-split.php
+msgctxt "Pattern title"
+msgid "Features beside a picture"
+msgstr "Funktionen neben einem Bild"
+
+#: patterns/features-split.php
+msgctxt "Pattern description"
+msgid "A list of benefits next to a picture."
+msgstr "Eine Liste von Vorteilen neben einem Bild."
+
+#: patterns/features-split.php:19
+msgctxt "Features pattern"
+msgid "Why choose us"
+msgstr "Warum wir"
+
+#: patterns/features-split.php:23
+msgctxt "Features pattern"
+msgid "Everything you need, nothing you do not"
+msgstr "Alles, was du brauchst, und nichts darüber hinaus"
+
+#: patterns/features-split.php:28
+msgctxt "Features pattern"
+msgid "A clear first benefit"
+msgstr "Ein klarer erster Vorteil"
+
+#: patterns/features-split.php:32
+msgctxt "Features pattern"
+msgid "A second benefit that matters"
+msgstr "Ein zweiter Vorteil, der zählt"
+
+#: patterns/features-split.php:36
+msgctxt "Features pattern"
+msgid "A third reason to stay"
+msgstr "Ein dritter Grund zu bleiben"
+
+#: patterns/features-split.php:42
+msgctxt "Features pattern"
+msgid "Learn more"
+msgstr "Mehr erfahren"
 
 #: patterns/features.php
 msgctxt "Pattern title"
@@ -1164,35 +1611,15 @@ msgctxt "Pattern description"
 msgid "Three feature cards in a responsive grid."
 msgstr "Drei Funktionskarten in einem responsiven Raster."
 
-#: patterns/features.php:13
-msgctxt "Features pattern"
-msgid "Fast by default"
-msgstr "Von Haus aus schnell"
+#: patterns/gallery-three.php
+msgctxt "Pattern title"
+msgid "Three pictures"
+msgstr "Drei Bilder"
 
-#: patterns/features.php:17
-msgctxt "Features pattern"
-msgid "Describe the first benefit in a sentence or two."
-msgstr "Beschreibe den ersten Vorteil in ein oder zwei Sätzen."
-
-#: patterns/features.php:23
-msgctxt "Features pattern"
-msgid "Easy to use"
-msgstr "Einfach zu bedienen"
-
-#: patterns/features.php:27
-msgctxt "Features pattern"
-msgid "Describe the second benefit in a sentence or two."
-msgstr "Beschreibe den zweiten Vorteil in ein oder zwei Sätzen."
-
-#: patterns/features.php:33
-msgctxt "Features pattern"
-msgid "Made to last"
-msgstr "Für die Ewigkeit gemacht"
-
-#: patterns/features.php:37
-msgctxt "Features pattern"
-msgid "Describe the third benefit in a sentence or two."
-msgstr "Beschreibe den dritten Vorteil in ein oder zwei Sätzen."
+#: patterns/gallery-three.php
+msgctxt "Pattern description"
+msgid "Three equal pictures in a row."
+msgstr "Drei gleich große Bilder in einer Reihe."
 
 #: patterns/hero-cover.php
 msgctxt "Pattern title"
@@ -1266,6 +1693,585 @@ msgstr ""
 "Eine zentrierte Einleitung mit Überschrift, kurzem Einleitungstext und zwei "
 "Knöpfen."
 
+#: patterns/logos-grid.php
+msgctxt "Pattern title"
+msgid "Logo grid"
+msgstr "Logo-Raster"
+
+#: patterns/logos-grid.php
+msgctxt "Pattern description"
+msgid "Six names or logos in a grid, with a heading."
+msgstr "Sechs Namen oder Logos im Raster, mit Überschrift."
+
+#: patterns/logos-grid.php:12
+msgctxt "Logos pattern"
+msgid "Our partners"
+msgstr "Unsere Partner"
+
+#: patterns/logos-grid.php:17 patterns/logos-strip.php:17
+msgctxt "Logos pattern"
+msgid "Acme"
+msgstr "Acme"
+
+#: patterns/logos-grid.php:21 patterns/logos-strip.php:21
+msgctxt "Logos pattern"
+msgid "Globex"
+msgstr "Globex"
+
+#: patterns/logos-grid.php:25 patterns/logos-strip.php:25
+msgctxt "Logos pattern"
+msgid "Initech"
+msgstr "Initech"
+
+#: patterns/logos-grid.php:29 patterns/logos-strip.php:29
+msgctxt "Logos pattern"
+msgid "Umbrella"
+msgstr "Umbrella"
+
+#: patterns/logos-grid.php:33 patterns/logos-strip.php:33
+msgctxt "Logos pattern"
+msgid "Hooli"
+msgstr "Hooli"
+
+#: patterns/logos-grid.php:37
+msgctxt "Logos pattern"
+msgid "Vandelay"
+msgstr "Vandelay"
+
+#: patterns/logos-strip.php
+msgctxt "Pattern title"
+msgid "Logo strip"
+msgstr "Logo-Leiste"
+
+#: patterns/logos-strip.php
+msgctxt "Pattern description"
+msgid "A row of names or logos, as a quiet line of trust."
+msgstr "Eine Reihe von Namen oder Logos als ruhiger Vertrauensbeweis."
+
+#: patterns/logos-strip.php:12
+msgctxt "Logos pattern"
+msgid "Trusted by teams at"
+msgstr "Vertrauen von Teams bei"
+
+#: patterns/portfolio-feature.php
+msgctxt "Pattern title"
+msgid "Portfolio feature"
+msgstr "Portfolio-Highlight"
+
+#: patterns/portfolio-feature.php
+msgctxt "Pattern description"
+msgid "One large project with its story."
+msgstr "Ein großes Projekt mit seiner Geschichte."
+
+#: patterns/portfolio-feature.php:19
+msgctxt "Portfolio pattern"
+msgid "Case study"
+msgstr "Fallstudie"
+
+#: patterns/portfolio-feature.php:23
+msgctxt "Portfolio pattern"
+msgid "Project name"
+msgstr "Projektname"
+
+#: patterns/portfolio-feature.php:27
+msgctxt "Portfolio pattern"
+msgid "Two or three sentences about the problem, the approach and the result."
+msgstr "Zwei oder drei Sätze über das Problem, den Ansatz und das Ergebnis."
+
+#: patterns/portfolio-feature.php:32
+msgctxt "Portfolio pattern"
+msgid "Read the story"
+msgstr "Geschichte lesen"
+
+#: patterns/portfolio-grid.php
+msgctxt "Pattern title"
+msgid "Portfolio grid"
+msgstr "Portfolio-Raster"
+
+#: patterns/portfolio-grid.php
+msgctxt "Pattern description"
+msgid "Six projects with a picture, title and kind of work."
+msgstr "Sechs Projekte mit Bild, Titel und Art der Arbeit."
+
+#: patterns/portfolio-grid.php:17
+msgctxt "Portfolio pattern"
+msgid "Project one"
+msgstr "Projekt eins"
+
+#: patterns/portfolio-grid.php:21
+msgctxt "Portfolio pattern"
+msgid "Branding"
+msgstr "Branding"
+
+#: patterns/portfolio-grid.php:31
+msgctxt "Portfolio pattern"
+msgid "Project two"
+msgstr "Projekt zwei"
+
+#: patterns/portfolio-grid.php:35
+msgctxt "Portfolio pattern"
+msgid "Website"
+msgstr "Website"
+
+#: patterns/portfolio-grid.php:45
+msgctxt "Portfolio pattern"
+msgid "Project three"
+msgstr "Projekt drei"
+
+#: patterns/portfolio-grid.php:49
+msgctxt "Portfolio pattern"
+msgid "Editorial"
+msgstr "Editorial"
+
+#: patterns/portfolio-grid.php:59
+msgctxt "Portfolio pattern"
+msgid "Project four"
+msgstr "Projekt vier"
+
+#: patterns/portfolio-grid.php:63
+msgctxt "Portfolio pattern"
+msgid "Illustration"
+msgstr "Illustration"
+
+#: patterns/portfolio-grid.php:73
+msgctxt "Portfolio pattern"
+msgid "Project five"
+msgstr "Projekt fünf"
+
+#: patterns/portfolio-grid.php:77
+msgctxt "Portfolio pattern"
+msgid "Packaging"
+msgstr "Verpackung"
+
+#: patterns/portfolio-grid.php:87
+msgctxt "Portfolio pattern"
+msgid "Project six"
+msgstr "Projekt sechs"
+
+#: patterns/portfolio-grid.php:91
+msgctxt "Portfolio pattern"
+msgid "Photography"
+msgstr "Fotografie"
+
+#: patterns/pricing-single.php
+msgctxt "Pattern title"
+msgid "Pricing, one offer"
+msgstr "Preis, ein Angebot"
+
+#: patterns/pricing-single.php
+msgctxt "Pattern description"
+msgid "One price with everything included."
+msgstr "Ein Preis, alles inklusive."
+
+#: patterns/pricing-single.php:13
+msgctxt "Pricing pattern"
+msgid "Lifetime licence"
+msgstr "Lizenz auf Lebenszeit"
+
+#: patterns/pricing-single.php:17
+msgctxt "Pricing pattern"
+msgid "$99"
+msgstr "99 $"
+
+#: patterns/pricing-single.php:21
+msgctxt "Pricing pattern"
+msgid "One payment, every update, every site."
+msgstr "Einmal zahlen, jedes Update, jede Website."
+
+#: patterns/pricing-single.php:26 patterns/pricing-three.php:81
+msgctxt "Pricing pattern"
+msgid "All patterns and looks"
+msgstr "Alle Muster und Looks"
+
+#: patterns/pricing-single.php:30
+msgctxt "Pricing pattern"
+msgid "Free updates"
+msgstr "Kostenlose Updates"
+
+#: patterns/pricing-single.php:34
+msgctxt "Pricing pattern"
+msgid "Support by email"
+msgstr "Support per E-Mail"
+
+#: patterns/pricing-single.php:40
+msgctxt "Pricing pattern"
+msgid "Buy now"
+msgstr "Jetzt kaufen"
+
+#: patterns/pricing-three.php
+msgctxt "Pattern title"
+msgid "Pricing, three plans"
+msgstr "Preise, drei Tarife"
+
+#: patterns/pricing-three.php
+msgctxt "Pattern description"
+msgid "Three plans side by side with the middle one highlighted."
+msgstr "Drei Tarife nebeneinander, der mittlere hervorgehoben."
+
+#: patterns/pricing-three.php:12
+msgctxt "Pricing pattern"
+msgid "Simple, honest pricing"
+msgstr "Einfache, ehrliche Preise"
+
+#: patterns/pricing-three.php:16
+msgctxt "Pricing pattern"
+msgid "Pick the plan that fits, change it any time."
+msgstr "Wähle den passenden Tarif und wechsle jederzeit."
+
+#: patterns/pricing-three.php:22
+msgctxt "Pricing pattern"
+msgid "Starter"
+msgstr "Starter"
+
+#: patterns/pricing-three.php:26
+msgctxt "Pricing pattern"
+msgid "$9"
+msgstr "9 $"
+
+#: patterns/pricing-three.php:30 patterns/pricing-three.php:68
+#: patterns/pricing-three.php:102
+msgctxt "Pricing pattern"
+msgid "per month"
+msgstr "pro Monat"
+
+#: patterns/pricing-three.php:35 patterns/pricing-two.php:26
+msgctxt "Pricing pattern"
+msgid "One site"
+msgstr "Eine Website"
+
+#: patterns/pricing-three.php:39
+msgctxt "Pricing pattern"
+msgid "Basic support"
+msgstr "Basis-Support"
+
+#: patterns/pricing-three.php:43
+msgctxt "Pricing pattern"
+msgid "Community access"
+msgstr "Zugang zur Community"
+
+#: patterns/pricing-three.php:49
+msgctxt "Pricing pattern"
+msgid "Choose Starter"
+msgstr "Starter wählen"
+
+#: patterns/pricing-three.php:56
+msgctxt "Pricing pattern"
+msgid "Most popular"
+msgstr "Am beliebtesten"
+
+#: patterns/pricing-three.php:60 patterns/pricing-two.php:47
+msgctxt "Pricing pattern"
+msgid "Pro"
+msgstr "Pro"
+
+#: patterns/pricing-three.php:64 patterns/pricing-two.php:51
+msgctxt "Pricing pattern"
+msgid "$29"
+msgstr "29 $"
+
+#: patterns/pricing-three.php:73
+msgctxt "Pricing pattern"
+msgid "Five sites"
+msgstr "Fünf Websites"
+
+#: patterns/pricing-three.php:77 patterns/pricing-two.php:64
+msgctxt "Pricing pattern"
+msgid "Priority support"
+msgstr "Vorrangiger Support"
+
+#: patterns/pricing-three.php:87
+msgctxt "Pricing pattern"
+msgid "Choose Pro"
+msgstr "Pro wählen"
+
+#: patterns/pricing-three.php:94
+msgctxt "Pricing pattern"
+msgid "Agency"
+msgstr "Agency"
+
+#: patterns/pricing-three.php:98
+msgctxt "Pricing pattern"
+msgid "$79"
+msgstr "79 $"
+
+#: patterns/pricing-three.php:107 patterns/pricing-two.php:60
+msgctxt "Pricing pattern"
+msgid "Unlimited sites"
+msgstr "Unbegrenzt viele Websites"
+
+#: patterns/pricing-three.php:111
+msgctxt "Pricing pattern"
+msgid "Dedicated support"
+msgstr "Persönlicher Support"
+
+#: patterns/pricing-three.php:115
+msgctxt "Pricing pattern"
+msgid "White label"
+msgstr "White Label"
+
+#: patterns/pricing-three.php:121
+msgctxt "Pricing pattern"
+msgid "Choose Agency"
+msgstr "Agency wählen"
+
+#: patterns/pricing-two.php
+msgctxt "Pattern title"
+msgid "Pricing, two plans"
+msgstr "Preise, zwei Tarife"
+
+#: patterns/pricing-two.php
+msgctxt "Pattern description"
+msgid "Two plans, one free and one paid."
+msgstr "Zwei Tarife, einer kostenlos und einer kostenpflichtig."
+
+#: patterns/pricing-two.php:13
+msgctxt "Pricing pattern"
+msgid "Free"
+msgstr "Kostenlos"
+
+#: patterns/pricing-two.php:17
+msgctxt "Pricing pattern"
+msgid "$0"
+msgstr "0 $"
+
+#: patterns/pricing-two.php:21
+msgctxt "Pricing pattern"
+msgid "for personal projects"
+msgstr "für persönliche Projekte"
+
+#: patterns/pricing-two.php:30
+msgctxt "Pricing pattern"
+msgid "Community support"
+msgstr "Community-Support"
+
+#: patterns/pricing-two.php:36
+msgctxt "Pricing pattern"
+msgid "Start for free"
+msgstr "Kostenlos starten"
+
+#: patterns/pricing-two.php:43
+msgctxt "Pricing pattern"
+msgid "Recommended"
+msgstr "Empfohlen"
+
+#: patterns/pricing-two.php:55
+msgctxt "Pricing pattern"
+msgid "per month, billed yearly"
+msgstr "pro Monat, jährlich abgerechnet"
+
+#: patterns/pricing-two.php:68
+msgctxt "Pricing pattern"
+msgid "Early access"
+msgstr "Früher Zugang"
+
+#: patterns/pricing-two.php:74
+msgctxt "Pricing pattern"
+msgid "Go Pro"
+msgstr "Auf Pro wechseln"
+
+#: patterns/process-four.php
+msgctxt "Pattern title"
+msgid "Process in four steps"
+msgstr "Ablauf in vier Schritten"
+
+#: patterns/process-four.php
+msgctxt "Pattern description"
+msgid "Four numbered steps from first call to launch."
+msgstr "Vier nummerierte Schritte vom ersten Gespräch bis zum Start."
+
+#: patterns/process-four.php:13
+msgctxt "Process pattern"
+msgid "1"
+msgstr "1"
+
+#: patterns/process-four.php:17
+msgctxt "Process pattern"
+msgid "Talk"
+msgstr "Gespräch"
+
+#: patterns/process-four.php:21
+msgctxt "Process pattern"
+msgid "We listen first."
+msgstr "Wir hören zuerst zu."
+
+#: patterns/process-four.php:27
+msgctxt "Process pattern"
+msgid "2"
+msgstr "2"
+
+#: patterns/process-four.php:31
+msgctxt "Process pattern"
+msgid "Plan"
+msgstr "Planen"
+
+#: patterns/process-four.php:35
+msgctxt "Process pattern"
+msgid "We agree on a clear plan."
+msgstr "Wir einigen uns auf einen klaren Plan."
+
+#: patterns/process-four.php:41
+msgctxt "Process pattern"
+msgid "3"
+msgstr "3"
+
+#: patterns/process-four.php:45
+msgctxt "Process pattern"
+msgid "Build"
+msgstr "Bauen"
+
+#: patterns/process-four.php:49
+msgctxt "Process pattern"
+msgid "We make it, with updates."
+msgstr "Wir setzen es um, mit Zwischenständen."
+
+#: patterns/process-four.php:55
+msgctxt "Process pattern"
+msgid "4"
+msgstr "4"
+
+#: patterns/process-four.php:59
+msgctxt "Process pattern"
+msgid "Launch"
+msgstr "Starten"
+
+#: patterns/process-four.php:63
+msgctxt "Process pattern"
+msgid "We go live, and stay."
+msgstr "Wir gehen live und bleiben dabei."
+
+#: patterns/services-list.php
+msgctxt "Pattern title"
+msgid "Services list"
+msgstr "Leistungsliste"
+
+#: patterns/services-list.php
+msgctxt "Pattern description"
+msgid "A plain list of services, each separated by a line."
+msgstr "Eine einfache Liste von Leistungen, jeweils durch eine Linie getrennt."
+
+#: patterns/services-list.php:12
+msgctxt "Services pattern"
+msgid "What we do"
+msgstr "Was wir tun"
+
+#: patterns/services-list.php:17
+msgctxt "Services pattern"
+msgid "Strategy"
+msgstr "Strategie"
+
+#: patterns/services-list.php:21 patterns/services-list.php:31
+#: patterns/services-list.php:41
+msgctxt "Services pattern"
+msgid "Describe this service in a sentence."
+msgstr "Beschreibe diese Leistung in einem Satz."
+
+#: patterns/services-list.php:27
+msgctxt "Services pattern"
+msgid "Design"
+msgstr "Design"
+
+#: patterns/services-list.php:37
+msgctxt "Services pattern"
+msgid "Development"
+msgstr "Entwicklung"
+
+#: patterns/stats-four.php
+msgctxt "Pattern title"
+msgid "Stats, four numbers"
+msgstr "Zahlen, vier Werte"
+
+#: patterns/stats-four.php
+msgctxt "Pattern description"
+msgid "Four large numbers with labels."
+msgstr "Vier große Zahlen mit Beschriftung."
+
+#: patterns/stats-four.php:13
+msgctxt "Stats pattern"
+msgid "12k"
+msgstr "12k"
+
+#: patterns/stats-four.php:17
+msgctxt "Stats pattern"
+msgid "Customers"
+msgstr "Kunden"
+
+#: patterns/stats-four.php:23
+msgctxt "Stats pattern"
+msgid "48"
+msgstr "48"
+
+#: patterns/stats-four.php:27
+msgctxt "Stats pattern"
+msgid "Countries"
+msgstr "Länder"
+
+#: patterns/stats-four.php:33
+msgctxt "Stats pattern"
+msgid "99.9%"
+msgstr "99,9 %"
+
+#: patterns/stats-four.php:37
+msgctxt "Stats pattern"
+msgid "Uptime"
+msgstr "Verfügbarkeit"
+
+#: patterns/stats-four.php:43
+msgctxt "Stats pattern"
+msgid "24/7"
+msgstr "24/7"
+
+#: patterns/stats-four.php:47
+msgctxt "Stats pattern"
+msgid "Support"
+msgstr "Support"
+
+#: patterns/stats-split.php
+msgctxt "Pattern title"
+msgid "Stats beside a text"
+msgstr "Zahlen neben einem Text"
+
+#: patterns/stats-split.php
+msgctxt "Pattern description"
+msgid "A short story on one side and three numbers on the other."
+msgstr "Eine kurze Geschichte auf der einen, Zahlen auf der anderen Seite."
+
+#: patterns/stats-split.php:13
+msgctxt "Stats pattern"
+msgid "In numbers"
+msgstr "In Zahlen"
+
+#: patterns/stats-split.php:17
+msgctxt "Stats pattern"
+msgid "A track record you can check"
+msgstr "Eine Bilanz, die du prüfen kannst"
+
+#: patterns/stats-split.php:21
+msgctxt "Stats pattern"
+msgid ""
+"Say in two sentences what these figures mean for the people who use what you "
+"make."
+msgstr "Sag in zwei Sätzen, was diese Zahlen für die Menschen bedeuten, die nutzen, was du machst."
+
+#: patterns/stats-split.php:29
+msgctxt "Stats pattern"
+msgid "120+"
+msgstr "120+"
+
+#: patterns/stats-split.php:33
+msgctxt "Stats pattern"
+msgid "Articles"
+msgstr "Beiträge"
+
+#: patterns/stats-split.php:39
+msgctxt "Stats pattern"
+msgid "48k"
+msgstr "48k"
+
+#: patterns/stats-split.php:43
+msgctxt "Stats pattern"
+msgid "Readers"
+msgstr "Leser"
+
 #: patterns/stats.php
 msgctxt "Pattern title"
 msgid "Stats"
@@ -1331,6 +2337,143 @@ msgctxt "Steps pattern"
 msgid "Explain the third step."
 msgstr "Erkläre den dritten Schritt."
 
+#: patterns/team-four.php
+msgctxt "Pattern title"
+msgid "Team, four people"
+msgstr "Team, vier Personen"
+
+#: patterns/team-four.php
+msgctxt "Pattern description"
+msgid "Four people in a row."
+msgstr "Vier Personen in einer Reihe."
+
+#: patterns/team-four.php:17 patterns/team-three.php:17
+msgctxt "Team pattern"
+msgid "Alex Morgan"
+msgstr "Alex Morgan"
+
+#: patterns/team-four.php:21 patterns/team-three.php:21
+msgctxt "Team pattern"
+msgid "Editor"
+msgstr "Redaktion"
+
+#: patterns/team-four.php:31 patterns/team-three.php:31
+msgctxt "Team pattern"
+msgid "Sam Lee"
+msgstr "Sam Lee"
+
+#: patterns/team-four.php:35 patterns/team-three.php:35
+msgctxt "Team pattern"
+msgid "Designer"
+msgstr "Design"
+
+#: patterns/team-four.php:45 patterns/team-three.php:45
+msgctxt "Team pattern"
+msgid "Jo Baker"
+msgstr "Jo Baker"
+
+#: patterns/team-four.php:49 patterns/team-three.php:49
+msgctxt "Team pattern"
+msgid "Developer"
+msgstr "Entwicklung"
+
+#: patterns/team-four.php:59
+msgctxt "Team pattern"
+msgid "Kim Novak"
+msgstr "Kim Novak"
+
+#: patterns/team-four.php:63
+msgctxt "Team pattern"
+msgid "Publisher"
+msgstr "Verlag"
+
+#: patterns/team-three.php
+msgctxt "Pattern title"
+msgid "Team, three people"
+msgstr "Team, drei Personen"
+
+#: patterns/team-three.php
+msgctxt "Pattern description"
+msgid "Three people with a round picture, name and role."
+msgstr "Drei Personen mit rundem Bild, Name und Rolle."
+
+#: patterns/testimonial-picture.php
+msgctxt "Pattern title"
+msgid "Testimonial with a picture"
+msgstr "Kundenstimme mit Bild"
+
+#: patterns/testimonial-picture.php
+msgctxt "Pattern description"
+msgid "A quote beside a round portrait."
+msgstr "Ein Zitat neben einem runden Porträt."
+
+#: patterns/testimonial-picture.php:20
+msgctxt "Testimonial pattern"
+msgid "A few sentences from a happy customer, in their own words."
+msgstr "Ein paar Sätze von einem zufriedenen Kunden, in seinen eigenen Worten."
+
+#: patterns/testimonial-picture.php:21 patterns/testimonial-single.php:14
+msgctxt "Testimonial pattern"
+msgid "Alex Morgan, Editor"
+msgstr "Alex Morgan, Redaktion"
+
+#: patterns/testimonial-single.php
+msgctxt "Pattern title"
+msgid "Testimonial"
+msgstr "Kundenstimme"
+
+#: patterns/testimonial-single.php
+msgctxt "Pattern description"
+msgid "One large quote with a name."
+msgstr "Ein großes Zitat mit Namen."
+
+#: patterns/testimonial-single.php:13
+msgctxt "Testimonial pattern"
+msgid ""
+"This changed how we work. It was ready in an afternoon and our readers "
+"noticed at once."
+msgstr "Das hat verändert, wie wir arbeiten. Am Nachmittag war es fertig, und unsere Leser merkten es sofort."
+
+#: patterns/testimonials-three.php
+msgctxt "Pattern title"
+msgid "Testimonials, three cards"
+msgstr "Kundenstimmen, drei Karten"
+
+#: patterns/testimonials-three.php
+msgctxt "Pattern description"
+msgid "Three short quotes in cards."
+msgstr "Drei kurze Zitate in Karten."
+
+#: patterns/testimonials-three.php:14
+msgctxt "Testimonial pattern"
+msgid "Clear, fast and easy to read."
+msgstr "Klar, schnell und leicht lesbar."
+
+#: patterns/testimonials-three.php:15
+msgctxt "Testimonial pattern"
+msgid "Sam Lee, Designer"
+msgstr "Sam Lee, Design"
+
+#: patterns/testimonials-three.php:22
+msgctxt "Testimonial pattern"
+msgid "The best starting point we have used."
+msgstr "Der beste Ausgangspunkt, den wir je hatten."
+
+#: patterns/testimonials-three.php:23
+msgctxt "Testimonial pattern"
+msgid "Jo Baker, Developer"
+msgstr "Jo Baker, Entwicklung"
+
+#: patterns/testimonials-three.php:30
+msgctxt "Testimonial pattern"
+msgid "Our readers stay longer now."
+msgstr "Unsere Leser bleiben jetzt länger."
+
+#: patterns/testimonials-three.php:31
+msgctxt "Testimonial pattern"
+msgid "Kim Novak, Publisher"
+msgstr "Kim Novak, Verlag"
+
 #: patterns/timeline.php
 msgctxt "Pattern title"
 msgid "Timeline"
@@ -1380,6 +2523,46 @@ msgstr "Wo wir jetzt stehen"
 msgctxt "Timeline pattern"
 msgid "What is happening now, in a sentence."
 msgstr "Was gerade passiert, in einem Satz."
+
+#: patterns/values-three.php
+msgctxt "Pattern title"
+msgid "Our values"
+msgstr "Unsere Werte"
+
+#: patterns/values-three.php
+msgctxt "Pattern description"
+msgid "Three values, each with a heading and a sentence."
+msgstr "Drei Werte, jeweils mit Überschrift und einem Satz."
+
+#: patterns/values-three.php:13
+msgctxt "About pattern"
+msgid "Clarity"
+msgstr "Klarheit"
+
+#: patterns/values-three.php:17
+msgctxt "About pattern"
+msgid "Say it simply, and say it once."
+msgstr "Sag es einfach, und sag es einmal."
+
+#: patterns/values-three.php:23
+msgctxt "About pattern"
+msgid "Care"
+msgstr "Sorgfalt"
+
+#: patterns/values-three.php:27
+msgctxt "About pattern"
+msgid "Details are how people know you mean it."
+msgstr "An den Details erkennt man, dass du es ernst meinst."
+
+#: patterns/values-three.php:33
+msgctxt "About pattern"
+msgid "Craft"
+msgstr "Handwerk"
+
+#: patterns/values-three.php:37
+msgctxt "About pattern"
+msgid "Make it well, then make it last."
+msgstr "Mach es gut, dann mach es haltbar."
 
 #. translators: %s: search query.
 #: search.php:10
@@ -1644,7 +2827,7 @@ msgstr "Ruhig"
 #: styles/editorial.json
 msgctxt "Style variation name"
 msgid "Editorial"
-msgstr ""
+msgstr "Editorial"
 
 #: styles/paper.json
 msgctxt "Style variation name"
