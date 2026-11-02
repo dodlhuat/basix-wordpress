@@ -16,6 +16,8 @@
 		<?php endif; ?>
 
 		<div class="entry-content"><?php the_content(); ?></div>
+
+		<?php basix_event_repeat_info(); ?>
 	</article>
 
 	<nav class="post-nav" aria-label="<?php esc_attr_e( 'Back to the events', 'basix' ); ?>">

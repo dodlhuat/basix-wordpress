@@ -30,7 +30,7 @@ $basix_cats   = isset( $args['category'] ) ? $args['category'] : '';
 		$basix_first = wp_date( 'Y-m-01' );
 		$basix_last  = wp_date( 'Y-m-t' );
 		if ( 'events' === $basix_source ) {
-			$basix_items = basix_events_between( $basix_first, $basix_last, 100, basix_event_category_slugs( $basix_cats ) );
+			$basix_items = basix_event_occurrences_between( $basix_first, $basix_last, 100, basix_event_category_slugs( $basix_cats ) );
 		} else {
 			$basix_items = get_posts(
 				array(
@@ -52,11 +52,12 @@ $basix_cats   = isset( $args['category'] ) ? $args['category'] : '';
 				<?php foreach ( $basix_items as $basix_item ) : ?>
 					<li>
 						<?php if ( 'events' === $basix_source ) : ?>
-							<?php echo esc_html( basix_event_when( $basix_item->ID ) ); ?>
+							<?php echo esc_html( basix_event_when( $basix_item['event']->ID, false, $basix_item ) ); ?>
 						<?php else : ?>
 							<time datetime="<?php echo esc_attr( get_the_date( DATE_W3C, $basix_item ) ); ?>"><?php echo esc_html( get_the_date( '', $basix_item ) ); ?></time>
 						<?php endif; ?>
-						<a href="<?php echo esc_url( get_permalink( $basix_item ) ); ?>"><?php echo esc_html( get_the_title( $basix_item ) ); ?></a>
+						<?php $basix_post = 'events' === $basix_source ? $basix_item['event'] : $basix_item; ?>
+						<a href="<?php echo esc_url( 'events' === $basix_source && basix_event_rule( $basix_post->ID ) ? add_query_arg( 'date', $basix_item['date'], get_permalink( $basix_post ) ) : get_permalink( $basix_post ) ); ?>"><?php echo esc_html( get_the_title( $basix_post ) ); ?></a>
 					</li>
 				<?php endforeach; ?>
 			</ul>

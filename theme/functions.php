@@ -204,13 +204,15 @@ function basix_post_meta(): void
     echo '<p class="post-meta text-caption">';
     if (BASIX_EVENT === get_post_type()) {
         $range = basix_event_range(get_the_ID());
+        // A repeating event shows one date: the one asked for on its page, otherwise the next.
+        $occurrence = basix_event_shown_occurrence(get_the_ID());
         if ($range) {
-            printf('<time datetime="%s">%s</time>', esc_attr($range['start']), esc_html(basix_event_when()));
+            printf('<time datetime="%s">%s</time>', esc_attr($occurrence ? $occurrence['own_start'] : $range['start']), esc_html(basix_event_when(0, false, $occurrence)));
         }
         $place = (string) get_post_meta(get_the_ID(), 'basix_event_location', true);
         echo $place ? ' · ' . esc_html($place) : '';
         // An event in another time zone also says what time that is for the site.
-        $site_time = is_singular(BASIX_EVENT) && basix_event_zone(get_the_ID())->getName() !== wp_timezone()->getName() ? basix_event_when(get_the_ID(), true) : '';
+        $site_time = is_singular(BASIX_EVENT) && basix_event_zone(get_the_ID())->getName() !== wp_timezone()->getName() ? basix_event_when(get_the_ID(), true, $occurrence) : '';
         if ($site_time) {
             /* translators: %s: the event's time in the site's time zone. */
             echo ' · ' . esc_html(sprintf(__('%s in site time', 'basix'), $site_time));
