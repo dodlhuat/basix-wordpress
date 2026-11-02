@@ -417,12 +417,28 @@ export const components = {
                 },
             });
             // The component labels every day with a short numeric date that does not contain the text shown in the
-            // cell (the day number and the posts). Name each cell by what it shows, then the full date.
+            // cell (the day number and the posts), and a label that repeats the shown text can differ from what a
+            // checker sees when a long title clips its badge. So a day is named by its content, and the full date
+            // is part of that content as hidden text.
             const fullDate = new Intl.DateTimeFormat(config.dateLocale, { dateStyle: 'full' });
-            const nameCells = () => host.querySelectorAll('.cal__day[data-date]').forEach((cell) => {
-                const shown = cell.textContent.replace(/\s+/g, ' ').trim();
-                cell.setAttribute('aria-label', `${shown}, ${fullDate.format(new Date(cell.dataset.date))}`);
-            });
+            // The events of one day follow each other without a space in the markup, so their texts run together
+            // ("WorkshopsCoffee and code") for assistive technology. A space between them keeps the words apart.
+            const nameCells = () => {
+                host.querySelectorAll('.cal__day-events > :not(:last-child)').forEach((item) => {
+                    if (item.nextSibling?.nodeType !== Node.TEXT_NODE) {
+                        item.after(' ');
+                    }
+                });
+                host.querySelectorAll('.cal__day[data-date]').forEach((cell) => {
+                    cell.removeAttribute('aria-label');
+                    if (!cell.querySelector(':scope > .screen-reader-text')) {
+                        const full = Object.assign(document.createElement('span'), { className: 'screen-reader-text', textContent: `${fullDate.format(new Date(cell.dataset.date))}. ` });
+                        cell.prepend(full);
+                    }
+                });
+                // A bar for a multi-day event sits next to the day cells in a grid row, where only cells are allowed.
+                host.querySelectorAll('.cal__week-row > .cal__span-bar[role="button"]').forEach((bar) => bar.setAttribute('role', 'gridcell'));
+            };
             new MutationObserver(nameCells).observe(host, { childList: true, subtree: true });
             nameCells();
 
