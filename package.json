@@ -13,6 +13,7 @@
     "check:ics": "node scripts/check-ics.mjs",
     "check:schema": "node scripts/check-schema.mjs",
     "check:looks": "node scripts/check-looks.mjs",
+    "check:accent": "node scripts/check-accent-math.mjs",
     "check:starters": "node scripts/check-starters.mjs",
     "check:header": "node scripts/check-header.mjs",
     "check:rtl": "node scripts/build-rtl.mjs --check && node scripts/check-rtl.mjs",

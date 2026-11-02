@@ -27,6 +27,7 @@ run npm run --silent check:customizer
 run npm run --silent check:ics
 run npm run --silent check:schema
 run npm run --silent check:looks
+run npm run --silent check:accent
 run npm run --silent check:starters
 run npm run --silent check:header
 run npm run --silent check:compat

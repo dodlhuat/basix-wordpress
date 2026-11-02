@@ -49,6 +49,11 @@ try {
   await preview('basix_look', 'editorial', (w) => getComputedStyle(w.document.documentElement).getPropertyValue('--radius-md').trim() === '0.15rem' && getComputedStyle(w.document.body).fontFamily.startsWith('"Source Serif 4"'), 'the Editorial look');
   await preview('basix_text_size', 'large', (w) => getComputedStyle(w.document.documentElement).fontSize === '18px', 'the large text size');
   console.log('Preview shows a look and the text size');
+  // An accent colour changes the preview at once, with a readable text colour worked out like the server does.
+  await page.evaluate(() => wp.customize.previewer.targetWindow().document.documentElement.setAttribute('data-theme', 'light'));
+  await preview('basix_accent_light', '#aa2200', (w) => { const d = w.document; return d.getElementById('basix-accent-preview')?.textContent.includes('#aa2200') && getComputedStyle(d.querySelector('.button-primary') ?? d.body).backgroundColor === 'rgb(170, 34, 0)' && /--accent-text:#[0-9a-f]{6}/.test(d.getElementById('basix-accent-preview').textContent); }, 'the new accent colour');
+  console.log('Preview shows an accent colour');
+  await page.evaluate(() => wp.customize('basix_accent_light').set(wp.customize('basix_accent_light').default ?? ''));
   await page.evaluate((look) => { wp.customize('basix_look').set(look); wp.customize('basix_text_size').set('medium'); }, originalLook);
 
   await page.evaluate((hero, cards) => { wp.customize('basix_hero_style').set(hero); wp.customize('basix_card_layout').set(cards); }, originalHero, originalCards);
