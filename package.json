@@ -14,6 +14,7 @@
     "check:schema": "node scripts/check-schema.mjs",
     "check:looks": "node scripts/check-looks.mjs",
     "check:starters": "node scripts/check-starters.mjs",
+    "check:header": "node scripts/check-header.mjs",
     "check:a11y": "node scripts/check-a11y.mjs",
     "postinstall": "node scripts/sync-basix.mjs"
   },

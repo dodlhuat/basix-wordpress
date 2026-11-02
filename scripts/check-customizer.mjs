@@ -6,7 +6,7 @@ import puppeteer from 'puppeteer-core';
 
 const url = process.env.WP_URL ?? 'http://localhost:8090';
 const chrome = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const expectedControls = ['custom_logo', 'basix_header_layout', 'basix_color_mode', 'basix_accent_light', 'basix_accent_dark', 'basix_sidebar_position', 'basix_footer_text', 'basix_back_to_top', 'basix_show_reading_time', 'basix_show_toc', 'basix_show_progress', 'basix_show_share', 'basix_show_author_box', 'basix_show_related', 'basix_show_featured', 'basix_card_layout', 'basix_hero_style', 'basix_look', 'basix_font_heading', 'basix_font_body', 'basix_text_size'];
+const expectedControls = ['custom_logo', 'basix_header_layout', 'basix_color_mode', 'basix_accent_light', 'basix_accent_dark', 'basix_sidebar_position', 'basix_footer_text', 'basix_back_to_top', 'basix_show_reading_time', 'basix_show_toc', 'basix_show_progress', 'basix_show_share', 'basix_show_author_box', 'basix_show_related', 'basix_show_featured', 'basix_card_layout', 'basix_hero_style', 'basix_look', 'basix_font_heading', 'basix_font_body', 'basix_text_size', 'basix_header_sticky', 'basix_header_style', 'basix_header_cta_label', 'basix_header_cta_url', 'basix_topbar_enable', 'basix_topbar_text', 'basix_topbar_social', 'basix_topbar_language', 'basix_footer_layout'];
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const browser = await puppeteer.launch({ executablePath: chrome, headless: true, defaultViewport: { width: 1400, height: 900 } });
@@ -28,7 +28,7 @@ try {
     missing: ids.filter((id) => !wp.customize.control(id)),
   }), expectedControls);
   console.log(`Panel sections: ${found.sections.join(', ')}`);
-  if (found.sections.length !== 8) failures.push(`expected 8 sections, got ${found.sections.length}`);
+  if (found.sections.length !== 9) failures.push(`expected 9 sections, got ${found.sections.length}`);
   if (found.missing.length) failures.push(`missing controls: ${found.missing.join(', ')}`);
 
   // The post list layout and the front page introduction change the preview.

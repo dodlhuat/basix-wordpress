@@ -111,6 +111,10 @@ $check( 'paper' === get_theme_mod( 'basix_look' ), 'a look chosen at import time
 basix_starter_undo();
 
 // What the owner had chosen comes back after an undo.
+$kept = array(
+	'basix_accent_light' => get_theme_mod( 'basix_accent_light', null ),
+	'basix_text_size'    => get_theme_mod( 'basix_text_size', null ),
+);
 set_theme_mod( 'basix_accent_light', '#aa2200' );
 set_theme_mod( 'basix_text_size', 'large' );
 $before = $snapshot();
@@ -118,14 +122,32 @@ basix_starter_import( 'magazine' );
 $check( false === get_theme_mod( 'basix_accent_light', false ) && false === get_theme_mod( 'basix_text_size', false ), 'an import clears the owner\'s accent and text size choices' );
 basix_starter_undo();
 $check( '#aa2200' === get_theme_mod( 'basix_accent_light' ) && 'large' === get_theme_mod( 'basix_text_size' ) && $snapshot() === $before, 'and an undo brings them back' );
-remove_theme_mod( 'basix_accent_light' );
-remove_theme_mod( 'basix_text_size' );
+foreach ( $kept as $name => $value ) {
+	if ( null === $value ) {
+		remove_theme_mod( $name );
+	} else {
+		set_theme_mod( $name, $value );
+	}
+}
 
 // Undo with nothing to undo is fine.
 $check( array() === basix_starter_undo(), 'undo without an import does nothing' );
 
 wp_delete_post( $mine, true );
-$check( $snapshot() === $original, 'the site is as it was at the start' );
+$same_as_start = $snapshot() === $original;
+$check( $same_as_start, 'the site is as it was at the start' );
+if ( ! $same_as_start ) {
+	// Say what differs, so a failure can be understood.
+	$then = json_decode( $original, true );
+	$now  = json_decode( $snapshot(), true );
+	foreach ( array( 'counts', 'options', 'mods' ) as $index => $part ) {
+		foreach ( array_unique( array_merge( array_keys( $then[ $index ] ), array_keys( $now[ $index ] ) ) ) as $key ) {
+			if ( ( $then[ $index ][ $key ] ?? null ) !== ( $now[ $index ][ $key ] ?? null ) ) {
+				echo "     $part $key: ", wp_json_encode( $then[ $index ][ $key ] ?? null ), ' => ', wp_json_encode( $now[ $index ][ $key ] ?? null ), "\n";
+			}
+		}
+	}
+}
 
 echo $failed ? "\nStarter check FAILED ($failed)\n" : "\nStarter check passed.\n";
 exit( $failed ? 1 : 0 );
