@@ -242,6 +242,27 @@ try {
   const leftCalendar = await page.waitForFunction(() => !location.pathname.startsWith('/calendar'), { timeout: 10000 }).then(() => true, () => false);
   check(leftCalendar, 'clicking an event in the calendar opens it');
 
+  // Clicking a day opens that day's events (a plain page, so it works without JavaScript too).
+  page = await open('/calendar/');
+  await page.waitForSelector('.cal__day.has-events', { timeout: 10000 });
+  const busyDay = await page.$eval('.cal__day.has-events:not(.cal__day--outside)', (cell) => ({ n: cell.querySelector('.cal__day-num').textContent.trim(), titles: [...cell.querySelectorAll('.cal__event-pill')].map((p) => p.firstChild.textContent.trim()) }));
+  await page.click('.cal__day.has-events:not(.cal__day--outside) .cal__day-num');
+  await page.waitForFunction(() => location.search.includes('event_day='), { timeout: 10000 }).catch(() => {});
+  const dayDate = new URL(page.url()).searchParams.get('event_day') ?? '';
+  check(/^\d{4}-\d{2}-\d{2}$/.test(dayDate) && Number(dayDate.slice(8)) === Number(busyDay.n), `clicking a day opens its list (${dayDate})`);
+  const dayCards = await page.$$eval('.post-list .card-title', (e) => e.map((x) => x.textContent.trim()));
+  check(busyDay.titles.length > 0 && busyDay.titles.every((t) => dayCards.includes(t)), 'the day lists the events the calendar showed on it');
+  check((await page.$eval('h1', (h) => h.textContent)).includes('Events on') || (await page.$eval('h1', (h) => h.textContent)).includes('Veranstaltungen am'), 'the day page says which day it is');
+  check((await page.$$('.event-day-nav a')).length === 3, 'the day page links to the day before, the day after and all events');
+  await page.goto(`${url}/events/?event_day=2020-01-02`, { waitUntil: 'networkidle0' });
+  check((await page.$$('.post-list .card-title')).length === 0 && (await page.$('.alert-info')) !== null, 'a day without events says so');
+  page = await open('/calendar/');
+  await page.waitForSelector('.cal__day.has-events', { timeout: 10000 });
+  await page.focus('.cal__day.has-events:not(.cal__day--outside)');
+  await page.keyboard.press('Enter');
+  const enterWorked = await page.waitForFunction(() => location.search.includes('event_day='), { timeout: 10000 }).then(() => true, () => false);
+  check(enterWorked, 'Enter on a day opens its list');
+
   // Event categories: chips filter the loaded events, the category page lists only its events.
   page = await open('/calendar/');
   await page.waitForSelector('.calendar-chips button', { timeout: 10000 });
