@@ -6,7 +6,7 @@ import puppeteer from 'puppeteer-core';
 
 const url = process.env.WP_URL ?? 'http://localhost:8090';
 const chrome = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
-const expectedControls = ['custom_logo', 'basix_header_layout', 'basix_color_mode', 'basix_accent_light', 'basix_accent_dark', 'basix_sidebar_position', 'basix_footer_text', 'basix_back_to_top', 'basix_show_reading_time', 'basix_show_toc', 'basix_show_progress', 'basix_show_share', 'basix_show_author_box', 'basix_show_related', 'basix_show_featured', 'basix_card_layout', 'basix_hero_style'];
+const expectedControls = ['custom_logo', 'basix_header_layout', 'basix_color_mode', 'basix_accent_light', 'basix_accent_dark', 'basix_sidebar_position', 'basix_footer_text', 'basix_back_to_top', 'basix_show_reading_time', 'basix_show_toc', 'basix_show_progress', 'basix_show_share', 'basix_show_author_box', 'basix_show_related', 'basix_show_featured', 'basix_card_layout', 'basix_hero_style', 'basix_look', 'basix_font_heading', 'basix_font_body', 'basix_text_size'];
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const browser = await puppeteer.launch({ executablePath: chrome, headless: true, defaultViewport: { width: 1400, height: 900 } });
@@ -28,7 +28,7 @@ try {
     missing: ids.filter((id) => !wp.customize.control(id)),
   }), expectedControls);
   console.log(`Panel sections: ${found.sections.join(', ')}`);
-  if (found.sections.length !== 6) failures.push(`expected 6 sections, got ${found.sections.length}`);
+  if (found.sections.length !== 8) failures.push(`expected 8 sections, got ${found.sections.length}`);
   if (found.missing.length) failures.push(`missing controls: ${found.missing.join(', ')}`);
 
   // The post list layout and the front page introduction change the preview.
@@ -44,6 +44,13 @@ try {
   await preview('basix_card_layout', 'list', (w) => w.document.body.classList.contains('cards-list') && getComputedStyle(w.document.querySelector('.post-grid > .card')).display === 'grid', 'the list layout');
   await preview('basix_card_layout', 'magazine', (w) => { const first = w.document.querySelector('.post-grid > .card.is-first'); return first && getComputedStyle(first).gridColumnEnd === '-1'; }, 'the magazine layout');
   console.log('Preview shows the introduction and post list layout settings');
+  // A look changes colours and fonts in the preview at once, and the text size scales the page.
+  const originalLook = await page.evaluate(() => wp.customize('basix_look').get());
+  await preview('basix_look', 'editorial', (w) => getComputedStyle(w.document.documentElement).getPropertyValue('--radius-md').trim() === '0.15rem' && getComputedStyle(w.document.body).fontFamily.startsWith('"Source Serif 4"'), 'the Editorial look');
+  await preview('basix_text_size', 'large', (w) => getComputedStyle(w.document.documentElement).fontSize === '18px', 'the large text size');
+  console.log('Preview shows a look and the text size');
+  await page.evaluate((look) => { wp.customize('basix_look').set(look); wp.customize('basix_text_size').set('medium'); }, originalLook);
+
   await page.evaluate((hero, cards) => { wp.customize('basix_hero_style').set(hero); wp.customize('basix_card_layout').set(cards); }, originalHero, originalCards);
 
   const original = await page.evaluate(() => wp.customize('basix_header_layout').get());

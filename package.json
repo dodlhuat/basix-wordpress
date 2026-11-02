@@ -12,6 +12,7 @@
     "check:frontend": "node scripts/check-frontend.mjs",
     "check:ics": "node scripts/check-ics.mjs",
     "check:schema": "node scripts/check-schema.mjs",
+    "check:looks": "node scripts/check-looks.mjs",
     "check:a11y": "node scripts/check-a11y.mjs",
     "postinstall": "node scripts/sync-basix.mjs"
   },
