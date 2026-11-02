@@ -3,9 +3,10 @@
 Goal: a distributable, premium-feeling WordPress theme built from the Basix component library.
 
 Decisions so far
-- **Audience:** sell / distribute (GPL theme, Basix is MIT, Outfit font is OFL).
+- **Audience:** free distribution through the WordPress.org theme directory (GPL theme, Basix is MIT, the fonts are OFL). Decided late in section 11; selling with licence keys is not planned.
 - **Editor:** hybrid. Keep PHP templates that use Basix markup, add `theme.json`, styled core blocks and block patterns.
-- **WooCommerce:** out of scope for now.
+- **WooCommerce:** out of scope (decided again at step 7 of section 11; a known gap).
+- **Events:** a companion plugin, `basix-events/` (decided at step 8 of section 11). The directory does not allow a theme to register a post type, a taxonomy, a block or a shortcode, so those live in the plugin and the theme works without it.
 - **Principle:** only Basix components and tokens; theme CSS stays layout glue.
 
 ## Milestones
@@ -84,7 +85,7 @@ Decisions so far
 ### 10. Event extras (done, but the real imports below are still to do by hand)
 Order matters: each step builds on the one before. Every step ends with `make check`, new checks for what it adds, German strings, and a small commit per piece.
 
-**0. Decide where events live (decided: they stay in the theme).** Theme Check lists the post type, block and shortcode as plugin territory. If the theme should go on WordPress.org, move them first into a companion plugin (`basix-events`) so the steps below are not moved twice. For a sold theme they can stay.
+**0. Decide where events live (first decided: in the theme; later moved to the companion plugin `basix-events`, see section 11 step 8). The file names below are from the time they were in the theme: `inc/events/*.php` is now `basix-events/inc/*.php`.** Theme Check lists the post type, block and shortcode as plugin territory. If the theme should go on WordPress.org, move them first into a companion plugin (`basix-events`) so the steps below are not moved twice. For a sold theme they can stay.
 
 **1. Event categories (small, done).**
 - A hierarchical `basix-event-category` taxonomy (`/events/category/<name>/`), shown in the editor sidebar automatically.
@@ -119,7 +120,7 @@ Order matters: each step builds on the one before. Every step ends with `make ch
 
 **Risks.** Recurrence and daylight saving are where bugs hide, so they get fixed-case tests before any UI. Meta queries for recurring events can get slow with thousands of events (fine for a typical site; the derived fields keep it bounded). Calendar apps differ in how strictly they read ICS, so a few real imports (Apple, Google, Outlook) are needed by hand at the end.
 
-### 11. Premium breadth (planned)
+### 11. Premium breadth (done, see the notes at each step)
 Where section 7 added polish, this adds what premium buyers expect to find: looks to choose from, more sections to build with, a guided start, flexible headers, structured data and a way to sell it. Order matters: each step builds on the one before. Every step ends with `make check`, new checks for what it adds, German strings, and a small commit per piece. Sources for the list: premium theme roundups (demos, builders, patterns, schema, support) and a look at what our theme lacks.
 
 **Already strong, so not on this list:** accessibility (axe, keyboard), performance (Lighthouse 95-100), dark mode, filters, gallery, and events with repeats, time zones and ICS.
@@ -170,13 +171,13 @@ Where section 7 added polish, this adds what premium buyers expect to find: look
 - Limits: the calendar keeps its left-to-right grid in right-to-left languages. The menu drawer slides in from the right in both directions. The rest of the Elementor theme builder (single, archive, 404) and other builders' own hooks are not wired. Real plugins were not tested, only their markup; a quick try with each is still worth doing by hand.
 - Open question: Site Editor support (still open). We are a classic theme with `theme.json` (decided in section 2). Block templates and template parts would let people edit headers, footers and templates in the Site Editor. It is the biggest structural gap against block themes and a large piece of work, so decide with step 4 done and real feedback in hand.
 
-**7. WooCommerce (large, undecided).** Out of scope today (see decisions at the top). It is the biggest buyer segment, so decide before the theme is on sale. A first step could be shop, product and cart styling with Basix components and no builder features.
+**7. WooCommerce (decided: left out).** Out of scope, as at the start. It is the biggest buyer segment, but it is a large piece of work on its own and the directory does not require it. Known gap; a first step later could be shop, product and cart styling with Basix components.
 
-**8. Selling infrastructure (medium, after 1 to 5).**
-- Licence key and update delivery (a service such as Freemius, or our own update server through `Update URI`), a changelog feed and a version policy.
-- Documentation site (setup, every option, patterns, hooks and filters, child theme), a few short videos, and a live demo site with each starter site.
-- A support channel and a refund and licence text.
-- A product page with the screenshots and the demos (this is also where the Lighthouse numbers on real hosting go).
+**8. WordPress.org submission (done as far as it can be checked here).** Distribution is the theme directory, so licence keys, an update server and a sales page are not needed.
+- **Events moved into a companion plugin, `basix-events/`** (post type, categories, fields, repeats, time zones, the day list, the calendar feed, the REST list, the calendar block and the `[basix_calendar]` shortcode). Theme Check listed these as plugin territory (four required items); it now has no required items, only information and two recommendations. The plugin has its own text domain, German translation, readme, uninstall file, WPML/Polylang configuration and zip (`make zip` writes both). The theme defines the two names `BASIX_EVENT` and `BASIX_EVENT_CAT` and `basix_has_events()`, and guards every call: without the plugin the events starter is left out, the calendar page shows the posts calendar, and event pages are simply not there. With another theme the plugin still works: events, the feed and the day list; the block and shortcode show a plain list.
+- **Checked:** `scripts/check-without-plugin.mjs` switches the plugin off and visits the main pages (loads, no PHP messages, no serious axe problems), confirms the event addresses are not found, that three starters remain and one still imports, and switches it on again. By hand: the plugin with Twenty Twenty-Five (events, feed and day list work; the shortcode gives a list).
+- **Ready for review:** Theme Check without required items, PHPCS clean, a 1200 x 900 screenshot, tags from the allowed list, GPL-compatible licences listed in `readme.txt` (fonts, icons, images), no update URI, no top-level admin menu (the setup screen is under Appearance), translation-ready.
+- **Left to you:** create the directory account and submit the zip; the review is manual and can ask for changes. The "accessibility-ready" tag triggers a separate accessibility review. Not added on purpose: `custom-background` and `wp-block-styles` (Theme Check recommends them; a background image would fight the looks' contrast guarantees, and the theme styles core blocks itself). Documentation can live in the readme and on a page of your own site.
 
 **Smaller leftovers to fold in along the way:** a native speaker reading the German, and the fixed English texts in some Basix components. (The carousel arrows over the badge on phones, and the picture buttons with an empty alt text that axe listed as minor, are fixed.)
 

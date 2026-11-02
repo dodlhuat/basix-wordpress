@@ -137,7 +137,7 @@ function basix_starter_posts(): array {
 		'npm'        => $post(
 			'Shipping a WordPress theme with npm',
 			'Engineering',
-			array( 'npm', 'wordpress' ),
+			array( 'npm', 'WordPress' ),
 			'square-5.jpg',
 			9,
 			array(

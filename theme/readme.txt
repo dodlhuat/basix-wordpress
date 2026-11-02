@@ -18,7 +18,7 @@ Basix is a classic WordPress theme made from the components of the Basix library
 * Sticky header with an accessible flyout menu on small screens
 * Image cards, a hero section and a sidebar with widgets
 * Styled comments, password-protected posts, search and 404 pages
-* An Events post type with an events calendar block and shortcode, header layouts, a featured-post slider, a gallery and portfolio page, and post filters
+* Events through the optional companion plugin Basix Events (events, repeats, time zones, a calendar block and shortcode, a calendar feed); header layouts, a featured-post slider, a gallery and portfolio page, and post filters
 * Forty block patterns in 14 groups (hero, features, pricing, testimonials, team, logos, numbers, call to action, newsletter, contact, portfolio, blog, questions, about) and block styles, plus starter content for new sites
 * Five looks (Basix, Editorial, Bold, Calm, Paper) that set colours for light and dark mode, corners and fonts together, with a choice of fonts and text size on top
 * A setup screen (Appearance > Basix setup) with four ready-made starter sites (Blog, Magazine, Business, Events) that can be imported and undone
@@ -37,7 +37,7 @@ Basix is a classic WordPress theme made from the components of the Basix library
 
 = Does it need a plugin? =
 
-No. Basix works without any plugin.
+No. Basix works without any plugin. For events (with repeats, time zones and a calendar feed) install the companion plugin Basix Events; the theme then styles the events and shows the calendar.
 
 = Does it support dark mode? =
 

@@ -1,20 +1,20 @@
 # Basix for WordPress
 
-A fast, accessible blog and magazine theme built from the [Basix](https://github.com/dodlhuat/basix) component library. Light and dark mode, header layouts, a featured slider, calendar, gallery and filter components, ten block patterns, and a German translation.
+A fast, accessible blog and magazine theme built from the [Basix](https://github.com/dodlhuat/basix) component library. Light and dark mode, five looks, header and footer options, a featured slider, calendar, gallery and filter components, forty block patterns, four starter sites, right-to-left support and a German translation.
 
-The theme lives in `theme/`. Everything else in this repository is the development setup.
+The theme lives in `theme/`. Events (repeats, time zones, the calendar block and shortcode, the calendar feed) come from the companion plugin in `basix-events/`: the WordPress.org directory does not let a theme register a post type. The theme works without it. Everything else in this repository is the development setup.
 
 ## Requirements
 
 - WordPress 6.5 or newer, PHP 8.1 or newer (tested with WordPress 7.1)
 - For development: Docker, Node 20+, Composer, and Chrome (for the browser checks)
 
-## Install the theme
+## Install
 
-Build the zip and upload it under Appearance > Themes > Add New > Upload Theme:
+Build the zips. Upload the theme under Appearance > Themes > Add New > Upload Theme, and the plugin (optional, for events) under Plugins > Add New > Upload Plugin:
 
 ```sh
-make zip        # writes dist/basix-<version>.zip
+make zip        # writes dist/basix-<version>.zip and dist/basix-events-<version>.zip
 ```
 
 On a new site, open the Customizer to preview the starter content (pages, menus and widgets).
@@ -22,9 +22,9 @@ On a new site, open the Customizer to preview the starter content (pages, menus 
 ## Develop
 
 ```sh
-make up         # npm install, start WordPress at http://localhost:8090 (admin / admin), activate the theme
+make up         # npm install, start WordPress at http://localhost:8090 (admin / admin), activate the theme and the plugin
 make seed       # fill the site with demo pages, posts and images
-make check      # PHPCS plus the editor, Customizer, front-end and accessibility checks
+make check      # PHPCS plus every check: events, looks, starters, header, compatibility, right-to-left, schema, calendar feed, editor, Customizer, front end, accessibility and the theme without the plugin
 make zip        # build the distributable zip
 make down       # stop the containers (make reset also deletes the data)
 ```
@@ -40,12 +40,15 @@ Other commands:
 
 ```
 theme/
-  functions.php, inc/        setup, Customizer, menus, filters, SEO, starter content
+  functions.php, inc/        setup, looks, Customizer, header options, menus, filters, SEO and schema, starter sites
   templates and template-parts/
-  page-templates/            front page, docs, gallery, calendar, landing
-  patterns/                  ten block patterns
-  assets/                    css, js, images; vendor/basix is generated and gitignored
+  page-templates/            front page, docs, gallery, calendar, landing, full width, canvas
+  patterns/                  forty block patterns
+  starters/                  the four starter sites
+  styles/                    the five looks (theme.json variations)
+  assets/                    css, js, fonts, images; vendor/basix and the RTL copies of Basix are generated and gitignored
   languages/                 basix.pot and the German translation
+basix-events/                the companion plugin: events, repeats, time zones, calendar block and shortcode, calendar feed
 scripts/                     setup, seeding, asset sync, zip build, browser checks
 ROADMAP.md                   plan and status per milestone
 ```
