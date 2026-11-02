@@ -79,7 +79,7 @@ Decisions so far
 
 ### 9. Events (done)
 - An **Event** post type (Events in the admin menu) with start and end date, optional times and a location; no times means an all-day event. The calendar block, the `[basix_calendar]` shortcode and the Calendar page template show events by default, with month, week and agenda views and multi-day events. `source="posts"` (or the block's Source option) shows blog posts by publish date instead. Events have their own page (`/event/<name>/`), and `/events/` lists what is still to come. Events are read from a public endpoint, `/wp-json/basix/v1/events?from=&to=`.
-- Limits: the post type lives in the theme, so events are hidden (not deleted) if the site switches theme; no recurring events, no categories, no time zone per event (times are the site's local time; categories, time zones and repeats came later, see section 10); clicking a day does nothing for events; no ICS export.
+- Limits: the post type lives in the theme, so events are hidden (not deleted) if the site switches theme; no recurring events, no categories, no time zone per event (times are the site's local time; categories, time zones and repeats came later, see section 10); clicking a day opens that day's events (added in section 10); no ICS export.
 
 ### 10. Event extras (planned)
 Order matters: each step builds on the one before. Every step ends with `make check`, new checks for what it adds, German strings, and a small commit per piece.
@@ -106,7 +106,7 @@ Order matters: each step builds on the one before. Every step ends with `make ch
 - Meta box: a "Repeat" section with a live summary sentence. Editing one single occurrence is out of scope (skip a date instead).
 - Tests: a PHP check script with fixed cases (month end, 31st, leap day, nth weekday, until and count, skipped dates, multi-day events that repeat, daylight saving).
 
-**4. Clicking a day (small, after 3).**
+**4. Clicking a day (small, after 3, done; `scripts/check-frontend.mjs` clicks a day and presses Enter).** The first option below was used; the day page is not indexed (`noindex`) and links to the day before and after.
 - A day opens `/events/?event_day=2026-11-05`: the archive template listing that day's occurrences (recurring ones included), with a "No events on this day" state, and working without JavaScript.
 - The calendar's day click and Enter key go there. Alternative to consider: add a `goToDate()` method to the Basix calendar itself (the library is yours) and open the week view instead.
 
