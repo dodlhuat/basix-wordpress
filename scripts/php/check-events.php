@@ -208,6 +208,25 @@ $check( '2020-01-21' === basix_event_next( $over )['date'], 'the next date of a 
 $check( $next['date'] >= wp_date( 'Y-m-d' ) && basix_event_next( $weekly )['date'] >= wp_date( 'Y-m-d' ), 'and a running one gives its coming date' );
 $check( '' !== (string) get_post_meta( $weekly, '_basix_event_next_utc', true ), 'the next date is stored for sorting' );
 
+// The editor's form turns into the same rule.
+$form = basix_event_rule_clean( basix_event_rule_from_form( array( 'freq' => 'weekly', 'interval' => '2', 'weekdays' => array( '2', '4' ), 'end' => 'count', 'until' => '', 'count' => '6', 'skip' => "2026-12-24\n2026-12-31, nonsense" ) ) );
+$check( 'weekly' === $form['freq'] && 2 === $form['interval'] && array( 2, 4 ) === $form['weekdays'] && 6 === $form['end']['count'] && array( '2026-12-24', '2026-12-31' ) === $form['skip'], 'the Repeat form fields make a rule' );
+$check( array() === basix_event_rule_clean( basix_event_rule_from_form( array( 'freq' => '' ) ) ), 'and "does not repeat" makes none' );
+$saved = $make( array( 'basix_event_start' => '2026-11-03', 'basix_event_repeat' => array( 'freq' => 'daily', 'interval' => 3 ) ) );
+$check( array( 'freq' => 'daily', 'interval' => 3 ) === array_intersect_key( basix_event_rule( $saved ), array( 'freq' => 1, 'interval' => 1 ) ), 'a rule saved through the field comes back clean' );
+
+// The rule in words (in English, whatever language the site uses).
+switch_to_locale( 'en_US' );
+$words = static function ( array $rule, string $start = '2026-11-03' ): string {
+	return basix_event_rule_words( basix_event_rule_clean( $rule ), $start );
+};
+$check( 'Every week on Tuesday, until December 20, 2026' === $words( array( 'freq' => 'weekly', 'end' => array( 'type' => 'until', 'until' => '2026-12-20' ) ) ), 'the rule in words: every week on Tuesday, until a date' );
+$check( 'Every 2 weeks on Tuesday and Thursday, 6 times' === $words( array( 'freq' => 'weekly', 'interval' => 2, 'weekdays' => array( 2, 4 ), 'end' => array( 'type' => 'count', 'count' => 6 ) ) ), 'and with an interval, two weekdays and a count' );
+$check( 'Every month on the second Tuesday' === $words( array( 'freq' => 'monthly_weekday' ), '2026-11-10' ) && 'Every month on the last Friday' === $words( array( 'freq' => 'monthly_weekday' ), '2026-10-30' ), 'and a weekday of the month' );
+$check( 'Every day' === $words( array( 'freq' => 'daily' ) ) && 'Every 3 months on day 5' === $words( array( 'freq' => 'monthly', 'interval' => 3 ), '2026-11-05' ) && 'Every year on Nov 5' === $words( array( 'freq' => 'yearly' ), '2026-11-05' ), 'and the simple ones' );
+
+restore_previous_locale();
+
 // An event without a repeat is unchanged.
 $check( $same( $ids_in( basix_event_occurrences( $plain, '2026-11-01', '2026-11-30' ) ), array( '2026-11-05' ) ), 'an event without a rule is one occurrence' );
 
