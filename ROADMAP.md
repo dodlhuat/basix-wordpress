@@ -79,12 +79,12 @@ Decisions so far
 
 ### 9. Events (done)
 - An **Event** post type (Events in the admin menu) with start and end date, optional times and a location; no times means an all-day event. The calendar block, the `[basix_calendar]` shortcode and the Calendar page template show events by default, with month, week and agenda views and multi-day events. `source="posts"` (or the block's Source option) shows blog posts by publish date instead. Events have their own page (`/event/<name>/`), and `/events/` lists what is still to come. Events are read from a public endpoint, `/wp-json/basix/v1/events?from=&to=`.
-- Limits: the post type lives in the theme, so events are hidden (not deleted) if the site switches theme; no recurring events, no categories, no time zone per event (times are the site's local time); clicking a day does nothing for events; no ICS export.
+- Limits: the post type lives in the theme, so events are hidden (not deleted) if the site switches theme; no recurring events, no categories, no time zone per event (times are the site's local time; categories, time zones and repeats came later, see section 10); clicking a day does nothing for events; no ICS export.
 
 ### 10. Event extras (planned)
 Order matters: each step builds on the one before. Every step ends with `make check`, new checks for what it adds, German strings, and a small commit per piece.
 
-**0. Decide where events live.** Theme Check lists the post type, block and shortcode as plugin territory. If the theme should go on WordPress.org, move them first into a companion plugin (`basix-events`) so the steps below are not moved twice. For a sold theme they can stay.
+**0. Decide where events live (decided: they stay in the theme).** Theme Check lists the post type, block and shortcode as plugin territory. If the theme should go on WordPress.org, move them first into a companion plugin (`basix-events`) so the steps below are not moved twice. For a sold theme they can stay.
 
 **1. Event categories (small, done).**
 - A hierarchical `basix-event-category` taxonomy (`/events/category/<name>/`), shown in the editor sidebar automatically.
@@ -98,7 +98,7 @@ Order matters: each step builds on the one before. Every step ends with `make ch
 - Display rule: the calendar grid shows the site's time zone. An event in another zone is placed by its real moment, and its own local time with the zone name is shown on its page, in its tooltip and in the list ("6:30 pm – 8:00 pm CET").
 - Edge cases to test: daylight saving gaps and repeats, events that cross midnight after conversion, zones with half-hour offsets.
 
-**3. Recurring events (large).**
+**3. Recurring events (large, done; the rule tests are in `scripts/php/check-events.php`).**
 - A rule on the event, stored as one JSON meta field: frequency (daily, weekly, monthly by date, monthly by weekday such as "second Tuesday", yearly), every N, weekdays for weekly, an end (never, until a date, after N times) and a list of skipped dates. This is a subset of the standard iCalendar rule, so it can be exported unchanged.
 - Occurrences are computed when read, not saved as posts: `basix_event_occurrences($event, $from, $to)` expands the rule in the event's own zone, so 6:30 pm stays 6:30 pm across daylight saving. It is capped (about 500 per event and range) so a bad rule cannot loop forever.
 - The events endpoint returns occurrences with unique ids (`<id>-<date>`) and links to the event with `?date=`; the event page shows the rule in words ("Every week on Tuesday, until 20 Dec") and the next dates.
