@@ -4,6 +4,8 @@ A fast, accessible blog and magazine theme built from the [Basix](https://github
 
 The theme lives in `theme/`. Events (repeats, time zones, the calendar block and shortcode, the calendar feed) come from the companion plugin in `basix-events/`: the WordPress.org directory does not let a theme register a post type. The theme works without it. Everything else in this repository is the development setup.
 
+Documentation for users and developers is in [docs/](docs/README.md).
+
 ## Requirements
 
 - WordPress 6.5 or newer, PHP 8.1 or newer (tested with WordPress 7.1)

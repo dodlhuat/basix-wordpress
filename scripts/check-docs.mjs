@@ -1,0 +1,58 @@
+// Keeps the documents in docs/ honest: every link to another file resolves, every hook, filter, command and path they
+// name still exists in the code, and every check they list exists in scripts/.
+//   node scripts/check-docs.mjs
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import path from 'node:path';
+
+const failures = [];
+const check = (ok, what) => {
+  if (!ok) failures.push(what);
+};
+const walk = (dir, exts) => readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
+  const full = path.join(dir, e.name);
+  if (e.isDirectory()) return e.name === 'vendor' || e.name === 'node_modules' ? [] : walk(full, exts);
+  return exts.some((x) => full.endsWith(x)) ? [full] : [];
+});
+const code = [...walk('theme', ['.php', '.js', '.json', '.css']), ...walk('basix-events', ['.php', '.json', '.xml'])].map((f) => readFileSync(f, 'utf8')).join('\n');
+const docs = readdirSync('docs').filter((f) => f.endsWith('.md'));
+const scripts = new Set([...readdirSync('scripts'), ...readdirSync('scripts/php').map((f) => `php/${f}`)]);
+let checked = 0;
+
+for (const file of docs) {
+  const text = readFileSync(path.join('docs', file), 'utf8');
+  // Links to other files.
+  for (const m of text.matchAll(/\]\((?!https?:|#|mailto:)([^)#]+)(#[^)]*)?\)/g)) {
+    checked++;
+    check(existsSync(path.join('docs', m[1])), `${file}: the link ${m[1]} does not exist`);
+  }
+  // Names in code spans that look like hooks, commands or files.
+  for (const m of text.matchAll(/`([^`\n]+)`/g)) {
+    const name = m[1];
+    if (/^basix_[a-z_]+$/.test(name)) {
+      checked++;
+      check(code.includes(name), `${file}: ${name} is not in the code`);
+    } else if (/^(php\/)?check-[a-z-]+\.(mjs|php)$/.test(name)) {
+      checked++;
+      check(scripts.has(name), `${file}: scripts/${name} does not exist`);
+    } else if (/^(theme|basix-events|scripts)\/[\w./<>-]+$/.test(name) && !name.includes('<') && !name.endsWith('/')) {
+      checked++;
+      check(existsSync(name), `${file}: ${name} does not exist`);
+    } else if (/^wp basix starter (list|import|undo)/.test(name)) {
+      checked++;
+      check(code.includes(`'basix starter'`) || existsSync('theme/inc/setup/class-basix-starter-command.php'), `${file}: the command ${name} is gone`);
+    }
+  }
+}
+// Every check in the table of developers.md that has a script.
+const dev = readFileSync('docs/developers.md', 'utf8');
+for (const script of readdirSync('scripts').filter((f) => /^check-.*\.mjs$/.test(f))) {
+  checked++;
+  check(dev.includes(script.replace(/\.mjs$/, '')) || dev.includes(script), `developers.md does not mention scripts/${script}`);
+}
+
+if (failures.length) {
+  console.log(`FAILED:\n${failures.join('\n')}`);
+  process.exit(1);
+}
+console.log(`ok   ${checked} links, names and paths in docs/ are still right`);
+console.log('\nDocs check passed.');
