@@ -1,6 +1,6 @@
 <?php
 /**
- * Checks how events handle time zones. Run with `wp eval-file /php/check-events.php` (make check does).
+ * Checks how events handle time zones and repeats. Run with `wp eval-file /php/check-events.php` (make check does).
  * It creates a few events, changes the site's time zone for a moment, and puts everything back.
  */
 
@@ -92,6 +92,124 @@ $check( '2026-11-10 00:00:00' === get_post_meta( $day, '_basix_event_start_utc',
 // A made up zone is dropped.
 update_post_meta( $plain, 'basix_event_timezone', 'Mars/Olympus' );
 $check( '' === (string) get_post_meta( $plain, 'basix_event_timezone', true ), 'an unknown time zone is dropped' );
+
+// Repeat rules. First the dates alone, then what an event does with them.
+update_option( 'timezone_string', 'Europe/Vienna' );
+$dates = static function ( string $start, array $rule, int $take = 50 ): array {
+	$out = array();
+	foreach ( basix_event_rule_dates( $start, basix_event_rule_clean( $rule ) ) as $date ) {
+		$out[] = $date;
+		if ( count( $out ) >= $take ) {
+			break;
+		}
+	}
+	return $out;
+};
+$same = static function ( array $a, array $b ): bool {
+	return $a === $b;
+};
+$check( $same( $dates( '2026-11-03', array( 'freq' => 'daily', 'interval' => 2, 'end' => array( 'type' => 'count', 'count' => 3 ) ) ), array( '2026-11-03', '2026-11-05', '2026-11-07' ) ), 'every second day, three times' );
+$check( $same( $dates( '2026-11-03', array( 'freq' => 'weekly', 'weekdays' => array( 2, 4 ), 'end' => array( 'type' => 'count', 'count' => 5 ) ) ), array( '2026-11-03', '2026-11-05', '2026-11-10', '2026-11-12', '2026-11-17' ) ), 'weekly on Tuesday and Thursday' );
+$check( $same( $dates( '2026-11-05', array( 'freq' => 'weekly', 'weekdays' => array( 2, 4 ), 'end' => array( 'type' => 'count', 'count' => 3 ) ) ), array( '2026-11-05', '2026-11-10', '2026-11-12' ) ), 'a weekly rule starts at its start date, not earlier in the week' );
+$check( $same( $dates( '2026-11-02', array( 'freq' => 'weekly', 'interval' => 2, 'end' => array( 'type' => 'count', 'count' => 3 ) ) ), array( '2026-11-02', '2026-11-16', '2026-11-30' ) ), 'every second week uses the weekday of the start' );
+$check( $same( $dates( '2026-01-31', array( 'freq' => 'monthly', 'end' => array( 'type' => 'count', 'count' => 4 ) ) ), array( '2026-01-31', '2026-03-31', '2026-05-31', '2026-07-31' ) ), 'the 31st skips months that do not have one' );
+$check( $same( $dates( '2024-02-29', array( 'freq' => 'yearly', 'end' => array( 'type' => 'count', 'count' => 3 ) ) ), array( '2024-02-29', '2028-02-29', '2032-02-29' ) ), 'a leap day only happens in leap years' );
+$check( $same( $dates( '2026-11-10', array( 'freq' => 'monthly_weekday', 'end' => array( 'type' => 'count', 'count' => 3 ) ) ), array( '2026-11-10', '2026-12-08', '2027-01-12' ) ), 'the second Tuesday of each month' );
+$check( $same( $dates( '2026-10-30', array( 'freq' => 'monthly_weekday', 'end' => array( 'type' => 'count', 'count' => 3 ) ) ), array( '2026-10-30', '2026-11-27', '2026-12-25' ) ), 'a fifth weekday means the last one' );
+$check( $same( $dates( '2026-11-03', array( 'freq' => 'daily', 'end' => array( 'type' => 'until', 'until' => '2026-11-05' ) ) ), array( '2026-11-03', '2026-11-04', '2026-11-05' ) ), 'an end date counts as a day of the rule' );
+$check( array() === basix_event_rule_clean( array( 'freq' => 'hourly' ) ) && array() === basix_event_rule_clean( 'not json' ), 'a rule that makes no sense means no repeat' );
+$cleaned = basix_event_rule_clean( array( 'freq' => 'weekly', 'interval' => 500, 'weekdays' => array( 9, '3', 3 ), 'skip' => array( 'x', '2026-11-05' ) ) );
+$check( 99 === $cleaned['interval'] && array( 3 ) === $cleaned['weekdays'] && array( '2026-11-05' ) === $cleaned['skip'], 'a rule is cleaned: interval, weekdays and skipped dates' );
+
+$repeat = static function ( array $rule ): string {
+	return wp_json_encode( $rule );
+};
+$ids_in = static function ( array $occurrences ): array {
+	return array_column( $occurrences, 'date' );
+};
+
+// A weekly event, skipped on one date, with an end after four times.
+$weekly = $make(
+	array(
+		'basix_event_start'      => '2026-11-03',
+		'basix_event_start_time' => '18:30',
+		'basix_event_end'        => '2026-11-03',
+		'basix_event_end_time'   => '20:00',
+		'basix_event_repeat'     => $repeat( array( 'freq' => 'weekly', 'end' => array( 'type' => 'count', 'count' => 4 ), 'skip' => array( '2026-11-10' ) ) ),
+	)
+);
+$check( $same( $ids_in( basix_event_occurrences( $weekly, '2026-11-01', '2026-12-31' ) ), array( '2026-11-03', '2026-11-17', '2026-11-24' ) ), 'a skipped date does not happen, and still counts towards the end' );
+$check( $same( $ids_in( basix_event_occurrences( $weekly, '2026-11-15', '2026-11-18' ) ), array( '2026-11-17' ) ), 'only the dates inside the range are returned' );
+$check( in_array( $weekly, wp_list_pluck( basix_events_between( '2026-11-24', '2026-11-24' ), 'ID' ), true ), 'a repeat shows on its last day' );
+$check( ! in_array( $weekly, wp_list_pluck( basix_events_between( '2026-12-01', '2026-12-31' ), 'ID' ), true ), 'and not after its rule has run out' );
+$check( ! in_array( $weekly, wp_list_pluck( basix_events_between( '2026-11-10', '2026-11-10' ), 'ID' ), true ), 'nor on a skipped date' );
+$check( '2026-11-24 19:00:00' === get_post_meta( $weekly, '_basix_event_last_utc', true ), 'the last end is stored for the list query' );
+
+// A repeat that never ends, with a cap.
+$endless = $make(
+	array(
+		'basix_event_start'  => '2026-01-01',
+		'basix_event_repeat' => $repeat( array( 'freq' => 'daily' ) ),
+	)
+);
+$check( BASIX_EVENT_MAX_OCCURRENCES === count( basix_event_occurrences( $endless, '2026-01-01', '2036-12-31' ) ), 'an endless daily event is capped' );
+$check( '9999-12-31 23:59:59' === get_post_meta( $endless, '_basix_event_last_utc', true ), 'and never runs out' );
+$check( 7 === count( basix_event_occurrences( $endless, '2030-06-01', '2030-06-07' ) ), 'a range far from the start still works' );
+
+// A repeating multi-day event: each date keeps the length.
+$multi = $make(
+	array(
+		'basix_event_start'  => '2026-11-03',
+		'basix_event_end'    => '2026-11-04',
+		'basix_event_repeat' => $repeat( array( 'freq' => 'weekly', 'end' => array( 'type' => 'count', 'count' => 2 ) ) ),
+	)
+);
+$second = basix_event_occurrences( $multi, '2026-11-09', '2026-11-12' );
+$check( 1 === count( $second ) && '2026-11-10T00:00' === $second[0]['start'] && '2026-11-11T23:59' === $second[0]['end'], 'a repeating two day event stays two days' );
+
+// The clock time stays the same across daylight saving, in the event's own zone.
+$ny_weekly = $make(
+	array(
+		'basix_event_start'      => '2026-10-27',
+		'basix_event_start_time' => '18:30',
+		'basix_event_end'        => '2026-10-27',
+		'basix_event_end_time'   => '19:30',
+		'basix_event_timezone'   => 'America/New_York',
+		'basix_event_repeat'     => $repeat( array( 'freq' => 'weekly', 'end' => array( 'type' => 'count', 'count' => 2 ) ) ),
+	)
+);
+$pair = basix_event_occurrences( $ny_weekly, '2026-10-01', '2026-11-30' );
+$check( 2 === count( $pair ) && '2026-10-27T18:30' === $pair[0]['own_start'] && '2026-11-03T18:30' === $pair[1]['own_start'], '6:30 pm stays 6:30 pm in New York across the change' );
+$check( '2026-10-27T23:30' === $pair[0]['start'] && '2026-11-04T00:30' === $pair[1]['start'], 'and moves by an hour for Vienna, where the change came a week earlier' );
+
+// The same rule in Vienna itself: the site time does not move.
+$vienna = $make(
+	array(
+		'basix_event_start'      => '2026-10-20',
+		'basix_event_start_time' => '18:30',
+		'basix_event_end'        => '2026-10-20',
+		'basix_event_end_time'   => '19:30',
+		'basix_event_repeat'     => $repeat( array( 'freq' => 'weekly', 'end' => array( 'type' => 'count', 'count' => 3 ) ) ),
+	)
+);
+$three = basix_event_occurrences( $vienna, '2026-10-01', '2026-11-30' );
+$check( array( '2026-10-20T18:30', '2026-10-27T18:30', '2026-11-03T18:30' ) === array_column( $three, 'start' ), 'a Vienna event stays at 6:30 pm across the change' );
+
+// The next date, for the archive.
+$next = basix_event_next( $endless );
+$check( $next && $next['date'] >= wp_date( 'Y-m-d' ), 'the next date of an endless event is today or later' );
+$over = $make(
+	array(
+		'basix_event_start'  => '2020-01-07',
+		'basix_event_repeat' => $repeat( array( 'freq' => 'weekly', 'end' => array( 'type' => 'count', 'count' => 3 ) ) ),
+	)
+);
+$check( '2020-01-21' === basix_event_next( $over )['date'], 'the next date of a finished event is its last' );
+$check( $next['date'] >= wp_date( 'Y-m-d' ) && basix_event_next( $weekly )['date'] >= wp_date( 'Y-m-d' ), 'and a running one gives its coming date' );
+$check( '' !== (string) get_post_meta( $weekly, '_basix_event_next_utc', true ), 'the next date is stored for sorting' );
+
+// An event without a repeat is unchanged.
+$check( $same( $ids_in( basix_event_occurrences( $plain, '2026-11-01', '2026-11-30' ) ), array( '2026-11-05' ) ), 'an event without a rule is one occurrence' );
 
 foreach ( $ids as $id ) {
 	wp_delete_post( $id, true );

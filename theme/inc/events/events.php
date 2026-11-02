@@ -20,6 +20,7 @@ function basix_event_fields(): array {
 		'basix_event_end_time'   => __( 'End time', 'basix' ),
 		'basix_event_timezone'   => __( 'Time zone', 'basix' ),
 		'basix_event_location'   => __( 'Location', 'basix' ),
+		'basix_event_repeat'     => __( 'Repeat', 'basix' ),
 	);
 }
 
@@ -40,6 +41,10 @@ function basix_event_sanitize( string $key, $value ): string {
 	}
 	if ( 'basix_event_timezone' === $key ) {
 		return in_array( $value, timezone_identifiers_list(), true ) ? $value : '';
+	}
+	if ( 'basix_event_repeat' === $key ) {
+		$rule = basix_event_rule_clean( $value );
+		return $rule ? wp_json_encode( $rule ) : '';
 	}
 	return sanitize_text_field( $value );
 }
@@ -261,8 +266,9 @@ function basix_event_range_site( int $post_id ): ?array {
 function basix_event_update_derived( int $post_id ): void {
 	$range = basix_event_range( $post_id );
 	if ( ! $range ) {
-		delete_post_meta( $post_id, '_basix_event_start_utc' );
-		delete_post_meta( $post_id, '_basix_event_end_utc' );
+		foreach ( array( 'start', 'end', 'last', 'next' ) as $part ) {
+			delete_post_meta( $post_id, '_basix_event_' . $part . '_utc' );
+		}
 		return;
 	}
 	$zone  = $range['all_day'] ? wp_timezone() : basix_event_zone( $post_id );
@@ -274,6 +280,9 @@ function basix_event_update_derived( int $post_id ): void {
 	}
 	update_post_meta( $post_id, '_basix_event_start_utc', $start->setTimezone( $utc )->format( 'Y-m-d H:i:s' ) );
 	update_post_meta( $post_id, '_basix_event_end_utc', $end->setTimezone( $utc )->format( 'Y-m-d H:i:s' ) );
+	// The end of the last occurrence (far away for a rule that never ends) and the start of the next one.
+	update_post_meta( $post_id, '_basix_event_last_utc', basix_event_last_utc( $post_id ) );
+	update_post_meta( $post_id, '_basix_event_next_utc', basix_event_next_utc( $post_id ) );
 }
 
 // Keep the hidden fields right whenever an event field changes (the editor, the REST API, WP-CLI).
@@ -310,7 +319,7 @@ function basix_event_meta_changed( $meta_id, $post_id, $key ): void {
 }
 
 /** Bump this when the hidden fields change, so existing events get them again. */
-const BASIX_EVENTS_DERIVED = 2;
+const BASIX_EVENTS_DERIVED = 3;
 
 /** Recomputes the hidden fields of every event. */
 function basix_events_rebuild_derived(): void {
@@ -455,15 +464,16 @@ function basix_event_category_list(): array {
 }
 
 /**
- * The events that touch a date range.
+ * The occurrences that touch a date range, soonest first. An event that does not repeat is one occurrence; a
+ * recurring one gives each of its dates in the range (see basix_event_occurrences(), which adds the times).
  *
- * @param string $from First day (Y-m-d).
- * @param string $to   Last day (Y-m-d).
- * @param int    $max  Most events to return.
+ * @param string   $from       First day (Y-m-d).
+ * @param string   $to         Last day (Y-m-d).
+ * @param int      $max        Most events to look at.
  * @param string[] $categories Category slugs; only events in one of them (all when empty).
- * @return WP_Post[]
+ * @return array<int, array{event: WP_Post, id: string, date: string, start: string, end: string, all_day: bool, own_start: string, own_end: string}>
  */
-function basix_events_between( string $from, string $to, int $max = 300, array $categories = array() ): array {
+function basix_event_occurrences_between( string $from, string $to, int $max = 300, array $categories = array() ): array {
 	// The days are the site's; events are compared as moments in UTC.
 	$utc         = new DateTimeZone( 'UTC' );
 	$window_from = ( new DateTimeImmutable( $from . ' 00:00:00', wp_timezone() ) )->setTimezone( $utc )->format( 'Y-m-d H:i:s' );
@@ -486,8 +496,9 @@ function basix_events_between( string $from, string $to, int $max = 300, array $
 				'compare' => '<=',
 				'type'    => 'CHAR',
 			),
+			// The end of the last occurrence: a recurring event is only left out once its rule has run out.
 			array(
-				'key'     => '_basix_event_end_utc',
+				'key'     => '_basix_event_last_utc',
 				'value'   => $window_from,
 				'compare' => '>=',
 				'type'    => 'CHAR',
@@ -503,7 +514,36 @@ function basix_events_between( string $from, string $to, int $max = 300, array $
 			),
 		);
 	}
-	return get_posts( $args );
+	$out = array();
+	foreach ( get_posts( $args ) as $event ) {
+		foreach ( basix_event_occurrences( $event, $from, $to ) as $occurrence ) {
+			$out[] = array_merge( array( 'event' => $event ), $occurrence );
+		}
+	}
+	usort(
+		$out,
+		static function ( $a, $b ) {
+			return array( $a['start'], $a['id'] ) <=> array( $b['start'], $b['id'] );
+		}
+	);
+	return $out;
+}
+
+/**
+ * The events that have an occurrence in a date range (each event once, even when it repeats).
+ *
+ * @param string   $from       First day (Y-m-d).
+ * @param string   $to         Last day (Y-m-d).
+ * @param int      $max        Most events to look at.
+ * @param string[] $categories Category slugs; only events in one of them (all when empty).
+ * @return WP_Post[]
+ */
+function basix_events_between( string $from, string $to, int $max = 300, array $categories = array() ): array {
+	$out = array();
+	foreach ( basix_event_occurrences_between( $from, $to, $max, $categories ) as $occurrence ) {
+		$out[ $occurrence['event']->ID ] = $occurrence['event'];
+	}
+	return array_values( $out );
 }
 
 // GET /wp-json/basix/v1/events?from=2026-11-01&to=2026-11-30&category=meetups, the public list the calendar reads.
@@ -533,21 +573,20 @@ add_action(
 				),
 				'callback'            => static function ( WP_REST_Request $request ) {
 					$out = array();
-					foreach ( basix_events_between( $request['from'], $request['to'], 300, basix_event_category_slugs( (string) $request['category'] ) ) as $event ) {
-						$range = basix_event_range_site( $event->ID );
-						if ( ! $range ) {
-							continue;
-						}
+					foreach ( basix_event_occurrences_between( $request['from'], $request['to'], 300, basix_event_category_slugs( (string) $request['category'] ) ) as $item ) {
+						$event = $item['event'];
+						$rule  = basix_event_rule( $event->ID );
 						$out[] = array(
-							'id'         => $event->ID,
+							'id'         => $rule ? $item['id'] : $event->ID,
 							'title'      => html_entity_decode( get_the_title( $event ), ENT_QUOTES, 'UTF-8' ),
-							'link'       => get_permalink( $event ),
-							'start'      => $range['start'],
-							'end'        => $range['end'],
-							'allDay'     => $range['all_day'],
+							'link'       => $rule ? add_query_arg( 'date', $item['date'], get_permalink( $event ) ) : get_permalink( $event ),
+							'start'      => $item['start'],
+							'end'        => $item['end'],
+							'allDay'     => $item['all_day'],
 							'timezone'   => basix_event_zone( $event->ID )->getName(),
 							'location'   => (string) get_post_meta( $event->ID, 'basix_event_location', true ),
 							'categories' => wp_list_pluck( (array) get_the_terms( $event, BASIX_EVENT_CAT ), 'slug' ),
+							'repeats'    => (bool) $rule,
 						);
 					}
 					return rest_ensure_response( $out );
