@@ -22,3 +22,14 @@ find "$stage" \( -name '.DS_Store' -o -name '*.map' -o -name '*.d.ts' \) -delete
 rm -rf "$stage"
 
 echo "Built $out ($(du -h "$out" | cut -f1))"
+
+# The companion plugin, as its own zip.
+plugin_version=$(sed -n 's/^ \* Version: *//p' basix-events/basix-events.php | head -1)
+[ -n "$plugin_version" ] || { echo "No Version found in basix-events/basix-events.php" >&2; exit 1; }
+plugin_out="dist/basix-events-${plugin_version}.zip"
+mkdir -p "$stage"
+cp -R basix-events "$stage/basix-events"
+find "$stage" \( -name '.DS_Store' -o -name '*.map' -o -name '*.pot' \) -delete
+(cd "$stage" && zip -qr "../basix-events-${plugin_version}.zip" basix-events)
+rm -rf "$stage"
+echo "Built $plugin_out ($(du -h "$plugin_out" | cut -f1))"
