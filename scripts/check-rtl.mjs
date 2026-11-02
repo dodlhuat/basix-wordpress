@@ -21,6 +21,7 @@ const check = (ok, what) => {
 const wp = (...args) => execFileSync('docker', ['compose', 'run', '--rm', '-T', 'wpcli', 'wp', ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
 
 const language = wp('option', 'get', 'WPLANG');
+const created = [];
 wp('language', 'core', 'install', 'ar');
 wp('option', 'update', 'WPLANG', 'ar');
 const browser = await puppeteer.launch({ executablePath: chrome, headless: true });
@@ -81,6 +82,51 @@ try {
   check(calendar.pills > 0 && calendar.days >= 28 && !calendar.overflow, `the calendar draws its days and events (${calendar.pills} events)`);
   await page.close();
 
+  // Real Arabic text: where it starts, how lists, quotes and tables sit, and mixed text with English words and numbers.
+  const arabic = `<!-- wp:heading --><h2 class="wp-block-heading">مرحبًا بكم في موقعنا</h2><!-- /wp:heading -->
+<!-- wp:paragraph --><p>هذا نص تجريبي باللغة العربية لاختبار اتجاه الكتابة من اليمين إلى اليسار في القالب. يجب أن يبدأ النص من الحافة اليمنى وأن يلتف بشكل صحيح عند نهاية السطر دون أن يخرج عن حدود الصفحة، حتى لو كان السطر طويلًا جدًا ويحتوي على كلمات كثيرة.</p><!-- /wp:paragraph -->
+<!-- wp:paragraph --><p>يمكنك استخدام كلمات إنجليزية مثل WordPress وأرقام مثل 2026 داخل الجملة نفسها، وتبقى الجملة مقروءة.</p><!-- /wp:paragraph -->
+<!-- wp:list --><ul class="wp-block-list"><!-- wp:list-item --><li>العنصر الأول</li><!-- /wp:list-item --><!-- wp:list-item --><li>العنصر الثاني</li><!-- /wp:list-item --></ul><!-- /wp:list -->
+<!-- wp:quote --><blockquote class="wp-block-quote"><!-- wp:paragraph --><p>الاقتباس يجب أن يظهر خطه الجانبي على اليمين.</p><!-- /wp:paragraph --><cite>كاتب مجهول</cite></blockquote><!-- /wp:quote -->
+<!-- wp:table --><figure class="wp-block-table"><table class="has-fixed-layout"><thead><tr><th>الاسم</th><th>القيمة</th></tr></thead><tbody><tr><td>الأول</td><td>١٢٣</td></tr></tbody></table></figure><!-- /wp:table -->`;
+  const pageId = wp('--user=admin', 'post', 'create', '--post_type=page', '--post_status=publish', '--post_title=صفحة تجريبية', `--post_content=${arabic}`, '--porcelain');
+  created.push(pageId);
+  page = await open(wp('post', 'list', '--post_type=page', `--post__in=${pageId}`, '--field=url').replace(url, '') || '/');
+  const text = await page.evaluate(() => {
+    const content = document.querySelector('.entry-content');
+    const lineEdge = (el) => { const range = document.createRange(); range.selectNodeContents(el); const rects = [...range.getClientRects()]; return { right: Math.max(...rects.map((r) => r.right)), left: Math.min(...rects.map((r) => r.left)) }; };
+    const para = content.querySelector('p');
+    const box = para.getBoundingClientRect();
+    const edge = lineEdge(para);
+    const list = content.querySelector('ul');
+    const quote = content.querySelector('blockquote');
+    const cell = content.querySelector('td');
+    const css = (el) => getComputedStyle(el);
+    return {
+      lang: document.documentElement.lang,
+      heading: css(document.querySelector('.entry-header h1')).textAlign,
+      direction: css(para).direction,
+      startsRight: Math.abs(edge.right - box.right) < 6 && edge.left < box.left + box.width * 0.5,
+      listSide: parseFloat(css(list).paddingRight) > parseFloat(css(list).paddingLeft),
+      quoteSide: parseFloat(css(quote).borderRightWidth) > parseFloat(css(quote).borderLeftWidth) || parseFloat(css(quote).paddingRight) > parseFloat(css(quote).paddingLeft),
+      cellAlign: css(cell).textAlign,
+      upright: css(quote).fontStyle === 'normal' && css(quote.querySelector('p')).fontStyle === 'normal',
+      joined: css(document.querySelector('.entry-header h1')).letterSpacing === 'normal' && css(content.querySelector('h2')).letterSpacing === 'normal',
+      overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+      mixed: content.querySelectorAll('p')[1].textContent.includes('WordPress') && content.querySelectorAll('p')[1].textContent.includes('2026'),
+    };
+  });
+  check(text.lang.startsWith('ar') && text.direction === 'rtl', `Arabic text reads right to left (language ${text.lang})`);
+  check(['right', 'start'].includes(text.heading) && text.startsRight, 'a heading and a paragraph start at the right edge and wrap inside the page');
+  check(text.listSide && text.quoteSide, 'a list is indented on the right and a quote has its bar on the right');
+  check(['right', 'start'].includes(text.cellAlign), 'table cells are aligned to the right');
+  check(text.upright && text.joined, 'Arabic quotes are not slanted and headings have no letter spacing, which would break the joined letters');
+  check(!text.overflow && text.mixed, 'a sentence with English words and numbers fits and stays whole');
+  await page.evaluate(axeSource);
+  const axeArabic = await page.evaluate(() => axe.run(document, { resultTypes: ['violations'] }));
+  check(axeArabic.violations.filter((v) => ['serious', 'critical'].includes(v.impact)).length === 0, 'axe finds nothing serious on the Arabic page');
+  await page.close();
+
   for (const path of ['/', '/events/', '/pattern-library/']) {
     page = await open(path);
     await page.evaluate(axeSource);
@@ -90,6 +136,9 @@ try {
     await page.close();
   }
 } finally {
+  for (const id of created) {
+    try { wp('post', 'delete', id, '--force'); } catch { /* gone already */ }
+  }
   wp('option', 'update', 'WPLANG', language);
   await browser.close();
 }
