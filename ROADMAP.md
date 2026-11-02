@@ -79,9 +79,9 @@ Decisions so far
 
 ### 9. Events (done)
 - An **Event** post type (Events in the admin menu) with start and end date, optional times and a location; no times means an all-day event. The calendar block, the `[basix_calendar]` shortcode and the Calendar page template show events by default, with month, week and agenda views and multi-day events. `source="posts"` (or the block's Source option) shows blog posts by publish date instead. Events have their own page (`/event/<name>/`), and `/events/` lists what is still to come. Events are read from a public endpoint, `/wp-json/basix/v1/events?from=&to=`.
-- Limits: the post type lives in the theme, so events are hidden (not deleted) if the site switches theme; no recurring events, no categories, no time zone per event (times are the site's local time; categories, time zones and repeats came later, see section 10); clicking a day opens that day's events (added in section 10); no ICS export.
+- Limits: the post type lives in the theme, so events are hidden (not deleted) if the site switches theme; no recurring events, no categories, no time zone per event (times are the site's local time; categories, time zones and repeats came later, see section 10); clicking a day opens that day's events (added in section 10); no ICS export (added in section 10).
 
-### 10. Event extras (planned)
+### 10. Event extras (done, but the real imports below are still to do by hand)
 Order matters: each step builds on the one before. Every step ends with `make check`, new checks for what it adds, German strings, and a small commit per piece.
 
 **0. Decide where events live (decided: they stay in the theme).** Theme Check lists the post type, block and shortcode as plugin territory. If the theme should go on WordPress.org, move them first into a companion plugin (`basix-events`) so the steps below are not moved twice. For a sold theme they can stay.
@@ -110,11 +110,12 @@ Order matters: each step builds on the one before. Every step ends with `make ch
 - A day opens `/events/?event_day=2026-11-05`: the archive template listing that day's occurrences (recurring ones included), with a "No events on this day" state, and working without JavaScript.
 - The calendar's day click and Enter key go there. Alternative to consider: add a `goToDate()` method to the Basix calendar itself (the library is yours) and open the week view instead.
 
-**5. ICS export (medium, after 2 and 3).**
+**5. ICS export (medium, after 2 and 3, done; `scripts/php/check-events.php` tests the text, `scripts/check-ics.mjs` compares the feed with the site's own dates using the independent ical.js parser, and both run in `make check`).**
 - An "Add to calendar" button on each event page (`?ics=1`), and a subscribe feed `/events/feed.ics` (all upcoming events; `?category=` for one category) with a `webcal://` link in the events archive.
 - Output follows the standard: CRLF lines folded at 75 bytes, escaped text, stable `UID`, `SEQUENCE` from the modified time, all-day events with exclusive end dates, `TZID` with generated `VTIMEZONE` blocks (so Outlook accepts it), `RRULE` and `EXDATE` for repeats, `CATEGORIES`, `URL`, `LOCATION`.
 - Password-protected and private events are left out. The feed is cached and cleared when an event is saved, with ETag support.
 - Test: parse the output with an independent iCalendar parser in a check script, and compare occurrences with the PHP expansion.
+- Deviations: a weekly rule that leaves out the weekday of its start date becomes two events in the file (ICS only counts dates the rule hits). The zone blocks list each daylight saving change up to 2037, where PHP's rules end. Not done: the Apple, Google and Outlook imports (see Risks).
 
 **Risks.** Recurrence and daylight saving are where bugs hide, so they get fixed-case tests before any UI. Meta queries for recurring events can get slow with thousands of events (fine for a typical site; the derived fields keep it bounded). Calendar apps differ in how strictly they read ICS, so a few real imports (Apple, Google, Outlook) are needed by hand at the end.
 
