@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Basix 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/basix\n"
-"POT-Creation-Date: 2026-11-02T14:14:35+00:00\n"
+"POT-Creation-Date: 2026-11-02T14:36:16+00:00\n"
 "PO-Revision-Date: 2026-10-28 12:00+0000\n"
 "Last-Translator: Andi Bauer\n"
 "Language-Team: German\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: WP-CLI 2.12.0\n"
 
 #. Theme Name of the theme
-#: style.css functions.php:66 inc/customizer.php:70 inc/looks.php:86
+#: style.css functions.php:67 inc/customizer.php:72 inc/looks.php:86
 msgid "Basix"
 msgstr ""
 
@@ -71,7 +71,7 @@ msgstr[1] "%s Kommentare"
 msgid "Comments are closed."
 msgstr "Kommentare sind geschlossen."
 
-#: footer.php:11 header.php:52 searchform.php:1 searchform.php:3
+#: footer.php:11 header.php:63 searchform.php:1 searchform.php:3
 #: searchform.php:4
 msgid "Search"
 msgstr "Suchen"
@@ -80,7 +80,7 @@ msgstr "Suchen"
 msgid "Press Enter to search, Esc to close."
 msgstr "Zum Suchen die Eingabetaste drücken, zum Schließen Esc."
 
-#: footer.php:35
+#: footer.php:37
 msgid "Back to top"
 msgstr "Nach oben"
 
@@ -100,211 +100,211 @@ msgstr "Alle Beiträge"
 msgid "Nothing published yet."
 msgstr "Noch nichts veröffentlicht."
 
-#: functions.php:68
+#: functions.php:69
 msgid "Basix: Hero"
 msgstr "Basix: Hero"
 
-#: functions.php:69
+#: functions.php:70
 msgid "Basix: Features"
 msgstr "Basix: Funktionen"
 
-#: functions.php:70
+#: functions.php:71
 msgid "Basix: Pricing"
 msgstr "Basix: Preise"
 
-#: functions.php:71
+#: functions.php:72
 msgid "Basix: Testimonials"
 msgstr "Basix: Stimmen"
 
-#: functions.php:72
+#: functions.php:73
 msgid "Basix: Team"
 msgstr "Basix: Team"
 
-#: functions.php:73
+#: functions.php:74
 msgid "Basix: Logos"
 msgstr "Basix: Logos"
 
-#: functions.php:74
+#: functions.php:75
 msgid "Basix: Numbers"
 msgstr "Basix: Zahlen"
 
-#: functions.php:75
+#: functions.php:76
 msgid "Basix: Call to action"
 msgstr "Basix: Handlungsaufruf"
 
-#: functions.php:76
+#: functions.php:77
 msgid "Basix: Newsletter"
 msgstr "Basix: Newsletter"
 
-#: functions.php:77
+#: functions.php:78
 msgid "Basix: Contact"
 msgstr "Basix: Kontakt"
 
-#: functions.php:78
+#: functions.php:79
 msgid "Basix: Portfolio and pictures"
 msgstr "Basix: Portfolio und Bilder"
 
-#: functions.php:79
+#: functions.php:80
 msgid "Basix: Blog"
 msgstr "Basix: Blog"
 
-#: functions.php:80
+#: functions.php:81
 msgid "Basix: Questions"
 msgstr "Basix: Fragen"
 
-#: functions.php:81
+#: functions.php:82
 msgid "Basix: About"
 msgstr "Basix: Über uns"
 
-#: functions.php:86
+#: functions.php:87
 msgid "Card"
 msgstr "Karte"
 
-#: functions.php:87
+#: functions.php:88
 msgid "Bordered card"
 msgstr "Karte mit Rahmen"
 
-#: functions.php:88
+#: functions.php:89
 msgid "Lead text"
 msgstr "Einleitungstext"
 
-#: functions.php:89
+#: functions.php:90
 msgid "Sortable"
 msgstr "Sortierbar"
 
-#: functions.php:90
+#: functions.php:91
 msgid "Masonry"
 msgstr "Mauerwerk"
 
-#: functions.php:91
+#: functions.php:92
 msgid "Framed"
 msgstr "Mit Rahmen"
 
-#: functions.php:92
+#: functions.php:93
 msgid "Soft shadow"
 msgstr "Weicher Schatten"
 
-#: functions.php:93
+#: functions.php:94
 msgid "Circle"
 msgstr "Kreis"
 
-#: functions.php:112 inc/customizer.php:189 sidebar.php:3
+#: functions.php:113 inc/customizer.php:191 inc/header.php:357 sidebar.php:3
 msgid "Sidebar"
 msgstr "Seitenleiste"
 
-#: functions.php:114
+#: functions.php:115
 msgid "Shown next to blog posts and archives."
 msgstr "Wird neben Beiträgen und Archiven angezeigt."
 
 #. translators: %d: column number.
-#: functions.php:126
+#: functions.php:127
 #, php-format
 msgid "Footer column %d"
 msgstr "Footer-Spalte %d"
 
-#: functions.php:130
+#: functions.php:131
 msgid "Shown in the footer."
 msgstr "Wird im Footer angezeigt."
 
-#: functions.php:170
+#: functions.php:171
 msgid "Category"
 msgstr "Kategorie"
 
-#: functions.php:171
+#: functions.php:172
 msgid "Tag"
 msgstr "Schlagwort"
 
-#: functions.php:172
+#: functions.php:173
 msgid "Author"
 msgstr "Autor"
 
-#: functions.php:173 functions.php:175 functions.php:176
+#: functions.php:174 functions.php:176 functions.php:177
 msgid "Archive"
 msgstr "Archiv"
 
-#: functions.php:174 inc/events/events.php:59 inc/events/events.php:70
+#: functions.php:175 inc/events/events.php:59 inc/events/events.php:70
 #: inc/schema.php:114 inc/schema.php:137 inc/schema.php:140
 #: inc/setup/importer.php:370 starters/events.php:9
 msgid "Events"
 msgstr "Veranstaltungen"
 
 #. translators: %s: the event's time in the site's time zone.
-#: functions.php:243
+#: functions.php:244
 #, php-format
 msgid "%s in site time"
 msgstr "%s in der Zeit der Website"
 
-#: functions.php:281 inc/schema.php:93 inc/setup/importer.php:376
+#: functions.php:282 inc/schema.php:93 inc/setup/importer.php:376
 msgid "Home"
 msgstr "Startseite"
 
-#: functions.php:295
+#: functions.php:296
 msgid "Not found"
 msgstr "Nicht gefunden"
 
-#: functions.php:297 inc/schema.php:151
+#: functions.php:298 inc/schema.php:151
 msgid "Search results"
 msgstr "Suchergebnisse"
 
-#: functions.php:305
+#: functions.php:306
 msgid "Breadcrumb"
 msgstr "Brotkrumennavigation"
 
-#: functions.php:319
+#: functions.php:320
 msgid "Pagination"
 msgstr "Seitennavigation"
 
-#: functions.php:356
+#: functions.php:357
 msgid "Your comment is awaiting moderation."
 msgstr "Dein Kommentar wartet auf Freischaltung."
 
-#: functions.php:393
+#: functions.php:394
 msgid "Your comment could not be submitted"
 msgstr "Dein Kommentar konnte nicht gesendet werden"
 
-#: functions.php:395
+#: functions.php:396
 msgid "Go back"
 msgstr "Zurück"
 
-#: functions.php:411
+#: functions.php:412
 msgid "Please fill out this field."
 msgstr "Bitte fülle dieses Feld aus."
 
-#: functions.php:412
+#: functions.php:413
 msgid "Please enter a valid email address."
 msgstr "Bitte gib eine gültige E-Mail-Adresse ein."
 
-#: functions.php:413
+#: functions.php:414
 msgid "Please enter a valid URL."
 msgstr "Bitte gib eine gültige URL ein."
 
-#: functions.php:414
+#: functions.php:415
 msgid "View larger image"
 msgstr "Bild vergrößern"
 
-#: functions.php:415
+#: functions.php:416
 msgid "Open image"
 msgstr "Bild öffnen"
 
-#: functions.php:416
+#: functions.php:417
 msgid "Code"
 msgstr "Code"
 
-#: functions.php:417
+#: functions.php:418
 msgid "Table"
 msgstr "Tabelle"
 
-#: functions.php:418
+#: functions.php:419
 msgid "Featured posts"
 msgstr "Ausgewählte Beiträge"
 
 #. translators: 1: number of this slide, 2: number of slides.
-#: functions.php:420
+#: functions.php:421
 #, php-format
 msgid "Slide %1$d of %2$d"
 msgstr "Folie %1$d von %2$d"
 
-#: functions.php:432
+#: functions.php:433
 msgid ""
 "This content is password-protected. To view it, please enter the password "
 "below."
@@ -312,40 +312,40 @@ msgstr ""
 "Dieser Inhalt ist passwortgeschützt. Gib unten das Passwort ein, um ihn zu "
 "sehen."
 
-#: functions.php:434
+#: functions.php:435
 msgid "Password"
 msgstr "Passwort"
 
-#: functions.php:437
+#: functions.php:438
 msgctxt "post password form"
 msgid "Enter"
 msgstr "Öffnen"
 
-#: header.php:20
+#: header.php:23
 msgid "Skip to content"
 msgstr "Zum Inhalt springen"
 
-#: header.php:23 inc/menus.php:13 inc/menus.php:63 inc/starter-content.php:57
+#: header.php:30 inc/menus.php:13 inc/menus.php:63 inc/starter-content.php:57
 msgid "Primary menu"
 msgstr "Hauptmenü"
 
-#: header.php:35
+#: header.php:43
 msgid "Toggle menu"
 msgstr "Menü umschalten"
 
-#: header.php:52
+#: header.php:63
 msgid "Search (press /)"
 msgstr "Suchen (Taste /)"
 
-#: header.php:55
+#: header.php:66
 msgid "Toggle dark mode"
 msgstr "Dunklen Modus umschalten"
 
-#: header.php:60
+#: header.php:71
 msgid "Open menu"
 msgstr "Menü öffnen"
 
-#: header.php:70
+#: header.php:81
 msgid "Menu"
 msgstr "Menü"
 
@@ -398,41 +398,41 @@ msgstr "Die Beiträge konnten nicht geladen werden. Bitte versuche es erneut."
 msgid "Event categories"
 msgstr "Veranstaltungskategorien"
 
-#: inc/customizer.php:79
+#: inc/customizer.php:81 inc/header.php:348
 msgid "Header"
 msgstr "Header"
 
-#: inc/customizer.php:94
+#: inc/customizer.php:96
 msgid "Menu layout"
 msgstr "Menülayout"
 
-#: inc/customizer.php:95
+#: inc/customizer.php:97
 msgid "How the primary menu is shown."
 msgstr "Wie das Hauptmenü angezeigt wird."
 
-#: inc/customizer.php:98
+#: inc/customizer.php:100
 msgid "Inline links with dropdowns (menu button on small screens)"
 msgstr ""
 "Links in der Kopfzeile mit Dropdowns (Menüknopf auf kleinen Bildschirmen)"
 
-#: inc/customizer.php:99
+#: inc/customizer.php:101
 msgid "Menu button opening a side panel"
 msgstr "Menüknopf, der ein Seitenpanel öffnet"
 
-#: inc/customizer.php:100
+#: inc/customizer.php:102
 msgid "Menu button pushing the page aside, with drill-down panels"
 msgstr ""
 "Menüknopf, der die Seite zur Seite schiebt, mit Ebenen zum Hineinklicken"
 
-#: inc/customizer.php:109
+#: inc/customizer.php:111
 msgid "Colours"
 msgstr "Farben"
 
-#: inc/customizer.php:124
+#: inc/customizer.php:126
 msgid "Default colour mode"
 msgstr "Standard-Farbmodus"
 
-#: inc/customizer.php:125
+#: inc/customizer.php:127
 msgid ""
 "What visitors see first. They can always switch with the button in the "
 "header."
@@ -440,106 +440,106 @@ msgstr ""
 "Was Besucher zuerst sehen. Sie können jederzeit mit dem Knopf im Header "
 "wechseln."
 
-#: inc/customizer.php:128
+#: inc/customizer.php:130
 msgid "Follow the visitor's device"
 msgstr "Dem Gerät des Besuchers folgen"
 
-#: inc/customizer.php:129
+#: inc/customizer.php:131
 msgid "Light"
 msgstr "Hell"
 
-#: inc/customizer.php:130
+#: inc/customizer.php:132
 msgid "Dark"
 msgstr "Dunkel"
 
-#: inc/customizer.php:147
+#: inc/customizer.php:149
 msgid "Accent colour (light mode)"
 msgstr "Akzentfarbe (heller Modus)"
 
-#: inc/customizer.php:148
+#: inc/customizer.php:150
 msgid "Leave it as it is to use the look's own accent colour."
 msgstr "So lassen, um die Akzentfarbe des Looks zu verwenden."
 
-#: inc/customizer.php:165
+#: inc/customizer.php:167
 msgid "Accent colour (dark mode)"
 msgstr "Akzentfarbe (dunkler Modus)"
 
-#: inc/customizer.php:174
+#: inc/customizer.php:176
 msgid "Layout"
 msgstr "Layout"
 
-#: inc/customizer.php:192
+#: inc/customizer.php:194
 msgid "Right"
 msgstr "Rechts"
 
-#: inc/customizer.php:193
+#: inc/customizer.php:195
 msgid "Left"
 msgstr "Links"
 
-#: inc/customizer.php:194
+#: inc/customizer.php:196
 msgid "No sidebar"
 msgstr "Keine Seitenleiste"
 
-#: inc/customizer.php:210
+#: inc/customizer.php:212
 msgid "Post list layout"
 msgstr "Layout der Beitragsliste"
 
-#: inc/customizer.php:211
+#: inc/customizer.php:213
 msgid "How posts are shown on the blog, in archives and in search."
 msgstr "Wie Beiträge im Blog, in Archiven und in der Suche angezeigt werden."
 
-#: inc/customizer.php:214
+#: inc/customizer.php:216
 msgid "Grid of cards"
 msgstr "Raster aus Karten"
 
-#: inc/customizer.php:215
+#: inc/customizer.php:217
 msgid "List, with the picture beside the text"
 msgstr "Liste, mit dem Bild neben dem Text"
 
-#: inc/customizer.php:216
+#: inc/customizer.php:218
 msgid "Magazine: a large first post, then a grid"
 msgstr "Magazin: ein großer erster Beitrag, dann ein Raster"
 
-#: inc/customizer.php:225
+#: inc/customizer.php:227
 msgid "Front page"
 msgstr "Startseite"
 
-#: inc/customizer.php:240
+#: inc/customizer.php:242
 msgid "Introduction at the top"
 msgstr "Einleitung oben"
 
-#: inc/customizer.php:241
+#: inc/customizer.php:243
 msgid "It shows the site title and tagline (Settings, General)."
 msgstr "Sie zeigt Titel und Untertitel der Website (Einstellungen, Allgemein)."
 
-#: inc/customizer.php:244
+#: inc/customizer.php:246
 msgid "Centred, in a card"
 msgstr "Zentriert, in einer Karte"
 
-#: inc/customizer.php:245
+#: inc/customizer.php:247
 msgid "Left-aligned, without a card"
 msgstr "Linksbündig, ohne Karte"
 
-#: inc/customizer.php:246
+#: inc/customizer.php:248 inc/header.php:362
 msgid "None"
 msgstr "Keine"
 
-#: inc/customizer.php:255 inc/setup/importer.php:350
+#: inc/customizer.php:257 inc/header.php:367 inc/setup/importer.php:350
 msgid "Footer"
 msgstr "Footer"
 
-#: inc/customizer.php:270
+#: inc/customizer.php:272
 msgid "Footer text"
 msgstr "Footer-Text"
 
-#: inc/customizer.php:271
+#: inc/customizer.php:273
 msgid ""
 "Leave empty for the default copyright line. {year} and {site} are replaced."
 msgstr ""
 "Leer lassen für die Standard-Copyright-Zeile. {year} und {site} werden "
 "ersetzt."
 
-#: inc/customizer.php:286
+#: inc/customizer.php:288
 msgid "Show the back to top button"
 msgstr "Den Nach-oben-Knopf anzeigen"
 
@@ -904,6 +904,127 @@ msgstr "Veröffentlicht zwischen"
 msgid "The images could not be loaded. Please try again."
 msgstr "Die Bilder konnten nicht geladen werden. Bitte versuche es erneut."
 
+#: inc/header.php:239
+msgid "Keep the header at the top while scrolling"
+msgstr "Kopfbereich beim Scrollen oben halten"
+
+#: inc/header.php:251
+msgid "Header style"
+msgstr "Stil des Kopfbereichs"
+
+#: inc/header.php:252
+msgid ""
+"A transparent header sits over the first section of the page, with light "
+"text until you scroll. Use it with a dark picture at the top, such as the "
+"Landing page template with a cover. A single page can choose its own."
+msgstr "Ein transparenter Kopfbereich liegt über dem ersten Abschnitt der Seite, mit heller Schrift bis zum Scrollen. Nutze ihn mit einem dunklen Bild ganz oben, etwa mit der Vorlage „Landing page“ und einem Cover. Einzelne Seiten können ihre eigene Wahl treffen."
+
+#: inc/header.php:255
+msgid "Solid"
+msgstr "Deckend"
+
+#: inc/header.php:256 inc/header.php:351
+msgid "Transparent over the first section"
+msgstr "Transparent über dem ersten Abschnitt"
+
+#: inc/header.php:260
+msgid "Button text"
+msgstr "Text der Schaltfläche"
+
+#: inc/header.php:260
+msgid "A call-to-action button in the header. It needs a text and an address."
+msgstr "Eine Handlungsaufruf-Schaltfläche im Kopfbereich. Sie braucht einen Text und eine Adresse."
+
+#: inc/header.php:261
+msgid "Button address"
+msgstr "Adresse der Schaltfläche"
+
+#: inc/header.php:267
+msgid "Top bar"
+msgstr "Top-Leiste"
+
+#: inc/header.php:268
+msgid ""
+"A thin line above the header for a short message, your social links and a "
+"language switcher."
+msgstr "Eine schmale Zeile über dem Kopfbereich für eine kurze Mitteilung, deine Social-Media-Links und einen Sprachwechsler."
+
+#: inc/header.php:272
+msgid "Show the top bar"
+msgstr "Top-Leiste anzeigen"
+
+#: inc/header.php:273
+msgid "Message"
+msgstr "Mitteilung"
+
+#: inc/header.php:274
+msgid "Show the social links menu"
+msgstr "Menü mit Social-Media-Links anzeigen"
+
+#: inc/header.php:274
+msgid "The menu in the location \"Social links\"."
+msgstr "Das Menü am Ort „Social-Media-Links“."
+
+#: inc/header.php:275
+msgid "Show the language switcher"
+msgstr "Sprachwechsler anzeigen"
+
+#: inc/header.php:275
+msgid "Shown when Polylang or WPML is active."
+msgstr "Wird angezeigt, wenn Polylang oder WPML aktiv ist."
+
+#: inc/header.php:289
+msgid "Footer layout"
+msgstr "Layout des Fußbereichs"
+
+#: inc/header.php:292
+msgid "Widget columns, then the footer line"
+msgstr "Widget-Spalten, dann die Fußzeile"
+
+#: inc/header.php:293
+msgid "Centred"
+msgstr "Zentriert"
+
+#: inc/header.php:294
+msgid "Minimal: only the footer line and menus"
+msgstr "Minimal: nur Fußzeile und Menüs"
+
+#: inc/header.php:324
+msgid "Page layout"
+msgstr "Seitenlayout"
+
+#: inc/header.php:350 inc/header.php:369
+msgid "As in the Customizer"
+msgstr "Wie im Customizer"
+
+#: inc/header.php:352
+msgid "No header"
+msgstr "Kein Kopfbereich"
+
+#: inc/header.php:359
+msgid "Default (pages none, posts as in the Customizer)"
+msgstr "Standard (Seiten keine, Beiträge wie im Customizer)"
+
+#: inc/header.php:360
+msgid "On the right"
+msgstr "Rechts"
+
+#: inc/header.php:361
+msgid "On the left"
+msgstr "Links"
+
+#: inc/header.php:370
+msgid "No footer widgets and menus"
+msgstr "Keine Widgets und Menüs im Fußbereich"
+
+#: inc/header.php:373
+msgid "Hide the title"
+msgstr "Titel ausblenden"
+
+#: inc/header.php:373
+msgid "It stays in the page for screen readers."
+msgstr "Er bleibt für Screenreader auf der Seite."
+
 #: inc/looks.php:86
 msgid "The shipped look: calm blue, Outfit type."
 msgstr "Der mitgelieferte Look: ruhiges Blau, Schrift Outfit."
@@ -1004,7 +1125,7 @@ msgstr "Footer-Menü"
 msgid "Social links"
 msgstr "Soziale Links"
 
-#: inc/menus.php:120
+#: inc/menus.php:120 template-parts/top-bar.php:31
 msgid "Follow on"
 msgstr "Folge auf"
 
@@ -1064,7 +1185,9 @@ msgstr "Danke, dass du dich für Basix entschieden hast."
 
 #: inc/setup/admin.php:38
 msgid "Pick a look and a starter site in a minute, or start from scratch."
-msgstr "Wähle in einer Minute einen Look und eine Starter-Website, oder fang bei null an."
+msgstr ""
+"Wähle in einer Minute einen Look und eine Starter-Website, oder fang bei "
+"null an."
 
 #: inc/setup/admin.php:40
 msgid "Set up your site"
@@ -1087,7 +1210,10 @@ msgid ""
 "Choose how your site looks, and start from a ready-made site if you like. "
 "Nothing you have made is deleted: an import only adds, and Undo removes "
 "exactly what it added."
-msgstr "Wähle, wie deine Website aussieht, und starte auf Wunsch mit einer fertigen Website. Nichts von dir wird gelöscht: Ein Import fügt nur hinzu, und „Rückgängig“ entfernt genau das, was hinzugefügt wurde."
+msgstr ""
+"Wähle, wie deine Website aussieht, und starte auf Wunsch mit einer fertigen "
+"Website. Nichts von dir wird gelöscht: Ein Import fügt nur hinzu, und "
+"„Rückgängig“ entfernt genau das, was hinzugefügt wurde."
 
 #. translators: %s: name of the starter site.
 #: inc/setup/admin.php:180
@@ -1105,11 +1231,15 @@ msgstr "Der Look ist eingestellt."
 
 #: inc/setup/admin.php:187
 msgid "The import was undone. Your settings are back as they were."
-msgstr "Der Import wurde rückgängig gemacht. Deine Einstellungen sind wieder wie vorher."
+msgstr ""
+"Der Import wurde rückgängig gemacht. Deine Einstellungen sind wieder wie "
+"vorher."
 
 #: inc/setup/admin.php:189
 msgid "That did not work. Nothing was changed that you cannot undo here."
-msgstr "Das hat nicht geklappt. Es wurde nichts geändert, was du hier nicht rückgängig machen kannst."
+msgstr ""
+"Das hat nicht geklappt. Es wurde nichts geändert, was du hier nicht "
+"rückgängig machen kannst."
 
 #: inc/setup/admin.php:197
 msgid "Your current starter site"
@@ -1120,13 +1250,18 @@ msgstr "Deine aktuelle Starter-Website"
 #, php-format
 msgid ""
 "%1$s was added on %2$s with %3$d items (pages, posts, events and pictures)."
-msgstr "%1$s wurde am %2$s mit %3$d Elementen hinzugefügt (Seiten, Beiträge, Veranstaltungen und Bilder)."
+msgstr ""
+"%1$s wurde am %2$s mit %3$d Elementen hinzugefügt (Seiten, Beiträge, "
+"Veranstaltungen und Bilder)."
 
 #: inc/setup/admin.php:204
 msgid ""
 "Undo removes what it added and puts your settings back. Changes you made to "
 "the added pages and posts are lost with them."
-msgstr "„Rückgängig“ entfernt, was hinzugefügt wurde, und stellt deine Einstellungen wieder her. Änderungen an den hinzugefügten Seiten und Beiträgen gehen damit verloren."
+msgstr ""
+"„Rückgängig“ entfernt, was hinzugefügt wurde, und stellt deine Einstellungen "
+"wieder her. Änderungen an den hinzugefügten Seiten und Beiträgen gehen damit "
+"verloren."
 
 #: inc/setup/admin.php:208
 msgid "Undo this import"
@@ -1143,7 +1278,9 @@ msgstr "Der Look der Starter-Website"
 #: inc/setup/admin.php:222
 msgid ""
 "Each starter site suggests one. Without a starter, your current look stays."
-msgstr "Jede Starter-Website schlägt einen vor. Ohne Starter bleibt dein aktueller Look."
+msgstr ""
+"Jede Starter-Website schlägt einen vor. Ohne Starter bleibt dein aktueller "
+"Look."
 
 #: inc/setup/admin.php:234
 msgid "2. Pick a starter site"
@@ -1201,7 +1338,9 @@ msgstr "4. Mehr erfahren"
 msgid ""
 "In the editor, open the block inserter, choose Patterns and look for the "
 "groups that start with Basix."
-msgstr "Öffne im Editor die Block-Auswahl, wähle „Muster“ und such die Gruppen, die mit Basix beginnen."
+msgstr ""
+"Öffne im Editor die Block-Auswahl, wähle „Muster“ und such die Gruppen, die "
+"mit Basix beginnen."
 
 #: inc/setup/admin.php:274
 msgid "See every pattern on one page"
@@ -2784,7 +2923,9 @@ msgstr "Blog"
 msgid ""
 "A classic blog: a welcome card, the latest posts in a grid, a sidebar, an "
 "About page and a Contact page."
-msgstr "Ein klassischer Blog: eine Willkommenskarte, die neuesten Beiträge im Raster, eine Seitenleiste sowie eine Seite „Über uns“ und eine Kontaktseite."
+msgstr ""
+"Ein klassischer Blog: eine Willkommenskarte, die neuesten Beiträge im "
+"Raster, eine Seitenleiste sowie eine Seite „Über uns“ und eine Kontaktseite."
 
 #: starters/blog.php:22 starters/business.php:163 starters/events.php:51
 #: starters/magazine.php:23
@@ -2806,7 +2947,10 @@ msgstr "Unternehmen"
 msgid ""
 "A company site: a landing page with a hero, features, numbers, testimonials "
 "and prices, plus Services, Pricing, About, News and Contact pages."
-msgstr "Eine Firmenwebsite: eine Startseite mit Hero, Funktionen, Zahlen, Kundenstimmen und Preisen sowie Seiten für Leistungen, Preise, Über uns, Neuigkeiten und Kontakt."
+msgstr ""
+"Eine Firmenwebsite: eine Startseite mit Hero, Funktionen, Zahlen, "
+"Kundenstimmen und Preisen sowie Seiten für Leistungen, Preise, Über uns, "
+"Neuigkeiten und Kontakt."
 
 #: starters/business.php:23 starters/events.php:22
 msgctxt "Starter page title"
@@ -2832,7 +2976,10 @@ msgstr "Neuigkeiten"
 msgid ""
 "A site for gatherings: sample events (one repeating every week), an agenda "
 "and a calendar, a subscribe link, and About and Contact pages."
-msgstr "Eine Website für Treffen: Beispielveranstaltungen (eine wiederholt sich jede Woche), eine Agenda und ein Kalender, ein Abo-Link sowie Seiten „Über uns“ und Kontakt."
+msgstr ""
+"Eine Website für Treffen: Beispielveranstaltungen (eine wiederholt sich jede "
+"Woche), eine Agenda und ein Kalender, ein Abo-Link sowie Seiten „Über uns“ "
+"und Kontakt."
 
 #: starters/events.php:34
 msgctxt "Starter content"
@@ -2852,7 +2999,9 @@ msgstr "Magazin"
 msgid ""
 "An editorial site: warm paper and serif type, a slider of featured stories, "
 "a large first story and a sidebar."
-msgstr "Eine redaktionelle Website: warmes Papier und Serifenschrift, ein Slider mit Top-Geschichten, eine große erste Geschichte und eine Seitenleiste."
+msgstr ""
+"Eine redaktionelle Website: warmes Papier und Serifenschrift, ein Slider mit "
+"Top-Geschichten, eine große erste Geschichte und eine Seitenleiste."
 
 #: template-parts/author-box.php:15
 msgid "About the author"
@@ -2953,6 +3102,14 @@ msgstr "Link kopiert"
 #: template-parts/share.php:19
 msgid "Share this post"
 msgstr "Diesen Beitrag teilen"
+
+#: template-parts/top-bar.php:18
+msgid "Notice and links"
+msgstr "Hinweis und Links"
+
+#: template-parts/top-bar.php:29
+msgid "Follow us"
+msgstr "Folge uns"
 
 #: blocks/calendar/block.json
 msgctxt "block title"
