@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Basix 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/basix\n"
-"POT-Creation-Date: 2026-11-02T13:02:08+00:00\n"
+"POT-Creation-Date: 2026-11-02T13:22:58+00:00\n"
 "PO-Revision-Date: 2026-10-28 12:00+0000\n"
 "Last-Translator: Andi Bauer\n"
 "Language-Team: German\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: WP-CLI 2.12.0\n"
 
 #. Theme Name of the theme
-#: style.css functions.php:61 inc/customizer.php:77
+#: style.css functions.php:62 inc/customizer.php:70 inc/looks.php:86
 msgid "Basix"
 msgstr ""
 
@@ -100,154 +100,154 @@ msgstr "Alle Beiträge"
 msgid "Nothing published yet."
 msgstr "Noch nichts veröffentlicht."
 
-#: functions.php:63
+#: functions.php:64
 msgid "Card"
 msgstr "Karte"
 
-#: functions.php:64
+#: functions.php:65
 msgid "Bordered card"
 msgstr "Karte mit Rahmen"
 
-#: functions.php:65
+#: functions.php:66
 msgid "Lead text"
 msgstr "Einleitungstext"
 
-#: functions.php:66
+#: functions.php:67
 msgid "Sortable"
 msgstr "Sortierbar"
 
-#: functions.php:67
+#: functions.php:68
 msgid "Masonry"
 msgstr "Mauerwerk"
 
-#: functions.php:68
+#: functions.php:69
 msgid "Framed"
 msgstr "Mit Rahmen"
 
-#: functions.php:69
+#: functions.php:70
 msgid "Soft shadow"
 msgstr "Weicher Schatten"
 
-#: functions.php:70
+#: functions.php:71
 msgid "Circle"
 msgstr "Kreis"
 
-#: functions.php:89 inc/customizer.php:195 sidebar.php:3
+#: functions.php:90 inc/customizer.php:189 sidebar.php:3
 msgid "Sidebar"
 msgstr "Seitenleiste"
 
-#: functions.php:91
+#: functions.php:92
 msgid "Shown next to blog posts and archives."
 msgstr "Wird neben Beiträgen und Archiven angezeigt."
 
 #. translators: %d: column number.
-#: functions.php:103
+#: functions.php:104
 #, php-format
 msgid "Footer column %d"
 msgstr "Footer-Spalte %d"
 
-#: functions.php:107
+#: functions.php:108
 msgid "Shown in the footer."
 msgstr "Wird im Footer angezeigt."
 
-#: functions.php:147
+#: functions.php:148
 msgid "Category"
 msgstr "Kategorie"
 
-#: functions.php:148
+#: functions.php:149
 msgid "Tag"
 msgstr "Schlagwort"
 
-#: functions.php:149
+#: functions.php:150
 msgid "Author"
 msgstr "Autor"
 
-#: functions.php:150 functions.php:152 functions.php:153
+#: functions.php:151 functions.php:153 functions.php:154
 msgid "Archive"
 msgstr "Archiv"
 
-#: functions.php:151 inc/events/events.php:59 inc/events/events.php:70
+#: functions.php:152 inc/events/events.php:59 inc/events/events.php:70
 #: inc/schema.php:114 inc/schema.php:137 inc/schema.php:140
 msgid "Events"
 msgstr "Veranstaltungen"
 
 #. translators: %s: the event's time in the site's time zone.
-#: functions.php:220
+#: functions.php:221
 #, php-format
 msgid "%s in site time"
 msgstr "%s in der Zeit der Website"
 
-#: functions.php:258 inc/schema.php:93
+#: functions.php:259 inc/schema.php:93
 msgid "Home"
 msgstr "Startseite"
 
-#: functions.php:272
+#: functions.php:273
 msgid "Not found"
 msgstr "Nicht gefunden"
 
-#: functions.php:274 inc/schema.php:151
+#: functions.php:275 inc/schema.php:151
 msgid "Search results"
 msgstr "Suchergebnisse"
 
-#: functions.php:282
+#: functions.php:283
 msgid "Breadcrumb"
 msgstr "Brotkrumennavigation"
 
-#: functions.php:296
+#: functions.php:297
 msgid "Pagination"
 msgstr "Seitennavigation"
 
-#: functions.php:333
+#: functions.php:334
 msgid "Your comment is awaiting moderation."
 msgstr "Dein Kommentar wartet auf Freischaltung."
 
-#: functions.php:370
+#: functions.php:371
 msgid "Your comment could not be submitted"
 msgstr "Dein Kommentar konnte nicht gesendet werden"
 
-#: functions.php:372
+#: functions.php:373
 msgid "Go back"
 msgstr "Zurück"
 
-#: functions.php:388
+#: functions.php:389
 msgid "Please fill out this field."
 msgstr "Bitte fülle dieses Feld aus."
 
-#: functions.php:389
+#: functions.php:390
 msgid "Please enter a valid email address."
 msgstr "Bitte gib eine gültige E-Mail-Adresse ein."
 
-#: functions.php:390
+#: functions.php:391
 msgid "Please enter a valid URL."
 msgstr "Bitte gib eine gültige URL ein."
 
-#: functions.php:391
+#: functions.php:392
 msgid "View larger image"
 msgstr "Bild vergrößern"
 
-#: functions.php:392
+#: functions.php:393
 msgid "Open image"
 msgstr "Bild öffnen"
 
-#: functions.php:393
+#: functions.php:394
 msgid "Code"
 msgstr "Code"
 
-#: functions.php:394
+#: functions.php:395
 msgid "Table"
 msgstr "Tabelle"
 
-#: functions.php:395
+#: functions.php:396
 msgid "Featured posts"
 msgstr "Ausgewählte Beiträge"
 
 #. translators: 1: number of this slide, 2: number of slides.
-#: functions.php:397
+#: functions.php:398
 #, php-format
 msgid "Slide %1$d of %2$d"
 msgstr "Folie %1$d von %2$d"
 
-#: functions.php:409
+#: functions.php:410
 msgid ""
 "This content is password-protected. To view it, please enter the password "
 "below."
@@ -255,11 +255,11 @@ msgstr ""
 "Dieser Inhalt ist passwortgeschützt. Gib unten das Passwort ein, um ihn zu "
 "sehen."
 
-#: functions.php:411
+#: functions.php:412
 msgid "Password"
 msgstr "Passwort"
 
-#: functions.php:414
+#: functions.php:415
 msgctxt "post password form"
 msgid "Enter"
 msgstr "Öffnen"
@@ -341,41 +341,41 @@ msgstr "Die Beiträge konnten nicht geladen werden. Bitte versuche es erneut."
 msgid "Event categories"
 msgstr "Veranstaltungskategorien"
 
-#: inc/customizer.php:86
+#: inc/customizer.php:79
 msgid "Header"
 msgstr "Header"
 
-#: inc/customizer.php:101
+#: inc/customizer.php:94
 msgid "Menu layout"
 msgstr "Menülayout"
 
-#: inc/customizer.php:102
+#: inc/customizer.php:95
 msgid "How the primary menu is shown."
 msgstr "Wie das Hauptmenü angezeigt wird."
 
-#: inc/customizer.php:105
+#: inc/customizer.php:98
 msgid "Inline links with dropdowns (menu button on small screens)"
 msgstr ""
 "Links in der Kopfzeile mit Dropdowns (Menüknopf auf kleinen Bildschirmen)"
 
-#: inc/customizer.php:106
+#: inc/customizer.php:99
 msgid "Menu button opening a side panel"
 msgstr "Menüknopf, der ein Seitenpanel öffnet"
 
-#: inc/customizer.php:107
+#: inc/customizer.php:100
 msgid "Menu button pushing the page aside, with drill-down panels"
 msgstr ""
 "Menüknopf, der die Seite zur Seite schiebt, mit Ebenen zum Hineinklicken"
 
-#: inc/customizer.php:116
+#: inc/customizer.php:109
 msgid "Colours"
 msgstr "Farben"
 
-#: inc/customizer.php:131
+#: inc/customizer.php:124
 msgid "Default colour mode"
 msgstr "Standard-Farbmodus"
 
-#: inc/customizer.php:132
+#: inc/customizer.php:125
 msgid ""
 "What visitors see first. They can always switch with the button in the "
 "header."
@@ -383,102 +383,106 @@ msgstr ""
 "Was Besucher zuerst sehen. Sie können jederzeit mit dem Knopf im Header "
 "wechseln."
 
-#: inc/customizer.php:135
+#: inc/customizer.php:128
 msgid "Follow the visitor's device"
 msgstr "Dem Gerät des Besuchers folgen"
 
-#: inc/customizer.php:136
+#: inc/customizer.php:129
 msgid "Light"
 msgstr "Hell"
 
-#: inc/customizer.php:137
+#: inc/customizer.php:130
 msgid "Dark"
 msgstr "Dunkel"
 
-#: inc/customizer.php:154
+#: inc/customizer.php:147
 msgid "Accent colour (light mode)"
 msgstr "Akzentfarbe (heller Modus)"
 
-#: inc/customizer.php:171
+#: inc/customizer.php:148
+msgid "Leave it as it is to use the look's own accent colour."
+msgstr "So lassen, um die Akzentfarbe des Looks zu verwenden."
+
+#: inc/customizer.php:165
 msgid "Accent colour (dark mode)"
 msgstr "Akzentfarbe (dunkler Modus)"
 
-#: inc/customizer.php:180
+#: inc/customizer.php:174
 msgid "Layout"
 msgstr "Layout"
 
-#: inc/customizer.php:198
+#: inc/customizer.php:192
 msgid "Right"
 msgstr "Rechts"
 
-#: inc/customizer.php:199
+#: inc/customizer.php:193
 msgid "Left"
 msgstr "Links"
 
-#: inc/customizer.php:200
+#: inc/customizer.php:194
 msgid "No sidebar"
 msgstr "Keine Seitenleiste"
 
-#: inc/customizer.php:216
+#: inc/customizer.php:210
 msgid "Post list layout"
 msgstr "Layout der Beitragsliste"
 
-#: inc/customizer.php:217
+#: inc/customizer.php:211
 msgid "How posts are shown on the blog, in archives and in search."
 msgstr "Wie Beiträge im Blog, in Archiven und in der Suche angezeigt werden."
 
-#: inc/customizer.php:220
+#: inc/customizer.php:214
 msgid "Grid of cards"
 msgstr "Raster aus Karten"
 
-#: inc/customizer.php:221
+#: inc/customizer.php:215
 msgid "List, with the picture beside the text"
 msgstr "Liste, mit dem Bild neben dem Text"
 
-#: inc/customizer.php:222
+#: inc/customizer.php:216
 msgid "Magazine: a large first post, then a grid"
 msgstr "Magazin: ein großer erster Beitrag, dann ein Raster"
 
-#: inc/customizer.php:231
+#: inc/customizer.php:225
 msgid "Front page"
 msgstr "Startseite"
 
-#: inc/customizer.php:246
+#: inc/customizer.php:240
 msgid "Introduction at the top"
 msgstr "Einleitung oben"
 
-#: inc/customizer.php:247
+#: inc/customizer.php:241
 msgid "It shows the site title and tagline (Settings, General)."
 msgstr "Sie zeigt Titel und Untertitel der Website (Einstellungen, Allgemein)."
 
-#: inc/customizer.php:250
+#: inc/customizer.php:244
 msgid "Centred, in a card"
 msgstr "Zentriert, in einer Karte"
 
-#: inc/customizer.php:251
+#: inc/customizer.php:245
 msgid "Left-aligned, without a card"
 msgstr "Linksbündig, ohne Karte"
 
-#: inc/customizer.php:252
+#: inc/customizer.php:246
 msgid "None"
 msgstr "Keine"
 
-#: inc/customizer.php:261
+#: inc/customizer.php:255
 msgid "Footer"
 msgstr "Footer"
 
-#: inc/customizer.php:276
+#: inc/customizer.php:270
 msgid "Footer text"
 msgstr "Footer-Text"
 
-#: inc/customizer.php:277
+#: inc/customizer.php:271
 msgid ""
 "Leave empty for the default copyright line. {year} and {site} are replaced."
 msgstr ""
 "Leer lassen für die Standard-Copyright-Zeile. {year} und {site} werden "
 "ersetzt."
 
-#: inc/customizer.php:292
+#: inc/customizer.php:286
 msgid "Show the back to top button"
 msgstr "Den Nach-oben-Knopf anzeigen"
 
@@ -842,6 +846,92 @@ msgstr "Veröffentlicht zwischen"
 #: inc/gallery.php:41
 msgid "The images could not be loaded. Please try again."
 msgstr "Die Bilder konnten nicht geladen werden. Bitte versuche es erneut."
+
+#: inc/looks.php:86
+msgid "The shipped look: calm blue, Outfit type."
+msgstr "Der mitgelieferte Look: ruhiges Blau, Schrift Outfit."
+
+#: inc/looks.php:87
+msgid "Editorial"
+msgstr ""
+
+#: inc/looks.php:87
+msgid "Warm paper, terracotta accent and serif type, for long reading."
+msgstr "Warmes Papier, Terrakotta als Akzent und Serifenschrift, zum langen Lesen."
+
+#: inc/looks.php:88
+msgid "Bold"
+msgstr "Kräftig"
+
+#: inc/looks.php:88
+msgid "High contrast, violet accent and a geometric heading font."
+msgstr "Hoher Kontrast, Violett als Akzent und eine geometrische Überschriftschrift."
+
+#: inc/looks.php:89
+msgid "Calm"
+msgstr "Ruhig"
+
+#: inc/looks.php:89
+msgid "Soft greens, rounded corners and friendly Inter type."
+msgstr "Sanfte Grüntöne, runde Ecken und die freundliche Schrift Inter."
+
+#: inc/looks.php:90
+msgid "Paper"
+msgstr "Papier"
+
+#: inc/looks.php:90
+msgid "Black on white, square corners and a serif heading font."
+msgstr "Schwarz auf Weiß, ohne abgerundete Ecken und mit einer Serifenschrift für Überschriften."
+
+#: inc/looks.php:358 inc/looks.php:375
+msgid "Look"
+msgstr "Look"
+
+#: inc/looks.php:359
+msgid ""
+"A look sets the colours (light and dark), corners and fonts together. "
+"Everything below can still be changed on top of it."
+msgstr "Ein Look legt Farben (hell und dunkel), Ecken und Schriften gemeinsam fest. Alles darunter lässt sich zusätzlich ändern."
+
+#: inc/looks.php:381
+msgid "Follow the look's font"
+msgstr "Schrift des Looks verwenden"
+
+#: inc/looks.php:383
+msgid "System font (nothing to download)"
+msgstr "Systemschrift (nichts zu laden)"
+
+#: inc/looks.php:388
+msgid "Typography"
+msgstr "Typografie"
+
+#: inc/looks.php:393
+msgid "Heading font"
+msgstr "Überschriftschrift"
+
+#: inc/looks.php:394
+msgid "Text font"
+msgstr "Textschrift"
+
+#: inc/looks.php:424
+msgid "Text size"
+msgstr "Textgröße"
+
+#: inc/looks.php:425
+msgid "Scales the whole page: text, spacing and buttons."
+msgstr "Skaliert die ganze Seite: Text, Abstände und Schaltflächen."
+
+#: inc/looks.php:428
+msgid "Small"
+msgstr "Klein"
+
+#: inc/looks.php:429
+msgid "Medium"
+msgstr "Mittel"
+
+#: inc/looks.php:430
+msgid "Large"
+msgstr "Groß"
 
 #: inc/menus.php:14 inc/menus.php:104 inc/starter-content.php:61
 msgid "Footer menu"
@@ -1535,6 +1625,31 @@ msgstr "Sehr groß"
 msgctxt "Font size name"
 msgid "Huge"
 msgstr "Riesig"
+
+#: styles/basix.json
+msgctxt "Style variation name"
+msgid "Basix"
+msgstr ""
+
+#: styles/bold.json
+msgctxt "Style variation name"
+msgid "Bold"
+msgstr "Kräftig"
+
+#: styles/calm.json
+msgctxt "Style variation name"
+msgid "Calm"
+msgstr "Ruhig"
+
+#: styles/editorial.json
+msgctxt "Style variation name"
+msgid "Editorial"
+msgstr ""
+
+#: styles/paper.json
+msgctxt "Style variation name"
+msgid "Paper"
+msgstr "Papier"
 
 #~ msgid ""
 #~ "Leave the times empty for an all-day event. Leave the end date empty for "
