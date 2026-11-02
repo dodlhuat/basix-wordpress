@@ -136,6 +136,7 @@ CALENDAR_ID=$(echo "$PAGE_IDS" | head -1)
 GALLERY_ID=$(echo "$PAGE_IDS" | tail -1)
 wp option update timezone_string Europe/Vienna >/dev/null
 wp eval-file /seed/events.php >/dev/null
+wp eval-file /seed/patterns.php >/dev/null
 
 # footer widgets (three columns)
 for sb in footer-1 footer-2 footer-3; do wp widget reset "$sb" >/dev/null 2>&1 || true; done

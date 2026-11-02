@@ -12,7 +12,7 @@ const axeSource = readFileSync(createRequire(import.meta.url).resolve('axe-core/
 const showAll = process.argv.includes('--all');
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-const pages = ['/', '/everything-in-one-post/', '/about/', '/?s=design', '/category/design/', '/docs/getting-started/', '/calendar/', '/events/', '/events/category/workshops/', '/event/design-systems-meetup/', '/photo-gallery/', '/block-showcase/', '/landing-demo/', '/members-only/', '/nope/'];
+const pages = ['/', '/everything-in-one-post/', '/about/', '/?s=design', '/category/design/', '/docs/getting-started/', '/calendar/', '/events/', '/events/category/workshops/', '/event/design-systems-meetup/', '/photo-gallery/', '/block-showcase/', '/pattern-library/', '/landing-demo/', '/members-only/', '/nope/'];
 const setups = [
   { name: 'desktop light', width: 1280, theme: 'light' },
   { name: 'desktop dark', width: 1280, theme: 'dark' },
