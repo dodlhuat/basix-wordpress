@@ -21,6 +21,12 @@ loadComponents(components);
 // The header gets a shadow once the page scrolls underneath it.
 const header = document.querySelector('.site-header');
 if (header) {
+    // Its height, for a transparent header that sits over the first section (see style.css).
+    const setHeight = () => document.documentElement.style.setProperty('--basix-header-height', `${header.offsetHeight}px`);
+    setHeight();
+    if ('ResizeObserver' in window) {
+        new ResizeObserver(setHeight).observe(header);
+    }
     let frame = 0;
     const update = () => {
         frame = 0;

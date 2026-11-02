@@ -24,7 +24,8 @@ and the Outfit typeface (SIL Open Font License 1.1). See readme.txt for details.
 /* Layout glue only. Colour, radius, spacing and type all come from basix tokens,
    so light and dark mode follow [data-theme] / prefers-color-scheme automatically. */
 
-body { overflow-x: clip; background: var(--background); color: var(--primary-text); display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
+/* overflow-y stays visible, or the body becomes the scroll container and the sticky header never sticks. */
+body { overflow-x: clip; overflow-y: visible; background: var(--background); color: var(--primary-text); display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
 .container { width: min(100% - 2rem, 72rem); margin-inline: auto; }
 .site-main { padding-block: 2rem 4rem; flex: 1 0 auto; }
 .site-header, .site-footer { flex-shrink: 0; }
@@ -399,3 +400,55 @@ input, textarea, select, button { font-family: inherit; }
 .featured .carousel-indicator::after { content: ""; position: absolute; top: 50%; left: 50%; width: .5rem; height: 4px; border-radius: 99px; transform: translate(-50%, -50%); background: rgba(255, 255, 255, .4); transition: width .35s cubic-bezier(.25, .46, .45, .94), background .25s ease; }
 .featured .carousel-indicator.current-slide::after { width: 20px; background: #fff; }
 .cal__event-pill { min-height: 24px; box-sizing: border-box; line-height: 1.7; }
+
+/* Header options */
+body.header-static .site-header { position: relative; }
+.header-cta { white-space: nowrap; text-decoration: none; }
+@media (max-width: 768px) {
+    .site-actions .header-cta { display: none; }
+}
+.flyout-menu .menu-cta { padding: 1rem var(--spacing); margin: 0; }
+.flyout-menu .menu-cta .button { width: 100%; justify-content: center; text-decoration: none; }
+
+/* A header over the first section: transparent with light text until the page scrolls. */
+body.header-transparent .site-main { margin-top: calc(-1 * var(--basix-header-height, 4.5rem)); padding-top: 0; }
+body.header-transparent .site-main > .breadcrumb { display: none; }
+body.header-transparent .site-main :is(.entry-content, .front-content) > :first-child { margin-top: 0; }
+body.header-transparent .site-header:not(.is-scrolled) { background: transparent; border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+body.header-transparent .site-header:not(.is-scrolled) :is(.site-title, .site-nav-list a, .site-nav-list .dropdown-trigger, .site-actions .button:not(.button-primary)) { color: #fff; }
+body.header-transparent .site-header:not(.is-scrolled) .site-actions .button:not(.button-primary) { background: rgba(255, 255, 255, .14); }
+body.header-transparent .site-header:not(.is-scrolled) .site-nav-list a:hover { background: rgba(255, 255, 255, .18); color: #fff; }
+body.header-transparent .site-header:not(.is-scrolled) .site-nav-list .dropdown-menu a { color: var(--primary-text); }
+
+/* Top bar */
+.top-bar { background: var(--secondary-background); border-bottom: 1px solid var(--divider); font-size: .8125rem; }
+.top-bar-inner { display: flex; align-items: center; gap: .5rem 1.5rem; padding-block: .4rem; min-height: 2rem; flex-wrap: wrap; }
+.top-bar p { margin: 0; color: var(--primary-text); margin-right: auto; }
+.top-bar-list, .top-bar-languages { display: flex; gap: .25rem 1rem; list-style: none; margin: 0; padding: 0; }
+.top-bar-list a, .top-bar-languages a { color: var(--secondary-text); text-decoration: none; }
+.top-bar-list a:hover, .top-bar-languages a:hover { color: var(--link-color); text-decoration: underline; }
+.top-bar-languages .current-lang a, .top-bar-languages [aria-current] { color: var(--primary-text); font-weight: 600; }
+.top-bar-social { margin-left: auto; }
+.top-bar p[hidden] + .top-bar-social { margin-left: auto; }
+
+/* Mega menu: a wide panel with a column for each child. Plain nested lists on phones (the drawer). */
+.site-nav-list > li:has(.is-mega) { position: static; }
+.site-nav .dropdown-container.is-mega { position: static; }
+.site-nav .dropdown-menu.is-mega { display: grid; position: absolute; inset-inline: 1rem; margin-inline: auto; width: min(52rem, calc(100vw - 2rem)); min-width: 0; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 1rem 1.5rem; padding: 1.25rem; list-style: none; }
+.site-nav .dropdown-menu.is-mega ul { position: static; list-style: none; margin: 0; padding: 0; border: 0; box-shadow: none; background: none; max-height: none; overflow: visible; opacity: 1; visibility: visible; transform: none; pointer-events: auto; }
+.site-nav .dropdown-menu.is-mega li { margin: 0; list-style: none; }
+.mega-heading { display: block; padding: 0 0 .4rem; margin-bottom: .4rem; border-bottom: 1px solid var(--divider); font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--secondary-text); text-decoration: none; }
+a.mega-heading:hover { color: var(--link-color); }
+.site-nav .dropdown-menu.is-mega a.dropdown-item { padding: .4rem 0; }
+
+/* Footer layouts */
+.footer-centered .footer-widgets { text-align: center; }
+.footer-centered .site-footer-inner, .footer-centered .site-footer-main { flex-direction: column; justify-content: center; text-align: center; }
+.footer-centered .footer-nav-list { justify-content: center; }
+.footer-centered .footer-social { margin-left: 0; }
+.footer-centered .back-to-top { margin-top: .5rem; }
+.footer-minimal .site-footer { padding-block: 1rem; }
+
+/* The header image behind the front page introduction */
+.hero.has-image, .hero-minimal.has-image { position: relative; color: #fff; background: linear-gradient(rgba(10, 12, 20, .62), rgba(10, 12, 20, .62)), var(--hero-image) center / cover no-repeat; border-color: transparent; border-radius: var(--radius-lg); padding: clamp(2rem, 6vw, 4rem); }
+.hero.has-image :is(.text-overline, .hero-title, .hero-lead), .hero-minimal.has-image :is(.text-overline, .hero-title, .hero-lead) { color: #fff; }
