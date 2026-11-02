@@ -14,4 +14,4 @@ For developers:
 
 - [Developing the theme](developers.md): structure, hooks and filters, adding a look or a starter site, the checks
 
-The plan and status of the project are in [ROADMAP.md](../ROADMAP.md).
+The plan and status of the project are in [ROADMAP.md](../ROADMAP.md). How it was built, milestone by milestone, with results and limits: [development notes](development-notes.md) (history, kept as written).

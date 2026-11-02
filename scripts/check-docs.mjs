@@ -14,7 +14,8 @@ const walk = (dir, exts) => readdirSync(dir, { withFileTypes: true }).flatMap((e
   return exts.some((x) => full.endsWith(x)) ? [full] : [];
 });
 const code = [...walk('theme', ['.php', '.js', '.json', '.css']), ...walk('basix-events', ['.php', '.json', '.xml'])].map((f) => readFileSync(f, 'utf8')).join('\n');
-const docs = readdirSync('docs').filter((f) => f.endsWith('.md'));
+// The development notes are history, kept as written (file names of the time), so only their links are checked.
+const docs = readdirSync('docs').filter((f) => f.endsWith('.md') && f !== 'development-notes.md');
 const scripts = new Set([...readdirSync('scripts'), ...readdirSync('scripts/php').map((f) => `php/${f}`)]);
 let checked = 0;
 
