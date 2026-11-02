@@ -14,6 +14,7 @@ fi
 # Don't cache theme files (patterns, theme.json) while developing.
 wp config set WP_DEVELOPMENT_MODE theme --type=constant
 wp theme activate basix
+wp plugin activate basix-events
 if [ -z "$(wp widget list sidebar-1 --format=ids)" ]; then
   wp widget add search sidebar-1
   wp widget add recent-posts sidebar-1 --number=5

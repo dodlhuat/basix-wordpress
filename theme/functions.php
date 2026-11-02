@@ -5,6 +5,21 @@
 
 const BASIX_VENDOR = 'assets/vendor/basix';
 
+// Events come from the companion plugin Basix Events (the directory does not let a theme register a post type). The
+// two names are defined here too, so the templates also work while the plugin is off.
+if (!defined('BASIX_EVENT')) {
+    define('BASIX_EVENT', 'basix-event');
+}
+if (!defined('BASIX_EVENT_CAT')) {
+    define('BASIX_EVENT_CAT', 'basix-event-category');
+}
+
+/** Whether the Basix Events plugin is active. */
+function basix_has_events(): bool
+{
+    return defined('BASIX_EVENTS_VERSION');
+}
+
 require_once __DIR__ . '/inc/class-basix-dropdown-walker.php';
 require_once __DIR__ . '/inc/class-basix-drawer-walker.php';
 require_once __DIR__ . '/inc/menus.php';
@@ -14,9 +29,6 @@ require_once __DIR__ . '/inc/header.php';
 require_once __DIR__ . '/inc/docs.php';
 require_once __DIR__ . '/inc/post-features.php';
 require_once __DIR__ . '/inc/filters.php';
-require_once __DIR__ . '/inc/events/events.php';
-require_once __DIR__ . '/inc/events/recurrence.php';
-require_once __DIR__ . '/inc/events/ics.php';
 require_once __DIR__ . '/inc/calendar.php';
 require_once __DIR__ . '/inc/gallery.php';
 require_once __DIR__ . '/inc/seo.php';

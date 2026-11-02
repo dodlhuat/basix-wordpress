@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Tells WPML and Polylang what to translate and what to copy for events: the event post type and its categories, the
+  event fields and the calendar feed's derived fields. scripts/php/check-compat.php checks that every name in here
+  still exists in the plugin.
+-->
+<wpml-config>
+	<custom-types>
+		<custom-type translate="1">basix-event</custom-type>
+	</custom-types>
+	<taxonomies>
+		<taxonomy translate="1">basix-event-category</taxonomy>
+	</taxonomies>
+	<custom-fields>
+		<!-- Dates, times, time zone and repeat rule are the same in every language. The place may be written differently. -->
+		<custom-field action="copy">basix_event_start</custom-field>
+		<custom-field action="copy">basix_event_start_time</custom-field>
+		<custom-field action="copy">basix_event_end</custom-field>
+		<custom-field action="copy">basix_event_end_time</custom-field>
+		<custom-field action="copy">basix_event_timezone</custom-field>
+		<custom-field action="copy">basix_event_repeat</custom-field>
+		<custom-field action="translate">basix_event_location</custom-field>
+		<!-- Worked out again from the fields above when an event is saved. -->
+		<custom-field action="ignore">_basix_event_start_utc</custom-field>
+		<custom-field action="ignore">_basix_event_end_utc</custom-field>
+		<custom-field action="ignore">_basix_event_last_utc</custom-field>
+		<custom-field action="ignore">_basix_event_next_utc</custom-field>
+	</custom-fields>
+</wpml-config>

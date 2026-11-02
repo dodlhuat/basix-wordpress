@@ -27,6 +27,10 @@ function basix_starters(): array {
 	}
 	$starters = array();
 	foreach ( array( 'blog', 'magazine', 'business', 'events' ) as $slug ) {
+		// The events starter needs the Basix Events plugin.
+		if ( 'events' === $slug && ! basix_has_events() ) {
+			continue;
+		}
 		$file = get_theme_file_path( 'starters/' . $slug . '.php' );
 		if ( file_exists( $file ) ) {
 			$definition = include $file;
@@ -316,7 +320,7 @@ function basix_starter_import( string $slug, string $look = '' ) {
 	update_option( 'sticky_posts', $sticky ? array_slice( $posts, 0, $sticky ) : array() );
 
 	// Events.
-	if ( ! empty( $def['events'] ) ) {
+	if ( ! empty( $def['events'] ) && basix_has_events() ) {
 		foreach ( basix_starter_events() as $event ) {
 			list( $title, $days, $from, $to, $place, $text, $category, $repeat ) = $event;
 			$date = wp_date( 'Y-m-d', strtotime( $days . ' days' ) );
@@ -392,7 +396,9 @@ function basix_starter_import( string $slug, string $look = '' ) {
 
 	$record['urls'] = basix_starter_urls( $pages, $posts, $def );
 	update_option( BASIX_STARTER_OPTION, $record, false );
-	basix_events_feed_flush();
+	if ( function_exists( 'basix_events_feed_flush' ) ) {
+		basix_events_feed_flush();
+	}
 	do_action( 'basix_starter_imported', $slug, $record );
 	return $record;
 }
@@ -466,7 +472,7 @@ function basix_starter_urls( array $pages, array $posts, array $def ): array {
 	foreach ( array_slice( $posts, 0, 2 ) as $id ) {
 		$urls[] = (string) get_permalink( $id );
 	}
-	if ( ! empty( $def['events'] ) ) {
+	if ( ! empty( $def['events'] ) && basix_has_events() ) {
 		$urls[] = (string) get_post_type_archive_link( BASIX_EVENT );
 		$urls[] = basix_events_feed_url();
 	}
@@ -514,7 +520,9 @@ function basix_starter_undo(): array {
 		basix_starter_restore( 'mods', (string) $name, (array) $saved );
 	}
 	delete_option( BASIX_STARTER_OPTION );
-	basix_events_feed_flush();
+	if ( function_exists( 'basix_events_feed_flush' ) ) {
+		basix_events_feed_flush();
+	}
 	do_action( 'basix_starter_undone', $record );
 	return $record;
 }

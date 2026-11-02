@@ -12,6 +12,7 @@ services:
     volumes:
       - wp_data:/var/www/html
       - ./theme:/var/www/html/wp-content/themes/basix
+      - ./basix-events:/var/www/html/wp-content/plugins/basix-events
     depends_on:
       - db
 
@@ -37,6 +38,7 @@ services:
     volumes:
       - wp_data:/var/www/html
       - ./theme:/var/www/html/wp-content/themes/basix
+      - ./basix-events:/var/www/html/wp-content/plugins/basix-events
       - ./scripts/sample-images:/sample-images:ro
       - ./scripts/seed:/seed:ro
       - ./scripts/php:/php:ro

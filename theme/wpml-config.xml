@@ -1,30 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Tells WPML and Polylang what to translate and what to copy: the event post type and its categories, the event
-  fields, the per-page layout choices and the texts of the Customizer. scripts/php/check-compat.php checks that every
-  name in here still exists in the theme.
+  Tells WPML and Polylang what to copy and what to translate for the theme: the per-page layout choices and the texts
+  of the Customizer. (Events have their own file in the Basix Events plugin.) scripts/php/check-compat.php checks that
+  every name in here still exists in the theme.
 -->
 <wpml-config>
-	<custom-types>
-		<custom-type translate="1">basix-event</custom-type>
-	</custom-types>
-	<taxonomies>
-		<taxonomy translate="1">basix-event-category</taxonomy>
-	</taxonomies>
 	<custom-fields>
-		<!-- Dates, times, time zone and repeat rule are the same in every language. The place may be written differently. -->
-		<custom-field action="copy">basix_event_start</custom-field>
-		<custom-field action="copy">basix_event_start_time</custom-field>
-		<custom-field action="copy">basix_event_end</custom-field>
-		<custom-field action="copy">basix_event_end_time</custom-field>
-		<custom-field action="copy">basix_event_timezone</custom-field>
-		<custom-field action="copy">basix_event_repeat</custom-field>
-		<custom-field action="translate">basix_event_location</custom-field>
-		<!-- Worked out again from the fields above when an event is saved. -->
-		<custom-field action="ignore">_basix_event_start_utc</custom-field>
-		<custom-field action="ignore">_basix_event_end_utc</custom-field>
-		<custom-field action="ignore">_basix_event_last_utc</custom-field>
-		<custom-field action="ignore">_basix_event_next_utc</custom-field>
 		<!-- The per-page layout choices follow the original page. -->
 		<custom-field action="copy">_basix_header</custom-field>
 		<custom-field action="copy">_basix_sidebar</custom-field>

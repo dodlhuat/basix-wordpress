@@ -41,9 +41,9 @@ function basix_calendar_config(): array {
 	return array(
 		'restUrl'         => rest_url( 'wp/v2/posts' ),
 		'eventsUrl'       => rest_url( 'basix/v1/events' ),
-		'eventCategories' => basix_event_category_list(),
+		'eventCategories' => basix_has_events() ? basix_event_category_list() : array(),
 		'dayUrl'          => $day_url,
-		'eventDayUrl'     => str_replace( '2000-01-01', '{date}', basix_event_day_url( '2000-01-01' ) ),
+		'eventDayUrl'     => basix_has_events() ? str_replace( '2000-01-01', '{date}', basix_event_day_url( '2000-01-01' ) ) : '',
 		'categories'      => (object) $categories,
 		'firstDay'        => (int) get_option( 'start_of_week' ),
 		'dateLocale'      => str_replace( '_', '-', get_locale() ),
@@ -69,7 +69,7 @@ function basix_calendar_config(): array {
 }
 
 /**
- * The calendar's markup, for the block and the shortcode.
+ * The calendar's markup, for the page templates and for the block and shortcode of the Basix Events plugin.
  *
  * @param string $view   Starting view: month, week or agenda.
  * @param string $source What it shows: events (the Event post type) or posts (blog posts by publish date).
@@ -86,42 +86,9 @@ function basix_calendar_html( string $view = 'month', string $source = 'events',
 		null,
 		array(
 			'view'     => $view,
-			'source'   => 'posts' === $source ? 'posts' : 'events',
-			'category' => implode( ',', basix_event_category_slugs( $category ) ),
+			'source'   => 'posts' === $source || ! basix_has_events() ? 'posts' : 'events',
+			'category' => basix_has_events() ? implode( ',', basix_event_category_slugs( $category ) ) : '',
 		)
 	);
 	return (string) ob_get_clean();
 }
-
-// The "Posts calendar" block. It renders on the server, so the editor shows its options in the sidebar.
-add_action(
-	'init',
-	function () {
-		register_block_type(
-			get_theme_file_path( 'blocks/calendar' ),
-			array(
-				'render_callback' => function ( array $attributes ): string {
-					$wrapper = get_block_wrapper_attributes();
-					return '<div ' . $wrapper . '>' . basix_calendar_html( (string) ( $attributes['view'] ?? 'month' ), (string) ( $attributes['source'] ?? 'events' ), (string) ( $attributes['category'] ?? '' ) ) . '</div>';
-				},
-			)
-		);
-	}
-);
-
-// Shortcode: basix_calendar, with optional view (month, week, agenda), source (events, posts) and category (event category slugs) attributes.
-add_shortcode(
-	'basix_calendar',
-	function ( $atts ): string {
-		$atts = shortcode_atts(
-			array(
-				'view'     => 'month',
-				'source'   => 'events',
-				'category' => '',
-			),
-			$atts,
-			'basix_calendar'
-		);
-		return basix_calendar_html( (string) $atts['view'], (string) $atts['source'], (string) $atts['category'] );
-	}
-);

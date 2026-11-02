@@ -8,7 +8,8 @@
  */
 
 $basix_view   = isset( $args['view'] ) ? $args['view'] : 'month';
-$basix_source = isset( $args['source'] ) ? $args['source'] : 'events';
+$basix_source = isset( $args['source'] ) ? $args['source'] : ( basix_has_events() ? 'events' : 'posts' );
+$basix_source = 'events' === $basix_source && ! basix_has_events() ? 'posts' : $basix_source;
 $basix_cats   = isset( $args['category'] ) ? $args['category'] : '';
 ?>
 <div class="calendar-wrap" <?php echo basix_component_attrs( 'calendar', array_merge( basix_calendar_config(), array(

@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <ruleset name="Basix theme">
-    <description>Coding standards for the Basix WordPress theme.</description>
+    <description>Coding standards for the Basix WordPress theme and the Basix Events plugin.</description>
 
     <file>theme</file>
+    <file>basix-events</file>
     <exclude-pattern>*/assets/vendor/*</exclude-pattern>
 
     <arg name="extensions" value="php"/>
@@ -38,6 +39,7 @@
         <properties>
             <property name="text_domain" type="array">
                 <element value="basix"/>
+                <element value="basix-events"/>
             </property>
         </properties>
     </rule>

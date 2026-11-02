@@ -1,7 +1,7 @@
-<?php $basix_event_day = basix_event_day(); ?>
+<?php $basix_event_day = basix_has_events() ? basix_event_day() : ''; ?>
 <?php if ( $basix_event_day ) : ?>
     <?php get_template_part( 'template-parts/event-day-nav', null, array( 'day' => $basix_event_day ) ); ?>
-<?php elseif ( is_post_type_archive( BASIX_EVENT ) || is_tax( BASIX_EVENT_CAT ) ) : ?>
+<?php elseif ( basix_has_events() && ( is_post_type_archive( BASIX_EVENT ) || is_tax( BASIX_EVENT_CAT ) ) ) : ?>
     <?php get_template_part( 'template-parts/event-categories' ); ?>
     <?php $basix_feed_category = is_tax( BASIX_EVENT_CAT ) ? get_queried_object()->slug : ''; ?>
     <p class="event-subscribe text-caption">

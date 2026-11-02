@@ -7,7 +7,7 @@
  * modified time, all-day events with an exclusive end date, TZID with generated VTIMEZONE blocks (so Outlook accepts
  * it), and RRULE and EXDATE for repeating events. Password protected and private events are left out.
  *
- * @package basix
+ * @package basix-events
  */
 
 /** Bump when the feed rewrite rule changes, so existing sites flush their rules once. */
@@ -369,7 +369,7 @@ function basix_events_feed_text( array $categories ): string {
 		return $cached;
 	}
 	/* translators: %s: the site name. */
-	$text = basix_events_ics( basix_events_upcoming_posts( $categories ), sprintf( __( '%s – events', 'basix' ), wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ) ) );
+	$text = basix_events_ics( basix_events_upcoming_posts( $categories ), sprintf( __( '%s – events', 'basix-events' ), wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ) ) );
 	set_transient( $key, $text, HOUR_IN_SECONDS );
 	return $text;
 }
