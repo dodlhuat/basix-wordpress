@@ -263,6 +263,14 @@ try {
   const enterWorked = await page.waitForFunction(() => location.search.includes('event_day='), { timeout: 10000 }).then(() => true, () => false);
   check(enterWorked, 'Enter on a day opens its list');
 
+  // Calendar export: a subscribe link on the list, an "Add to calendar" button on an event.
+  page = await open('/events/');
+  check((await page.$eval('.event-subscribe a', (a) => a.getAttribute('href'))).startsWith('webcal://'), 'the events list offers a webcal:// subscribe link');
+  page = await open('/events/category/workshops/');
+  check((await page.$eval('.event-subscribe a', (a) => a.getAttribute('href'))).endsWith('category=workshops'), 'a category list subscribes to that category only');
+  page = await open('/event/design-systems-meetup/');
+  check((await page.$eval('a[href*="ics=1"]', (a) => a.textContent.trim())) === 'Add to calendar', 'an event has an Add to calendar button');
+
   // Event categories: chips filter the loaded events, the category page lists only its events.
   page = await open('/calendar/');
   await page.waitForSelector('.calendar-chips button', { timeout: 10000 });
