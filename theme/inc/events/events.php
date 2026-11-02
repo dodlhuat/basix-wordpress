@@ -32,6 +32,10 @@ function basix_event_fields(): array {
  * @return string
  */
 function basix_event_sanitize( string $key, $value ): string {
+	if ( 'basix_event_repeat' === $key ) {
+		$rule = basix_event_rule_clean( $value );
+		return $rule ? (string) wp_json_encode( $rule ) : '';
+	}
 	$value = is_string( $value ) ? trim( $value ) : '';
 	if ( 'basix_event_start' === $key || 'basix_event_end' === $key ) {
 		return basix_is_date( $value ) ? $value : '';
@@ -41,10 +45,6 @@ function basix_event_sanitize( string $key, $value ): string {
 	}
 	if ( 'basix_event_timezone' === $key ) {
 		return in_array( $value, timezone_identifiers_list(), true ) ? $value : '';
-	}
-	if ( 'basix_event_repeat' === $key ) {
-		$rule = basix_event_rule_clean( $value );
-		return $rule ? wp_json_encode( $rule ) : '';
 	}
 	return sanitize_text_field( $value );
 }
@@ -191,6 +191,7 @@ function basix_event_meta_box( WP_Post $post ): void {
 			<input type="text" id="basix_event_location" name="basix_event_location" value="<?php echo esc_attr( $value( 'basix_event_location' ) ); ?>">
 		</div>
 	</div>
+	<?php basix_event_repeat_fields( $post ); ?>
 	<p class="description"><?php esc_html_e( 'Leave the times empty for an all-day event. Leave the end date empty for an event on one day. The time zone applies to timed events; all-day events follow the site.', 'basix' ); ?></p>
 	<?php
 }
@@ -206,6 +207,10 @@ add_action(
 		}
 		$clean = array();
 		foreach ( array_keys( basix_event_fields() ) as $key ) {
+			if ( 'basix_event_repeat' === $key ) {
+				$clean[ $key ] = basix_event_sanitize( $key, basix_event_rule_from_form( isset( $_POST['basix_repeat'] ) ? wp_unslash( $_POST['basix_repeat'] ) : array() ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- cleaned by basix_event_rule_clean().
+				continue;
+			}
 			$clean[ $key ] = basix_event_sanitize( $key, isset( $_POST[ $key ] ) ? wp_unslash( $_POST[ $key ] ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- sanitised by basix_event_sanitize().
 		}
 		// An event ends on the day it starts unless it says otherwise, and never before it starts.
@@ -399,11 +404,16 @@ function basix_event_range( int $post_id ): ?array {
  *
  * @param int  $post_id      Event id, defaults to the current post.
  * @param bool $in_site_zone Show the time in the site's time zone instead of the event's own.
+ * @param array|null $occurrence One date of a repeating event (see basix_event_occurrences()); the event's first date when empty.
  * @return string
  */
-function basix_event_when( int $post_id = 0, bool $in_site_zone = false ): string {
+function basix_event_when( int $post_id = 0, bool $in_site_zone = false, ?array $occurrence = null ): string {
 	$post_id = $post_id ? $post_id : (int) get_the_ID();
 	$range   = $in_site_zone ? basix_event_range_site( $post_id ) : basix_event_range( $post_id );
+	if ( $range && $occurrence ) {
+		$range['start'] = $in_site_zone ? $occurrence['start'] : $occurrence['own_start'];
+		$range['end']   = $in_site_zone ? $occurrence['end'] : $occurrence['own_end'];
+	}
 	if ( ! $range ) {
 		return '';
 	}
@@ -596,7 +606,8 @@ add_action(
 	}
 );
 
-// The events archive and its categories list what is still to come (or running now), soonest first.
+// The events archive and its categories list what is still to come (or running now), soonest first. A repeating
+// event appears once, by its next date.
 add_action(
 	'pre_get_posts',
 	function ( WP_Query $query ) {
@@ -607,12 +618,12 @@ add_action(
 			'meta_query', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- the events list is small.
 			array(
 				'start_clause' => array(
-					'key'     => '_basix_event_start_utc',
+					'key'     => '_basix_event_next_utc',
 					'type'    => 'CHAR',
 					'compare' => 'EXISTS',
 				),
 				'end_clause'   => array(
-					'key'     => '_basix_event_end_utc',
+					'key'     => '_basix_event_last_utc',
 					'value'   => gmdate( 'Y-m-d H:i:s' ),
 					'compare' => '>=',
 					'type'    => 'CHAR',

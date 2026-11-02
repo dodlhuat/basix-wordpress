@@ -352,3 +352,320 @@ function basix_event_next( int $post_id ): ?array {
 	$next['start_utc'] = ( new DateTimeImmutable( $next['own_start'], $zone ) )->setTimezone( $utc )->format( 'Y-m-d H:i:s' );
 	return $next;
 }
+
+/**
+ * The rule as a sentence, for example "Every week on Tuesday, until Dec 20, 2026".
+ *
+ * @param array  $rule  A clean rule.
+ * @param string $start Start date of the event (Y-m-d); monthly and yearly rules repeat on its day.
+ * @return string Empty without a rule.
+ */
+function basix_event_rule_words( array $rule, string $start ): string {
+	if ( ! $rule || ! basix_is_date( $start ) ) {
+		return '';
+	}
+	global $wp_locale;
+	$every = (int) $rule['interval'];
+	$stamp = strtotime( $start . ' UTC' );
+	$wd    = (int) gmdate( 'w', $stamp );
+	$day   = (int) gmdate( 'j', $stamp );
+	switch ( $rule['freq'] ) {
+		case 'daily':
+			/* translators: %d: number of days, more than one. */
+			$text = 1 === $every ? __( 'Every day', 'basix' ) : sprintf( __( 'Every %d days', 'basix' ), $every );
+			break;
+		case 'weekly':
+			$names = array();
+			foreach ( $rule['weekdays'] ? $rule['weekdays'] : array( $wd ) as $number ) {
+				$names[] = $wp_locale->get_weekday( $number );
+			}
+			$list  = wp_sprintf( '%l', $names );
+			/* translators: 1: number of weeks, more than one, 2: weekday names, for example "Tuesday and Thursday". */
+			$text = 1 === $every ? sprintf( /* translators: %s: weekday names, for example "Tuesday and Thursday". */ __( 'Every week on %s', 'basix' ), $list ) : sprintf( __( 'Every %1$d weeks on %2$s', 'basix' ), $every, $list );
+			break;
+		case 'monthly':
+			/* translators: 1: number of months, more than one, 2: day of the month, for example 5. */
+			$text = 1 === $every ? sprintf( /* translators: %d: day of the month, for example 5. */ __( 'Every month on day %d', 'basix' ), $day ) : sprintf( __( 'Every %1$d months on day %2$d', 'basix' ), $every, $day );
+			break;
+		case 'monthly_weekday':
+			$ordinals = array(
+				1  => __( 'first', 'basix' ),
+				2  => __( 'second', 'basix' ),
+				3  => __( 'third', 'basix' ),
+				4  => __( 'fourth', 'basix' ),
+				-1 => __( 'last', 'basix' ),
+			);
+			$nth      = (int) ceil( $day / 7 );
+			$nth      = $nth > 4 ? -1 : $nth;
+			$name     = $wp_locale->get_weekday( $wd );
+			/* translators: 1: number of months, more than one, 2: ordinal such as first or last, 3: weekday name. */
+			$text = 1 === $every ? sprintf( /* translators: 1: ordinal such as first or last, 2: weekday name. */ __( 'Every month on the %1$s %2$s', 'basix' ), $ordinals[ $nth ], $name ) : sprintf( __( 'Every %1$d months on the %2$s %3$s', 'basix' ), $every, $ordinals[ $nth ], $name );
+			break;
+		default:
+			$when = wp_date( _x( 'M j', 'yearly repeat date', 'basix' ), $stamp, new DateTimeZone( 'UTC' ) );
+			/* translators: 1: number of years, more than one, 2: the date without a year, for example "Nov 5". */
+			$text = 1 === $every ? sprintf( /* translators: %s: the date without a year, for example "Nov 5". */ __( 'Every year on %s', 'basix' ), $when ) : sprintf( __( 'Every %1$d years on %2$s', 'basix' ), $every, $when );
+	}
+	if ( 'until' === $rule['end']['type'] ) {
+		/* translators: 1: the rule, for example "Every week on Tuesday", 2: the last date. */
+		$text = sprintf( __( '%1$s, until %2$s', 'basix' ), $text, wp_date( get_option( 'date_format' ), strtotime( $rule['end']['until'] . ' UTC' ), new DateTimeZone( 'UTC' ) ) );
+	} elseif ( 'count' === $rule['end']['type'] ) {
+		$times = (int) $rule['end']['count'];
+		/* translators: 1: the rule, for example "Every week on Tuesday", 2: how many times it happens, more than one. */
+		$text = 1 === $times ? sprintf( /* translators: %s: the rule, for example "Every week on Tuesday". */ __( '%s, once', 'basix' ), $text ) : sprintf( __( '%1$s, %2$d times', 'basix' ), $text, $times );
+	}
+	return $text;
+}
+
+/**
+ * The occurrence of a repeating event to show on its page or in a list: the one named by `?date=` on the event's own
+ * page, otherwise the next one.
+ *
+ * @param int $post_id Event id.
+ * @return array|null An occurrence, or null when the event does not repeat.
+ */
+function basix_event_shown_occurrence( int $post_id ): ?array {
+	if ( ! basix_event_rule( $post_id ) ) {
+		return null;
+	}
+	// A plain address parameter that only picks which date to show; it is checked against the rule.
+	if ( is_singular( BASIX_EVENT ) && isset( $_GET['date'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$date = sanitize_text_field( wp_unslash( $_GET['date'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( basix_is_date( $date ) ) {
+			$day = strtotime( $date . ' UTC' );
+			foreach ( basix_event_occurrences( $post_id, gmdate( 'Y-m-d', $day - DAY_IN_SECONDS ), gmdate( 'Y-m-d', $day + DAY_IN_SECONDS ) ) as $occurrence ) {
+				if ( $occurrence['date'] === $date ) {
+					return $occurrence;
+				}
+			}
+		}
+	}
+	return basix_event_next( $post_id );
+}
+
+/**
+ * The coming occurrences of a repeating event (one running now counts).
+ *
+ * @param int $post_id Event id.
+ * @param int $count   How many.
+ * @return array
+ */
+function basix_event_upcoming( int $post_id, int $count = 5 ): array {
+	$range = basix_event_range( $post_id );
+	if ( ! $range ) {
+		return array();
+	}
+	$zone = $range['all_day'] ? wp_timezone() : basix_event_zone( $post_id );
+	$now  = time();
+	$out  = array();
+	foreach ( basix_event_occurrences( $post_id, (string) wp_date( 'Y-m-d', $now - DAY_IN_SECONDS ), (string) wp_date( 'Y-m-d', $now + 5 * YEAR_IN_SECONDS ), $count + 3 ) as $occurrence ) {
+		$ends = new DateTimeImmutable( $occurrence['own_end'], $zone );
+		if ( $range['all_day'] ) {
+			$ends = $ends->setTime( 23, 59, 59 );
+		}
+		if ( $ends->getTimestamp() >= $now ) {
+			$out[] = $occurrence;
+		}
+		if ( count( $out ) >= $count ) {
+			break;
+		}
+	}
+	return $out;
+}
+
+// The "next date" of each repeating event moves on as time passes, so a daily job refreshes it.
+add_action(
+	'init',
+	function () {
+		if ( ! wp_next_scheduled( 'basix_events_refresh' ) ) {
+			wp_schedule_event( time() + HOUR_IN_SECONDS, 'daily', 'basix_events_refresh' );
+		}
+	}
+);
+add_action(
+	'basix_events_refresh',
+	function () {
+		foreach ( get_posts(
+			array(
+				'post_type'      => BASIX_EVENT,
+				'post_status'    => 'publish',
+				'posts_per_page' => -1,
+				'fields'         => 'ids',
+				'no_found_rows'  => true,
+				'meta_key'       => 'basix_event_repeat', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- a daily job over the repeating events.
+				'meta_compare'   => '!=',
+				'meta_value'     => '', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- same.
+			)
+		) as $id ) {
+			update_post_meta( $id, '_basix_event_next_utc', basix_event_next_utc( (int) $id ) );
+		}
+	}
+);
+add_action(
+	'switch_theme',
+	function () {
+		wp_clear_scheduled_hook( 'basix_events_refresh' );
+	}
+);
+
+/**
+ * Builds a rule from the "Repeat" form fields (basix_repeat[...]).
+ *
+ * @param mixed $form Posted fields.
+ * @return array Rule, not yet cleaned (basix_event_rule_clean() does that).
+ */
+function basix_event_rule_from_form( $form ): array {
+	if ( ! is_array( $form ) || empty( $form['freq'] ) ) {
+		return array();
+	}
+	$skip = array();
+	foreach ( preg_split( '/[\s,;]+/', (string) ( $form['skip'] ?? '' ), -1, PREG_SPLIT_NO_EMPTY ) as $date ) {
+		$skip[] = $date;
+	}
+	return array(
+		'freq'     => (string) $form['freq'],
+		'interval' => (int) ( $form['interval'] ?? 1 ),
+		'weekdays' => isset( $form['weekdays'] ) && is_array( $form['weekdays'] ) ? $form['weekdays'] : array(),
+		'end'      => array(
+			'type'  => (string) ( $form['end'] ?? 'never' ),
+			'until' => (string) ( $form['until'] ?? '' ),
+			'count' => (int) ( $form['count'] ?? 1 ),
+		),
+		'skip'     => $skip,
+	);
+}
+
+/**
+ * Prints the "Repeat" section of the event box, with a sentence that follows what is chosen.
+ *
+ * @param WP_Post $post The event.
+ */
+function basix_event_repeat_fields( WP_Post $post ): void {
+	global $wp_locale;
+	$rule     = basix_event_rule( $post->ID );
+	$freq     = $rule['freq'] ?? '';
+	$weekdays = $rule['weekdays'] ?? array();
+	$end      = $rule['end']['type'] ?? 'never';
+	$start    = (string) get_post_meta( $post->ID, 'basix_event_start', true );
+	?>
+	<fieldset class="basix-repeat" data-summary-url="<?php echo esc_url( rest_url( 'basix/v1/event-repeat' ) ); ?>" data-nonce="<?php echo esc_attr( wp_create_nonce( 'wp_rest' ) ); ?>">
+		<legend><?php esc_html_e( 'Repeat', 'basix' ); ?></legend>
+		<style>.basix-repeat{margin-top:1.25rem;padding:0}.basix-repeat legend{font-weight:600;padding:0 0 .5rem}.basix-repeat .row{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;align-items:center;margin-bottom:.75rem}.basix-repeat [hidden]{display:none}.basix-repeat textarea{width:100%;max-width:24rem}.basix-repeat .summary{font-weight:600}</style>
+		<div class="row">
+			<label for="basix_repeat_freq" class="screen-reader-text"><?php esc_html_e( 'Repeat', 'basix' ); ?></label>
+			<select id="basix_repeat_freq" name="basix_repeat[freq]">
+				<option value=""><?php esc_html_e( 'Does not repeat', 'basix' ); ?></option>
+				<?php foreach ( basix_event_repeat_freqs() as $value => $label ) : ?>
+					<option value="<?php echo esc_attr( $value ); ?>"<?php selected( $freq, $value ); ?>><?php echo esc_html( $label ); ?></option>
+				<?php endforeach; ?>
+			</select>
+		</div>
+		<div class="basix-repeat-more"<?php echo $freq ? '' : ' hidden'; ?>>
+			<div class="row">
+				<label for="basix_repeat_interval"><?php esc_html_e( 'Every', 'basix' ); ?></label>
+				<input type="number" id="basix_repeat_interval" name="basix_repeat[interval]" min="1" max="99" value="<?php echo esc_attr( (string) ( $rule['interval'] ?? 1 ) ); ?>" style="width:5rem">
+				<span class="description"><?php esc_html_e( 'times the unit above (2 means every second day, week, month or year)', 'basix' ); ?></span>
+			</div>
+			<div class="row basix-repeat-weekdays"<?php echo 'weekly' === $freq ? '' : ' hidden'; ?>>
+				<?php foreach ( array( 1, 2, 3, 4, 5, 6, 0 ) as $number ) : ?>
+					<label><input type="checkbox" name="basix_repeat[weekdays][]" value="<?php echo esc_attr( (string) $number ); ?>"<?php checked( in_array( $number, $weekdays, true ) ); ?>> <?php echo esc_html( $wp_locale->get_weekday_abbrev( $wp_locale->get_weekday( $number ) ) ); ?></label>
+				<?php endforeach; ?>
+				<span class="description"><?php esc_html_e( 'None ticked: the weekday of the start date.', 'basix' ); ?></span>
+			</div>
+			<div class="row">
+				<label><input type="radio" name="basix_repeat[end]" value="never"<?php checked( 'never', $end ); ?>> <?php esc_html_e( 'Never ends', 'basix' ); ?></label>
+				<label><input type="radio" name="basix_repeat[end]" value="until"<?php checked( 'until', $end ); ?>> <?php esc_html_e( 'Ends on', 'basix' ); ?></label>
+				<input type="date" name="basix_repeat[until]" value="<?php echo esc_attr( (string) ( $rule['end']['until'] ?? '' ) ); ?>" aria-label="<?php esc_attr_e( 'Last date', 'basix' ); ?>">
+				<label><input type="radio" name="basix_repeat[end]" value="count"<?php checked( 'count', $end ); ?>> <?php esc_html_e( 'Ends after', 'basix' ); ?></label>
+				<input type="number" name="basix_repeat[count]" min="1" max="<?php echo esc_attr( (string) BASIX_EVENT_MAX_OCCURRENCES ); ?>" value="<?php echo esc_attr( (string) ( $rule['end']['count'] ?? 10 ) ); ?>" style="width:5rem" aria-label="<?php esc_attr_e( 'Number of times', 'basix' ); ?>">
+				<span class="description"><?php esc_html_e( 'times', 'basix' ); ?></span>
+			</div>
+			<div class="row">
+				<label for="basix_repeat_skip"><?php esc_html_e( 'Skipped dates', 'basix' ); ?></label>
+				<textarea id="basix_repeat_skip" name="basix_repeat[skip]" rows="2" placeholder="2026-12-24"><?php echo esc_textarea( implode( "\n", $rule['skip'] ?? array() ) ); ?></textarea>
+				<span class="description"><?php esc_html_e( 'One date (YYYY-MM-DD) per line. These dates do not happen.', 'basix' ); ?></span>
+			</div>
+		</div>
+		<p class="summary" aria-live="polite"><?php echo esc_html( basix_event_rule_words( $rule, $start ) ); ?></p>
+		<script>
+		( function () {
+			var box = document.currentScript.parentNode, more = box.querySelector( '.basix-repeat-more' ), days = box.querySelector( '.basix-repeat-weekdays' ),
+				summary = box.querySelector( '.summary' ), timer = 0, serial = 0;
+			function form() {
+				var data = new FormData( box.closest( 'form' ) ), body = new URLSearchParams();
+				data.forEach( function ( value, key ) { if ( key.indexOf( 'basix_repeat[' ) === 0 || key === 'basix_event_start' ) { body.append( key, value ); } } );
+				return body;
+			}
+			function update() {
+				var freq = box.querySelector( '#basix_repeat_freq' ).value, mine = ++serial;
+				more.hidden = ! freq;
+				days.hidden = freq !== 'weekly';
+				if ( ! freq ) { summary.textContent = ''; return; }
+				clearTimeout( timer );
+				timer = setTimeout( function () {
+					fetch( box.dataset.summaryUrl, { method: 'POST', headers: { 'X-WP-Nonce': box.dataset.nonce }, body: form() } )
+						.then( function ( r ) { return r.json(); } )
+						.then( function ( r ) { if ( mine === serial ) { summary.textContent = r.summary || ''; } } )
+						.catch( function () {} );
+				}, 250 );
+			}
+			box.addEventListener( 'input', update );
+			box.closest( 'form' ).addEventListener( 'input', function ( e ) { if ( e.target.id === 'basix_event_start' ) { update(); } } );
+		}() );
+		</script>
+	</fieldset>
+	<?php
+}
+
+// POST /wp-json/basix/v1/event-repeat: the sentence for what the editor has chosen, so the box needs no copy of the wording.
+add_action(
+	'rest_api_init',
+	function () {
+		register_rest_route(
+			'basix/v1',
+			'/event-repeat',
+			array(
+				'methods'             => 'POST',
+				'permission_callback' => static function () {
+					return current_user_can( 'edit_posts' );
+				},
+				'callback'            => static function ( WP_REST_Request $request ) {
+					$rule  = basix_event_rule_clean( basix_event_rule_from_form( $request->get_param( 'basix_repeat' ) ) );
+					$start = (string) $request->get_param( 'basix_event_start' );
+					return rest_ensure_response( array( 'summary' => basix_event_rule_words( $rule, basix_is_date( $start ) ? $start : wp_date( 'Y-m-d' ) ) ) );
+				},
+			)
+		);
+	}
+);
+
+/**
+ * On the page of a repeating event: how it repeats, in words, and the next dates (each a link to that date).
+ */
+function basix_event_repeat_info(): void {
+	$post_id = (int) get_the_ID();
+	$rule    = basix_event_rule( $post_id );
+	if ( ! $rule ) {
+		return;
+	}
+	$shown = basix_event_shown_occurrence( $post_id );
+	echo '<section class="event-repeat" aria-labelledby="event-repeat-title">';
+	echo '<h2 id="event-repeat-title" class="text-h5">' . esc_html__( 'Repeats', 'basix' ) . '</h2>';
+	echo '<p>' . esc_html( basix_event_rule_words( $rule, (string) get_post_meta( $post_id, 'basix_event_start', true ) ) ) . '</p>';
+	$upcoming = basix_event_upcoming( $post_id, 5 );
+	if ( $upcoming ) {
+		echo '<p class="text-caption">' . esc_html__( 'Next dates', 'basix' ) . '</p><ul class="event-dates">';
+		foreach ( $upcoming as $occurrence ) {
+			$text = esc_html( basix_event_when( $post_id, false, $occurrence ) );
+			if ( $shown && $shown['date'] === $occurrence['date'] ) {
+				echo '<li aria-current="date"><strong>' . $text . '</strong></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above.
+			} else {
+				printf( '<li><a href="%s">%s</a></li>', esc_url( add_query_arg( 'date', $occurrence['date'], get_permalink( $post_id ) ) ), $text ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above.
+			}
+		}
+		echo '</ul>';
+	} else {
+		echo '<p class="text-caption">' . esc_html__( 'All dates of this event are over.', 'basix' ) . '</p>';
+	}
+	echo '</section>';
+}
