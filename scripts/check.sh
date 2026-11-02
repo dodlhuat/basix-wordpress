@@ -21,6 +21,7 @@ run wp eval-file /php/check-events.php
 run npm run --silent check:editor
 run npm run --silent check:customizer
 run npm run --silent check:ics
+run npm run --silent check:schema
 run npm run --silent check:frontend
 run npm run --silent check:a11y
 exit "$status"
