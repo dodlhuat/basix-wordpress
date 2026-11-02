@@ -14,6 +14,7 @@ require_once __DIR__ . '/inc/post-features.php';
 require_once __DIR__ . '/inc/filters.php';
 require_once __DIR__ . '/inc/events/events.php';
 require_once __DIR__ . '/inc/events/recurrence.php';
+require_once __DIR__ . '/inc/events/ics.php';
 require_once __DIR__ . '/inc/calendar.php';
 require_once __DIR__ . '/inc/gallery.php';
 require_once __DIR__ . '/inc/seo.php';

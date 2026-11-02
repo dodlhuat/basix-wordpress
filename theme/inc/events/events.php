@@ -597,6 +597,8 @@ add_action(
 							'location'   => (string) get_post_meta( $event->ID, 'basix_event_location', true ),
 							'categories' => wp_list_pluck( (array) get_the_terms( $event, BASIX_EVENT_CAT ), 'slug' ),
 							'repeats'    => (bool) $rule,
+							'startUtc'   => $item['all_day'] ? null : ( new DateTimeImmutable( $item['own_start'], basix_event_zone( $event->ID ) ) )->setTimezone( new DateTimeZone( 'UTC' ) )->format( 'Y-m-d\TH:i:s\Z' ),
+							'endUtc'     => $item['all_day'] ? null : ( new DateTimeImmutable( $item['own_end'], basix_event_zone( $event->ID ) ) )->setTimezone( new DateTimeZone( 'UTC' ) )->format( 'Y-m-d\TH:i:s\Z' ),
 						);
 					}
 					return rest_ensure_response( $out );
