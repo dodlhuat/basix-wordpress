@@ -9,14 +9,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-02T11:57:23+00:00\n"
+"POT-Creation-Date: 2026-11-02T12:05:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: basix\n"
 
 #. Theme Name of the theme
 #: style.css
-#: functions.php:59
+#: functions.php:60
 #: inc/customizer.php:77
 msgid "Basix"
 msgstr ""
@@ -98,167 +98,167 @@ msgstr ""
 msgid "Nothing published yet."
 msgstr ""
 
-#: functions.php:61
+#: functions.php:62
 msgid "Card"
 msgstr ""
 
-#: functions.php:62
+#: functions.php:63
 msgid "Bordered card"
 msgstr ""
 
-#: functions.php:63
+#: functions.php:64
 msgid "Lead text"
 msgstr ""
 
-#: functions.php:64
+#: functions.php:65
 msgid "Sortable"
 msgstr ""
 
-#: functions.php:65
+#: functions.php:66
 msgid "Masonry"
 msgstr ""
 
-#: functions.php:66
+#: functions.php:67
 msgid "Framed"
 msgstr ""
 
-#: functions.php:67
+#: functions.php:68
 msgid "Soft shadow"
 msgstr ""
 
-#: functions.php:68
+#: functions.php:69
 msgid "Circle"
 msgstr ""
 
-#: functions.php:87
+#: functions.php:88
 #: inc/customizer.php:195
 #: sidebar.php:3
 msgid "Sidebar"
 msgstr ""
 
-#: functions.php:89
+#: functions.php:90
 msgid "Shown next to blog posts and archives."
 msgstr ""
 
 #. translators: %d: column number.
-#: functions.php:101
+#: functions.php:102
 #, php-format
 msgid "Footer column %d"
 msgstr ""
 
-#: functions.php:105
+#: functions.php:106
 msgid "Shown in the footer."
 msgstr ""
 
-#: functions.php:145
+#: functions.php:146
 msgid "Category"
 msgstr ""
 
-#: functions.php:146
+#: functions.php:147
 msgid "Tag"
 msgstr ""
 
-#: functions.php:147
+#: functions.php:148
 msgid "Author"
 msgstr ""
 
-#: functions.php:148
-#: functions.php:150
+#: functions.php:149
 #: functions.php:151
+#: functions.php:152
 msgid "Archive"
 msgstr ""
 
-#: functions.php:149
+#: functions.php:150
 #: inc/events/events.php:59
 #: inc/events/events.php:70
 msgid "Events"
 msgstr ""
 
 #. translators: %s: the event's time in the site's time zone.
-#: functions.php:218
+#: functions.php:219
 #, php-format
 msgid "%s in site time"
 msgstr ""
 
-#: functions.php:256
+#: functions.php:257
 msgid "Home"
 msgstr ""
 
-#: functions.php:270
+#: functions.php:271
 msgid "Not found"
 msgstr ""
 
-#: functions.php:272
+#: functions.php:273
 msgid "Search results"
 msgstr ""
 
-#: functions.php:280
+#: functions.php:281
 msgid "Breadcrumb"
 msgstr ""
 
-#: functions.php:294
+#: functions.php:295
 msgid "Pagination"
 msgstr ""
 
-#: functions.php:331
+#: functions.php:332
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: functions.php:368
+#: functions.php:369
 msgid "Your comment could not be submitted"
 msgstr ""
 
-#: functions.php:370
+#: functions.php:371
 msgid "Go back"
 msgstr ""
 
-#: functions.php:386
+#: functions.php:387
 msgid "Please fill out this field."
 msgstr ""
 
-#: functions.php:387
+#: functions.php:388
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: functions.php:388
+#: functions.php:389
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: functions.php:389
+#: functions.php:390
 msgid "View larger image"
 msgstr ""
 
-#: functions.php:390
+#: functions.php:391
 msgid "Open image"
 msgstr ""
 
-#: functions.php:391
+#: functions.php:392
 msgid "Code"
 msgstr ""
 
-#: functions.php:392
+#: functions.php:393
 msgid "Table"
 msgstr ""
 
-#: functions.php:393
+#: functions.php:394
 msgid "Featured posts"
 msgstr ""
 
 #. translators: 1: number of this slide, 2: number of slides.
-#: functions.php:395
+#: functions.php:396
 #, php-format
 msgid "Slide %1$d of %2$d"
 msgstr ""
 
-#: functions.php:407
+#: functions.php:408
 msgid "This content is password-protected. To view it, please enter the password below."
 msgstr ""
 
-#: functions.php:409
+#: functions.php:410
 msgid "Password"
 msgstr ""
 
-#: functions.php:412
+#: functions.php:413
 msgctxt "post password form"
 msgid "Enter"
 msgstr ""
@@ -551,7 +551,7 @@ msgid "No events found in the bin"
 msgstr ""
 
 #: inc/events/events.php:69
-#: single-basix-event.php:24
+#: single-basix-event.php:28
 msgid "All events"
 msgstr ""
 
@@ -605,9 +605,15 @@ msgid "Leave the times empty for an all-day event. Leave the end date empty for 
 msgstr ""
 
 #. translators: %s: a date, for example November 5, 2026.
-#: inc/events/events.php:661
+#: inc/events/events.php:663
 #, php-format
 msgid "Events on %s"
+msgstr ""
+
+#. translators: %s: the site name.
+#: inc/events/ics.php:372
+#, php-format
+msgid "%s – events"
 msgstr ""
 
 #. translators: %d: number of days, more than one.
@@ -1299,7 +1305,11 @@ msgstr ""
 msgid "Search…"
 msgstr ""
 
-#: single-basix-event.php:23
+#: single-basix-event.php:24
+msgid "Add to calendar"
+msgstr ""
+
+#: single-basix-event.php:27
 msgid "Back to the events"
 msgstr ""
 
@@ -1372,11 +1382,19 @@ msgstr ""
 msgid "Clear all"
 msgstr ""
 
-#: template-parts/loop.php:23
+#: template-parts/loop.php:8
+msgid "Subscribe in your calendar app"
+msgstr ""
+
+#: template-parts/loop.php:9
+msgid "Calendar file (.ics)"
+msgstr ""
+
+#: template-parts/loop.php:28
 msgid "No events on this day."
 msgstr ""
 
-#: template-parts/loop.php:25
+#: template-parts/loop.php:30
 msgid "Nothing found."
 msgstr ""
 
