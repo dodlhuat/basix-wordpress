@@ -1,8 +1,10 @@
 <?php get_header(); ?>
 
+<?php basix_layout_open(); ?>
+
 <?php while (have_posts()) : the_post(); ?>
     <article <?php post_class('entry'); ?>>
-        <header class="entry-header"><h1><?php the_title(); ?></h1></header>
+        <header class="entry-header<?php echo esc_attr(basix_title_class()); ?>"><h1><?php the_title(); ?></h1></header>
         <?php if (has_post_thumbnail()) : ?>
             <figure class="entry-media"><?php the_post_thumbnail('large'); ?></figure>
         <?php endif; ?>
@@ -11,5 +13,7 @@
     </article>
     <?php if (comments_open()) comments_template(); ?>
 <?php endwhile; ?>
+
+<?php basix_layout_close(); ?>
 
 <?php get_footer(); ?>

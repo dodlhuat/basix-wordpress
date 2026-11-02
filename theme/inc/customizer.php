@@ -21,6 +21,8 @@ function basix_choices(): array {
 		'basix_font_heading'     => array_merge( array( 'look' ), array_keys( basix_fonts() ) ),
 		'basix_font_body'        => array_merge( array( 'look' ), array_keys( basix_fonts() ) ),
 		'basix_text_size'        => array( 'small', 'medium', 'large' ),
+		'basix_header_style'     => array( 'default', 'transparent' ),
+		'basix_footer_layout'    => array( 'columns', 'centered', 'minimal' ),
 	);
 }
 
@@ -296,7 +298,7 @@ add_action(
  * @return bool
  */
 function basix_has_sidebar(): bool {
-	return 'none' !== get_theme_mod( 'basix_sidebar_position', 'right' ) && is_active_sidebar( 'sidebar-1' );
+	return 'none' !== basix_sidebar_position() && is_active_sidebar( 'sidebar-1' );
 }
 
 /**

@@ -40,7 +40,7 @@ $basix_sprite    = get_theme_file_uri( BASIX_VENDOR . '/svg-icons/icons.svg' );
             the_post();
             ?>
             <article <?php post_class( 'entry' ); ?>>
-                <header class="entry-header"><h1><?php the_title(); ?></h1></header>
+                <header class="entry-header<?php echo esc_attr( basix_title_class() ); ?>"><h1><?php the_title(); ?></h1></header>
                 <div class="entry-content"><?php the_content(); ?></div>
             </article>
         <?php endwhile; ?>

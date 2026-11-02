@@ -6,6 +6,9 @@
  */
 
 $basix_layout = basix_header_layout();
+$basix_mode   = basix_header_mode();
+$basix_cta    = basix_header_cta();
+$basix_preview = is_customize_preview();
 $basix_sprite = get_theme_file_uri( BASIX_VENDOR . '/svg-icons/icons.svg' );
 ?>
 <!DOCTYPE html>
@@ -19,7 +22,11 @@ $basix_sprite = get_theme_file_uri( BASIX_VENDOR . '/svg-icons/icons.svg' );
 <?php wp_body_open(); ?>
 <a class="skip-link" href="#content"><?php esc_html_e( 'Skip to content', 'basix' ); ?></a>
 
-<?php if ( 'push' === $basix_layout && has_nav_menu( 'primary' ) ) : ?>
+<?php if ( basix_top_bar_enabled() || ( $basix_preview && 'none' !== $basix_mode ) ) : ?>
+    <?php get_template_part( 'template-parts/top-bar' ); ?>
+<?php endif; ?>
+
+<?php if ( 'none' !== $basix_mode && 'push' === $basix_layout && has_nav_menu( 'primary' ) ) : ?>
     <nav class="push-menu" aria-label="<?php esc_attr_e( 'Primary menu', 'basix' ); ?>">
         <?php basix_primary_menu( 'push' ); ?>
     </nav>
@@ -27,6 +34,7 @@ $basix_sprite = get_theme_file_uri( BASIX_VENDOR . '/svg-icons/icons.svg' );
     <div class="push-content">
 <?php endif; ?>
 
+<?php if ( 'none' !== $basix_mode ) : ?>
 <header class="site-header">
     <div class="container site-header-inner">
         <?php if ( 'push' === $basix_layout && has_nav_menu( 'primary' ) ) : ?>
@@ -49,6 +57,9 @@ $basix_sprite = get_theme_file_uri( BASIX_VENDOR . '/svg-icons/icons.svg' );
         <?php endif; ?>
 
         <div class="site-actions">
+            <?php if ( ( $basix_cta['label'] && $basix_cta['url'] ) || $basix_preview ) : ?>
+                <a class="button button-primary header-cta" href="<?php echo esc_url( $basix_cta['url'] ); ?>"<?php echo $basix_cta['label'] && $basix_cta['url'] ? '' : ' hidden'; ?>><?php echo esc_html( $basix_cta['label'] ); ?></a>
+            <?php endif; ?>
             <a class="site-search-trigger button" href="<?php echo esc_url( home_url( '/?s=' ) ); ?>" aria-label="<?php esc_attr_e( 'Search', 'basix' ); ?>" data-tooltip="<?php esc_attr_e( 'Search (press /)', 'basix' ); ?>" data-tooltip-position="bottom">
                 <svg class="icon-svg" aria-hidden="true"><use href="<?php echo esc_url( $basix_sprite . '#search' ); ?>"/></svg>
             </a>
@@ -65,12 +76,16 @@ $basix_sprite = get_theme_file_uri( BASIX_VENDOR . '/svg-icons/icons.svg' );
     </div>
 </header>
 
-<?php if ( 'push' !== $basix_layout ) : ?>
+	<?php if ( 'push' !== $basix_layout ) : ?>
     <div class="flyout-overlay" id="site-flyout-overlay"></div>
     <nav class="flyout-menu" id="site-flyout" aria-label="<?php esc_attr_e( 'Menu', 'basix' ); ?>">
         <?php basix_primary_menu( 'drawer' ); ?>
+        <?php if ( ( $basix_cta['label'] && $basix_cta['url'] ) || $basix_preview ) : ?>
+            <p class="menu-cta"<?php echo $basix_cta['label'] && $basix_cta['url'] ? '' : ' hidden'; ?>><a class="button button-primary" href="<?php echo esc_url( $basix_cta['url'] ); ?>"><?php echo esc_html( $basix_cta['label'] ); ?></a></p>
+        <?php endif; ?>
     </nav>
 <?php endif; ?>
+<?php endif; // A page can have no header at all. ?>
 
 <main id="content" class="container site-main">
 <?php basix_breadcrumb(); ?>

@@ -5,7 +5,7 @@ get_header();
 
 <?php $basix_hero = get_theme_mod( 'basix_hero_style', 'card' ); ?>
 <?php if ( ! is_paged() && 'none' !== $basix_hero ) : ?>
-<section class="<?php echo 'minimal' === $basix_hero ? 'hero-minimal' : 'hero card card-flat'; ?>">
+<section class="<?php echo 'minimal' === $basix_hero ? 'hero-minimal' : 'hero card card-flat'; ?><?php echo has_header_image() ? ' has-image' : ''; ?>"<?php echo apply_filters( 'basix_hero_attributes', '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built from escaped parts. ?>>
     <p class="text-overline"><?php esc_html_e( 'Welcome', 'basix' ); ?></p>
     <h1 class="hero-title"><?php bloginfo( 'name' ); ?></h1>
     <?php if ( get_bloginfo( 'description' ) ) : ?>

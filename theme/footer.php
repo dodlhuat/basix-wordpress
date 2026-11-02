@@ -15,9 +15,11 @@
     </div>
 </template>
 
+<?php $basix_footer_none = 'none' === basix_page_option( '_basix_footer' ); ?>
+<?php if ( ! $basix_footer_none ) : ?>
 <footer class="site-footer">
     <?php
-    $basix_footer_columns = array_values( array_filter( array( 'footer-1', 'footer-2', 'footer-3' ), 'is_active_sidebar' ) );
+    $basix_footer_columns = 'minimal' === basix_footer_layout() ? array() : array_values( array_filter( array( 'footer-1', 'footer-2', 'footer-3' ), 'is_active_sidebar' ) );
     if ( $basix_footer_columns ) :
         ?>
         <div class="container footer-widgets grid cols-<?php echo esc_attr( count( $basix_footer_columns ) ); ?>">
@@ -28,7 +30,7 @@
     <?php endif; ?>
     <div class="container site-footer-inner">
         <div class="site-footer-main">
-            <p class="text-caption"><?php echo basix_footer_text(); ?></p>
+            <p class="text-caption site-footer-text"><?php echo basix_footer_text(); ?></p>
             <?php basix_footer_menus(); ?>
         </div>
         <?php if ( get_theme_mod( 'basix_back_to_top', true ) ) : ?>
@@ -38,7 +40,8 @@
         <?php endif; ?>
     </div>
 </footer>
-<?php if ( 'push' === basix_header_layout() && has_nav_menu( 'primary' ) ) : ?>
+<?php endif; ?>
+<?php if ( 'none' !== basix_header_mode() && 'push' === basix_header_layout() && has_nav_menu( 'primary' ) ) : ?>
     </div><!-- .push-content -->
 <?php endif; ?>
 <?php wp_footer(); ?>

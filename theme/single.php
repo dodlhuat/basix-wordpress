@@ -9,7 +9,7 @@
         </div>
     <?php endif; ?>
     <article <?php post_class('entry'); ?>>
-        <header class="entry-header">
+        <header class="entry-header<?php echo esc_attr(basix_title_class()); ?>">
             <?php basix_post_terms(); ?>
             <h1><?php the_title(); ?></h1>
             <?php basix_post_meta(); ?>

@@ -10,6 +10,7 @@ require_once __DIR__ . '/inc/class-basix-drawer-walker.php';
 require_once __DIR__ . '/inc/menus.php';
 require_once __DIR__ . '/inc/looks.php';
 require_once __DIR__ . '/inc/customizer.php';
+require_once __DIR__ . '/inc/header.php';
 require_once __DIR__ . '/inc/docs.php';
 require_once __DIR__ . '/inc/post-features.php';
 require_once __DIR__ . '/inc/filters.php';
@@ -208,7 +209,7 @@ function basix_layout_open(): void
 {
     $classes = '';
     if (basix_has_sidebar()) {
-        $classes = ' has-sidebar sidebar-' . ('left' === get_theme_mod('basix_sidebar_position', 'right') ? 'left' : 'right');
+        $classes = ' has-sidebar sidebar-' . ('left' === basix_sidebar_position() ? 'left' : 'right');
     }
     printf('<div class="layout%s"><div class="layout-main">', esc_attr($classes));
 }

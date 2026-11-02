@@ -16,7 +16,7 @@ while ( have_posts() ) :
 	$basix_parent = basix_gallery_parent();
 	?>
 	<article <?php post_class( 'entry' ); ?>>
-		<header class="entry-header"><h1><?php the_title(); ?></h1></header>
+		<header class="entry-header<?php echo esc_attr( basix_title_class() ); ?>"><h1><?php the_title(); ?></h1></header>
 		<div class="entry-content"><?php the_content(); ?></div>
 
 		<div class="gallery-wrap">
