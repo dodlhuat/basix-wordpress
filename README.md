@@ -56,4 +56,4 @@ Only Basix components and tokens are used. Theme CSS stays layout glue, so colou
 
 ## License
 
-GPL v2 or later. Bundled: Basix (MIT), Outfit typeface (SIL OFL 1.1), Material icons (Apache 2.0). See `theme/readme.txt`.
+GPL v2 or later. Bundled: Basix (MIT), Outfit, Inter, Space Grotesk, Source Serif 4 and Fraunces typefaces (SIL OFL 1.1), Material icons (Apache 2.0). See `theme/readme.txt`.

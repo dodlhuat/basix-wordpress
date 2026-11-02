@@ -20,6 +20,7 @@ Basix is a classic WordPress theme made from the components of the Basix library
 * Styled comments, password-protected posts, search and 404 pages
 * An Events post type with an events calendar block and shortcode, header layouts, a featured-post slider, a gallery and portfolio page, and post filters
 * Ten block patterns and block styles, plus starter content for new sites
+* Five looks (Basix, Editorial, Bold, Calm, Paper) that set colours for light and dark mode, corners and fonts together, with a choice of fonts and text size on top
 * Accent colour, logo and layout options in the Customizer
 * Checked with axe and Lighthouse, ready for translation, with a German translation included
 
@@ -64,6 +65,11 @@ Outfit typeface
 Copyright The Outfit Project Authors
 License: SIL Open Font License 1.1
 Source: https://github.com/Outfitio/Outfit-Fonts
+
+Inter, Space Grotesk, Source Serif 4 and Fraunces typefaces (assets/fonts, variable, Latin subset)
+Copyright The Inter, Space Grotesk, Source Serif and Fraunces Project Authors
+License: SIL Open Font License 1.1 (the licence texts are next to the font files)
+Source: https://fontsource.org (packages @fontsource-variable/inter, space-grotesk, source-serif-4 and fraunces)
 
 Google Material Icons (svg-icons, bundled with Basix)
 License: Apache License 2.0
