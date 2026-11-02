@@ -1,0 +1,79 @@
+/*
+ * Forms from plugins: Contact Form 7, WPForms, Fluent Forms and Gravity Forms. They bring their own markup and
+ * little styling, so they are brought in line with the Basix fields and buttons, in every look and in dark mode.
+ */
+:is(.wpcf7, .wpforms-container, .fluentform, .gform_wrapper) {
+	--field-border: color-mix(in srgb, var(--primary-text) 28%, var(--background));
+	max-width: 40rem;
+}
+:is(.wpcf7, .wpforms-container, .fluentform, .gform_wrapper) :is(label, legend, .wpforms-field-label, .gfield_label, .ff-el-input--label label) {
+	display: block;
+	margin-bottom: .3rem;
+	font-weight: 500;
+	color: var(--primary-text);
+}
+:is(.wpcf7, .wpforms-container, .fluentform, .gform_wrapper) :is(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="button"], [type="file"], [type="hidden"]), textarea, select) {
+	width: 100%;
+	box-sizing: border-box;
+	padding: .6rem .8rem;
+	border: 1px solid var(--field-border);
+	border-radius: var(--radius-md);
+	background: var(--background);
+	color: var(--primary-text);
+	font: inherit;
+	line-height: 1.4;
+}
+:is(.wpcf7, .wpforms-container, .fluentform, .gform_wrapper) :is(input, textarea, select):focus-visible {
+	outline: 2px solid var(--accent-color);
+	outline-offset: 1px;
+	border-color: var(--accent-color);
+}
+:is(.wpcf7, .wpforms-container, .fluentform, .gform_wrapper) textarea { min-height: 8rem; resize: vertical; }
+:is(.wpcf7, .wpforms-container, .fluentform, .gform_wrapper) :is(input[type="checkbox"], input[type="radio"]) { accent-color: var(--accent-color); margin-inline-end: .4rem; }
+:is(.wpcf7, .wpforms-container, .fluentform, .gform_wrapper) :is(.wpforms-field, .ff-el-group, .gfield, .wpcf7-form > p) { margin-block: 0 1.1rem; }
+.wpcf7-form-control-wrap { display: block; }
+
+/* Submit buttons look like the theme's primary button. */
+:is(.wpcf7-submit, .wpforms-submit, .ff-btn-submit, .gform_button) {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: .6rem 1.4rem;
+	border: 0;
+	border-radius: var(--radius-md);
+	background: var(--accent-color);
+	color: var(--on-accent);
+	font: inherit;
+	font-weight: 600;
+	cursor: pointer;
+	transition: filter .15s ease;
+}
+:is(.wpcf7-submit, .wpforms-submit, .ff-btn-submit, .gform_button):hover { filter: brightness(.92); }
+:is(.wpcf7-submit, .wpforms-submit, .ff-btn-submit, .gform_button):focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; }
+:is(.wpcf7-submit, .wpforms-submit, .ff-btn-submit, .gform_button):disabled { opacity: .6; cursor: not-allowed; }
+
+/* Hints, errors and answers. */
+:is(.wpforms-field-description, .ff-el-help-message, .gfield_description) { margin-top: .25rem; font-size: .875rem; color: var(--secondary-text); }
+:is(.wpcf7, .wpforms-container, .fluentform, .gform_wrapper) :is(.wpcf7-not-valid-tip, .wpforms-error, label.wpforms-error, .ff-el-is-error .error, .validation_message, .gfield_validation_message) {
+	display: block;
+	margin-top: .3rem;
+	font-size: .875rem;
+	font-weight: 500;
+	color: var(--error-text);
+}
+:is(.wpcf7 .wpcf7-not-valid, .wpforms-error:is(input, textarea, select), .ff-el-is-error .ff-el-form-control, .gfield_error :is(input, textarea, select)) { border-color: var(--error); }
+:is(.wpcf7-response-output, .wpforms-confirmation-container-full, .wpforms-notice, .ff-message-success, .gform_confirmation_message, .gform_validation_errors) {
+	margin: 1.25rem 0 0;
+	padding: .8rem 1rem;
+	border: 1px solid var(--divider);
+	border-inline-start: 4px solid var(--accent-color);
+	border-radius: var(--radius-md);
+	background: var(--accent-color-tint);
+	color: var(--primary-text);
+}
+:is(.wpcf7 form.invalid .wpcf7-response-output, .wpcf7 form.failed .wpcf7-response-output, .wpcf7 form.aborted .wpcf7-response-output, .wpforms-error-container, .gform_validation_errors) {
+	border-inline-start-color: var(--error);
+	background: var(--error-tint);
+}
+.wpcf7 form.sent .wpcf7-response-output { border-inline-start-color: var(--success); background: var(--success-tint); }
+.wpcf7-spinner { margin-inline-start: .75rem; }

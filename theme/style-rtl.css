@@ -1,0 +1,464 @@
+/*
+Theme Name: Basix
+Theme URI: https://github.com/dodlhuat/basix
+Author: Andi Bauer
+Author URI: https://www.andibauer.at
+Description: A fast, accessible blog and magazine theme built entirely from the Basix component library, with light and dark mode, a flyout menu, image cards and a sidebar with widgets.
+Version: 1.0.0
+Requires at least: 6.5
+Tested up to: 7.1
+Requires PHP: 8.1
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: basix
+Domain Path: /languages
+Tags: blog, news, grid-layout, right-sidebar, two-columns, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, threaded-comments, translation-ready, block-patterns, block-styles, wide-blocks, editor-style, accessibility-ready
+
+Basix WordPress theme, (C) 2026 Andi Bauer
+Basix is distributed under the terms of the GNU GPL v2 or later.
+
+This theme bundles the Basix component library (MIT, https://github.com/dodlhuat/basix)
+and the Outfit typeface (SIL Open Font License 1.1). See readme.txt for details.
+*/
+
+/* Layout glue only. Colour, radius, spacing and type all come from basix tokens,
+   so light and dark mode follow [data-theme] / prefers-color-scheme automatically. */
+
+/* overflow-y stays visible, or the body becomes the scroll container and the sticky header never sticks. */
+body { overflow-x: clip; overflow-y: visible; background: var(--background); color: var(--primary-text); display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
+.container { width: min(100% - 2rem, 72rem); margin-inline: auto; }
+.site-main { padding-block: 2rem 4rem; flex: 1 0 auto; }
+.site-header, .site-footer { flex-shrink: 0; }
+.skip-link { position: absolute; right: -999px; }
+.skip-link:focus { right: 1rem; top: 1rem; z-index: 1000; background: var(--background); padding: .5rem 1rem; border-radius: var(--radius-md); }
+.text-right { text-align: left; }
+a { color: var(--link-color); }
+input, textarea, select, button { font-family: inherit; }
+/* Text on an accent-coloured button: the colour that reads best on the chosen accent (Basix would use the page or text colour, which fails on some looks). */
+.button-primary, button.button-primary, [data-theme="dark"] .button-primary, [data-theme="dark"] button.button-primary { color: var(--on-accent); }
+
+/* The "+2" in a crowded calendar day: the readable accent text, since the plain accent can be too dark on a dark page. */
+.cal__event-more { color: var(--accent-text, var(--accent-color)); }
+
+/* Header */
+.site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--background) 78%, transparent);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    border-bottom: 1px solid var(--divider);
+}
+.site-header-inner { display: flex; align-items: center; gap: 1.5rem; padding-block: .75rem; }
+.custom-logo-link { display: inline-flex; margin-left: auto; }
+.custom-logo { display: block; width: auto; height: auto; max-height: 2.25rem; }
+.site-title { font-weight: 700; font-size: 1.25rem; letter-spacing: -.01em; text-decoration: none; color: var(--primary-text); margin-left: auto; }
+.site-nav-list { display: flex; gap: .25rem; list-style: none; margin: 0; padding: 0; }
+.site-nav-list a { display: block; padding: .4rem .8rem; border-radius: var(--radius-xl); text-decoration: none; color: var(--secondary-text); transition: background .2s, color .2s; }
+.site-nav-list a:hover { background: var(--hover); color: var(--primary-text); }
+.site-nav-list .current-menu-item > a,
+.site-nav-list a[aria-current="page"] { background: var(--accent-color-tint); color: var(--link-color); }
+.site-nav-list > li { display: flex; align-items: center; }
+.site-nav-list .dropdown-trigger { padding: .4rem .8rem; border: 0; border-radius: var(--radius-xl); background: transparent; color: var(--secondary-text); font: inherit; font-weight: 500; text-transform: uppercase; letter-spacing: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: .35rem; }
+.site-nav-list .dropdown-trigger::after { content: ""; width: .4rem; height: .4rem; border-left: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(-45deg); }
+.site-nav-list .dropdown-trigger:hover,
+.site-nav-list .dropdown-container.active .dropdown-trigger { background: var(--hover); color: var(--primary-text); }
+.site-nav-list .dropdown-trigger[data-current] { color: var(--link-color); }
+.site-nav-list .dropdown-menu a { padding: .6rem var(--spacing); border-radius: 0; text-transform: none; color: var(--primary-text); }
+.site-actions { display: flex; gap: .5rem; }
+.site-actions .button { display: inline-flex; align-items: center; padding-inline: .6rem; }
+/* The menu button: hidden on wide screens in the inline layout, always shown in the flyout and push layouts. */
+.header-layout-inline .site-actions .site-menu-trigger { display: none; }
+.navigation-controls label { display: inline-flex; align-items: center; width: auto; height: auto; padding-inline: .6rem; cursor: pointer; }
+/* drawer shadow would bleed in while closed */
+.flyout-menu:not(.is-open) { box-shadow: none; }
+/* keep the drawer hidden and static until main.js has set it up, so it doesn't slide in on load */
+.flyout-menu:not(.is-ready) { visibility: hidden; transition: none; }
+@media (max-width: 768px) {
+    .header-layout-inline .site-nav { display: none; }
+    .header-layout-inline .site-actions .site-menu-trigger { display: inline-flex; }
+}
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--divider); padding-block: 1.5rem; background: var(--secondary-background); }
+.site-footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.site-footer-main { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1.5rem; }
+.site-footer p { margin: 0; }
+.footer-nav-list { display: flex; flex-wrap: wrap; gap: .25rem 1rem; list-style: none; margin: 0; padding: 0; }
+.footer-nav-list li { margin: 0; list-style: none; }
+.footer-nav-list a { display: inline; padding: 0; color: var(--secondary-text); font-size: .875rem; font-weight: 400; letter-spacing: normal; text-transform: none; text-decoration: none; }
+.footer-nav-list a:hover { color: var(--link-color); text-decoration: underline; }
+.footer-social { margin-right: auto; }
+.back-to-top { display: inline-flex; align-items: center; padding-inline: .6rem; }
+
+.front-content { max-width: 46rem; margin: 0 auto 3rem; }
+.front-latest { margin-top: 2rem; scroll-margin-top: 5rem; }
+.front-latest > h2 { margin-bottom: 1.5rem; }
+
+/* Cards */
+.post-grid { --grid-min: 18rem; }
+.post-grid .card { gap: .5rem; }
+.post-grid .card-title { margin: 0; font-size: 1.25rem; line-height: 1.25; }
+.post-grid .card-title a { color: var(--primary-text); text-decoration: none; }
+.card-media { display: block; margin: calc(-1 * var(--spacing)) calc(-1 * var(--spacing)) .5rem; }
+.card-media img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.has-sidebar .card-media img { aspect-ratio: 2 / 1; }
+.card .card-header { padding-block: .5rem; }
+.card-header:empty { display: none; }
+.post-meta, .post-terms { margin: 0; }
+.post-terms { display: flex; gap: .35rem; flex-wrap: wrap; }
+.card-excerpt { color: var(--secondary-text); flex-grow: 1; }
+.card-excerpt p { margin: 0; }
+.card-footer .button { text-decoration: none; }
+
+/* Entries */
+.archive-header { margin-bottom: 2rem; }
+.entry { max-width: 46rem; margin-inline: auto; }
+.entry-header { margin-bottom: 1.5rem; }
+.entry-header h1 { letter-spacing: -.02em; line-height: 1.1; }
+.entry-media { margin: 0 0 1.5rem; }
+.entry-media img { display: block; width: 100%; height: auto; border-radius: var(--radius-lg); }
+.entry-footer { margin-top: 2rem; }
+.post-nav { max-width: 46rem; margin: 3rem auto 0; display: flex; justify-content: space-between; gap: 1rem; }
+.post-nav a { color: var(--primary-text); text-decoration: none; padding: 0; }
+.post-nav a:hover { color: var(--link-color); }
+.breadcrumb { margin-bottom: 1.5rem; }
+.page .site-main > .breadcrumb { max-width: 46rem; margin-inline: auto; }
+
+/* Sidebar */
+.layout.has-sidebar { display: grid; grid-template-columns: minmax(0, 1fr) 18rem; gap: 2rem; align-items: start; }
+.has-sidebar .layout-main .entry, .has-sidebar .layout-main .post-nav, .has-sidebar .layout-main .comments { max-width: none; }
+.layout.sidebar-left { grid-template-columns: 18rem minmax(0, 1fr); }
+.layout.sidebar-left .layout-main { order: 2; }
+.layout.sidebar-left .sidebar { order: 1; }
+.sidebar { display: flex; flex-direction: column; gap: 1rem; position: sticky; top: 5rem; }
+.widget { padding: 1rem; }
+.widget-title { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--secondary-text); margin: 0 0 .75rem; }
+.widget ul { margin: 0; padding: 0; }
+.widget li { list-style: none; padding-block: .25rem; margin: 0; }
+.widget a { color: var(--primary-text); text-decoration: none; }
+.widget a:hover { color: var(--link-color); }
+.widget .search-form { margin: 0; max-width: none; }
+@media (max-width: 768px) {
+    .layout.has-sidebar { grid-template-columns: minmax(0, 1fr); }
+    .sidebar { position: static; }
+    .layout.sidebar-left { grid-template-columns: minmax(0, 1fr); }
+    .layout.sidebar-left .layout-main,
+    .layout.sidebar-left .sidebar { order: 0; }
+}
+
+/* Pagination */
+.pagination { display: flex; justify-content: center; margin-top: 2rem; }
+.pagination .button { text-decoration: none; }
+
+/* Misc */
+.search-form { max-width: 28rem; margin-block: 1rem; }
+.post-password-form { display: flex; flex-direction: column; gap: 1rem; max-width: 28rem; }
+.not-found { padding-block: 4rem; }
+.not-found .search-form { margin-inline: auto; }
+.comments { max-width: 46rem; margin: 3rem auto 0; }
+.comment-list li { list-style: none; margin: 0; }
+.comment-list { padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.comment-list .children { list-style: none; padding-right: 1.5rem; margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem; }
+.comment-head { display: flex; align-items: center; gap: .75rem; }
+.comment-head time { margin-right: auto; }
+.comment-avatar { border-radius: var(--radius-full); }
+.comment-form { display: flex; flex-direction: column; gap: 1rem; }
+.comment-form > p { margin: 0; }
+.comment-form .form-hint { margin-top: .25rem; }
+.comment-form input[type=text], .comment-form input[type=email], .comment-form input[type=url], .comment-form textarea { width: 100%; }
+.screen-reader-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.comment-list .card { font-style: normal; }
+
+/* Core classes WordPress adds to content */
+.sticky.card { border-color: var(--accent-color); }
+.bypostauthor > .card { border-color: var(--accent-color); }
+
+/* Push layout: the whole page is the push content, so it must still fill the window for the sticky footer. */
+.push-content { display: flex; flex-direction: column; flex: 1 0 auto; }
+
+/* Basix's ".flyout-menu button { font-size: inherit }" outranks its own toggle sizes, so parent items in the drawer
+   came out at body size. Restore the intended sizes. */
+#site-flyout .flyout-links > li > .submenu-toggle { font-size: 2rem; font-weight: 600; }
+#site-flyout .submenu .submenu-toggle { font-size: 1.25rem; font-weight: 400; }
+
+/* Footer widgets */
+.footer-widgets { padding-block: 1rem 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--divider); }
+.footer-widgets .cell > .widget { margin-bottom: 1rem; }
+.footer-widget { padding: 0; }
+
+/* Header search button */
+.site-actions a.button { text-decoration: none; }
+
+/* Search overlay (Basix modal) */
+.modal:has(.search-overlay) { width: min(36rem, calc(100vw - 2rem)); }
+.search-overlay { padding: 1.5rem; }
+.search-overlay .search-form { margin: 0; max-width: none; }
+.search-overlay-hint { margin: .75rem 0 0; }
+
+/* Page templates */
+.page-template-full-width .site-main > .breadcrumb,
+.page-template-docs .site-main > .breadcrumb { max-width: none; margin-inline: 0; }
+.page-template-full-width .entry { max-width: none; }
+.page-template-full-width .entry-content > .alignwide { margin-inline: 0; }
+
+.page-template-landing .site-main { width: 100%; max-width: none; margin: 0; padding-block: 0; }
+.page-template-landing .entry { max-width: none; }
+.page-template-landing .entry-content > * { width: min(100% - 2rem, 46rem); margin-inline: auto; }
+.page-template-landing .entry-content > .alignwide { width: min(100% - 2rem, 72rem); }
+.page-template-landing .entry-content > .alignfull { width: 100%; margin-inline: 0; }
+.page-template-landing .entry-content > :first-child { margin-top: 2rem; }
+.page-template-landing .entry-content > :last-child { margin-bottom: 3rem; }
+
+/* Documentation template: Basix's app-shell sidebar, kept inside the page */
+.docs-layout { --sidebar-width: 16rem; min-height: 0; gap: 2rem; align-items: flex-start; }
+.docs-layout .sidebar-main { margin-right: 0; }
+.docs-layout .entry { max-width: none; }
+.docs-toggle { gap: .5rem; padding: .5rem .75rem; margin-bottom: 1rem; border: 1px solid var(--divider); border-radius: var(--radius-md); font: inherit; font-weight: 500; }
+.docs-sidebar .sidebar-scroll { overflow-y: auto; padding: .75rem; }
+.docs-nav-title { margin: 0 0 .5rem; padding: .25rem .75rem; font-weight: 700; }
+.docs-nav-title a { color: var(--primary-text); text-decoration: none; padding: 0; }
+.docs-nav ul { list-style: none; margin: 0; padding: 0; }
+.docs-nav li { list-style: none; margin: 0; }
+.docs-nav a { display: block; padding: .4rem .75rem; border-radius: var(--radius-md); font-size: .9375rem; font-weight: 500; letter-spacing: normal; text-transform: none; text-decoration: none; color: var(--secondary-text); }
+.docs-nav a:hover { background: var(--hover); color: var(--primary-text); }
+.docs-nav a.is-active { background: var(--accent-color-tint); color: var(--link-color); font-weight: 600; }
+.docs-nav ul ul { display: none; margin: .125rem .75rem .25rem 0; padding-right: .5rem; border-right: 1px solid var(--divider); }
+.docs-nav li.is-open > ul { display: block; }
+.docs-pager { align-self: stretch; max-width: none; margin: 3rem 0 0; }
+@media (min-width: 769px) {
+    .docs-toggle { display: none; }
+    .docs-layout .sidebar-nav { position: sticky; top: 5rem; right: auto; height: auto; max-height: calc(100dvh - 6rem); z-index: 1; flex-shrink: 0; border: 1px solid var(--divider); border-radius: var(--radius-lg); background: var(--secondary-background); }
+}
+
+/* Post features */
+.entry-content :is(h2, h3)[id] { scroll-margin-top: 5rem; }
+
+/* Reading progress: Basix's progress bar, pinned to the top of the window above the header */
+.reading-progress { position: fixed; inset: 0 0 auto 0; z-index: 60; pointer-events: none; }
+.reading-progress .progress { height: 3px; border-radius: 0; background: transparent; }
+.reading-progress .progress-bar { border-radius: 0; transition: width .1s linear; }
+@media (prefers-reduced-motion: reduce) { .reading-progress .progress-bar { transition: none; } }
+
+/* Table of contents */
+.toc { margin: 0 0 2rem; }
+.toc .accordion-body { padding: .25rem 1rem 1rem; }
+.toc-list { list-style: none; margin: 0; padding: 0; }
+.toc-list li { list-style: none; margin: 0; }
+.toc-list a { display: block; padding: .25rem 0; font-size: .9375rem; font-weight: 500; letter-spacing: normal; text-transform: none; text-decoration: none; color: var(--secondary-text); }
+.toc-list a:hover { color: var(--link-color); }
+.toc-level-3 { padding-right: 1rem; }
+
+/* Share */
+.share { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--divider); }
+.share-title { margin: 0 0 .75rem; font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--secondary-text); }
+.share-links { list-style: none; margin: 0; padding: 0; }
+.share-links li { list-style: none; margin: 0; }
+.share-links .chip { text-decoration: none; }
+.share-button { display: inline-flex; align-items: center; gap: .5rem; }
+.share-menu { list-style: none; margin: 0; padding: .25rem; min-width: 12rem; }
+.share-menu li { list-style: none; margin: 0; }
+.share-menu a,
+.share-menu button { display: block; width: 100%; padding: .5rem .75rem; border: 0; border-radius: var(--radius-sm); background: none; color: var(--primary-text); font: inherit; font-size: .9375rem; text-align: right; text-decoration: none; cursor: pointer; }
+.share-menu a:hover,
+.share-menu button:hover { background: var(--hover); }
+
+/* Author box */
+.author-box { flex-direction: row; align-items: flex-start; gap: 1rem; margin-top: 2rem; }
+.author-avatar { flex-shrink: 0; border-radius: var(--radius-full); }
+.author-name { margin: 0 0 .25rem; font-weight: 700; }
+.author-name a { padding: 0; color: inherit; text-decoration: none; }
+.author-bio { margin: 0; color: var(--secondary-text); }
+
+/* Related posts */
+.related { margin-top: 3rem; }
+.related > h2 { margin-bottom: 1.25rem; font-size: 1.25rem; }
+
+/* Featured slider on the front page */
+.featured { margin-bottom: 2.5rem; }
+.featured .carousel { border-radius: var(--radius-xl); }
+.featured-slide { position: relative; display: flex; align-items: flex-end; justify-content: flex-start; text-align: right; min-height: clamp(18rem, 40vw, 26rem); color: #fff; background: var(--secondary-background); }
+.featured-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+.featured-slide::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 0, 0, .75), rgba(0, 0, 0, .05) 65%); }
+.featured-body { position: relative; color: #fff; max-width: 40rem; padding: clamp(1.25rem, 4vw, 2.5rem); padding-bottom: 3.5rem; }
+/* The carousel arrows sit at the sides, so the text keeps clear of them (they used to cover the category badge). */
+.featured-body { padding-inline: 4rem; }
+.featured-title { margin: .5rem 0; font-size: clamp(1.5rem, 3.5vw, 2.25rem); line-height: 1.1; letter-spacing: -.02em; color: inherit; }
+.featured-title a { padding: 0; color: inherit; text-decoration: none; }
+.featured-title a::after { content: ""; position: absolute; inset: 0; }
+.featured .post-meta { color: rgba(255, 255, 255, .85); }
+.featured .post-terms { margin: 0; }
+
+/* Code blocks (Basix code viewer) and sortable tables */
+.code-block { margin-block: 1.5rem; }
+.wp-block-table.is-style-sortable th { cursor: pointer; }
+.sort-button { padding: 0; border: 0; background: none; color: inherit; font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer; }
+.sort-button:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; }
+
+/* Filters: chips are links, the Filter button opens a form (modal with JavaScript, a panel without) */
+.filter-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem 1rem; margin-bottom: 1.5rem; }
+.filter-chips { flex: 1 1 auto; }
+.filter-chips a.chip,
+.filter-active a.chip { display: inline-flex; width: auto; padding: calc(var(--spacing) * .3) calc(var(--spacing) * .75); font-size: .8125rem; font-weight: 500; letter-spacing: .01em; text-transform: none; text-decoration: none; }
+.filter-active { margin: -.5rem 0 1.5rem; }
+.filter { position: relative; margin-right: auto; }
+.filter-toggle { display: inline-flex; align-items: center; gap: .5rem; cursor: pointer; list-style: none; }
+.filter-toggle::-webkit-details-marker { display: none; }
+.filter[open] .filter-form { position: absolute; left: 0; top: calc(100% + .5rem); z-index: 20; width: min(22rem, calc(100vw - 2rem)); padding: 1rem; border: 1px solid var(--divider); border-radius: var(--radius-lg); background: var(--background); box-shadow: 0 8px 24px rgba(0, 0, 0, .12); }
+.filter-form fieldset { margin: 0 0 1rem; padding: 0; border: 0; }
+.filter-form legend { margin-bottom: .5rem; padding: 0; font-size: .875rem; font-weight: 600; }
+.filter-cat-sub { margin-right: 1.5rem; }
+.filter-dates { display: grid; gap: .75rem; }
+.filter-dates label { display: grid; gap: .25rem; }
+.filter-actions { display: flex; gap: .5rem; }
+.filter-actions .button { text-decoration: none; }
+.filter-host .filter-form { padding: 1rem 1.25rem 1.25rem; }
+.filter-section { margin-bottom: 1.25rem; }
+.filter-section-title { margin: 0 0 .5rem; font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--secondary-text); }
+
+/* Calendar and gallery pages use the full container width */
+.page-template-calendar .entry,
+.page-template-gallery .entry { max-width: none; }
+.page-template-calendar .site-main > .breadcrumb,
+.page-template-gallery .site-main > .breadcrumb { max-width: none; margin-inline: 0; }
+
+/* Calendar: a loading bar and skeleton cells (Basix's skeleton and animated progress bar) */
+.calendar-wrap { position: relative; margin-top: 1.5rem; }
+.calendar-chips { margin-bottom: 1rem; }
+.calendar-status { position: absolute; inset: 0 0 auto 0; z-index: 5; height: 3px; border-radius: 0; background: transparent; }
+.calendar-status .progress-bar { border-radius: 0; }
+.calendar-skeleton { display: none; }
+.js .calendar-skeleton { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .5rem; }
+.calendar-skeleton .skeleton { height: 5.5rem; }
+.calendar-host { transition: opacity .2s ease; }
+.calendar-wrap.is-loading .calendar-host { opacity: .6; }
+.calendar-host[data-error]::before { content: attr(data-error); display: block; margin-bottom: 1rem; padding: .75rem 1rem; border-radius: var(--radius-md); background: var(--error-tint); color: var(--error-text); }
+.calendar-list { list-style: none; margin: 0; padding: 0; }
+.calendar-list li { margin: 0 0 .5rem; list-style: none; }
+
+/* Gallery: the loader is Basix's, the list is what shows without JavaScript */
+.gallery-wrap { margin-top: 1.5rem; }
+.gallery-fallback { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 1rem; list-style: none; margin: 0; padding: 0; }
+.gallery-fallback li { margin: 0; list-style: none; }
+.gallery-fallback img { display: block; width: 100%; height: auto; border-radius: var(--radius-md); }
+.masonry-item:not(.masonry-item--skeleton) { cursor: zoom-in; }
+.wp-block-gallery.is-style-masonry { display: block; }
+.wp-block-gallery.is-style-masonry .gallery-host { width: 100%; }
+/* Masonry items without a title or description (such as images in a Gallery block) get no empty caption strip */
+.masonry-item-info:not(:has(.masonry-item-title:not(:empty), .masonry-item-desc:not(:empty))) { display: none; }
+.masonry-item:has(> .masonry-item-info:not(:has(.masonry-item-title:not(:empty), .masonry-item-desc:not(:empty)))) { box-shadow: none; background: none; }
+
+/* Post list layouts (Customizer: Layout > Post list layout). The lists respond to their own width, so
+   they work with a sidebar too. The picture fills the height the text needs; it never decides it. */
+.post-list { container-type: inline-size; }
+@container (min-width: 30rem) {
+    .cards-list .post-grid { grid-template-columns: minmax(0, 1fr); }
+    .cards-list .post-grid > .card { display: grid; grid-template-columns: minmax(0, min(15rem, 38%)) minmax(0, 1fr); grid-auto-rows: min-content; align-content: start; column-gap: 1.25rem; }
+    .cards-list .post-grid > .card > :not(.card-media) { grid-column: 2; }
+    .cards-list .post-grid > .card > .card-media { position: relative; grid-column: 1; grid-row: 1 / span 8; min-height: 11rem; margin: calc(-1 * var(--spacing)) calc(-1 * var(--spacing)) calc(-1 * var(--spacing)) 0; }
+    .cards-list .post-grid > .card .card-media img { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; }
+    .cards-list .post-grid > .card > .card-header { margin: 0 0 .25rem; padding: 0; border: 0; }
+    .cards-list .post-grid > .card > .card-footer { margin: .5rem 0 0; padding: 1rem 0 0; }
+    .cards-list .post-grid > .card:not(:has(.card-media)) { grid-template-columns: minmax(0, 1fr); }
+    .cards-list .post-grid > .card:not(:has(.card-media)) > * { grid-column: 1; }
+}
+@container (min-width: 40rem) {
+    .cards-magazine .post-grid > .card.is-first { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); grid-auto-rows: min-content; align-content: center; column-gap: 1.75rem; }
+    .cards-magazine .post-grid > .card.is-first > :not(.card-media) { grid-column: 2; }
+    .cards-magazine .post-grid > .card.is-first > .card-media { position: relative; grid-column: 1; grid-row: 1 / span 8; min-height: 18rem; margin: calc(-1 * var(--spacing)) calc(-1 * var(--spacing)) calc(-1 * var(--spacing)) 0; }
+    .cards-magazine .post-grid > .card.is-first .card-media img { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; }
+    .cards-magazine .post-grid > .card.is-first > .card-header { margin: 0 0 .25rem; padding: 0; border: 0; }
+    .cards-magazine .post-grid > .card.is-first > .card-footer { margin: .5rem 0 0; padding: 1rem 0 0; }
+    .cards-magazine .post-grid > .card.is-first .card-title { font-size: clamp(1.5rem, 3.4cqi, 2.25rem); line-height: 1.12; letter-spacing: -.02em; }
+    .cards-magazine .post-grid > .card.is-first:not(:has(.card-media)) { grid-template-columns: minmax(0, 1fr); }
+    .cards-magazine .post-grid > .card.is-first:not(:has(.card-media)) > * { grid-column: 1; }
+}
+
+/* Contrast fixes for Basix components that use low-contrast greys */
+.code-language { color: #b4b4b4; }
+.cal__day--outside .cal__day-num,
+.cal__day--outside .cal__day-events,
+.cal__week-row .cal__day--outside .cal__day-num { opacity: .72; }
+
+/* A closed drawer is hidden after it has slid away, so its links cannot be reached with the keyboard */
+.flyout-menu.is-ready:not(.is-open) { visibility: hidden; transition: transform var(--transition-speed, .4s) cubic-bezier(.25, 1, .5, 1), visibility 0s linear var(--transition-speed, .4s); }
+.push-menu:not(.pushed) { visibility: hidden; transition: transform .4s cubic-bezier(.2, 0, 0, 1), visibility 0s linear .4s; }
+@media (max-width: 768px) {
+    .docs-layout .sidebar-nav:not(.is-open) { visibility: hidden; transition: right .25s ease, visibility 0s linear .25s; }
+}
+
+/* Basix's own docs styling sets the active link in the plain accent colour, which is too light on its tint */
+.sidebar-nav.docs-sidebar .docs-nav a.is-active { color: var(--accent-text); }
+
+/* Layout stays put while scripts load: only the first featured slide shows until the carousel takes over, and
+   the gallery's plain list is replaced by an area of the right height */
+.js .featured .carousel > .featured-slide:not(:first-child) { display: none; }
+.js .gallery-fallback { display: none; }
+.js .gallery-host { min-height: 70vh; }
+
+/* Touch targets of at least 24px: category badges, and the carousel dots (a 24px button with a small dot inside) */
+.post-terms .badge { min-height: 24px; }
+.featured .carousel-indicator { width: 24px; height: 24px; margin: 0; background: none; }
+.featured .carousel-indicator::before { display: none; }
+.featured .carousel-indicator::after { content: ""; position: absolute; top: 50%; right: 50%; width: .5rem; height: 4px; border-radius: 99px; transform: translate(50%, -50%); background: rgba(255, 255, 255, .4); transition: width .35s cubic-bezier(.25, .46, .45, .94), background .25s ease; }
+.featured .carousel-indicator.current-slide::after { width: 20px; background: #fff; }
+.cal__event-pill { min-height: 24px; box-sizing: border-box; line-height: 1.7; }
+
+/* Header options */
+body.header-static .site-header { position: relative; }
+.header-cta { white-space: nowrap; text-decoration: none; }
+@media (max-width: 768px) {
+    .site-actions .header-cta { display: none; }
+}
+.flyout-menu .menu-cta { padding: 1rem var(--spacing); margin: 0; }
+.flyout-menu .menu-cta .button { width: 100%; justify-content: center; text-decoration: none; }
+
+/* A header over the first section: transparent with light text until the page scrolls. */
+body.header-transparent .site-main { margin-top: calc(-1 * var(--basix-header-height, 4.5rem)); padding-top: 0; }
+body.header-transparent .site-main > .breadcrumb { display: none; }
+body.header-transparent .site-main :is(.entry-content, .front-content) > :first-child { margin-top: 0; }
+body.header-transparent .site-header:not(.is-scrolled) { background: transparent; border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+body.header-transparent .site-header:not(.is-scrolled) :is(.site-title, .site-nav-list a, .site-nav-list .dropdown-trigger, .site-actions .button:not(.button-primary)) { color: #fff; }
+body.header-transparent .site-header:not(.is-scrolled) .site-actions .button:not(.button-primary) { background: rgba(255, 255, 255, .14); }
+body.header-transparent .site-header:not(.is-scrolled) .site-nav-list a:hover { background: rgba(255, 255, 255, .18); color: #fff; }
+body.header-transparent .site-header:not(.is-scrolled) .site-nav-list .dropdown-menu a { color: var(--primary-text); }
+
+/* Top bar */
+.top-bar { background: var(--secondary-background); border-bottom: 1px solid var(--divider); font-size: .8125rem; }
+.top-bar-inner { display: flex; align-items: center; gap: .5rem 1.5rem; padding-block: .4rem; min-height: 2rem; flex-wrap: wrap; }
+.top-bar p { margin: 0; color: var(--primary-text); margin-left: auto; }
+.top-bar-list, .top-bar-languages { display: flex; gap: .25rem 1rem; list-style: none; margin: 0; padding: 0; }
+.top-bar-list a, .top-bar-languages a { color: var(--secondary-text); text-decoration: none; }
+.top-bar-list a:hover, .top-bar-languages a:hover { color: var(--link-color); text-decoration: underline; }
+.top-bar-languages .current-lang a, .top-bar-languages [aria-current] { color: var(--primary-text); font-weight: 600; }
+.top-bar-social { margin-right: auto; }
+.top-bar p[hidden] + .top-bar-social { margin-right: auto; }
+
+/* Mega menu: a wide panel with a column for each child. Plain nested lists on phones (the drawer). */
+.site-nav-list > li:has(.is-mega) { position: static; }
+.site-nav .dropdown-container.is-mega { position: static; }
+.site-nav .dropdown-menu.is-mega { display: grid; position: absolute; inset-inline: 1rem; margin-inline: auto; width: min(52rem, calc(100vw - 2rem)); min-width: 0; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 1rem 1.5rem; padding: 1.25rem; list-style: none; }
+.site-nav .dropdown-menu.is-mega ul { position: static; list-style: none; margin: 0; padding: 0; border: 0; box-shadow: none; background: none; max-height: none; overflow: visible; opacity: 1; visibility: visible; transform: none; pointer-events: auto; }
+.site-nav .dropdown-menu.is-mega li { margin: 0; list-style: none; }
+.mega-heading { display: block; padding: 0 0 .4rem; margin-bottom: .4rem; border-bottom: 1px solid var(--divider); font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--secondary-text); text-decoration: none; }
+a.mega-heading:hover { color: var(--link-color); }
+.site-nav .dropdown-menu.is-mega a.dropdown-item { padding: .4rem 0; }
+
+/* Footer layouts */
+.footer-centered .footer-widgets { text-align: center; }
+.footer-centered .site-footer-inner, .footer-centered .site-footer-main { flex-direction: column; justify-content: center; text-align: center; }
+.footer-centered .footer-nav-list { justify-content: center; }
+.footer-centered .footer-social { margin-right: 0; }
+.footer-centered .back-to-top { margin-top: .5rem; }
+.footer-minimal .site-footer { padding-block: 1rem; }
+
+/* The header image behind the front page introduction */
+.hero.has-image, .hero-minimal.has-image { position: relative; color: #fff; background: linear-gradient(rgba(10, 12, 20, .62), rgba(10, 12, 20, .62)), var(--hero-image) center / cover no-repeat; border-color: transparent; border-radius: var(--radius-lg); padding: clamp(2rem, 6vw, 4rem); }
+.hero.has-image :is(.text-overline, .hero-title, .hero-lead), .hero-minimal.has-image :is(.text-overline, .hero-title, .hero-lead) { color: #fff; }
+
+/* Right-to-left: RTLCSS mirrors everything it can (scripts/build-rtl.mjs). The slider and the calendar are moved by
+   scripts with left-to-right arithmetic, so they keep their own direction; the text in them follows the language it is written in. */
+.carousel, .calendar-host { direction: ltr; }
+.carousel-slide { direction: rtl; }
+.carousel-button--left { left: .75rem; right: auto; }
+.carousel-button--right { right: .75rem; left: auto; }
+.calendar-host :is(.cal__event-pill, .cal__span-bar, .cal__day-num) { unicode-bidi: plaintext; }

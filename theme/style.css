@@ -454,3 +454,13 @@ a.mega-heading:hover { color: var(--link-color); }
 /* The header image behind the front page introduction */
 .hero.has-image, .hero-minimal.has-image { position: relative; color: #fff; background: linear-gradient(rgba(10, 12, 20, .62), rgba(10, 12, 20, .62)), var(--hero-image) center / cover no-repeat; border-color: transparent; border-radius: var(--radius-lg); padding: clamp(2rem, 6vw, 4rem); }
 .hero.has-image :is(.text-overline, .hero-title, .hero-lead), .hero-minimal.has-image :is(.text-overline, .hero-title, .hero-lead) { color: #fff; }
+
+/* Right-to-left: RTLCSS mirrors everything it can (scripts/build-rtl.mjs). The slider and the calendar are moved by
+   scripts with left-to-right arithmetic, so they keep their own direction; the text in them follows the language it is written in. */
+/*rtl:raw:
+.carousel, .calendar-host { direction: ltr; }
+.carousel-slide { direction: rtl; }
+.carousel-button--left { left: .75rem; right: auto; }
+.carousel-button--right { right: .75rem; left: auto; }
+.calendar-host :is(.cal__event-pill, .cal__span-bar, .cal__day-num) { unicode-bidi: plaintext; }
+*/

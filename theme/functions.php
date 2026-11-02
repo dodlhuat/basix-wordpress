@@ -149,6 +149,12 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('basix-content', get_theme_file_uri('assets/css/content.css'), ['basix'], filemtime(get_theme_file_path('assets/css/content.css')));
     wp_enqueue_style('basix-theme', get_stylesheet_uri(), ['basix', 'basix-content'], wp_get_theme()->get('Version'));
     wp_enqueue_style('basix-polish', get_theme_file_uri('assets/css/polish.css'), ['basix-theme'], filemtime(get_theme_file_path('assets/css/polish.css')));
+    // Forms from Contact Form 7, WPForms, Fluent Forms and Gravity Forms, in the look of the theme.
+    wp_enqueue_style('basix-forms', get_theme_file_uri('assets/css/forms.css'), ['basix-theme'], filemtime(get_theme_file_path('assets/css/forms.css')));
+    // On a right-to-left site WordPress loads the mirrored "-rtl" file of each stylesheet instead (scripts/build-rtl.mjs).
+    foreach (['basix', 'basix-content', 'basix-theme', 'basix-polish', 'basix-forms'] as $basix_rtl_handle) {
+        wp_style_add_data($basix_rtl_handle, 'rtl', 'replace');
+    }
 });
 
 add_action('wp_enqueue_scripts', function () {

@@ -5,7 +5,7 @@
   "type": "module",
   "description": "WordPress theme built on @dodlhuat/basix",
   "scripts": {
-    "sync": "node scripts/sync-basix.mjs",
+    "sync": "node scripts/sync-basix.mjs && node scripts/build-rtl.mjs",
     "build": "./scripts/build-zip.sh",
     "check:editor": "node scripts/check-editor.mjs",
     "check:customizer": "node scripts/check-customizer.mjs",
@@ -15,8 +15,11 @@
     "check:looks": "node scripts/check-looks.mjs",
     "check:starters": "node scripts/check-starters.mjs",
     "check:header": "node scripts/check-header.mjs",
+    "check:rtl": "node scripts/build-rtl.mjs --check && node scripts/check-rtl.mjs",
+    "check:compat": "node scripts/check-compat.mjs",
     "check:a11y": "node scripts/check-a11y.mjs",
-    "postinstall": "node scripts/sync-basix.mjs"
+    "postinstall": "node scripts/sync-basix.mjs && node scripts/build-rtl.mjs",
+    "rtl": "node scripts/build-rtl.mjs"
   },
   "dependencies": {
     "@dodlhuat/basix": "^1.6.0"
@@ -24,6 +27,7 @@
   "devDependencies": {
     "axe-core": "^4.14.0",
     "ical.js": "^2.2.1",
-    "puppeteer-core": "^25.16.0"
+    "puppeteer-core": "^25.16.0",
+    "rtlcss": "^4.3.0"
   }
 }
