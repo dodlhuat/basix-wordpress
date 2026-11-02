@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Basix 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/basix\n"
-"POT-Creation-Date: 2026-11-02T13:48:08+00:00\n"
+"POT-Creation-Date: 2026-11-02T14:14:35+00:00\n"
 "PO-Revision-Date: 2026-10-28 12:00+0000\n"
 "Last-Translator: Andi Bauer\n"
 "Language-Team: German\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: WP-CLI 2.12.0\n"
 
 #. Theme Name of the theme
-#: style.css functions.php:62 inc/customizer.php:70 inc/looks.php:86
+#: style.css functions.php:66 inc/customizer.php:70 inc/looks.php:86
 msgid "Basix"
 msgstr ""
 
@@ -88,7 +88,7 @@ msgstr "Nach oben"
 msgid "Welcome"
 msgstr "Willkommen"
 
-#: front-page.php:15 front-page.php:34
+#: front-page.php:15 front-page.php:34 inc/setup/importer.php:423
 msgid "Latest posts"
 msgstr "Neueste Beiträge"
 
@@ -100,210 +100,211 @@ msgstr "Alle Beiträge"
 msgid "Nothing published yet."
 msgstr "Noch nichts veröffentlicht."
 
-#: functions.php:64
+#: functions.php:68
 msgid "Basix: Hero"
 msgstr "Basix: Hero"
 
-#: functions.php:65
+#: functions.php:69
 msgid "Basix: Features"
 msgstr "Basix: Funktionen"
 
-#: functions.php:66
+#: functions.php:70
 msgid "Basix: Pricing"
 msgstr "Basix: Preise"
 
-#: functions.php:67
+#: functions.php:71
 msgid "Basix: Testimonials"
 msgstr "Basix: Stimmen"
 
-#: functions.php:68
+#: functions.php:72
 msgid "Basix: Team"
 msgstr "Basix: Team"
 
-#: functions.php:69
+#: functions.php:73
 msgid "Basix: Logos"
 msgstr "Basix: Logos"
 
-#: functions.php:70
+#: functions.php:74
 msgid "Basix: Numbers"
 msgstr "Basix: Zahlen"
 
-#: functions.php:71
+#: functions.php:75
 msgid "Basix: Call to action"
 msgstr "Basix: Handlungsaufruf"
 
-#: functions.php:72
+#: functions.php:76
 msgid "Basix: Newsletter"
 msgstr "Basix: Newsletter"
 
-#: functions.php:73
+#: functions.php:77
 msgid "Basix: Contact"
 msgstr "Basix: Kontakt"
 
-#: functions.php:74
+#: functions.php:78
 msgid "Basix: Portfolio and pictures"
 msgstr "Basix: Portfolio und Bilder"
 
-#: functions.php:75
+#: functions.php:79
 msgid "Basix: Blog"
 msgstr "Basix: Blog"
 
-#: functions.php:76
+#: functions.php:80
 msgid "Basix: Questions"
 msgstr "Basix: Fragen"
 
-#: functions.php:77
+#: functions.php:81
 msgid "Basix: About"
 msgstr "Basix: Über uns"
 
-#: functions.php:82
+#: functions.php:86
 msgid "Card"
 msgstr "Karte"
 
-#: functions.php:83
+#: functions.php:87
 msgid "Bordered card"
 msgstr "Karte mit Rahmen"
 
-#: functions.php:84
+#: functions.php:88
 msgid "Lead text"
 msgstr "Einleitungstext"
 
-#: functions.php:85
+#: functions.php:89
 msgid "Sortable"
 msgstr "Sortierbar"
 
-#: functions.php:86
+#: functions.php:90
 msgid "Masonry"
 msgstr "Mauerwerk"
 
-#: functions.php:87
+#: functions.php:91
 msgid "Framed"
 msgstr "Mit Rahmen"
 
-#: functions.php:88
+#: functions.php:92
 msgid "Soft shadow"
 msgstr "Weicher Schatten"
 
-#: functions.php:89
+#: functions.php:93
 msgid "Circle"
 msgstr "Kreis"
 
-#: functions.php:108 inc/customizer.php:189 sidebar.php:3
+#: functions.php:112 inc/customizer.php:189 sidebar.php:3
 msgid "Sidebar"
 msgstr "Seitenleiste"
 
-#: functions.php:110
+#: functions.php:114
 msgid "Shown next to blog posts and archives."
 msgstr "Wird neben Beiträgen und Archiven angezeigt."
 
 #. translators: %d: column number.
-#: functions.php:122
+#: functions.php:126
 #, php-format
 msgid "Footer column %d"
 msgstr "Footer-Spalte %d"
 
-#: functions.php:126
+#: functions.php:130
 msgid "Shown in the footer."
 msgstr "Wird im Footer angezeigt."
 
-#: functions.php:166
+#: functions.php:170
 msgid "Category"
 msgstr "Kategorie"
 
-#: functions.php:167
+#: functions.php:171
 msgid "Tag"
 msgstr "Schlagwort"
 
-#: functions.php:168
+#: functions.php:172
 msgid "Author"
 msgstr "Autor"
 
-#: functions.php:169 functions.php:171 functions.php:172
+#: functions.php:173 functions.php:175 functions.php:176
 msgid "Archive"
 msgstr "Archiv"
 
-#: functions.php:170 inc/events/events.php:59 inc/events/events.php:70
+#: functions.php:174 inc/events/events.php:59 inc/events/events.php:70
 #: inc/schema.php:114 inc/schema.php:137 inc/schema.php:140
+#: inc/setup/importer.php:370 starters/events.php:9
 msgid "Events"
 msgstr "Veranstaltungen"
 
 #. translators: %s: the event's time in the site's time zone.
-#: functions.php:239
+#: functions.php:243
 #, php-format
 msgid "%s in site time"
 msgstr "%s in der Zeit der Website"
 
-#: functions.php:277 inc/schema.php:93
+#: functions.php:281 inc/schema.php:93 inc/setup/importer.php:376
 msgid "Home"
 msgstr "Startseite"
 
-#: functions.php:291
+#: functions.php:295
 msgid "Not found"
 msgstr "Nicht gefunden"
 
-#: functions.php:293 inc/schema.php:151
+#: functions.php:297 inc/schema.php:151
 msgid "Search results"
 msgstr "Suchergebnisse"
 
-#: functions.php:301
+#: functions.php:305
 msgid "Breadcrumb"
 msgstr "Brotkrumennavigation"
 
-#: functions.php:315
+#: functions.php:319
 msgid "Pagination"
 msgstr "Seitennavigation"
 
-#: functions.php:352
+#: functions.php:356
 msgid "Your comment is awaiting moderation."
 msgstr "Dein Kommentar wartet auf Freischaltung."
 
-#: functions.php:389
+#: functions.php:393
 msgid "Your comment could not be submitted"
 msgstr "Dein Kommentar konnte nicht gesendet werden"
 
-#: functions.php:391
+#: functions.php:395
 msgid "Go back"
 msgstr "Zurück"
 
-#: functions.php:407
+#: functions.php:411
 msgid "Please fill out this field."
 msgstr "Bitte fülle dieses Feld aus."
 
-#: functions.php:408
+#: functions.php:412
 msgid "Please enter a valid email address."
 msgstr "Bitte gib eine gültige E-Mail-Adresse ein."
 
-#: functions.php:409
+#: functions.php:413
 msgid "Please enter a valid URL."
 msgstr "Bitte gib eine gültige URL ein."
 
-#: functions.php:410
+#: functions.php:414
 msgid "View larger image"
 msgstr "Bild vergrößern"
 
-#: functions.php:411
+#: functions.php:415
 msgid "Open image"
 msgstr "Bild öffnen"
 
-#: functions.php:412
+#: functions.php:416
 msgid "Code"
 msgstr "Code"
 
-#: functions.php:413
+#: functions.php:417
 msgid "Table"
 msgstr "Tabelle"
 
-#: functions.php:414
+#: functions.php:418
 msgid "Featured posts"
 msgstr "Ausgewählte Beiträge"
 
 #. translators: 1: number of this slide, 2: number of slides.
-#: functions.php:416
+#: functions.php:420
 #, php-format
 msgid "Slide %1$d of %2$d"
 msgstr "Folie %1$d von %2$d"
 
-#: functions.php:428
+#: functions.php:432
 msgid ""
 "This content is password-protected. To view it, please enter the password "
 "below."
@@ -311,11 +312,11 @@ msgstr ""
 "Dieser Inhalt ist passwortgeschützt. Gib unten das Passwort ein, um ihn zu "
 "sehen."
 
-#: functions.php:430
+#: functions.php:434
 msgid "Password"
 msgstr "Passwort"
 
-#: functions.php:433
+#: functions.php:437
 msgctxt "post password form"
 msgid "Enter"
 msgstr "Öffnen"
@@ -523,7 +524,7 @@ msgstr "Linksbündig, ohne Karte"
 msgid "None"
 msgstr "Keine"
 
-#: inc/customizer.php:255
+#: inc/customizer.php:255 inc/setup/importer.php:350
 msgid "Footer"
 msgstr "Footer"
 
@@ -1053,6 +1054,183 @@ msgstr "Auf dieser Seite"
 msgid "Email"
 msgstr "E-Mail"
 
+#: inc/setup/admin.php:21
+msgid "Basix setup"
+msgstr "Basix einrichten"
+
+#: inc/setup/admin.php:38
+msgid "Thank you for choosing Basix."
+msgstr "Danke, dass du dich für Basix entschieden hast."
+
+#: inc/setup/admin.php:38
+msgid "Pick a look and a starter site in a minute, or start from scratch."
+msgstr "Wähle in einer Minute einen Look und eine Starter-Website, oder fang bei null an."
+
+#: inc/setup/admin.php:40
+msgid "Set up your site"
+msgstr "Website einrichten"
+
+#: inc/setup/admin.php:41
+msgid "Not now"
+msgstr "Jetzt nicht"
+
+#: inc/setup/admin.php:85 inc/setup/admin.php:110
+msgid "You are not allowed to do this."
+msgstr "Du darfst das nicht tun."
+
+#: inc/setup/admin.php:173
+msgid "Set up Basix"
+msgstr "Basix einrichten"
+
+#: inc/setup/admin.php:174
+msgid ""
+"Choose how your site looks, and start from a ready-made site if you like. "
+"Nothing you have made is deleted: an import only adds, and Undo removes "
+"exactly what it added."
+msgstr "Wähle, wie deine Website aussieht, und starte auf Wunsch mit einer fertigen Website. Nichts von dir wird gelöscht: Ein Import fügt nur hinzu, und „Rückgängig“ entfernt genau das, was hinzugefügt wurde."
+
+#. translators: %s: name of the starter site.
+#: inc/setup/admin.php:180
+#, php-format
+msgid "The %s starter site is ready."
+msgstr "Die Starter-Website „%s“ ist bereit."
+
+#: inc/setup/admin.php:182 inc/setup/admin.php:185
+msgid "View your site"
+msgstr "Website ansehen"
+
+#: inc/setup/admin.php:185
+msgid "The look is set."
+msgstr "Der Look ist eingestellt."
+
+#: inc/setup/admin.php:187
+msgid "The import was undone. Your settings are back as they were."
+msgstr "Der Import wurde rückgängig gemacht. Deine Einstellungen sind wieder wie vorher."
+
+#: inc/setup/admin.php:189
+msgid "That did not work. Nothing was changed that you cannot undo here."
+msgstr "Das hat nicht geklappt. Es wurde nichts geändert, was du hier nicht rückgängig machen kannst."
+
+#: inc/setup/admin.php:197
+msgid "Your current starter site"
+msgstr "Deine aktuelle Starter-Website"
+
+#. translators: 1: starter site name, 2: number of pages, posts, events and pictures added.
+#: inc/setup/admin.php:201
+#, php-format
+msgid ""
+"%1$s was added on %2$s with %3$d items (pages, posts, events and pictures)."
+msgstr "%1$s wurde am %2$s mit %3$d Elementen hinzugefügt (Seiten, Beiträge, Veranstaltungen und Bilder)."
+
+#: inc/setup/admin.php:204
+msgid ""
+"Undo removes what it added and puts your settings back. Changes you made to "
+"the added pages and posts are lost with them."
+msgstr "„Rückgängig“ entfernt, was hinzugefügt wurde, und stellt deine Einstellungen wieder her. Änderungen an den hinzugefügten Seiten und Beiträgen gehen damit verloren."
+
+#: inc/setup/admin.php:208
+msgid "Undo this import"
+msgstr "Diesen Import rückgängig machen"
+
+#: inc/setup/admin.php:217
+msgid "1. Pick a look"
+msgstr "1. Look wählen"
+
+#: inc/setup/admin.php:221
+msgid "The starter site's own look"
+msgstr "Der Look der Starter-Website"
+
+#: inc/setup/admin.php:222
+msgid ""
+"Each starter site suggests one. Without a starter, your current look stays."
+msgstr "Jede Starter-Website schlägt einen vor. Ohne Starter bleibt dein aktueller Look."
+
+#: inc/setup/admin.php:234
+msgid "2. Pick a starter site"
+msgstr "2. Starter-Website wählen"
+
+#: inc/setup/admin.php:238
+msgid "No content, only the look"
+msgstr "Kein Inhalt, nur der Look"
+
+#: inc/setup/admin.php:239
+msgid "Keep your site as it is and only change how it looks."
+msgstr "Deine Website bleibt, wie sie ist; nur das Aussehen ändert sich."
+
+#. translators: 1: number of pages, 2: number of sample posts, 3: number of sample events.
+#: inc/setup/admin.php:251
+#, php-format
+msgid "%1$d pages, %2$d posts, %3$d events"
+msgstr "%1$d Seiten, %2$d Beiträge, %3$d Veranstaltungen"
+
+#. translators: %s: look name.
+#: inc/setup/admin.php:254
+#, php-format
+msgid "Look: %s"
+msgstr "Look: %s"
+
+#: inc/setup/admin.php:259
+msgid "Set up my site"
+msgstr "Meine Website einrichten"
+
+#: inc/setup/admin.php:262
+msgid "3. Make it yours"
+msgstr "3. Mach sie zu deiner"
+
+#: inc/setup/admin.php:264
+msgid "Site name, tagline and logo"
+msgstr "Name, Untertitel und Logo der Website"
+
+#: inc/setup/admin.php:265
+msgid "Menus"
+msgstr "Menüs"
+
+#: inc/setup/admin.php:266
+msgid "Colours, fonts, header, layout and more (Basix options)"
+msgstr "Farben, Schriften, Kopfbereich, Layout und mehr (Basix-Optionen)"
+
+#: inc/setup/admin.php:267
+msgid "Sidebar and footer widgets"
+msgstr "Widgets für Seitenleiste und Fußbereich"
+
+#: inc/setup/admin.php:270
+msgid "4. Learn more"
+msgstr "4. Mehr erfahren"
+
+#: inc/setup/admin.php:272
+msgid ""
+"In the editor, open the block inserter, choose Patterns and look for the "
+"groups that start with Basix."
+msgstr "Öffne im Editor die Block-Auswahl, wähle „Muster“ und such die Gruppen, die mit Basix beginnen."
+
+#: inc/setup/admin.php:274
+msgid "See every pattern on one page"
+msgstr "Alle Muster auf einer Seite ansehen"
+
+#: inc/setup/admin.php:277
+msgid "Documentation and support"
+msgstr "Dokumentation und Support"
+
+#: inc/setup/importer.php:208
+msgid "That starter site does not exist."
+msgstr "Diese Starter-Website gibt es nicht."
+
+#: inc/setup/importer.php:350
+msgid "Primary"
+msgstr "Hauptmenü"
+
+#: inc/setup/importer.php:414
+msgid "About"
+msgstr "Über uns"
+
+#: inc/setup/importer.php:415
+msgid "A small site built with the Basix theme. Say here what it is about."
+msgstr "Eine kleine Website mit dem Theme Basix. Schreib hier, worum es geht."
+
+#: inc/setup/importer.php:430
+msgid "Tags"
+msgstr "Schlagwörter"
+
 #: inc/starter-content.php:26
 msgctxt "Starter content page title"
 msgid "Welcome"
@@ -1180,7 +1358,9 @@ msgctxt "About pattern"
 msgid ""
 "Tell your story in a few short paragraphs: why you started, what you care "
 "about and who you do it for."
-msgstr "Erzähle deine Geschichte in wenigen kurzen Absätzen: warum du angefangen hast, was dir wichtig ist und für wen du es tust."
+msgstr ""
+"Erzähle deine Geschichte in wenigen kurzen Absätzen: warum du angefangen "
+"hast, was dir wichtig ist und für wen du es tust."
 
 #: patterns/about-split.php:32
 msgctxt "About pattern"
@@ -1316,7 +1496,9 @@ msgstr "Newsletter-Anmeldung"
 msgctxt "Pattern description"
 msgid ""
 "A headline and an email field. Replace the form with your newsletter plugin."
-msgstr "Eine Überschrift und ein E-Mail-Feld. Ersetze das Formular durch das deines Newsletter-Plugins."
+msgstr ""
+"Eine Überschrift und ein E-Mail-Feld. Ersetze das Formular durch das deines "
+"Newsletter-Plugins."
 
 #: patterns/cta-newsletter.php:12
 msgctxt "Call to action pattern"
@@ -2250,7 +2432,9 @@ msgctxt "Stats pattern"
 msgid ""
 "Say in two sentences what these figures mean for the people who use what you "
 "make."
-msgstr "Sag in zwei Sätzen, was diese Zahlen für die Menschen bedeuten, die nutzen, was du machst."
+msgstr ""
+"Sag in zwei Sätzen, was diese Zahlen für die Menschen bedeuten, die nutzen, "
+"was du machst."
 
 #: patterns/stats-split.php:29
 msgctxt "Stats pattern"
@@ -2432,7 +2616,9 @@ msgctxt "Testimonial pattern"
 msgid ""
 "This changed how we work. It was ready in an afternoon and our readers "
 "noticed at once."
-msgstr "Das hat verändert, wie wir arbeiten. Am Nachmittag war es fertig, und unsere Leser merkten es sofort."
+msgstr ""
+"Das hat verändert, wie wir arbeiten. Am Nachmittag war es fertig, und unsere "
+"Leser merkten es sofort."
 
 #: patterns/testimonials-three.php
 msgctxt "Pattern title"
@@ -2589,6 +2775,84 @@ msgstr "Zurück zu den Veranstaltungen"
 #: single.php:38
 msgid "Post navigation"
 msgstr "Beitragsnavigation"
+
+#: starters/blog.php:9
+msgid "Blog"
+msgstr "Blog"
+
+#: starters/blog.php:10
+msgid ""
+"A classic blog: a welcome card, the latest posts in a grid, a sidebar, an "
+"About page and a Contact page."
+msgstr "Ein klassischer Blog: eine Willkommenskarte, die neuesten Beiträge im Raster, eine Seitenleiste sowie eine Seite „Über uns“ und eine Kontaktseite."
+
+#: starters/blog.php:22 starters/business.php:163 starters/events.php:51
+#: starters/magazine.php:23
+msgctxt "Starter page title"
+msgid "About"
+msgstr "Über uns"
+
+#: starters/blog.php:36 starters/business.php:186 starters/events.php:72
+#: starters/magazine.php:44
+msgctxt "Starter page title"
+msgid "Contact"
+msgstr "Kontakt"
+
+#: starters/business.php:9
+msgid "Business"
+msgstr "Unternehmen"
+
+#: starters/business.php:10
+msgid ""
+"A company site: a landing page with a hero, features, numbers, testimonials "
+"and prices, plus Services, Pricing, About, News and Contact pages."
+msgstr "Eine Firmenwebsite: eine Startseite mit Hero, Funktionen, Zahlen, Kundenstimmen und Preisen sowie Seiten für Leistungen, Preise, Über uns, Neuigkeiten und Kontakt."
+
+#: starters/business.php:23 starters/events.php:22
+msgctxt "Starter page title"
+msgid "Home"
+msgstr "Startseite"
+
+#: starters/business.php:107
+msgctxt "Starter page title"
+msgid "Services"
+msgstr "Leistungen"
+
+#: starters/business.php:123
+msgctxt "Starter page title"
+msgid "Pricing"
+msgstr "Preise"
+
+#: starters/business.php:182
+msgctxt "Starter page title"
+msgid "News"
+msgstr "Neuigkeiten"
+
+#: starters/events.php:10
+msgid ""
+"A site for gatherings: sample events (one repeating every week), an agenda "
+"and a calendar, a subscribe link, and About and Contact pages."
+msgstr "Eine Website für Treffen: Beispielveranstaltungen (eine wiederholt sich jede Woche), eine Agenda und ein Kalender, ein Abo-Link sowie Seiten „Über uns“ und Kontakt."
+
+#: starters/events.php:34
+msgctxt "Starter content"
+msgid "What is on"
+msgstr "Was ansteht"
+
+#: starters/events.php:46
+msgctxt "Starter page title"
+msgid "Calendar"
+msgstr "Kalender"
+
+#: starters/magazine.php:9
+msgid "Magazine"
+msgstr "Magazin"
+
+#: starters/magazine.php:10
+msgid ""
+"An editorial site: warm paper and serif type, a slider of featured stories, "
+"a large first story and a sidebar."
+msgstr "Eine redaktionelle Website: warmes Papier und Serifenschrift, ein Slider mit Top-Geschichten, eine große erste Geschichte und eine Seitenleiste."
 
 #: template-parts/author-box.php:15
 msgid "About the author"

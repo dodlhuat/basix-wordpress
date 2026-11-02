@@ -21,6 +21,7 @@ Basix is a classic WordPress theme made from the components of the Basix library
 * An Events post type with an events calendar block and shortcode, header layouts, a featured-post slider, a gallery and portfolio page, and post filters
 * Forty block patterns in 14 groups (hero, features, pricing, testimonials, team, logos, numbers, call to action, newsletter, contact, portfolio, blog, questions, about) and block styles, plus starter content for new sites
 * Five looks (Basix, Editorial, Bold, Calm, Paper) that set colours for light and dark mode, corners and fonts together, with a choice of fonts and text size on top
+* A setup screen (Appearance > Basix setup) with four ready-made starter sites (Blog, Magazine, Business, Events) that can be imported and undone
 * Accent colour, logo and layout options in the Customizer
 * Checked with axe and Lighthouse, ready for translation, with a German translation included
 
