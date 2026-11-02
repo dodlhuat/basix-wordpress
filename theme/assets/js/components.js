@@ -18,7 +18,15 @@ export const components = {
     dropdown: {
         selector: '.site-nav .dropdown-container',
         load: () => import('../vendor/basix/js/dropdown.js'),
-        init: ({ Dropdown }, elements) => elements.forEach((el) => new Dropdown(`#${CSS.escape(el.id)}`)),
+        init: ({ Dropdown }, elements) => elements.forEach((el) => {
+            new Dropdown(`#${CSS.escape(el.id)}`);
+            // A mega menu panel is a set of columns of links, not a menu of items: drop the menu roles the dropdown
+            // gave it, so the lists stay lists for assistive technology.
+            if (el.classList.contains('is-mega')) {
+                el.querySelectorAll('[role]').forEach((node) => node.removeAttribute('role'));
+                el.querySelectorAll('[aria-haspopup]').forEach((node) => node.removeAttribute('aria-haspopup'));
+            }
+        }),
     },
 
     // Drill-down side menu (header layout "push").
