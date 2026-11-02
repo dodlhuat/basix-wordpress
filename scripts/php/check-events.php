@@ -230,6 +230,92 @@ restore_previous_locale();
 // An event without a repeat is unchanged.
 $check( $same( $ids_in( basix_event_occurrences( $plain, '2026-11-01', '2026-11-30' ) ), array( '2026-11-05' ) ), 'an event without a rule is one occurrence' );
 
+// ICS export.
+$check( 'a\;b\\,c\\\\d\\ne' === basix_ics_escape( "a;b,c\\d\ne" ), 'ICS text escapes semicolons, commas, backslashes and line breaks' );
+$long   = basix_ics_fold( 'SUMMARY:' . str_repeat( 'ä', 60 ) );
+$pieces = explode( "\r\n", $long );
+$check( count( $pieces ) > 1 && max( array_map( 'strlen', $pieces ) ) <= 75 && str_repeat( 'ä', 60 ) === str_replace( array( 'SUMMARY:', "\r\n " ), '', $long ), 'a long line is folded at 75 bytes without cutting a character' );
+$lines_of = static function ( int $id ): array {
+	$zones = array();
+	return basix_event_ics_lines( get_post( $id ), $zones );
+};
+$has = static function ( array $lines, string $prefix ): bool {
+	foreach ( $lines as $line ) {
+		if ( 0 === strpos( $line, $prefix ) ) {
+			return true;
+		}
+	}
+	return false;
+};
+$all = $lines_of( $day );
+$check( $has( $all, 'DTSTART;VALUE=DATE:20261110' ) && $has( $all, 'DTEND;VALUE=DATE:20261111' ), 'an all-day event ends on the day after (exclusive end)' );
+$one = $lines_of( $ny );
+$check( $has( $one, 'DTSTART;TZID=America/New_York:20261105T190000' ) && $has( $one, 'DTEND;TZID=America/New_York:20261105T203000' ), 'a timed event keeps its own zone and clock time' );
+$check( $has( $lines_of( $weekly ), 'RRULE:FREQ=WEEKLY;BYDAY=TU;WKST=MO;COUNT=4' ) && $has( $lines_of( $weekly ), 'EXDATE;TZID=Europe/Vienna:20261110T183000' ), 'a repeat becomes RRULE and EXDATE' );
+$dst = $lines_of( $vienna );
+$check( $has( $dst, 'DTSTART;TZID=Europe/Vienna:20261020T183000' ), 'a repeat starts in its own zone' );
+$feed = basix_events_ics( array( get_post( $ny ), get_post( $weekly ) ), 'Test' );
+$check( 0 === strpos( $feed, "BEGIN:VCALENDAR\r\n" ) && "END:VCALENDAR\r\n" === substr( $feed, -15 ), 'a calendar starts and ends right' );
+$check( substr_count( $feed, 'BEGIN:' ) === substr_count( $feed, 'END:' ), 'every BEGIN has an END' );
+$check( false !== strpos( $feed, "BEGIN:VTIMEZONE\r\nTZID:America/New_York" ) && false !== strpos( $feed, "BEGIN:VTIMEZONE\r\nTZID:Europe/Vienna" ), 'each used zone has a VTIMEZONE' );
+$check( false !== strpos( $feed, 'TZOFFSETFROM:-0400' ) && false !== strpos( $feed, 'TZOFFSETTO:-0500' ), 'the zone blocks carry the daylight saving changes' );
+$check( 1 === substr_count( $feed, 'UID:basix-event-' . $ny . '@' ), 'an event has one stable UID' );
+
+// A weekly rule that skips the start date's own weekday: the start date stands alone.
+$odd      = $make(
+	array(
+		'basix_event_start'  => '2026-11-04',
+		'basix_event_repeat' => $repeat( array( 'freq' => 'weekly', 'weekdays' => array( 2, 4 ), 'end' => array( 'type' => 'count', 'count' => 4 ) ) ),
+	)
+);
+$odd_text = implode( "\n", $lines_of( $odd ) );
+$check( 2 === substr_count( $odd_text, 'BEGIN:VEVENT' ) && false !== strpos( $odd_text, 'DTSTART;VALUE=DATE:20261104' ) && false !== strpos( $odd_text, 'DTSTART;VALUE=DATE:20261105' ) && false !== strpos( $odd_text, 'COUNT=3' ), 'a weekly rule without the start weekday becomes two events' );
+
+// The feed leaves out what is not public, and follows changes.
+$secret = $make(
+	array(
+		'basix_event_start' => wp_date( 'Y-m-d', time() + 5 * DAY_IN_SECONDS ),
+		'basix_event_end'   => wp_date( 'Y-m-d', time() + 5 * DAY_IN_SECONDS ),
+	)
+);
+wp_update_post(
+	array(
+		'ID'            => $secret,
+		'post_password' => 'secret',
+	)
+);
+$listed = static function ( int $id ): bool {
+	return in_array( $id, wp_list_pluck( basix_events_upcoming_posts(), 'ID' ), true );
+};
+$check( ! $listed( $secret ), 'a password protected event is not in the feed' );
+wp_update_post(
+	array(
+		'ID'            => $secret,
+		'post_password' => '',
+		'post_status'   => 'private',
+	)
+);
+$check( ! $listed( $secret ), 'a private event is not in the feed' );
+wp_update_post(
+	array(
+		'ID'          => $secret,
+		'post_status' => 'publish',
+	)
+);
+$check( $listed( $secret ), 'a public one is' );
+$before = basix_events_feed_text( array() );
+$check( basix_events_feed_text( array() ) === $before, 'the feed is cached' );
+wp_update_post(
+	array(
+		'ID'         => $secret,
+		'post_title' => 'Renamed for the feed',
+	)
+);
+$check( false !== strpos( basix_events_feed_text( array() ), 'SUMMARY:Renamed for the feed' ), 'saving an event updates the cached feed' );
+wp_set_object_terms( $secret, 'Meetups', BASIX_EVENT_CAT );
+$check( false !== strpos( basix_events_feed_text( array() ), 'CATEGORIES:Meetups' ), 'and so does changing its categories' );
+$check( ! in_array( $secret, wp_list_pluck( basix_events_upcoming_posts( array( 'workshops' ) ), 'ID' ), true ) && in_array( $secret, wp_list_pluck( basix_events_upcoming_posts( array( 'meetups' ) ), 'ID' ), true ), 'the feed can be limited to a category' );
+
 foreach ( $ids as $id ) {
 	wp_delete_post( $id, true );
 }
