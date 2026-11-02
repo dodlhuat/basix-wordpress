@@ -15,7 +15,7 @@
     </div>
 </template>
 
-<?php $basix_footer_none = 'none' === basix_page_option( '_basix_footer' ); ?>
+<?php $basix_footer_none = 'none' === basix_page_option( '_basix_footer' ) || basix_builder_location( 'footer' ); ?>
 <?php if ( ! $basix_footer_none ) : ?>
 <footer class="site-footer">
     <?php

@@ -69,6 +69,9 @@ function basix_page_option( string $key ): string {
  * @return string
  */
 function basix_header_mode(): string {
+	if ( basix_builder_location( 'header', false ) ) {
+		return 'none';
+	}
 	$page = basix_page_option( '_basix_header' );
 	if ( '' !== $page ) {
 		return $page;
@@ -393,3 +396,32 @@ add_action(
 		}
 	}
 );
+
+/**
+ * Lets a page builder's theme builder (Elementor Pro's header and footer locations, or anything that hooks the
+ * basix_builder_location filter) draw a part of the page instead of the theme.
+ *
+ * The first call for a location asks the builder, which prints the part when it has one and answers true; the answer
+ * is remembered, so the header and footer templates and the options that depend on them agree. A later call with
+ * $ask = false only reads that answer.
+ *
+ * @param string $location header or footer.
+ * @param bool   $ask      Ask the builder when it has not been asked yet.
+ * @return bool Whether a builder has drawn the part.
+ */
+function basix_builder_location( string $location, bool $ask = true ): bool {
+	if ( ! isset( $GLOBALS['basix_builder'][ $location ] ) ) {
+		if ( ! $ask ) {
+			return false;
+		}
+		$handled = function_exists( 'elementor_theme_do_location' ) && (bool) elementor_theme_do_location( $location );
+		/**
+		 * Filters whether a page builder has drawn this part of the page.
+		 *
+		 * @param bool   $handled  Whether it has.
+		 * @param string $location header or footer.
+		 */
+		$GLOBALS['basix_builder'][ $location ] = (bool) apply_filters( 'basix_builder_location', $handled, $location );
+	}
+	return $GLOBALS['basix_builder'][ $location ];
+}

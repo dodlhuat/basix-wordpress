@@ -21,6 +21,12 @@ $basix_sprite = get_theme_file_uri( BASIX_VENDOR . '/svg-icons/icons.svg' );
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <a class="skip-link" href="#content"><?php esc_html_e( 'Skip to content', 'basix' ); ?></a>
+<?php
+// A page builder's theme builder can draw the header; then the theme leaves its own out.
+if ( basix_builder_location( 'header' ) ) {
+	$basix_mode = 'none';
+}
+?>
 
 <?php if ( basix_top_bar_enabled() || ( $basix_preview && 'none' !== $basix_mode ) ) : ?>
     <?php get_template_part( 'template-parts/top-bar' ); ?>
