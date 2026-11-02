@@ -11,10 +11,12 @@
 
 get_header();
 
-while ( have_posts() ) :
-	the_post();
-	$basix_parent = basix_gallery_parent();
-	?>
+if ( ! basix_builder_location( 'single' ) ) : // A theme builder can draw this part of the page instead.
+
+	while ( have_posts() ) :
+		the_post();
+		$basix_parent = basix_gallery_parent();
+		?>
 	<article <?php post_class( 'entry' ); ?>>
 		<header class="entry-header<?php echo esc_attr( basix_title_class() ); ?>"><h1><?php the_title(); ?></h1></header>
 		<div class="entry-content"><?php the_content(); ?></div>
@@ -34,7 +36,9 @@ while ( have_posts() ) :
 			<div class="loader hidden" role="status"><?php esc_html_e( 'Loading more…', 'basix' ); ?></div>
 		</div>
 	</article>
-	<?php
+		<?php
 endwhile;
+
+endif;
 
 get_footer();

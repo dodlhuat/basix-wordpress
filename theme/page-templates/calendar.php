@@ -11,16 +11,20 @@
 
 get_header();
 
-while ( have_posts() ) :
-	the_post();
-	?>
+if ( ! basix_builder_location( 'single' ) ) : // A theme builder can draw this part of the page instead.
+
+	while ( have_posts() ) :
+		the_post();
+		?>
 	<article <?php post_class( 'entry' ); ?>>
 		<header class="entry-header<?php echo esc_attr( basix_title_class() ); ?>"><h1><?php the_title(); ?></h1></header>
 		<div class="entry-content"><?php the_content(); ?></div>
 
 		<?php get_template_part( 'template-parts/calendar' ); ?>
 	</article>
-	<?php
+		<?php
 endwhile;
+
+endif;
 
 get_footer();

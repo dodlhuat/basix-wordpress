@@ -101,6 +101,57 @@ $check( array( 'header', 'footer' ) === $asked, 'each part is asked about once' 
 remove_all_filters( 'basix_builder_location' );
 $GLOBALS['basix_builder'] = array();
 
+// A theme builder can also draw the content: single pages and posts, the 404 page and archives, in every template.
+$first_page = (int) get_posts( array( 'post_type' => 'page', 'post_status' => 'publish', 'numberposts' => 1, 'fields' => 'ids' ) )[0];
+$first_post = (int) get_posts( array( 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => 1, 'fields' => 'ids' ) )[0];
+$first_evt  = basix_has_events() ? (int) ( get_posts( array( 'post_type' => BASIX_EVENT, 'post_status' => 'publish', 'numberposts' => 1, 'fields' => 'ids' ) )[0] ?? 0 ) : 0;
+$cases      = array(
+	'single.php'                       => array( array( 'p' => $first_post ), 'single', 'entry-content' ),
+	'page.php'                         => array( array( 'page_id' => $first_page ), 'single', 'entry-content' ),
+	'404.php'                          => array( array( 'p' => 999999999 ), 'single', 'not-found' ),
+	'archive.php'                      => array( array( 'cat' => (int) get_option( 'default_category' ) ), 'archive', 'archive-header' ),
+	'search.php'                       => array( array( 's' => 'design' ), 'archive', 'archive-header' ),
+	'index.php'                        => array( array(), 'archive', 'class="layout' ),
+	'page-templates/calendar.php'      => array( array( 'page_id' => $first_page ), 'single', 'entry-content' ),
+	'page-templates/gallery.php'       => array( array( 'page_id' => $first_page ), 'single', 'entry-content' ),
+	'page-templates/full-width.php'    => array( array( 'page_id' => $first_page ), 'single', 'entry-content' ),
+	'page-templates/landing.php'       => array( array( 'page_id' => $first_page ), 'single', 'entry-content' ),
+	'page-templates/docs.php'          => array( array( 'page_id' => $first_page ), 'single', 'docs-sidebar' ),
+);
+if ( $first_evt ) {
+	$cases['single-basix-event.php'] = array( array( 'p' => $first_evt, 'post_type' => BASIX_EVENT ), 'single', 'entry-content' );
+}
+foreach ( $cases as $template => $case ) {
+	list( $args, $location, $marker ) = $case;
+	$run = static function ( bool $builder ) use ( $template, $args, $location ): string {
+		$GLOBALS['basix_builder'] = array();
+		$GLOBALS['wp_query']      = new WP_Query( $args );
+		if ( 'p' === array_key_first( $args ) && 999999999 === $args['p'] ) {
+			$GLOBALS['wp_query']->set_404();
+		}
+		$GLOBALS['wp_the_query'] = $GLOBALS['wp_query'];
+		$GLOBALS['post']         = $GLOBALS['wp_query']->posts[0] ?? null;
+		$filter = static function ( $handled, $asked ) use ( $builder, $location ) {
+			if ( $builder && $asked === $location ) {
+				echo '<!-- builder ', esc_html( $asked ), ' -->';
+				return true;
+			}
+			return false;
+		};
+		add_filter( 'basix_builder_location', $filter, 10, 2 );
+		ob_start();
+		load_template( get_theme_file_path( $template ), false );
+		$out = (string) ob_get_clean();
+		remove_filter( 'basix_builder_location', $filter, 10 );
+		return $out;
+	};
+	$with    = $run( true );
+	$without = $run( false );
+	$check( false !== strpos( $without, $marker ), "$template: draws its own content without a builder" );
+	$check( false !== strpos( $with, "<!-- builder $location -->" ) && false === strpos( $with, $marker ), "$template: leaves it to a builder that draws the $location location" );
+}
+$GLOBALS['basix_builder'] = array();
+
 // Forms.
 $css = (string) file_get_contents( get_theme_file_path( 'assets/css/forms.css' ) );
 foreach ( array( 'wpcf7', 'wpforms', 'fluentform', 'gform' ) as $plugin ) {

@@ -11,14 +11,18 @@
 
 get_header();
 
-while ( have_posts() ) :
-	the_post();
-	?>
+if ( ! basix_builder_location( 'single' ) ) : // A theme builder can draw this part of the page instead.
+
+	while ( have_posts() ) :
+		the_post();
+		?>
 	<article <?php post_class( 'entry' ); ?>>
 		<h1 class="screen-reader-text"><?php the_title(); ?></h1>
 		<div class="entry-content"><?php the_content(); ?></div>
 	</article>
-	<?php
+		<?php
 endwhile;
+
+endif;
 
 get_footer();

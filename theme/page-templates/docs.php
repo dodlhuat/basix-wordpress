@@ -10,9 +10,11 @@
 
 get_header();
 
-$basix_docs_tree = basix_docs_tree();
-$basix_sprite    = get_theme_file_uri( BASIX_VENDOR . '/svg-icons/icons.svg' );
-?>
+if ( ! basix_builder_location( 'single' ) ) : // A theme builder can draw this part of the page instead.
+
+	$basix_docs_tree = basix_docs_tree();
+	$basix_sprite    = get_theme_file_uri( BASIX_VENDOR . '/svg-icons/icons.svg' );
+	?>
 
 <div class="sidebar-layout docs-layout" <?php echo basix_component_attrs( 'docs' ); ?>>
     <aside class="sidebar-nav docs-sidebar" id="docs-sidebar" aria-label="<?php esc_attr_e( 'Documentation', 'basix' ); ?>">
@@ -62,5 +64,7 @@ $basix_sprite    = get_theme_file_uri( BASIX_VENDOR . '/svg-icons/icons.svg' );
         <?php endif; ?>
     </div>
 </div>
+
+<?php endif; ?>
 
 <?php get_footer(); ?>
