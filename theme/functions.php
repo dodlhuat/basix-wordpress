@@ -18,6 +18,7 @@ require_once __DIR__ . '/inc/events/ics.php';
 require_once __DIR__ . '/inc/calendar.php';
 require_once __DIR__ . '/inc/gallery.php';
 require_once __DIR__ . '/inc/seo.php';
+require_once __DIR__ . '/inc/schema.php';
 require_once __DIR__ . '/inc/starter-content.php';
 
 add_action('after_setup_theme', function () {
