@@ -138,6 +138,7 @@ add_action(
 			array(
 				'default'           => basix_look()['light']['accent'] ?? '#3d63dd',
 				'sanitize_callback' => 'sanitize_hex_color',
+				'transport'         => 'postMessage',
 			)
 		);
 		$wp_customize->add_control(
@@ -156,6 +157,7 @@ add_action(
 			array(
 				'default'           => basix_look()['dark']['accent'] ?? '#1971a6',
 				'sanitize_callback' => 'sanitize_hex_color',
+				'transport'         => 'postMessage',
 			)
 		);
 		$wp_customize->add_control(
@@ -371,7 +373,11 @@ function basix_mix( string $a, string $b, float $weight_a ): string {
 	$cb  = basix_rgb( $b );
 	$hex = '#';
 	for ( $i = 0; $i < 3; $i++ ) {
-		$hex .= sprintf( '%02x', (int) round( $ca[ $i ] * $weight_a + $cb[ $i ] * ( 1 - $weight_a ) ) );
+		// Rounded in two steps (to six places, then to a whole number) so that a value that should be exactly .5 is
+		// rounded the same way in every PHP version and in the preview's JavaScript (assets/js/accent-math.js).
+		$value = $ca[ $i ] * $weight_a + $cb[ $i ] * ( 1 - $weight_a );
+		$value = floor( floor( $value * 1000000 + 0.5 ) / 1000000 + 0.5 );
+		$hex  .= sprintf( '%02x', (int) $value );
 	}
 	return $hex;
 }

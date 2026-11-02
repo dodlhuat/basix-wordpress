@@ -29,6 +29,31 @@
         });
     });
 
+    // The accent colours: worked out here the same way as on the server (accent-math.js), in a style element that
+    // comes after the theme's own, so it wins.
+    var accents = { light: '', dark: '' };
+    var styleEl = null;
+    var showAccents = function () {
+        var css = '';
+        ['light', 'dark'].forEach(function (mode) {
+            if (/^#[0-9a-f]{6}$/i.test(accents[mode])) {
+                css += window.basixAccent.css(accents[mode].toLowerCase(), mode, data.page && data.page[mode], data.surface && data.surface[mode]);
+            }
+        });
+        if (!styleEl) {
+            styleEl = document.createElement('style');
+            styleEl.id = 'basix-accent-preview';
+            document.head.appendChild(styleEl);
+        }
+        styleEl.textContent = css;
+    };
+    ['light', 'dark'].forEach(function (mode) {
+        api('basix_accent_' + mode, function (value) {
+            accents[mode] = String(value.get() || '');
+            value.bind(function (v) { accents[mode] = String(v || ''); showAccents(); });
+        });
+    });
+
     // The footer line, with {year} and {site} filled in. It is shown as plain text here; links appear once the
     // preview is reloaded.
     api('basix_footer_text', function (value) {

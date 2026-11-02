@@ -307,13 +307,23 @@ add_action(
 add_action(
 	'customize_preview_init',
 	function () {
-		wp_enqueue_script( 'basix-customizer-preview', get_theme_file_uri( 'assets/js/customizer-preview.js' ), array( 'customize-preview' ), (string) filemtime( get_theme_file_path( 'assets/js/customizer-preview.js' ) ), true );
+		wp_enqueue_script( 'basix-accent-math', get_theme_file_uri( 'assets/js/accent-math.js' ), array(), (string) filemtime( get_theme_file_path( 'assets/js/accent-math.js' ) ), true );
+		wp_enqueue_script( 'basix-customizer-preview', get_theme_file_uri( 'assets/js/customizer-preview.js' ), array( 'customize-preview', 'basix-accent-math' ), (string) filemtime( get_theme_file_path( 'assets/js/customizer-preview.js' ) ), true );
 		wp_localize_script(
 			'basix-customizer-preview',
 			'basixPreview',
 			array(
-				'year' => wp_date( 'Y' ),
-				'site' => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
+				'year'    => wp_date( 'Y' ),
+				'site'    => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
+				// The page and surface colours of the look, per mode: the readable accent text is worked out against them.
+				'page'    => array(
+					'light' => basix_look()['light']['background'] ?? BASIX_SHIPPED_PAGE['light'],
+					'dark'  => basix_look()['dark']['background'] ?? BASIX_SHIPPED_PAGE['dark'],
+				),
+				'surface' => array(
+					'light' => basix_look()['light']['surface'] ?? BASIX_SHIPPED_SURFACE['light'],
+					'dark'  => basix_look()['dark']['surface'] ?? BASIX_SHIPPED_SURFACE['dark'],
+				),
 			)
 		);
 	}
