@@ -19,5 +19,6 @@ check: lint
 	docker compose run --rm -T wpcli wp eval-file /php/check-events.php
 	npm run --silent check:editor
 	npm run --silent check:customizer
+	npm run --silent check:ics
 	npm run --silent check:frontend
 	npm run --silent check:a11y

@@ -10,6 +10,7 @@
     "check:editor": "node scripts/check-editor.mjs",
     "check:customizer": "node scripts/check-customizer.mjs",
     "check:frontend": "node scripts/check-frontend.mjs",
+    "check:ics": "node scripts/check-ics.mjs",
     "check:a11y": "node scripts/check-a11y.mjs",
     "postinstall": "node scripts/sync-basix.mjs"
   },
@@ -18,6 +19,7 @@
   },
   "devDependencies": {
     "axe-core": "^4.14.0",
+    "ical.js": "^2.2.1",
     "puppeteer-core": "^25.16.0"
   }
 }
