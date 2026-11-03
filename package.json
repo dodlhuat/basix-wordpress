@@ -6,6 +6,7 @@
   "description": "WordPress theme built on @dodlhuat/basix",
   "scripts": {
     "sync": "node scripts/sync-basix.mjs && node scripts/build-rtl.mjs",
+    "lint:js": "eslint .",
     "build": "./scripts/build-zip.sh",
     "check:editor": "node scripts/check-editor.mjs",
     "check:customizer": "node scripts/check-customizer.mjs",
@@ -28,7 +29,10 @@
     "@dodlhuat/basix": "^1.6.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "axe-core": "^4.14.0",
+    "eslint": "^10.14.0",
+    "globals": "^17.14.0",
     "ical.js": "^2.2.1",
     "puppeteer-core": "^25.16.0",
     "rtlcss": "^4.3.0"

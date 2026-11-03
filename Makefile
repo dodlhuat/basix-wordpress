@@ -15,5 +15,6 @@ zip:
 	./scripts/build-zip.sh
 lint:
 	vendor/bin/phpcs
+	npx eslint .
 check: lint
 	./scripts/check.sh

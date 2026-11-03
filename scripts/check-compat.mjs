@@ -3,13 +3,12 @@
 // keyboard focus visibly; and the Canvas template shows a page with nothing but its content. Needs the local site
 // running (make up).
 //   node scripts/check-compat.mjs
-// Env: WP_URL (default http://localhost:8090), CHROME (path to Chrome).
+// Env: CHROME (path to Chrome).
 import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import puppeteer from 'puppeteer-core';
 
-const url = process.env.WP_URL ?? 'http://localhost:8090';
 const chrome = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const axeSource = readFileSync(createRequire(import.meta.url).resolve('axe-core/axe.min.js'), 'utf8');
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
