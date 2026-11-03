@@ -130,10 +130,10 @@ function basix_looks(): array {
 		if ( ! $slug || ! is_array( $look ) ) {
 			continue;
 		}
-		$title        = isset( $texts[ $slug ] ) ? $texts[ $slug ][0] : (string) ( $data['title'] ?? $slug );
-		$description  = isset( $texts[ $slug ] ) ? $texts[ $slug ][1] : (string) ( $look['description'] ?? '' );
-		$heading      = (string) ( $look['fonts']['heading'] ?? 'outfit' );
-		$body         = (string) ( $look['fonts']['body'] ?? 'outfit' );
+		$title          = isset( $texts[ $slug ] ) ? $texts[ $slug ][0] : (string) ( $data['title'] ?? $slug );
+		$description    = isset( $texts[ $slug ] ) ? $texts[ $slug ][1] : (string) ( $look['description'] ?? '' );
+		$heading        = (string) ( $look['fonts']['heading'] ?? 'outfit' );
+		$body           = (string) ( $look['fonts']['body'] ?? 'outfit' );
 		$looks[ $slug ] = array(
 			'title'       => $title,
 			'description' => $description,
@@ -212,12 +212,12 @@ function basix_font( string $role ): string {
  * @return string Empty when the mode has nothing to change.
  */
 function basix_mode_vars( string $mode ): string {
-	$look   = basix_look();
-	$colors = $look[ $mode ];
-	$accent = basix_accent( $mode );
+	$look           = basix_look();
+	$colors         = $look[ $mode ];
+	$accent         = basix_accent( $mode );
 	$shipped_accent = 'dark' === $mode ? '#1b7bb4' : '#3d63dd';
-	$vars   = '';
-	$map    = array(
+	$vars           = '';
+	$map            = array(
 		'background'    => array( '--background', '--primary-bg' ),
 		'surface'       => array( '--secondary-background' ),
 		'text'          => array( '--primary-text' ),
@@ -262,7 +262,7 @@ function basix_font_face( string $slug ): string {
  * @return string
  */
 function basix_design_css(): string {
-	$css = '';
+	$css   = '';
 	$light = basix_mode_vars( 'light' );
 	if ( $light ) {
 		$css .= ':root[data-theme="light"]{' . $light . '}';

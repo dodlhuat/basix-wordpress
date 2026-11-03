@@ -10,7 +10,7 @@
 add_action(
 	'after_setup_theme',
 	function () {
-		$text = static function ( string $content ): string {
+		$text    = static function ( string $content ): string {
 			return "<!-- wp:paragraph -->\n<p>" . esc_html( $content ) . "</p>\n<!-- /wp:paragraph -->";
 		};
 		$heading = static function ( string $content ): string {

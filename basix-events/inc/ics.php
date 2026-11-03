@@ -195,7 +195,7 @@ function basix_event_ics_lines( WP_Post $event, array &$zones ): array {
 	$place    = (string) get_post_meta( $id, 'basix_event_location', true );
 
 	// A wall clock time on a date, as a value with its parameter: DTSTART;TZID=...:20261105T183000.
-	$moment = static function ( string $prop, string $date, string $time ) use ( $all_day, $zone, $tzid, $utc ): string {
+	$moment   = static function ( string $prop, string $date, string $time ) use ( $all_day, $zone, $tzid, $utc ): string {
 		if ( $all_day ) {
 			return $prop . ';VALUE=DATE:' . str_replace( '-', '', $date );
 		}

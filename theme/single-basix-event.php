@@ -3,7 +3,10 @@
 
 	<?php basix_layout_open(); ?>
 
-	<?php while ( have_posts() ) : the_post(); ?>
+	<?php
+	while ( have_posts() ) :
+		the_post();
+		?>
 	<article <?php post_class( 'entry' ); ?>>
 		<header class="entry-header<?php echo esc_attr( basix_title_class() ); ?>">
 			<?php basix_post_terms(); ?>

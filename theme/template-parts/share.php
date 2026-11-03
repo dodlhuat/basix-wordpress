@@ -10,12 +10,19 @@ if ( ! basix_feature( 'basix_show_share' ) ) {
 	return;
 }
 ?>
-<section class="share" <?php echo basix_component_attrs( 'share', array(
-	'url'    => get_permalink(),
-	'share'  => __( 'Share', 'basix' ),
-	'copy'   => __( 'Copy link', 'basix' ),
-	'copied' => __( 'Link copied', 'basix' ),
-) ); ?>>
+<section class="share" 
+<?php
+echo basix_component_attrs(
+	'share',
+	array(
+		'url'    => get_permalink(),
+		'share'  => __( 'Share', 'basix' ),
+		'copy'   => __( 'Copy link', 'basix' ),
+		'copied' => __( 'Link copied', 'basix' ),
+	)
+);
+?>
+>
 	<h2 class="share-title"><?php esc_html_e( 'Share this post', 'basix' ); ?></h2>
 	<ul class="share-links chips">
 		<?php foreach ( basix_share_links() as $basix_label => $basix_url ) : ?>

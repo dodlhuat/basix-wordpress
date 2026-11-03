@@ -107,7 +107,7 @@ function basix_breadcrumb_trail(): array {
 		}
 		return $out;
 	};
-	$last = null;
+	$last  = null;
 
 	if ( is_singular( BASIX_EVENT ) ) {
 		$trail[] = array(
@@ -118,7 +118,7 @@ function basix_breadcrumb_trail(): array {
 	} elseif ( is_singular( 'post' ) ) {
 		$cats = get_the_category();
 		if ( $cats ) {
-			$trail = array_merge( $trail, $terms( $cats[0]->term_id, 'category' ) );
+			$trail   = array_merge( $trail, $terms( $cats[0]->term_id, 'category' ) );
 			$trail[] = array(
 				'name' => $cats[0]->name,
 				'url'  => get_category_link( $cats[0] ),
@@ -193,8 +193,8 @@ function basix_schema_breadcrumbs(): ?array {
  * @return array
  */
 function basix_schema_article( WP_Post $post ): array {
-	$url  = get_permalink( $post );
-	$node = array(
+	$url         = get_permalink( $post );
+	$node        = array(
 		'@type'            => 'Article',
 		'@id'              => $url . '#article',
 		'mainEntityOfPage' => $url,
@@ -380,7 +380,7 @@ function basix_open_graph(): array {
 	if ( $post instanceof WP_Post && post_password_required( $post ) ) {
 		return array();
 	}
-	$tags = array(
+	$tags        = array(
 		'og:locale'    => get_locale(),
 		'og:type'      => $post instanceof WP_Post && 'post' === $post->post_type ? 'article' : 'website',
 		'og:site_name' => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),

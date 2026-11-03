@@ -12,11 +12,21 @@ $basix_source = isset( $args['source'] ) ? $args['source'] : ( basix_has_events(
 $basix_source = 'events' === $basix_source && ! basix_has_events() ? 'posts' : $basix_source;
 $basix_cats   = isset( $args['category'] ) ? $args['category'] : '';
 ?>
-<div class="calendar-wrap" <?php echo basix_component_attrs( 'calendar', array_merge( basix_calendar_config(), array(
-	'view'     => $basix_view,
-	'source'   => $basix_source,
-	'category' => $basix_cats,
-) ) ); ?>>
+<div class="calendar-wrap" 
+<?php
+echo basix_component_attrs(
+	'calendar',
+	array_merge(
+		basix_calendar_config(),
+		array(
+			'view'     => $basix_view,
+			'source'   => $basix_source,
+			'category' => $basix_cats,
+		)
+	)
+);
+?>
+>
 	<div class="calendar-status progress" hidden><div class="progress-bar animated accent"></div></div>
 	<div class="calendar-skeleton" aria-hidden="true">
 		<?php for ( $basix_cell = 0; $basix_cell < 42; $basix_cell++ ) : ?>

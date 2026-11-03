@@ -379,7 +379,7 @@ function basix_event_rule_words( array $rule, string $start ): string {
 			foreach ( $rule['weekdays'] ? $rule['weekdays'] : array( $wd ) as $number ) {
 				$names[] = $wp_locale->get_weekday( $number );
 			}
-			$list  = wp_sprintf( '%l', $names );
+			$list = wp_sprintf( '%l', $names );
 			/* translators: 1: number of weeks, more than one, 2: weekday names, for example "Tuesday and Thursday". */
 			$text = 1 === $every ? sprintf( /* translators: %s: weekday names, for example "Tuesday and Thursday". */ __( 'Every week on %s', 'basix-events' ), $list ) : sprintf( __( 'Every %1$d weeks on %2$s', 'basix-events' ), $every, $list );
 			break;

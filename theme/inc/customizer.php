@@ -404,10 +404,10 @@ function basix_readable_on( string $hex ): string {
  * @return string
  */
 function basix_accent_text( string $accent, bool $dark, string $page = '', string $surface = '' ): string {
-	$page      = $page ? $page : ( $dark ? '#111113' : '#f9f9fb' );
-	$surface   = $surface ? $surface : ( $dark ? '#19191b' : '#e7e8ec' );
-	$surfaces  = array( $page, $surface, basix_mix( $accent, $surface, 0.2 ), basix_mix( $accent, $page, 0.12 ) );
-	$towards   = $dark ? '#ffffff' : '#000000';
+	$page     = $page ? $page : ( $dark ? '#111113' : '#f9f9fb' );
+	$surface  = $surface ? $surface : ( $dark ? '#19191b' : '#e7e8ec' );
+	$surfaces = array( $page, $surface, basix_mix( $accent, $surface, 0.2 ), basix_mix( $accent, $page, 0.12 ) );
+	$towards  = $dark ? '#ffffff' : '#000000';
 	for ( $step = 0; $step <= 20; $step++ ) {
 		$candidate = basix_mix( $accent, $towards, 1 - $step * 0.05 );
 		if ( min( array_map( fn( $s ) => basix_contrast( $candidate, $s ), $surfaces ) ) >= 4.6 ) {

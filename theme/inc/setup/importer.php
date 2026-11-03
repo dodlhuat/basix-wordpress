@@ -78,7 +78,7 @@ function basix_starter_remember( array &$record, string $kind, string $name ): v
 		return;
 	}
 	if ( 'mods' === $kind ) {
-		$mods                            = (array) get_theme_mods();
+		$mods                               = (array) get_theme_mods();
 		$record['before'][ $kind ][ $name ] = array_key_exists( $name, $mods ) ? array( 'value' => $mods[ $name ] ) : array();
 		return;
 	}
@@ -141,7 +141,7 @@ function basix_starter_term( array &$record, string $name, string $taxonomy ): i
  */
 function basix_starter_image( array &$record, string $file, string $title ): int {
 	static $done = array();
-	$key = $record['slug'] . '|' . $file . '|' . $record['time'];
+	$key         = $record['slug'] . '|' . $file . '|' . $record['time'];
 	if ( isset( $done[ $key ] ) ) {
 		return $done[ $key ];
 	}
@@ -183,7 +183,7 @@ function basix_starter_image( array &$record, string $file, string $title ): int
  * @return int Post id, or 0.
  */
 function basix_starter_post( array &$record, array $args ): int {
-	$args = array_merge(
+	$args               = array_merge(
 		array(
 			'post_status' => 'publish',
 			'post_author' => get_current_user_id() ? get_current_user_id() : 1,
@@ -289,8 +289,8 @@ function basix_starter_import( string $slug, string $look = '' ) {
 		if ( ! isset( $library[ $key ] ) ) {
 			continue;
 		}
-		$item  = $library[ $key ];
-		$cat   = basix_starter_term( $record, $item['category'], 'category' );
+		$item = $library[ $key ];
+		$cat  = basix_starter_term( $record, $item['category'], 'category' );
 		foreach ( $item['tags'] as $tag ) {
 			basix_starter_term( $record, $tag, 'post_tag' );
 		}

@@ -10,25 +10,11 @@
     <arg name="colors"/>
     <arg value="sp"/>
 
+    <!-- The strict WordPress standard: tabs, spacing and short control structures as WordPress writes them.
+         "phpcbf" fixes the formatting itself. -->
     <rule ref="WordPress-Extra">
-        <!-- The theme keeps 4-space indentation and short array syntax; formatting-only sniffs are off. -->
-        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent"/>
+        <!-- Short array syntax is fine for PHP 8.1 and easier to read. -->
         <exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
-        <exclude name="PEAR.Functions.FunctionCallSignature"/>
-        <exclude name="WordPress.WhiteSpace.ControlStructureSpacing"/>
-        <exclude name="WordPress.WhiteSpace.OperatorSpacing"/>
-        <exclude name="WordPress.Arrays.ArrayDeclarationSpacing"/>
-        <exclude name="NormalizedArrays.Arrays.ArrayBraceSpacing"/>
-        <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing"/>
-        <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie"/>
-        <exclude name="Generic.WhiteSpace.ArbitraryParenthesesSpacing"/>
-        <exclude name="Generic.Formatting.MultipleStatementAlignment"/>
-        <exclude name="Squiz.ControlStructures.ControlSignature"/>
-        <exclude name="WordPress.WhiteSpace.CastStructureSpacing"/>
-        <exclude name="Generic.ControlStructures.InlineControlStructure"/>
-        <exclude name="Generic.Formatting.DisallowMultipleStatements"/>
-        <exclude name="Squiz.PHP.EmbeddedPhp"/>
-        <exclude name="WordPress.PHP.YodaConditions"/>
     </rule>
 
     <config name="testVersion" value="8.1-"/>

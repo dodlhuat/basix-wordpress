@@ -230,8 +230,36 @@ function basix_starter_events(): array {
 		array( 'Design systems meetup', 4, '18:30', '20:30', 'Studio 4, Vienna', 'An evening of short talks on tokens, components and keeping a system alive.', 'Meetups', null ),
 		array( 'Accessibility clinic', 8, '10:00', '12:00', 'Online', 'Bring a page and we will audit it together, live.', 'Workshops', null ),
 		array( 'Theme workshop', 13, '', '', 'Library hall', 'A full day of building a block-friendly theme from components.', 'Workshops', null ),
-		array( 'Open office hours', 2, '15:00', '16:00', 'Online', 'Ask anything about the components.', 'Meetups', array( 'freq' => 'weekly', 'end' => array( 'type' => 'never' ) ) ),
-		array( 'Reading group', 6, '17:30', '19:00', 'Café Letter', 'Every second week we read one short text and talk about it.', 'Meetups', array( 'freq' => 'weekly', 'interval' => 2, 'end' => array( 'type' => 'count', 'count' => 8 ) ) ),
+		array(
+			'Open office hours',
+			2,
+			'15:00',
+			'16:00',
+			'Online',
+			'Ask anything about the components.',
+			'Meetups',
+			array(
+				'freq' => 'weekly',
+				'end'  => array( 'type' => 'never' ),
+			),
+		),
+		array(
+			'Reading group',
+			6,
+			'17:30',
+			'19:00',
+			'Café Letter',
+			'Every second week we read one short text and talk about it.',
+			'Meetups',
+			array(
+				'freq'     => 'weekly',
+				'interval' => 2,
+				'end'      => array(
+					'type'  => 'count',
+					'count' => 8,
+				),
+			),
+		),
 		array( 'Conference day', 25, '', '', 'Congress Center', 'A day of talks and workshops about interface craft.', 'Conferences', null ),
 	);
 }

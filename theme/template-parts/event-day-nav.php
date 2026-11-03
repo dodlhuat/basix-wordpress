@@ -7,11 +7,11 @@
  * @package basix
  */
 
-$basix_day  = $args['day'];
+$basix_day   = $args['day'];
 $basix_stamp = strtotime( $basix_day . ' 12:00:00 UTC' );
-$basix_prev = gmdate( 'Y-m-d', $basix_stamp - DAY_IN_SECONDS );
-$basix_next = gmdate( 'Y-m-d', $basix_stamp + DAY_IN_SECONDS );
-$basix_show = static function ( string $day ): string {
+$basix_prev  = gmdate( 'Y-m-d', $basix_stamp - DAY_IN_SECONDS );
+$basix_next  = gmdate( 'Y-m-d', $basix_stamp + DAY_IN_SECONDS );
+$basix_show  = static function ( string $day ): string {
 	return wp_date( get_option( 'date_format' ), strtotime( $day . ' 12:00:00 UTC' ), new DateTimeZone( 'UTC' ) );
 };
 ?>
