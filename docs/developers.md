@@ -3,7 +3,8 @@
 ```sh
 make up        # npm install, start WordPress at http://localhost:8090 (admin / admin), activate the theme and the plugin
 make seed      # demo pages, posts, events and the Pattern library page
-make check     # PHPCS and every check (see below)
+make lint      # PHP coding standard (phpcs; `vendor/bin/phpcbf` fixes the formatting) and ESLint
+make check     # lint and every check (see below)
 make zip       # dist/basix-<version>.zip and dist/basix-events-<version>.zip
 ```
 
@@ -89,5 +90,7 @@ A PHP file in `theme/patterns/` with a header comment (`Title`, `Slug: basix/<na
 | `check-frontend.mjs`, `check-a11y.mjs` | the front end in a browser; axe on every main page in four setups |
 | `check-without-plugin.mjs` | the theme with the events plugin switched off |
 | `check-docs.mjs` | the links and names in these documents |
+
+Formatting: PHP follows the strict WordPress standard (tabs); run `vendor/bin/phpcbf` to fix it. `.editorconfig` sets the basics for other files. ESLint looks for mistakes in the JavaScript, not for formatting. GitHub Actions runs `phpcs`, ESLint, the right-to-left check and the docs check on every push (`.github/workflows/lint.yml`); the full suite is run by hand.
 
 Single checks: `npm run check:<name>` (see `package.json`), and `docker compose run --rm -T wpcli wp eval-file /php/<file>`.

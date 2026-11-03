@@ -1,0 +1,43 @@
+name: Lint
+
+# The checks that need no WordPress site or browser. The full suite (make check) needs Docker and Chrome and takes
+# about twenty-five minutes, so it is run by hand before a release.
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer
+
+      - name: PHP coding standard (theme and plugin)
+        run: |
+          composer install --no-interaction --prefer-dist
+          vendor/bin/phpcs
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install JavaScript tools
+        run: npm ci --ignore-scripts
+
+      - name: JavaScript
+        run: npx eslint .
+
+      - name: Scripts parse
+        run: for f in scripts/*.mjs; do node --check "$f"; done
+
+      - name: Right-to-left stylesheets are up to date
+        run: node scripts/build-rtl.mjs --check
+
+      - name: Documentation links and names
+        run: node scripts/check-docs.mjs
