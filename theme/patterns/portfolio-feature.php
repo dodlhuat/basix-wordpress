@@ -16,20 +16,20 @@
 
 <!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"className":"text-overline"} -->
-<p class="text-overline"><?php echo esc_html_x( 'Case study', 'Portfolio pattern', 'basix' ); ?></p>
+<p class="text-overline"><?php echo esc_html_x( 'Case study', 'Portfolio pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
-<h2 class="wp-block-heading"><?php echo esc_html_x( 'Project name', 'Portfolio pattern', 'basix' ); ?></h2>
+<h2 class="wp-block-heading"><?php echo esc_html_x( 'Project name', 'Portfolio pattern', 'basix-paperlight' ); ?></h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><?php echo esc_html_x( 'Two or three sentences about the problem, the approach and the result.', 'Portfolio pattern', 'basix' ); ?></p>
+<p><?php echo esc_html_x( 'Two or three sentences about the problem, the approach and the result.', 'Portfolio pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#"><?php echo esc_html_x( 'Read the story', 'Portfolio pattern', 'basix' ); ?></a></div>
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#"><?php echo esc_html_x( 'Read the story', 'Portfolio pattern', 'basix-paperlight' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div>

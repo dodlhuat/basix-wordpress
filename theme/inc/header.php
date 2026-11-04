@@ -239,7 +239,7 @@ add_action(
 		};
 
 		// Header.
-		$checkbox( 'basix_header_sticky', 'basix_header', __( 'Keep the header at the top while scrolling', 'basix' ), true, '', 'postMessage' );
+		$checkbox( 'basix_header_sticky', 'basix_header', __( 'Keep the header at the top while scrolling', 'basix-paperlight' ), true, '', 'postMessage' );
 		$wp_customize->add_setting(
 			'basix_header_style',
 			array(
@@ -251,31 +251,31 @@ add_action(
 			'basix_header_style',
 			array(
 				'section'     => 'basix_header',
-				'label'       => __( 'Header style', 'basix' ),
-				'description' => __( 'A transparent header sits over the first section of the page, with light text until you scroll. Use it with a dark picture at the top, such as the Landing page template with a cover. A single page can choose its own.', 'basix' ),
+				'label'       => __( 'Header style', 'basix-paperlight' ),
+				'description' => __( 'A transparent header sits over the first section of the page, with light text until you scroll. Use it with a dark picture at the top, such as the Landing page template with a cover. A single page can choose its own.', 'basix-paperlight' ),
 				'type'        => 'radio',
 				'choices'     => array(
-					'default'     => __( 'Solid', 'basix' ),
-					'transparent' => __( 'Transparent over the first section', 'basix' ),
+					'default'     => __( 'Solid', 'basix-paperlight' ),
+					'transparent' => __( 'Transparent over the first section', 'basix-paperlight' ),
 				),
 			)
 		);
-		$text( 'basix_header_cta_label', 'basix_header', __( 'Button text', 'basix' ), __( 'A call-to-action button in the header. It needs a text and an address.', 'basix' ), 'text', 'sanitize_text_field' );
-		$text( 'basix_header_cta_url', 'basix_header', __( 'Button address', 'basix' ), '', 'url', 'esc_url_raw' );
+		$text( 'basix_header_cta_label', 'basix_header', __( 'Button text', 'basix-paperlight' ), __( 'A call-to-action button in the header. It needs a text and an address.', 'basix-paperlight' ), 'text', 'sanitize_text_field' );
+		$text( 'basix_header_cta_url', 'basix_header', __( 'Button address', 'basix-paperlight' ), '', 'url', 'esc_url_raw' );
 
 		// Top bar.
 		$wp_customize->add_section(
 			'basix_topbar',
 			array(
-				'title'       => __( 'Top bar', 'basix' ),
-				'description' => __( 'A thin line above the header for a short message, your social links and a language switcher.', 'basix' ),
+				'title'       => __( 'Top bar', 'basix-paperlight' ),
+				'description' => __( 'A thin line above the header for a short message, your social links and a language switcher.', 'basix-paperlight' ),
 				'panel'       => 'basix',
 			)
 		);
-		$checkbox( 'basix_topbar_enable', 'basix_topbar', __( 'Show the top bar', 'basix' ), false );
-		$text( 'basix_topbar_text', 'basix_topbar', __( 'Message', 'basix' ), '', 'text', 'sanitize_text_field' );
-		$checkbox( 'basix_topbar_social', 'basix_topbar', __( 'Show the social links menu', 'basix' ), true, __( 'The menu in the location "Social links".', 'basix' ) );
-		$checkbox( 'basix_topbar_language', 'basix_topbar', __( 'Show the language switcher', 'basix' ), true, __( 'Shown when Polylang or WPML is active.', 'basix' ) );
+		$checkbox( 'basix_topbar_enable', 'basix_topbar', __( 'Show the top bar', 'basix-paperlight' ), false );
+		$text( 'basix_topbar_text', 'basix_topbar', __( 'Message', 'basix-paperlight' ), '', 'text', 'sanitize_text_field' );
+		$checkbox( 'basix_topbar_social', 'basix_topbar', __( 'Show the social links menu', 'basix-paperlight' ), true, __( 'The menu in the location "Social links".', 'basix-paperlight' ) );
+		$checkbox( 'basix_topbar_language', 'basix_topbar', __( 'Show the language switcher', 'basix-paperlight' ), true, __( 'Shown when Polylang or WPML is active.', 'basix-paperlight' ) );
 
 		// Footer.
 		$wp_customize->add_setting(
@@ -289,12 +289,12 @@ add_action(
 			'basix_footer_layout',
 			array(
 				'section' => 'basix_footer',
-				'label'   => __( 'Footer layout', 'basix' ),
+				'label'   => __( 'Footer layout', 'basix-paperlight' ),
 				'type'    => 'radio',
 				'choices' => array(
-					'columns'  => __( 'Widget columns, then the footer line', 'basix' ),
-					'centered' => __( 'Centred', 'basix' ),
-					'minimal'  => __( 'Minimal: only the footer line and menus', 'basix' ),
+					'columns'  => __( 'Widget columns, then the footer line', 'basix-paperlight' ),
+					'centered' => __( 'Centred', 'basix-paperlight' ),
+					'minimal'  => __( 'Minimal: only the footer line and menus', 'basix-paperlight' ),
 				),
 			)
 		);
@@ -334,7 +334,7 @@ add_action(
 	'add_meta_boxes',
 	function () {
 		foreach ( array( 'page', 'post', BASIX_EVENT ) as $type ) {
-			add_meta_box( 'basix_page_options', __( 'Page layout', 'basix' ), 'basix_page_options_box', $type, 'side', 'default' );
+			add_meta_box( 'basix_page_options', __( 'Page layout', 'basix-paperlight' ), 'basix_page_options_box', $type, 'side', 'default' );
 		}
 	}
 );
@@ -358,32 +358,32 @@ function basix_page_options_box( WP_Post $post ): void {
 	};
 	$select(
 		'_basix_header',
-		__( 'Header', 'basix' ),
+		__( 'Header', 'basix-paperlight' ),
 		array(
-			''            => __( 'As in the Customizer', 'basix' ),
-			'transparent' => __( 'Transparent over the first section', 'basix' ),
-			'none'        => __( 'No header', 'basix' ),
+			''            => __( 'As in the Customizer', 'basix-paperlight' ),
+			'transparent' => __( 'Transparent over the first section', 'basix-paperlight' ),
+			'none'        => __( 'No header', 'basix-paperlight' ),
 		)
 	);
 	$select(
 		'_basix_sidebar',
-		__( 'Sidebar', 'basix' ),
+		__( 'Sidebar', 'basix-paperlight' ),
 		array(
-			''      => __( 'Default (pages none, posts as in the Customizer)', 'basix' ),
-			'right' => __( 'On the right', 'basix' ),
-			'left'  => __( 'On the left', 'basix' ),
-			'none'  => __( 'None', 'basix' ),
+			''      => __( 'Default (pages none, posts as in the Customizer)', 'basix-paperlight' ),
+			'right' => __( 'On the right', 'basix-paperlight' ),
+			'left'  => __( 'On the left', 'basix-paperlight' ),
+			'none'  => __( 'None', 'basix-paperlight' ),
 		)
 	);
 	$select(
 		'_basix_footer',
-		__( 'Footer', 'basix' ),
+		__( 'Footer', 'basix-paperlight' ),
 		array(
-			''     => __( 'As in the Customizer', 'basix' ),
-			'none' => __( 'No footer widgets and menus', 'basix' ),
+			''     => __( 'As in the Customizer', 'basix-paperlight' ),
+			'none' => __( 'No footer widgets and menus', 'basix-paperlight' ),
 		)
 	);
-	printf( '<p><label><input type="checkbox" name="_basix_hide_title" value="1"%s> %s</label><br><span class="description">%s</span></p>', checked( $value( '_basix_hide_title' ), '1', false ), esc_html__( 'Hide the title', 'basix' ), esc_html__( 'It stays in the page for screen readers.', 'basix' ) );
+	printf( '<p><label><input type="checkbox" name="_basix_hide_title" value="1"%s> %s</label><br><span class="description">%s</span></p>', checked( $value( '_basix_hide_title' ), '1', false ), esc_html__( 'Hide the title', 'basix-paperlight' ), esc_html__( 'It stays in the page for screen readers.', 'basix-paperlight' ) );
 }
 
 add_action(

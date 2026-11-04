@@ -16,30 +16,30 @@
 
 <!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"className":"text-overline"} -->
-<p class="text-overline"><?php echo esc_html_x( 'Why choose us', 'Features pattern', 'basix' ); ?></p>
+<p class="text-overline"><?php echo esc_html_x( 'Why choose us', 'Features pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
-<h2 class="wp-block-heading"><?php echo esc_html_x( 'Everything you need, nothing you do not', 'Features pattern', 'basix' ); ?></h2>
+<h2 class="wp-block-heading"><?php echo esc_html_x( 'Everything you need, nothing you do not', 'Features pattern', 'basix-paperlight' ); ?></h2>
 <!-- /wp:heading -->
 
 <!-- wp:list {"className":"check-list"} -->
 <ul class="wp-block-list check-list"><!-- wp:list-item -->
-<li><?php echo esc_html_x( 'A clear first benefit', 'Features pattern', 'basix' ); ?></li>
+<li><?php echo esc_html_x( 'A clear first benefit', 'Features pattern', 'basix-paperlight' ); ?></li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><?php echo esc_html_x( 'A second benefit that matters', 'Features pattern', 'basix' ); ?></li>
+<li><?php echo esc_html_x( 'A second benefit that matters', 'Features pattern', 'basix-paperlight' ); ?></li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><?php echo esc_html_x( 'A third reason to stay', 'Features pattern', 'basix' ); ?></li>
+<li><?php echo esc_html_x( 'A third reason to stay', 'Features pattern', 'basix-paperlight' ); ?></li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#"><?php echo esc_html_x( 'Learn more', 'Features pattern', 'basix' ); ?></a></div>
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#"><?php echo esc_html_x( 'Learn more', 'Features pattern', 'basix-paperlight' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div>

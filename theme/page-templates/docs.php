@@ -17,7 +17,7 @@ if ( ! basix_builder_location( 'single' ) ) : // A theme builder can draw this p
 	?>
 
 <div class="sidebar-layout docs-layout" <?php echo basix_component_attrs( 'docs' ); ?>>
-	<aside class="sidebar-nav docs-sidebar" id="docs-sidebar" aria-label="<?php esc_attr_e( 'Documentation', 'basix' ); ?>">
+	<aside class="sidebar-nav docs-sidebar" id="docs-sidebar" aria-label="<?php esc_attr_e( 'Documentation', 'basix-paperlight' ); ?>">
 		<div class="sidebar-scroll">
 			<p class="docs-nav-title"><a href="<?php echo esc_url( get_permalink( $basix_docs_tree['page'] ) ); ?>"><?php echo esc_html( get_the_title( $basix_docs_tree['page'] ) ); ?></a></p>
 			<nav class="docs-nav">
@@ -34,7 +34,7 @@ if ( ! basix_builder_location( 'single' ) ) : // A theme builder can draw this p
 	<div class="sidebar-main docs-main">
 		<button type="button" class="sidebar-toggle docs-toggle" aria-controls="docs-sidebar">
 			<svg class="icon-svg" aria-hidden="true"><use href="<?php echo esc_url( $basix_sprite . '#menu' ); ?>"/></svg>
-			<span><?php esc_html_e( 'Navigation', 'basix' ); ?></span>
+			<span><?php esc_html_e( 'Navigation', 'basix-paperlight' ); ?></span>
 		</button>
 
 		<?php
@@ -49,7 +49,7 @@ if ( ! basix_builder_location( 'single' ) ) : // A theme builder can draw this p
 
 		<?php $basix_neighbours = basix_docs_neighbours(); ?>
 		<?php if ( $basix_neighbours['prev'] || $basix_neighbours['next'] ) : ?>
-			<nav class="post-nav docs-pager" aria-label="<?php esc_attr_e( 'Documentation pages', 'basix' ); ?>">
+			<nav class="post-nav docs-pager" aria-label="<?php esc_attr_e( 'Documentation pages', 'basix-paperlight' ); ?>">
 				<div>
 					<?php if ( $basix_neighbours['prev'] ) : ?>
 						<a href="<?php echo esc_url( get_permalink( $basix_neighbours['prev'] ) ); ?>" rel="prev">&larr; <?php echo esc_html( get_the_title( $basix_neighbours['prev'] ) ); ?></a>

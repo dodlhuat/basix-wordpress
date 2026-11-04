@@ -14,11 +14,11 @@
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3,"textAlign":"center"} -->
-<h3 class="wp-block-heading has-text-align-center"><?php echo esc_html_x( 'Alex Morgan', 'Team pattern', 'basix' ); ?></h3>
+<h3 class="wp-block-heading has-text-align-center"><?php echo esc_html_x( 'Alex Morgan', 'Team pattern', 'basix-paperlight' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"text-secondary"} -->
-<p class="has-text-align-center text-secondary"><?php echo esc_html_x( 'Editor', 'Team pattern', 'basix' ); ?></p>
+<p class="has-text-align-center text-secondary"><?php echo esc_html_x( 'Editor', 'Team pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -28,11 +28,11 @@
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3,"textAlign":"center"} -->
-<h3 class="wp-block-heading has-text-align-center"><?php echo esc_html_x( 'Sam Lee', 'Team pattern', 'basix' ); ?></h3>
+<h3 class="wp-block-heading has-text-align-center"><?php echo esc_html_x( 'Sam Lee', 'Team pattern', 'basix-paperlight' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"text-secondary"} -->
-<p class="has-text-align-center text-secondary"><?php echo esc_html_x( 'Designer', 'Team pattern', 'basix' ); ?></p>
+<p class="has-text-align-center text-secondary"><?php echo esc_html_x( 'Designer', 'Team pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -42,11 +42,11 @@
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3,"textAlign":"center"} -->
-<h3 class="wp-block-heading has-text-align-center"><?php echo esc_html_x( 'Jo Baker', 'Team pattern', 'basix' ); ?></h3>
+<h3 class="wp-block-heading has-text-align-center"><?php echo esc_html_x( 'Jo Baker', 'Team pattern', 'basix-paperlight' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"text-secondary"} -->
-<p class="has-text-align-center text-secondary"><?php echo esc_html_x( 'Developer', 'Team pattern', 'basix' ); ?></p>
+<p class="has-text-align-center text-secondary"><?php echo esc_html_x( 'Developer', 'Team pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

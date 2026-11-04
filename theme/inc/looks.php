@@ -83,11 +83,11 @@ function basix_radius_scales(): array {
  */
 function basix_look_texts(): array {
 	return array(
-		'basix'     => array( __( 'Basix', 'basix' ), __( 'The shipped look: calm blue, Outfit type.', 'basix' ) ),
-		'editorial' => array( __( 'Editorial', 'basix' ), __( 'Warm paper, terracotta accent and serif type, for long reading.', 'basix' ) ),
-		'bold'      => array( __( 'Bold', 'basix' ), __( 'High contrast, violet accent and a geometric heading font.', 'basix' ) ),
-		'calm'      => array( __( 'Calm', 'basix' ), __( 'Soft greens, rounded corners and friendly Inter type.', 'basix' ) ),
-		'paper'     => array( __( 'Paper', 'basix' ), __( 'Black on white, square corners and a serif heading font.', 'basix' ) ),
+		'basix'     => array( __( 'Basix', 'basix-paperlight' ), __( 'The shipped look: calm blue, Outfit type.', 'basix-paperlight' ) ),
+		'editorial' => array( __( 'Editorial', 'basix-paperlight' ), __( 'Warm paper, terracotta accent and serif type, for long reading.', 'basix-paperlight' ) ),
+		'bold'      => array( __( 'Bold', 'basix-paperlight' ), __( 'High contrast, violet accent and a geometric heading font.', 'basix-paperlight' ) ),
+		'calm'      => array( __( 'Calm', 'basix-paperlight' ), __( 'Soft greens, rounded corners and friendly Inter type.', 'basix-paperlight' ) ),
+		'paper'     => array( __( 'Paper', 'basix-paperlight' ), __( 'Black on white, square corners and a serif heading font.', 'basix-paperlight' ) ),
 	);
 }
 
@@ -355,8 +355,8 @@ add_action(
 		$wp_customize->add_section(
 			'basix_look',
 			array(
-				'title'       => __( 'Look', 'basix' ),
-				'description' => __( 'A look sets the colours (light and dark), corners and fonts together. Everything below can still be changed on top of it.', 'basix' ),
+				'title'       => __( 'Look', 'basix-paperlight' ),
+				'description' => __( 'A look sets the colours (light and dark), corners and fonts together. Everything below can still be changed on top of it.', 'basix-paperlight' ),
 				'panel'       => 'basix',
 				'priority'    => 1,
 			)
@@ -372,26 +372,26 @@ add_action(
 			'basix_look',
 			array(
 				'section' => 'basix_look',
-				'label'   => __( 'Look', 'basix' ),
+				'label'   => __( 'Look', 'basix-paperlight' ),
 				'type'    => 'radio',
 				'choices' => $looks,
 			)
 		);
 
-		$font_choices = array( 'look' => __( "Follow the look's font", 'basix' ) );
+		$font_choices = array( 'look' => __( "Follow the look's font", 'basix-paperlight' ) );
 		foreach ( basix_fonts() as $slug => $font ) {
-			$font_choices[ $slug ] = 'system' === $slug ? __( 'System font (nothing to download)', 'basix' ) : $font['name'];
+			$font_choices[ $slug ] = 'system' === $slug ? __( 'System font (nothing to download)', 'basix-paperlight' ) : $font['name'];
 		}
 		$wp_customize->add_section(
 			'basix_type',
 			array(
-				'title' => __( 'Typography', 'basix' ),
+				'title' => __( 'Typography', 'basix-paperlight' ),
 				'panel' => 'basix',
 			)
 		);
 		foreach ( array(
-			'heading' => __( 'Heading font', 'basix' ),
-			'body'    => __( 'Text font', 'basix' ),
+			'heading' => __( 'Heading font', 'basix-paperlight' ),
+			'body'    => __( 'Text font', 'basix-paperlight' ),
 		) as $role => $label ) {
 			$wp_customize->add_setting(
 				'basix_font_' . $role,
@@ -421,13 +421,13 @@ add_action(
 			'basix_text_size',
 			array(
 				'section'     => 'basix_type',
-				'label'       => __( 'Text size', 'basix' ),
-				'description' => __( 'Scales the whole page: text, spacing and buttons.', 'basix' ),
+				'label'       => __( 'Text size', 'basix-paperlight' ),
+				'description' => __( 'Scales the whole page: text, spacing and buttons.', 'basix-paperlight' ),
 				'type'        => 'radio',
 				'choices'     => array(
-					'small'  => __( 'Small', 'basix' ),
-					'medium' => __( 'Medium', 'basix' ),
-					'large'  => __( 'Large', 'basix' ),
+					'small'  => __( 'Small', 'basix-paperlight' ),
+					'medium' => __( 'Medium', 'basix-paperlight' ),
+					'large'  => __( 'Large', 'basix-paperlight' ),
 				),
 			)
 		);

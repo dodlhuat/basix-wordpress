@@ -39,7 +39,7 @@
 		<?php get_template_part( 'template-parts/author-box' ); ?>
 	</article>
 
-	<nav class="post-nav" aria-label="<?php esc_attr_e( 'Post navigation', 'basix' ); ?>">
+	<nav class="post-nav" aria-label="<?php esc_attr_e( 'Post navigation', 'basix-paperlight' ); ?>">
 		<div><?php previous_post_link( '%link', '← %title' ); ?></div>
 		<div class="text-right"><?php next_post_link( '%link', '%title →' ); ?></div>
 	</nav>

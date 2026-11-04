@@ -13,13 +13,13 @@
  */
 function basix_feature_switches(): array {
 	return array(
-		'basix_show_reading_time' => __( 'Show the reading time', 'basix' ),
-		'basix_show_toc'          => __( 'Show a table of contents on long posts', 'basix' ),
-		'basix_show_progress'     => __( 'Show a reading progress bar', 'basix' ),
-		'basix_show_share'        => __( 'Show share links', 'basix' ),
-		'basix_show_author_box'   => __( 'Show the author box (when the author has a biography)', 'basix' ),
-		'basix_show_related'      => __( 'Show related posts', 'basix' ),
-		'basix_show_featured'     => __( 'Show sticky posts as a featured slider on the front page', 'basix' ),
+		'basix_show_reading_time' => __( 'Show the reading time', 'basix-paperlight' ),
+		'basix_show_toc'          => __( 'Show a table of contents on long posts', 'basix-paperlight' ),
+		'basix_show_progress'     => __( 'Show a reading progress bar', 'basix-paperlight' ),
+		'basix_show_share'        => __( 'Show share links', 'basix-paperlight' ),
+		'basix_show_author_box'   => __( 'Show the author box (when the author has a biography)', 'basix-paperlight' ),
+		'basix_show_related'      => __( 'Show related posts', 'basix-paperlight' ),
+		'basix_show_featured'     => __( 'Show sticky posts as a featured slider on the front page', 'basix-paperlight' ),
 	);
 }
 
@@ -39,7 +39,7 @@ add_action(
 		$wp_customize->add_section(
 			'basix_posts',
 			array(
-				'title' => __( 'Posts', 'basix' ),
+				'title' => __( 'Posts', 'basix-paperlight' ),
 				'panel' => 'basix',
 			)
 		);
@@ -83,7 +83,7 @@ function basix_reading_minutes( $post = null ): int {
  */
 function basix_reading_time( $post = null ): string {
 	/* translators: %s: number of minutes. */
-	return sprintf( __( '%s min read', 'basix' ), number_format_i18n( basix_reading_minutes( $post ) ) );
+	return sprintf( __( '%s min read', 'basix-paperlight' ), number_format_i18n( basix_reading_minutes( $post ) ) );
 }
 
 /**
@@ -161,7 +161,7 @@ function basix_toc_html( array $items ): string {
 	}
 	return sprintf(
 		'<div class="accordion toc"><div class="accordion-item"><input type="checkbox" id="toc-toggle" class="accordion-toggle" checked><label class="accordion-header" for="toc-toggle">%1$s</label><div class="accordion-content"><div class="accordion-body"><nav aria-label="%1$s"><ol class="toc-list">%2$s</ol></nav></div></div></div></div>',
-		esc_html__( 'On this page', 'basix' ),
+		esc_html__( 'On this page', 'basix-paperlight' ),
 		$list
 	);
 }
@@ -219,11 +219,11 @@ function basix_share_links(): array {
 	$url   = rawurlencode( get_permalink() );
 	$title = rawurlencode( wp_strip_all_tags( get_the_title() ) );
 	return array(
-		__( 'Email', 'basix' ) => 'mailto:?subject=' . $title . '&body=' . $url,
-		'X'                    => 'https://twitter.com/intent/tweet?url=' . $url . '&text=' . $title,
-		'LinkedIn'             => 'https://www.linkedin.com/sharing/share-offsite/?url=' . $url,
-		'Facebook'             => 'https://www.facebook.com/sharer/sharer.php?u=' . $url,
-		'Bluesky'              => 'https://bsky.app/intent/compose?text=' . $title . '%20' . $url,
+		__( 'Email', 'basix-paperlight' ) => 'mailto:?subject=' . $title . '&body=' . $url,
+		'X'                               => 'https://twitter.com/intent/tweet?url=' . $url . '&text=' . $title,
+		'LinkedIn'                        => 'https://www.linkedin.com/sharing/share-offsite/?url=' . $url,
+		'Facebook'                        => 'https://www.facebook.com/sharer/sharer.php?u=' . $url,
+		'Bluesky'                         => 'https://bsky.app/intent/compose?text=' . $title . '%20' . $url,
 	);
 }
 

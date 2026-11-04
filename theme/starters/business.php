@@ -6,8 +6,8 @@
  */
 
 return array(
-	'title'       => __( 'Business', 'basix' ),
-	'description' => __( 'A company site: a landing page with a hero, features, numbers, testimonials and prices, plus Services, Pricing, About, News and Contact pages.', 'basix' ),
+	'title'       => __( 'Business', 'basix-paperlight' ),
+	'description' => __( 'A company site: a landing page with a hero, features, numbers, testimonials and prices, plus Services, Pricing, About, News and Contact pages.', 'basix-paperlight' ),
 	'look'        => 'bold',
 	'mods'        => array(
 		'basix_hero_style'       => 'none',
@@ -20,7 +20,7 @@ return array(
 	'sticky'      => 0,
 	'pages'       => array(
 		'home'     => array(
-			'title'   => _x( 'Home', 'Starter page title', 'basix' ),
+			'title'   => _x( 'Home', 'Starter page title', 'basix-paperlight' ),
 			'content' => static function (): string {
 				$plans = array(
 					'Starter'                => 'Care',
@@ -104,7 +104,7 @@ return array(
 			},
 		),
 		'services' => array(
-			'title'   => _x( 'Services', 'Starter page title', 'basix' ),
+			'title'   => _x( 'Services', 'Starter page title', 'basix-paperlight' ),
 			'content' => static function (): string {
 				return basix_sc_pattern(
 					'basix/services-list',
@@ -120,7 +120,7 @@ return array(
 			},
 		),
 		'pricing'  => array(
-			'title'   => _x( 'Pricing', 'Starter page title', 'basix' ),
+			'title'   => _x( 'Pricing', 'Starter page title', 'basix-paperlight' ),
 			'content' => static function (): string {
 				$plans = array(
 					'Starter'                => 'Care',
@@ -160,7 +160,7 @@ return array(
 			},
 		),
 		'about'    => array(
-			'title'   => _x( 'About', 'Starter page title', 'basix' ),
+			'title'   => _x( 'About', 'Starter page title', 'basix-paperlight' ),
 			'content' => static function (): string {
 				return basix_sc_pattern(
 					'basix/about-split',
@@ -179,11 +179,11 @@ return array(
 			},
 		),
 		'news'     => array(
-			'title'   => _x( 'News', 'Starter page title', 'basix' ),
+			'title'   => _x( 'News', 'Starter page title', 'basix-paperlight' ),
 			'content' => '',
 		),
 		'contact'  => array(
-			'title'   => _x( 'Contact', 'Starter page title', 'basix' ),
+			'title'   => _x( 'Contact', 'Starter page title', 'basix-paperlight' ),
 			'content' => static function (): string {
 				return basix_sc_pattern( 'basix/contact-details' ) . "\n\n" . basix_sc_pattern( 'basix/contact-cta' );
 			},

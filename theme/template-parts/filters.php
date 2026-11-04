@@ -23,8 +23,8 @@ $basix_keep = array_diff_key( $basix_keep, array_flip( BASIX_FILTER_VARS ) );
 ?>
 <div class="filter-bar">
 	<?php if ( count( $basix_chips ) >= 2 ) : ?>
-		<nav class="chips filter-chips" aria-label="<?php esc_attr_e( 'Categories', 'basix' ); ?>">
-			<a class="chip clickable<?php echo is_home() && ! is_paged() && ! $basix_active ? ' selected' : ''; ?>" href="<?php echo esc_url( basix_blog_url() ); ?>"><?php esc_html_e( 'All', 'basix' ); ?></a>
+		<nav class="chips filter-chips" aria-label="<?php esc_attr_e( 'Categories', 'basix-paperlight' ); ?>">
+			<a class="chip clickable<?php echo is_home() && ! is_paged() && ! $basix_active ? ' selected' : ''; ?>" href="<?php echo esc_url( basix_blog_url() ); ?>"><?php esc_html_e( 'All', 'basix-paperlight' ); ?></a>
 			<?php foreach ( $basix_chips as $basix_chip ) : ?>
 				<a class="chip clickable<?php echo $basix_current === $basix_chip->term_id ? ' selected' : ''; ?>" href="<?php echo esc_url( get_category_link( $basix_chip ) ); ?>"><?php echo esc_html( $basix_chip->name ); ?></a>
 			<?php endforeach; ?>
@@ -34,7 +34,7 @@ $basix_keep = array_diff_key( $basix_keep, array_flip( BASIX_FILTER_VARS ) );
 	<details class="filter" <?php echo basix_component_attrs( 'filters', basix_filter_config() ); ?>>
 		<summary class="button filter-toggle">
 			<svg class="icon-svg" aria-hidden="true"><use href="<?php echo esc_url( $basix_sprite . '#filter_list' ); ?>"/></svg>
-			<span><?php esc_html_e( 'Filter', 'basix' ); ?></span>
+			<span><?php esc_html_e( 'Filter', 'basix-paperlight' ); ?></span>
 			<?php if ( $basix_active ) : ?>
 				<span class="badge badge-solid badge-info"><?php echo esc_html( number_format_i18n( count( $basix_active ) ) ); ?></span>
 			<?php endif; ?>
@@ -48,7 +48,7 @@ $basix_keep = array_diff_key( $basix_keep, array_flip( BASIX_FILTER_VARS ) );
 			<?php endforeach; ?>
 
 			<fieldset class="filter-cats">
-				<legend><?php esc_html_e( 'Categories', 'basix' ); ?></legend>
+				<legend><?php esc_html_e( 'Categories', 'basix-paperlight' ); ?></legend>
 				<?php foreach ( $basix_groups as $basix_group ) : ?>
 					<div class="filter-cat-group">
 						<div>
@@ -66,31 +66,31 @@ $basix_keep = array_diff_key( $basix_keep, array_flip( BASIX_FILTER_VARS ) );
 			</fieldset>
 
 			<fieldset class="filter-dates">
-				<legend><?php esc_html_e( 'Published between', 'basix' ); ?></legend>
-				<label><span class="text-caption"><?php esc_html_e( 'From', 'basix' ); ?></span>
+				<legend><?php esc_html_e( 'Published between', 'basix-paperlight' ); ?></legend>
+				<label><span class="text-caption"><?php esc_html_e( 'From', 'basix-paperlight' ); ?></span>
 					<input type="date" name="date_from" value="<?php echo esc_attr( $basix_values['date_from'] ); ?>"></label>
-				<label><span class="text-caption"><?php esc_html_e( 'To', 'basix' ); ?></span>
+				<label><span class="text-caption"><?php esc_html_e( 'To', 'basix-paperlight' ); ?></span>
 					<input type="date" name="date_to" value="<?php echo esc_attr( $basix_values['date_to'] ); ?>"></label>
 			</fieldset>
 
 			<div class="filter-actions">
-				<button type="submit" class="button button-primary"><?php esc_html_e( 'Apply', 'basix' ); ?></button>
-				<a class="button" href="<?php echo esc_url( $basix_base_url ); ?>"><?php esc_html_e( 'Clear', 'basix' ); ?></a>
+				<button type="submit" class="button button-primary"><?php esc_html_e( 'Apply', 'basix-paperlight' ); ?></button>
+				<a class="button" href="<?php echo esc_url( $basix_base_url ); ?>"><?php esc_html_e( 'Clear', 'basix-paperlight' ); ?></a>
 			</div>
 		</form>
 	</details>
 </div>
 
 <?php if ( $basix_active ) : ?>
-	<div class="chips filter-active" aria-label="<?php esc_attr_e( 'Active filters', 'basix' ); ?>">
+	<div class="chips filter-active" aria-label="<?php esc_attr_e( 'Active filters', 'basix-paperlight' ); ?>">
 		<?php foreach ( $basix_active as $basix_filter ) : ?>
 			<a class="chip clickable selected" href="<?php echo esc_url( $basix_filter['url'] ); ?>" aria-label="
 				<?php
 				/* translators: %s: filter, for example a category name. */
-				echo esc_attr( sprintf( __( 'Remove filter: %s', 'basix' ), $basix_filter['label'] ) );
+				echo esc_attr( sprintf( __( 'Remove filter: %s', 'basix-paperlight' ), $basix_filter['label'] ) );
 				?>
 				"><?php echo esc_html( $basix_filter['label'] ); ?> <span aria-hidden="true">&times;</span></a>
 		<?php endforeach; ?>
-		<a class="chip clickable" href="<?php echo esc_url( $basix_base_url ); ?>"><?php esc_html_e( 'Clear all', 'basix' ); ?></a>
+		<a class="chip clickable" href="<?php echo esc_url( $basix_base_url ); ?>"><?php esc_html_e( 'Clear all', 'basix-paperlight' ); ?></a>
 	</div>
 <?php endif; ?>

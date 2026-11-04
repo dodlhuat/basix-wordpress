@@ -7,7 +7,7 @@
 			<?php
 			printf(
 				/* translators: %s: number of comments. */
-				esc_html( _n( '%s comment', '%s comments', get_comments_number(), 'basix' ) ),
+				esc_html( _n( '%s comment', '%s comments', get_comments_number(), 'basix-paperlight' ) ),
 				esc_html( number_format_i18n( get_comments_number() ) )
 			);
 			?>
@@ -26,7 +26,7 @@
 	<?php endif; ?>
 
 	<?php if ( ! comments_open() && get_comments_number() ) : ?>
-		<div class="alert alert-default"><?php esc_html_e( 'Comments are closed.', 'basix' ); ?></div>
+		<div class="alert alert-default"><?php esc_html_e( 'Comments are closed.', 'basix-paperlight' ); ?></div>
 	<?php endif; ?>
 
 	<?php

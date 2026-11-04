@@ -14,11 +14,11 @@
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><?php echo esc_html_x( 'Project one', 'Portfolio pattern', 'basix' ); ?></h3>
+<h3 class="wp-block-heading"><?php echo esc_html_x( 'Project one', 'Portfolio pattern', 'basix-paperlight' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"text-secondary"} -->
-<p class="text-secondary"><?php echo esc_html_x( 'Branding', 'Portfolio pattern', 'basix' ); ?></p>
+<p class="text-secondary"><?php echo esc_html_x( 'Branding', 'Portfolio pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -28,11 +28,11 @@
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><?php echo esc_html_x( 'Project two', 'Portfolio pattern', 'basix' ); ?></h3>
+<h3 class="wp-block-heading"><?php echo esc_html_x( 'Project two', 'Portfolio pattern', 'basix-paperlight' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"text-secondary"} -->
-<p class="text-secondary"><?php echo esc_html_x( 'Website', 'Portfolio pattern', 'basix' ); ?></p>
+<p class="text-secondary"><?php echo esc_html_x( 'Website', 'Portfolio pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -42,11 +42,11 @@
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><?php echo esc_html_x( 'Project three', 'Portfolio pattern', 'basix' ); ?></h3>
+<h3 class="wp-block-heading"><?php echo esc_html_x( 'Project three', 'Portfolio pattern', 'basix-paperlight' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"text-secondary"} -->
-<p class="text-secondary"><?php echo esc_html_x( 'Editorial', 'Portfolio pattern', 'basix' ); ?></p>
+<p class="text-secondary"><?php echo esc_html_x( 'Editorial', 'Portfolio pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -56,11 +56,11 @@
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><?php echo esc_html_x( 'Project four', 'Portfolio pattern', 'basix' ); ?></h3>
+<h3 class="wp-block-heading"><?php echo esc_html_x( 'Project four', 'Portfolio pattern', 'basix-paperlight' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"text-secondary"} -->
-<p class="text-secondary"><?php echo esc_html_x( 'Illustration', 'Portfolio pattern', 'basix' ); ?></p>
+<p class="text-secondary"><?php echo esc_html_x( 'Illustration', 'Portfolio pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -70,11 +70,11 @@
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><?php echo esc_html_x( 'Project five', 'Portfolio pattern', 'basix' ); ?></h3>
+<h3 class="wp-block-heading"><?php echo esc_html_x( 'Project five', 'Portfolio pattern', 'basix-paperlight' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"text-secondary"} -->
-<p class="text-secondary"><?php echo esc_html_x( 'Packaging', 'Portfolio pattern', 'basix' ); ?></p>
+<p class="text-secondary"><?php echo esc_html_x( 'Packaging', 'Portfolio pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -84,11 +84,11 @@
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><?php echo esc_html_x( 'Project six', 'Portfolio pattern', 'basix' ); ?></h3>
+<h3 class="wp-block-heading"><?php echo esc_html_x( 'Project six', 'Portfolio pattern', 'basix-paperlight' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"text-secondary"} -->
-<p class="text-secondary"><?php echo esc_html_x( 'Photography', 'Portfolio pattern', 'basix' ); ?></p>
+<p class="text-secondary"><?php echo esc_html_x( 'Photography', 'Portfolio pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

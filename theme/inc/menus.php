@@ -10,9 +10,9 @@ add_action(
 	function () {
 		register_nav_menus(
 			array(
-				'primary' => __( 'Primary menu', 'basix' ),
-				'footer'  => __( 'Footer menu', 'basix' ),
-				'social'  => __( 'Social links', 'basix' ),
+				'primary' => __( 'Primary menu', 'basix-paperlight' ),
+				'footer'  => __( 'Footer menu', 'basix-paperlight' ),
+				'social'  => __( 'Social links', 'basix-paperlight' ),
 			)
 		);
 	}
@@ -60,7 +60,7 @@ function basix_primary_menu( string $variant ): void {
 					'container'            => 'nav',
 					'container_class'      => 'site-nav',
 					'container_id'         => 'site-nav',
-					'container_aria_label' => __( 'Primary menu', 'basix' ),
+					'container_aria_label' => __( 'Primary menu', 'basix-paperlight' ),
 					'menu_class'           => 'site-nav-list',
 					'walker'               => new Basix_Dropdown_Walker(),
 				)
@@ -101,7 +101,7 @@ function basix_footer_menus(): void {
 				'theme_location'       => 'footer',
 				'depth'                => 1,
 				'container'            => 'nav',
-				'container_aria_label' => __( 'Footer menu', 'basix' ),
+				'container_aria_label' => __( 'Footer menu', 'basix-paperlight' ),
 				'container_class'      => 'footer-nav',
 				'menu_class'           => 'footer-nav-list',
 				'fallback_cb'          => false,
@@ -115,9 +115,9 @@ function basix_footer_menus(): void {
 				'depth'                => 1,
 				'container'            => 'nav',
 				'container_class'      => 'footer-nav footer-social',
-				'container_aria_label' => __( 'Social links', 'basix' ),
+				'container_aria_label' => __( 'Social links', 'basix-paperlight' ),
 				'menu_class'           => 'footer-nav-list',
-				'link_before'          => '<span class="screen-reader-text">' . esc_html__( 'Follow on', 'basix' ) . ' </span>',
+				'link_before'          => '<span class="screen-reader-text">' . esc_html__( 'Follow on', 'basix-paperlight' ) . ' </span>',
 				'fallback_cb'          => false,
 			)
 		);

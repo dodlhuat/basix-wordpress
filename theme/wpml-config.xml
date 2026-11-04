@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Tells WPML and Polylang what to copy and what to translate for the theme: the per-page layout choices and the texts
-  of the Customizer. (Events have their own file in the Basix Events plugin.) scripts/php/check-compat.php checks that
+  of the Customizer. (Events have their own file in the Basix Paperlight Events plugin.) scripts/php/check-compat.php checks that
   every name in here still exists in the theme.
 -->
 <wpml-config>
@@ -13,7 +13,7 @@
 		<custom-field action="copy">_basix_footer</custom-field>
 	</custom-fields>
 	<admin-texts>
-		<key name="theme_mods_basix">
+		<key name="theme_mods_basix-paperlight">
 			<key name="basix_footer_text"/>
 			<key name="basix_topbar_text"/>
 			<key name="basix_header_cta_label"/>

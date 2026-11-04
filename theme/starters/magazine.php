@@ -6,8 +6,8 @@
  */
 
 return array(
-	'title'       => __( 'Magazine', 'basix' ),
-	'description' => __( 'An editorial site: warm paper and serif type, a slider of featured stories, a large first story and a sidebar.', 'basix' ),
+	'title'       => __( 'Magazine', 'basix-paperlight' ),
+	'description' => __( 'An editorial site: warm paper and serif type, a slider of featured stories, a large first story and a sidebar.', 'basix-paperlight' ),
 	'look'        => 'editorial',
 	'mods'        => array(
 		'basix_hero_style'       => 'minimal',
@@ -20,7 +20,7 @@ return array(
 	'sticky'      => 3,
 	'pages'       => array(
 		'about'   => array(
-			'title'   => _x( 'About', 'Starter page title', 'basix' ),
+			'title'   => _x( 'About', 'Starter page title', 'basix-paperlight' ),
 			'content' => static function (): string {
 				return basix_sc_pattern(
 					'basix/about-split',
@@ -41,7 +41,7 @@ return array(
 			},
 		),
 		'contact' => array(
-			'title'   => _x( 'Contact', 'Starter page title', 'basix' ),
+			'title'   => _x( 'Contact', 'Starter page title', 'basix-paperlight' ),
 			'content' => static function (): string {
 				return basix_sc_pattern( 'basix/contact-details' ) . "\n\n" . basix_sc_pattern(
 					'basix/cta-newsletter',

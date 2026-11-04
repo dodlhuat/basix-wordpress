@@ -9,12 +9,12 @@
 ?>
 <!-- wp:group {"align":"wide","className":"cta-band"} -->
 <div class="wp-block-group alignwide cta-band"><!-- wp:paragraph {"className":"cta-band-text"} -->
-<p class="cta-band-text"><?php echo esc_html_x( 'Start your project today.', 'Call to action pattern', 'basix' ); ?></p>
+<p class="cta-band-text"><?php echo esc_html_x( 'Start your project today.', 'Call to action pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#"><?php echo esc_html_x( 'Get in touch', 'Call to action pattern', 'basix' ); ?></a></div>
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#"><?php echo esc_html_x( 'Get in touch', 'Call to action pattern', 'basix-paperlight' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->

@@ -16,14 +16,14 @@ echo basix_component_attrs(
 	'share',
 	array(
 		'url'    => get_permalink(),
-		'share'  => __( 'Share', 'basix' ),
-		'copy'   => __( 'Copy link', 'basix' ),
-		'copied' => __( 'Link copied', 'basix' ),
+		'share'  => __( 'Share', 'basix-paperlight' ),
+		'copy'   => __( 'Copy link', 'basix-paperlight' ),
+		'copied' => __( 'Link copied', 'basix-paperlight' ),
 	)
 );
 ?>
 >
-	<h2 class="share-title"><?php esc_html_e( 'Share this post', 'basix' ); ?></h2>
+	<h2 class="share-title"><?php esc_html_e( 'Share this post', 'basix-paperlight' ); ?></h2>
 	<ul class="share-links chips">
 		<?php foreach ( basix_share_links() as $basix_label => $basix_url ) : ?>
 			<li><a class="chip clickable" href="<?php echo esc_url( $basix_url ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( $basix_label ); ?></a></li>

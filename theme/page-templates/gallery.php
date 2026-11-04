@@ -33,7 +33,7 @@ if ( ! basix_builder_location( 'single' ) ) : // A theme builder can draw this p
 					<?php endforeach; ?>
 				</ul>
 			</div>
-			<div class="loader hidden" role="status"><?php esc_html_e( 'Loading more…', 'basix' ); ?></div>
+			<div class="loader hidden" role="status"><?php esc_html_e( 'Loading more…', 'basix-paperlight' ); ?></div>
 		</div>
 	</article>
 		<?php

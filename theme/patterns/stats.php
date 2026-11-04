@@ -14,7 +14,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"stat-label text-secondary"} -->
-<p class="stat-label text-secondary"><?php echo esc_html_x( 'Articles published', 'Stats pattern', 'basix' ); ?></p>
+<p class="stat-label text-secondary"><?php echo esc_html_x( 'Articles published', 'Stats pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -24,7 +24,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"stat-label text-secondary"} -->
-<p class="stat-label text-secondary"><?php echo esc_html_x( 'Monthly readers', 'Stats pattern', 'basix' ); ?></p>
+<p class="stat-label text-secondary"><?php echo esc_html_x( 'Monthly readers', 'Stats pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -34,7 +34,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"stat-label text-secondary"} -->
-<p class="stat-label text-secondary"><?php echo esc_html_x( 'Reader satisfaction', 'Stats pattern', 'basix' ); ?></p>
+<p class="stat-label text-secondary"><?php echo esc_html_x( 'Reader satisfaction', 'Stats pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

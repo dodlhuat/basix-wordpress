@@ -52,27 +52,27 @@ function basix_calendar_config(): array {
 		'daysFull'        => $days_full,
 		'daysShort'       => $days_short,
 		'text'            => array(
-			'today'      => __( 'Today', 'basix' ),
-			'month'      => __( 'Month', 'basix' ),
-			'week'       => __( 'Week', 'basix' ),
-			'agenda'     => __( 'Agenda', 'basix' ),
-			'allDay'     => __( 'All day', 'basix' ),
-			'noEvents'   => __( 'No posts', 'basix' ),
-			'previous'   => __( 'Previous', 'basix' ),
-			'next'       => __( 'Next', 'basix' ),
-			'viewSwitch' => __( 'Calendar view', 'basix' ),
-			'calendar'   => __( 'Posts calendar', 'basix' ),
-			'error'      => __( 'The posts could not be loaded. Please try again.', 'basix' ),
-			'categories' => __( 'Event categories', 'basix' ),
+			'today'      => __( 'Today', 'basix-paperlight' ),
+			'month'      => __( 'Month', 'basix-paperlight' ),
+			'week'       => __( 'Week', 'basix-paperlight' ),
+			'agenda'     => __( 'Agenda', 'basix-paperlight' ),
+			'allDay'     => __( 'All day', 'basix-paperlight' ),
+			'noEvents'   => __( 'No posts', 'basix-paperlight' ),
+			'previous'   => __( 'Previous', 'basix-paperlight' ),
+			'next'       => __( 'Next', 'basix-paperlight' ),
+			'viewSwitch' => __( 'Calendar view', 'basix-paperlight' ),
+			'calendar'   => __( 'Posts calendar', 'basix-paperlight' ),
+			'error'      => __( 'The posts could not be loaded. Please try again.', 'basix-paperlight' ),
+			'categories' => __( 'Event categories', 'basix-paperlight' ),
 		),
 	);
 }
 
 /**
- * The calendar's markup, for the page templates and for the block and shortcode of the Basix Events plugin.
+ * The calendar's markup, for the page templates and for the block and shortcode of the Basix Paperlight Events plugin.
  *
  * @param string $view   Starting view: month, week or agenda.
- * @param string $source What it shows: events (from the Basix Events plugin; posts when it is off) or posts (blog posts by publish date).
+ * @param string $source What it shows: events (from the Basix Paperlight Events plugin; posts when it is off) or posts (blog posts by publish date).
  * @param string $category Event category slugs, comma separated (only these events; the category chips are then left out).
  * @return string
  */

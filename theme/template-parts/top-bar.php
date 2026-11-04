@@ -15,7 +15,7 @@ if ( '' === $basix_text && ! $basix_social && '' === $basix_language && ! $basix
 	return;
 }
 ?>
-<div class="top-bar" role="region" aria-label="<?php esc_attr_e( 'Notice and links', 'basix' ); ?>">
+<div class="top-bar" role="region" aria-label="<?php esc_attr_e( 'Notice and links', 'basix-paperlight' ); ?>">
 	<div class="container top-bar-inner">
 		<p class="top-bar-text"<?php echo '' === $basix_text ? ' hidden' : ''; ?>><?php echo esc_html( $basix_text ); ?></p>
 		<?php if ( $basix_social ) : ?>
@@ -26,9 +26,9 @@ if ( '' === $basix_text && ! $basix_social && '' === $basix_language && ! $basix
 					'depth'                => 1,
 					'container'            => 'nav',
 					'container_class'      => 'top-bar-social',
-					'container_aria_label' => __( 'Follow us', 'basix' ),
+					'container_aria_label' => __( 'Follow us', 'basix-paperlight' ),
 					'menu_class'           => 'top-bar-list',
-					'link_before'          => '<span class="screen-reader-text">' . esc_html__( 'Follow on', 'basix' ) . ' </span>',
+					'link_before'          => '<span class="screen-reader-text">' . esc_html__( 'Follow on', 'basix-paperlight' ) . ' </span>',
 					'fallback_cb'          => false,
 				)
 			);

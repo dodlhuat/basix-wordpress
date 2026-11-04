@@ -5,8 +5,8 @@
 	<?php get_template_part( 'template-parts/event-categories' ); ?>
 	<?php $basix_feed_category = is_tax( BASIX_EVENT_CAT ) ? get_queried_object()->slug : ''; ?>
 	<p class="event-subscribe text-caption">
-		<a href="<?php echo esc_url( basix_events_feed_url( $basix_feed_category, true ) ); ?>"><?php esc_html_e( 'Subscribe in your calendar app', 'basix' ); ?></a>
-		· <a href="<?php echo esc_url( basix_events_feed_url( $basix_feed_category ) ); ?>"><?php esc_html_e( 'Calendar file (.ics)', 'basix' ); ?></a>
+		<a href="<?php echo esc_url( basix_events_feed_url( $basix_feed_category, true ) ); ?>"><?php esc_html_e( 'Subscribe in your calendar app', 'basix-paperlight' ); ?></a>
+		· <a href="<?php echo esc_url( basix_events_feed_url( $basix_feed_category ) ); ?>"><?php esc_html_e( 'Calendar file (.ics)', 'basix-paperlight' ); ?></a>
 	</p>
 <?php else : ?>
 	<?php get_template_part( 'template-parts/filters' ); ?>
@@ -25,9 +25,9 @@
 	</div></div>
 	<?php basix_pagination(); ?>
 <?php elseif ( $basix_event_day ) : ?>
-	<div class="alert alert-info"><?php esc_html_e( 'No events on this day.', 'basix' ); ?></div>
+	<div class="alert alert-info"><?php esc_html_e( 'No events on this day.', 'basix-paperlight' ); ?></div>
 <?php else : ?>
-	<div class="alert alert-info"><?php esc_html_e( 'Nothing found.', 'basix' ); ?></div>
+	<div class="alert alert-info"><?php esc_html_e( 'Nothing found.', 'basix-paperlight' ); ?></div>
 	<?php
 	if ( ! is_search() && ! basix_active_filters() ) {
 		get_search_form();}

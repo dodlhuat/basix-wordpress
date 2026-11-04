@@ -15,8 +15,8 @@ $basix_show  = static function ( string $day ): string {
 	return wp_date( get_option( 'date_format' ), strtotime( $day . ' 12:00:00 UTC' ), new DateTimeZone( 'UTC' ) );
 };
 ?>
-<nav class="filter-bar event-day-nav" aria-label="<?php esc_attr_e( 'Days', 'basix' ); ?>">
+<nav class="filter-bar event-day-nav" aria-label="<?php esc_attr_e( 'Days', 'basix-paperlight' ); ?>">
 	<a class="chip clickable" href="<?php echo esc_url( basix_event_day_url( $basix_prev ) ); ?>" rel="nofollow">← <?php echo esc_html( $basix_show( $basix_prev ) ); ?></a>
-	<a class="chip clickable" href="<?php echo esc_url( get_post_type_archive_link( BASIX_EVENT ) ); ?>"><?php esc_html_e( 'All coming events', 'basix' ); ?></a>
+	<a class="chip clickable" href="<?php echo esc_url( get_post_type_archive_link( BASIX_EVENT ) ); ?>"><?php esc_html_e( 'All coming events', 'basix-paperlight' ); ?></a>
 	<a class="chip clickable" href="<?php echo esc_url( basix_event_day_url( $basix_next ) ); ?>" rel="nofollow"><?php echo esc_html( $basix_show( $basix_next ) ); ?> →</a>
 </nav>

@@ -69,7 +69,7 @@ add_action(
 		$wp_customize->add_panel(
 			'basix',
 			array(
-				'title'    => __( 'Basix', 'basix' ),
+				'title'    => __( 'Basix', 'basix-paperlight' ),
 				'priority' => 30,
 			)
 		);
@@ -78,7 +78,7 @@ add_action(
 		$wp_customize->add_section(
 			'basix_header',
 			array(
-				'title' => __( 'Header', 'basix' ),
+				'title' => __( 'Header', 'basix-paperlight' ),
 				'panel' => 'basix',
 			)
 		);
@@ -93,13 +93,13 @@ add_action(
 			'basix_header_layout',
 			array(
 				'section'     => 'basix_header',
-				'label'       => __( 'Menu layout', 'basix' ),
-				'description' => __( 'How the primary menu is shown.', 'basix' ),
+				'label'       => __( 'Menu layout', 'basix-paperlight' ),
+				'description' => __( 'How the primary menu is shown.', 'basix-paperlight' ),
 				'type'        => 'radio',
 				'choices'     => array(
-					'inline' => __( 'Inline links with dropdowns (menu button on small screens)', 'basix' ),
-					'flyout' => __( 'Menu button opening a side panel', 'basix' ),
-					'push'   => __( 'Menu button pushing the page aside, with drill-down panels', 'basix' ),
+					'inline' => __( 'Inline links with dropdowns (menu button on small screens)', 'basix-paperlight' ),
+					'flyout' => __( 'Menu button opening a side panel', 'basix-paperlight' ),
+					'push'   => __( 'Menu button pushing the page aside, with drill-down panels', 'basix-paperlight' ),
 				),
 			)
 		);
@@ -108,7 +108,7 @@ add_action(
 		$wp_customize->add_section(
 			'basix_colors',
 			array(
-				'title' => __( 'Colours', 'basix' ),
+				'title' => __( 'Colours', 'basix-paperlight' ),
 				'panel' => 'basix',
 			)
 		);
@@ -123,13 +123,13 @@ add_action(
 			'basix_color_mode',
 			array(
 				'section'     => 'basix_colors',
-				'label'       => __( 'Default colour mode', 'basix' ),
-				'description' => __( 'What visitors see first. They can always switch with the button in the header.', 'basix' ),
+				'label'       => __( 'Default colour mode', 'basix-paperlight' ),
+				'description' => __( 'What visitors see first. They can always switch with the button in the header.', 'basix-paperlight' ),
 				'type'        => 'radio',
 				'choices'     => array(
-					'system' => __( "Follow the visitor's device", 'basix' ),
-					'light'  => __( 'Light', 'basix' ),
-					'dark'   => __( 'Dark', 'basix' ),
+					'system' => __( "Follow the visitor's device", 'basix-paperlight' ),
+					'light'  => __( 'Light', 'basix-paperlight' ),
+					'dark'   => __( 'Dark', 'basix-paperlight' ),
 				),
 			)
 		);
@@ -147,8 +147,8 @@ add_action(
 				'basix_accent_light',
 				array(
 					'section'     => 'basix_colors',
-					'label'       => __( 'Accent colour (light mode)', 'basix' ),
-					'description' => __( 'Leave it as it is to use the look\'s own accent colour.', 'basix' ),
+					'label'       => __( 'Accent colour (light mode)', 'basix-paperlight' ),
+					'description' => __( 'Leave it as it is to use the look\'s own accent colour.', 'basix-paperlight' ),
 				)
 			)
 		);
@@ -166,7 +166,7 @@ add_action(
 				'basix_accent_dark',
 				array(
 					'section' => 'basix_colors',
-					'label'   => __( 'Accent colour (dark mode)', 'basix' ),
+					'label'   => __( 'Accent colour (dark mode)', 'basix-paperlight' ),
 				)
 			)
 		);
@@ -175,7 +175,7 @@ add_action(
 		$wp_customize->add_section(
 			'basix_layout',
 			array(
-				'title' => __( 'Layout', 'basix' ),
+				'title' => __( 'Layout', 'basix-paperlight' ),
 				'panel' => 'basix',
 			)
 		);
@@ -190,12 +190,12 @@ add_action(
 			'basix_sidebar_position',
 			array(
 				'section' => 'basix_layout',
-				'label'   => __( 'Sidebar', 'basix' ),
+				'label'   => __( 'Sidebar', 'basix-paperlight' ),
 				'type'    => 'radio',
 				'choices' => array(
-					'right' => __( 'Right', 'basix' ),
-					'left'  => __( 'Left', 'basix' ),
-					'none'  => __( 'No sidebar', 'basix' ),
+					'right' => __( 'Right', 'basix-paperlight' ),
+					'left'  => __( 'Left', 'basix-paperlight' ),
+					'none'  => __( 'No sidebar', 'basix-paperlight' ),
 				),
 			)
 		);
@@ -211,13 +211,13 @@ add_action(
 			'basix_card_layout',
 			array(
 				'section'     => 'basix_layout',
-				'label'       => __( 'Post list layout', 'basix' ),
-				'description' => __( 'How posts are shown on the blog, in archives and in search.', 'basix' ),
+				'label'       => __( 'Post list layout', 'basix-paperlight' ),
+				'description' => __( 'How posts are shown on the blog, in archives and in search.', 'basix-paperlight' ),
 				'type'        => 'radio',
 				'choices'     => array(
-					'grid'     => __( 'Grid of cards', 'basix' ),
-					'list'     => __( 'List, with the picture beside the text', 'basix' ),
-					'magazine' => __( 'Magazine: a large first post, then a grid', 'basix' ),
+					'grid'     => __( 'Grid of cards', 'basix-paperlight' ),
+					'list'     => __( 'List, with the picture beside the text', 'basix-paperlight' ),
+					'magazine' => __( 'Magazine: a large first post, then a grid', 'basix-paperlight' ),
 				),
 			)
 		);
@@ -226,7 +226,7 @@ add_action(
 		$wp_customize->add_section(
 			'basix_front',
 			array(
-				'title' => __( 'Front page', 'basix' ),
+				'title' => __( 'Front page', 'basix-paperlight' ),
 				'panel' => 'basix',
 			)
 		);
@@ -241,13 +241,13 @@ add_action(
 			'basix_hero_style',
 			array(
 				'section'     => 'basix_front',
-				'label'       => __( 'Introduction at the top', 'basix' ),
-				'description' => __( 'It shows the site title and tagline (Settings, General).', 'basix' ),
+				'label'       => __( 'Introduction at the top', 'basix-paperlight' ),
+				'description' => __( 'It shows the site title and tagline (Settings, General).', 'basix-paperlight' ),
 				'type'        => 'radio',
 				'choices'     => array(
-					'card'    => __( 'Centred, in a card', 'basix' ),
-					'minimal' => __( 'Left-aligned, without a card', 'basix' ),
-					'none'    => __( 'None', 'basix' ),
+					'card'    => __( 'Centred, in a card', 'basix-paperlight' ),
+					'minimal' => __( 'Left-aligned, without a card', 'basix-paperlight' ),
+					'none'    => __( 'None', 'basix-paperlight' ),
 				),
 			)
 		);
@@ -256,7 +256,7 @@ add_action(
 		$wp_customize->add_section(
 			'basix_footer',
 			array(
-				'title' => __( 'Footer', 'basix' ),
+				'title' => __( 'Footer', 'basix-paperlight' ),
 				'panel' => 'basix',
 			)
 		);
@@ -271,8 +271,8 @@ add_action(
 			'basix_footer_text',
 			array(
 				'section'     => 'basix_footer',
-				'label'       => __( 'Footer text', 'basix' ),
-				'description' => __( 'Leave empty for the default copyright line. {year} and {site} are replaced.', 'basix' ),
+				'label'       => __( 'Footer text', 'basix-paperlight' ),
+				'description' => __( 'Leave empty for the default copyright line. {year} and {site} are replaced.', 'basix-paperlight' ),
 				'type'        => 'textarea',
 			)
 		);
@@ -287,7 +287,7 @@ add_action(
 			'basix_back_to_top',
 			array(
 				'section' => 'basix_footer',
-				'label'   => __( 'Show the back to top button', 'basix' ),
+				'label'   => __( 'Show the back to top button', 'basix-paperlight' ),
 				'type'    => 'checkbox',
 			)
 		);

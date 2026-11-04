@@ -27,7 +27,7 @@ function basix_starters(): array {
 	}
 	$starters = array();
 	foreach ( array( 'blog', 'magazine', 'business', 'events' ) as $slug ) {
-		// The events starter needs the Basix Events plugin.
+		// The events starter needs the Basix Paperlight Events plugin.
 		if ( 'events' === $slug && ! basix_has_events() ) {
 			continue;
 		}
@@ -209,7 +209,7 @@ function basix_starter_post( array &$record, array $args ): int {
 function basix_starter_import( string $slug, string $look = '' ) {
 	$starters = basix_starters();
 	if ( ! isset( $starters[ $slug ] ) ) {
-		return new WP_Error( 'basix_starter', __( 'That starter site does not exist.', 'basix' ) );
+		return new WP_Error( 'basix_starter', __( 'That starter site does not exist.', 'basix-paperlight' ) );
 	}
 	$def = $starters[ $slug ];
 	if ( '' === $look || ! isset( basix_looks()[ $look ] ) ) {
@@ -351,7 +351,7 @@ function basix_starter_import( string $slug, string $look = '' ) {
 	$locations = (array) get_theme_mod( 'nav_menu_locations', array() );
 	basix_starter_remember( $record, 'mods', 'nav_menu_locations' );
 	foreach ( (array) $def['menus'] as $location => $items ) {
-		$menu = wp_create_nav_menu( sprintf( '%s (%s)', $def['title'], 'primary' === $location ? __( 'Primary', 'basix' ) : __( 'Footer', 'basix' ) ) );
+		$menu = wp_create_nav_menu( sprintf( '%s (%s)', $def['title'], 'primary' === $location ? __( 'Primary', 'basix-paperlight' ) : __( 'Footer', 'basix-paperlight' ) ) );
 		if ( is_wp_error( $menu ) ) {
 			// A menu with that name exists already (an earlier import); take a unique one.
 			$menu = wp_create_nav_menu( sprintf( '%s (%s) %d', $def['title'], $location, time() ) );
@@ -371,13 +371,13 @@ function basix_starter_import( string $slug, string $look = '' ) {
 			} elseif ( 'events-archive' === $item ) {
 				$args += array(
 					'menu-item-type'  => 'custom',
-					'menu-item-title' => __( 'Events', 'basix' ),
+					'menu-item-title' => __( 'Events', 'basix-paperlight' ),
 					'menu-item-url'   => get_post_type_archive_link( BASIX_EVENT ),
 				);
 			} elseif ( 'home' === $item ) {
 				$args += array(
 					'menu-item-type'  => 'custom',
-					'menu-item-title' => __( 'Home', 'basix' ),
+					'menu-item-title' => __( 'Home', 'basix-paperlight' ),
 					'menu-item-url'   => home_url( '/' ),
 				);
 			} else {
@@ -417,8 +417,8 @@ function basix_starter_widgets( array &$record ): void {
 		'footer-1' => array(
 			'text',
 			array(
-				'title'  => __( 'About', 'basix' ),
-				'text'   => __( 'A small site built with the Basix theme. Say here what it is about.', 'basix' ),
+				'title'  => __( 'About', 'basix-paperlight' ),
+				'text'   => __( 'A small site built with the Basix theme. Say here what it is about.', 'basix-paperlight' ),
 				'filter' => false,
 				'visual' => false,
 			),
@@ -426,14 +426,14 @@ function basix_starter_widgets( array &$record ): void {
 		'footer-2' => array(
 			'recent-posts',
 			array(
-				'title'  => __( 'Latest posts', 'basix' ),
+				'title'  => __( 'Latest posts', 'basix-paperlight' ),
 				'number' => 3,
 			),
 		),
 		'footer-3' => array(
 			'tag_cloud',
 			array(
-				'title'    => __( 'Tags', 'basix' ),
+				'title'    => __( 'Tags', 'basix-paperlight' ),
 				'taxonomy' => 'post_tag',
 			),
 		),

@@ -10,7 +10,7 @@
 	<article <?php post_class( 'entry' ); ?>>
 		<header class="entry-header<?php echo esc_attr( basix_title_class() ); ?>">
 			<?php basix_post_terms(); ?>
-			<p class="text-overline"><?php esc_html_e( 'Event', 'basix' ); ?></p>
+			<p class="text-overline"><?php esc_html_e( 'Event', 'basix-paperlight' ); ?></p>
 			<h1><?php the_title(); ?></h1>
 			<?php basix_post_meta(); ?>
 		</header>
@@ -25,11 +25,11 @@
 	</article>
 
 		<?php if ( ! post_password_required() ) : ?>
-		<p><a class="button" href="<?php echo esc_url( basix_event_ics_url( get_the_ID() ) ); ?>" rel="nofollow"><?php esc_html_e( 'Add to calendar', 'basix' ); ?></a></p>
+		<p><a class="button" href="<?php echo esc_url( basix_event_ics_url( get_the_ID() ) ); ?>" rel="nofollow"><?php esc_html_e( 'Add to calendar', 'basix-paperlight' ); ?></a></p>
 	<?php endif; ?>
 
-	<nav class="post-nav" aria-label="<?php esc_attr_e( 'Back to the events', 'basix' ); ?>">
-		<div><a href="<?php echo esc_url( get_post_type_archive_link( BASIX_EVENT ) ); ?>">← <?php esc_html_e( 'All events', 'basix' ); ?></a></div>
+	<nav class="post-nav" aria-label="<?php esc_attr_e( 'Back to the events', 'basix-paperlight' ); ?>">
+		<div><a href="<?php echo esc_url( get_post_type_archive_link( BASIX_EVENT ) ); ?>">← <?php esc_html_e( 'All events', 'basix-paperlight' ); ?></a></div>
 	</nav>
 <?php endwhile; ?>
 

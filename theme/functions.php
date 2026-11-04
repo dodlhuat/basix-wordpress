@@ -10,7 +10,7 @@ add_filter(
 	'the_title',
 	function ( $title, $post_id = 0 ) {
 		if ( '' === trim( (string) $title ) && ! is_admin() && 'nav_menu_item' !== get_post_type( (int) $post_id ) ) {
-			return __( '(no title)', 'basix' );
+			return __( '(no title)', 'basix-paperlight' );
 		}
 		return $title;
 	},
@@ -18,7 +18,7 @@ add_filter(
 	2
 );
 
-// Events come from the companion plugin Basix Events (the directory does not let a theme register a post type). The
+// Events come from the companion plugin Basix Paperlight Events (the directory does not let a theme register a post type). The
 // two names are defined here too, so the templates also work while the plugin is off.
 if ( ! defined( 'BASIX_EVENT' ) ) {
 	define( 'BASIX_EVENT', 'basix-event' );
@@ -27,7 +27,7 @@ if ( ! defined( 'BASIX_EVENT_CAT' ) ) {
 	define( 'BASIX_EVENT_CAT', 'basix-event-category' );
 }
 
-/** Whether the Basix Events plugin is active. */
+/** Whether the Basix Paperlight Events plugin is active. */
 function basix_has_events(): bool {
 	return defined( 'BASIX_EVENTS_VERSION' );
 }
@@ -55,7 +55,7 @@ require_once __DIR__ . '/inc/setup/admin.php';
 add_action(
 	'after_setup_theme',
 	function () {
-		load_theme_textdomain( 'basix', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'basix-paperlight', get_template_directory() . '/languages' );
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'automatic-feed-links' );
 		add_theme_support( 'post-thumbnails' );
@@ -104,22 +104,22 @@ add_filter(
 add_action(
 	'init',
 	function () {
-		register_block_pattern_category( 'basix', [ 'label' => __( 'Basix', 'basix' ) ] );
+		register_block_pattern_category( 'basix', [ 'label' => __( 'Basix', 'basix-paperlight' ) ] );
 		foreach ( [
-			'hero'           => __( 'Basix: Hero', 'basix' ),
-			'features'       => __( 'Basix: Features', 'basix' ),
-			'pricing'        => __( 'Basix: Pricing', 'basix' ),
-			'testimonials'   => __( 'Basix: Testimonials', 'basix' ),
-			'team'           => __( 'Basix: Team', 'basix' ),
-			'logos'          => __( 'Basix: Logos', 'basix' ),
-			'stats'          => __( 'Basix: Numbers', 'basix' ),
-			'call-to-action' => __( 'Basix: Call to action', 'basix' ),
-			'newsletter'     => __( 'Basix: Newsletter', 'basix' ),
-			'contact'        => __( 'Basix: Contact', 'basix' ),
-			'portfolio'      => __( 'Basix: Portfolio and pictures', 'basix' ),
-			'blog'           => __( 'Basix: Blog', 'basix' ),
-			'faq'            => __( 'Basix: Questions', 'basix' ),
-			'about'          => __( 'Basix: About', 'basix' ),
+			'hero'           => __( 'Basix: Hero', 'basix-paperlight' ),
+			'features'       => __( 'Basix: Features', 'basix-paperlight' ),
+			'pricing'        => __( 'Basix: Pricing', 'basix-paperlight' ),
+			'testimonials'   => __( 'Basix: Testimonials', 'basix-paperlight' ),
+			'team'           => __( 'Basix: Team', 'basix-paperlight' ),
+			'logos'          => __( 'Basix: Logos', 'basix-paperlight' ),
+			'stats'          => __( 'Basix: Numbers', 'basix-paperlight' ),
+			'call-to-action' => __( 'Basix: Call to action', 'basix-paperlight' ),
+			'newsletter'     => __( 'Basix: Newsletter', 'basix-paperlight' ),
+			'contact'        => __( 'Basix: Contact', 'basix-paperlight' ),
+			'portfolio'      => __( 'Basix: Portfolio and pictures', 'basix-paperlight' ),
+			'blog'           => __( 'Basix: Blog', 'basix-paperlight' ),
+			'faq'            => __( 'Basix: Questions', 'basix-paperlight' ),
+			'about'          => __( 'Basix: About', 'basix-paperlight' ),
 		] as $basix_slug => $basix_label ) {
 			register_block_pattern_category( 'basix-' . $basix_slug, [ 'label' => $basix_label ] );
 		}
@@ -128,56 +128,56 @@ add_action(
 			'core/group',
 			[
 				'name'  => 'card',
-				'label' => __( 'Card', 'basix' ),
+				'label' => __( 'Card', 'basix-paperlight' ),
 			]
 		);
 		register_block_style(
 			'core/group',
 			[
 				'name'  => 'card-bordered',
-				'label' => __( 'Bordered card', 'basix' ),
+				'label' => __( 'Bordered card', 'basix-paperlight' ),
 			]
 		);
 		register_block_style(
 			'core/paragraph',
 			[
 				'name'  => 'lead',
-				'label' => __( 'Lead text', 'basix' ),
+				'label' => __( 'Lead text', 'basix-paperlight' ),
 			]
 		);
 		register_block_style(
 			'core/table',
 			[
 				'name'  => 'sortable',
-				'label' => __( 'Sortable', 'basix' ),
+				'label' => __( 'Sortable', 'basix-paperlight' ),
 			]
 		);
 		register_block_style(
 			'core/gallery',
 			[
 				'name'  => 'masonry',
-				'label' => __( 'Masonry', 'basix' ),
+				'label' => __( 'Masonry', 'basix-paperlight' ),
 			]
 		);
 		register_block_style(
 			'core/image',
 			[
 				'name'  => 'framed',
-				'label' => __( 'Framed', 'basix' ),
+				'label' => __( 'Framed', 'basix-paperlight' ),
 			]
 		);
 		register_block_style(
 			'core/image',
 			[
 				'name'  => 'shadow',
-				'label' => __( 'Soft shadow', 'basix' ),
+				'label' => __( 'Soft shadow', 'basix-paperlight' ),
 			]
 		);
 		register_block_style(
 			'core/image',
 			[
 				'name'  => 'circle',
-				'label' => __( 'Circle', 'basix' ),
+				'label' => __( 'Circle', 'basix-paperlight' ),
 			]
 		);
 	}
@@ -205,9 +205,9 @@ add_action(
 	function () {
 		register_sidebar(
 			[
-				'name'          => __( 'Sidebar', 'basix' ),
+				'name'          => __( 'Sidebar', 'basix-paperlight' ),
 				'id'            => 'sidebar-1',
-				'description'   => __( 'Shown next to blog posts and archives.', 'basix' ),
+				'description'   => __( 'Shown next to blog posts and archives.', 'basix-paperlight' ),
 				'before_widget' => '<div id="%1$s" class="widget card card-bordered %2$s">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h2 class="widget-title">',
@@ -221,11 +221,11 @@ add_action(
 				[
 					'name'          => sprintf(
 						/* translators: %d: column number. */
-						__( 'Footer column %d', 'basix' ),
+						__( 'Footer column %d', 'basix-paperlight' ),
 						$column
 					),
 					'id'            => 'footer-' . $column,
-					'description'   => __( 'Shown in the footer.', 'basix' ),
+					'description'   => __( 'Shown in the footer.', 'basix-paperlight' ),
 					'before_widget' => '<div id="%1$s" class="widget footer-widget %2$s">',
 					'after_widget'  => '</div>',
 					'before_title'  => '<h2 class="widget-title">',
@@ -278,13 +278,13 @@ add_filter( 'get_the_archive_title_prefix', '__return_empty_string' );
 
 function basix_archive_label(): string {
 	return match ( true ) {
-		is_category() => __( 'Category', 'basix' ),
-		is_tag()      => __( 'Tag', 'basix' ),
-		is_author()   => __( 'Author', 'basix' ),
-		is_date()     => __( 'Archive', 'basix' ),
-		is_post_type_archive( BASIX_EVENT ), is_tax( BASIX_EVENT_CAT ) => __( 'Events', 'basix' ),
-		is_tax()      => get_taxonomy( get_queried_object()->taxonomy )->labels->singular_name ?? __( 'Archive', 'basix' ),
-		default       => __( 'Archive', 'basix' ),
+		is_category() => __( 'Category', 'basix-paperlight' ),
+		is_tag()      => __( 'Tag', 'basix-paperlight' ),
+		is_author()   => __( 'Author', 'basix-paperlight' ),
+		is_date()     => __( 'Archive', 'basix-paperlight' ),
+		is_post_type_archive( BASIX_EVENT ), is_tax( BASIX_EVENT_CAT ) => __( 'Events', 'basix-paperlight' ),
+		is_tax()      => get_taxonomy( get_queried_object()->taxonomy )->labels->singular_name ?? __( 'Archive', 'basix-paperlight' ),
+		default       => __( 'Archive', 'basix-paperlight' ),
 	};
 }
 
@@ -350,7 +350,7 @@ function basix_post_meta(): void {
 		$site_time = is_singular( BASIX_EVENT ) && basix_event_zone( get_the_ID() )->getName() !== wp_timezone()->getName() ? basix_event_when( get_the_ID(), true, $occurrence ) : '';
 		if ( $site_time ) {
 			/* translators: %s: the event's time in the site's time zone. */
-			echo ' · ' . esc_html( sprintf( __( '%s in site time', 'basix' ), $site_time ) );
+			echo ' · ' . esc_html( sprintf( __( '%s in site time', 'basix-paperlight' ), $site_time ) );
 		}
 		echo '</p>';
 		return;
@@ -386,7 +386,7 @@ function basix_breadcrumb(): void {
 	if ( is_front_page() || is_page_template( 'page-templates/landing.php' ) ) {
 		return;
 	}
-	$crumbs = [ [ __( 'Home', 'basix' ), home_url( '/' ) ] ];
+	$crumbs = [ [ __( 'Home', 'basix-paperlight' ), home_url( '/' ) ] ];
 	if ( is_singular( 'post' ) ) {
 		$cat = get_the_category()[0] ?? null;
 		if ( $cat ) {
@@ -400,9 +400,9 @@ function basix_breadcrumb(): void {
 	if ( is_singular() ) {
 		$current = get_the_title();
 	} elseif ( is_404() ) {
-		$current = __( 'Not found', 'basix' );
+		$current = __( 'Not found', 'basix-paperlight' );
 	} elseif ( is_search() ) {
-		$current = __( 'Search results', 'basix' );
+		$current = __( 'Search results', 'basix-paperlight' );
 	} elseif ( is_category() || is_tag() || is_tax() ) {
 		$current = single_term_title( '', false );
 	} elseif ( is_home() && ! is_front_page() ) {
@@ -410,7 +410,7 @@ function basix_breadcrumb(): void {
 	} else {
 		$current = wp_strip_all_tags( get_the_archive_title() );
 	}
-	echo '<nav class="breadcrumb" aria-label="' . esc_attr__( 'Breadcrumb', 'basix' ) . '"><ol>';
+	echo '<nav class="breadcrumb" aria-label="' . esc_attr__( 'Breadcrumb', 'basix-paperlight' ) . '"><ol>';
 	foreach ( $crumbs as [$label, $url] ) {
 		printf( '<li><a href="%s">%s</a></li>', esc_url( $url ), esc_html( $label ) );
 	}
@@ -429,7 +429,7 @@ function basix_pagination(): void {
 	if ( ! $links ) {
 		return;
 	}
-	echo '<nav class="pagination" aria-label="' . esc_attr__( 'Pagination', 'basix' ) . '"><div class="button-group">';
+	echo '<nav class="pagination" aria-label="' . esc_attr__( 'Pagination', 'basix-paperlight' ) . '"><div class="button-group">';
 	foreach ( $links as $link ) {
 		$current = str_contains( $link, 'current' );
 		$link    = preg_replace( '/class=[\'"]([^\'"]*)[\'"]/', 'class="button' . ( $current ? ' button-primary' : '' ) . '"', $link, 1 );
@@ -467,7 +467,7 @@ function basix_comment( $comment, $args, $depth ): void {
 				<time class="text-caption" datetime="<?php comment_time( DATE_W3C ); ?>"><?php comment_date(); ?></time>
 			</div>
 			<?php if ( '0' === $comment->comment_approved ) : ?>
-				<div class="alert alert-warning"><?php esc_html_e( 'Your comment is awaiting moderation.', 'basix' ); ?></div>
+				<div class="alert alert-warning"><?php esc_html_e( 'Your comment is awaiting moderation.', 'basix-paperlight' ); ?></div>
 			<?php endif; ?>
 			<?php comment_text(); ?>
 			<div class="card-footer">
@@ -517,9 +517,9 @@ add_filter(
 			get_header();
 			?>
 		<section class="entry comment-error">
-			<h1><?php esc_html_e( 'Your comment could not be submitted', 'basix' ); ?></h1>
+			<h1><?php esc_html_e( 'Your comment could not be submitted', 'basix-paperlight' ); ?></h1>
 			<div class="alert alert-error"><?php echo wp_kses_post( $message ); ?></div>
-			<p><button type="button" class="button button-primary" onclick="history.back()"><?php esc_html_e( 'Go back', 'basix' ); ?></button></p>
+			<p><button type="button" class="button button-primary" onclick="history.back()"><?php esc_html_e( 'Go back', 'basix-paperlight' ); ?></button></p>
 		</section>
 			<?php
 			get_footer();
@@ -539,16 +539,16 @@ add_action(
 			'<script type="application/json" id="basix-i18n">%s</script>',
 			wp_json_encode(
 				[
-					'required'  => __( 'Please fill out this field.', 'basix' ),
-					'email'     => __( 'Please enter a valid email address.', 'basix' ),
-					'url'       => __( 'Please enter a valid URL.', 'basix' ),
-					'enlarge'   => __( 'View larger image', 'basix' ),
-					'openImage' => __( 'Open image', 'basix' ),
-					'code'      => __( 'Code', 'basix' ),
-					'table'     => __( 'Table', 'basix' ),
-					'carousel'  => __( 'Featured posts', 'basix' ),
+					'required'  => __( 'Please fill out this field.', 'basix-paperlight' ),
+					'email'     => __( 'Please enter a valid email address.', 'basix-paperlight' ),
+					'url'       => __( 'Please enter a valid URL.', 'basix-paperlight' ),
+					'enlarge'   => __( 'View larger image', 'basix-paperlight' ),
+					'openImage' => __( 'Open image', 'basix-paperlight' ),
+					'code'      => __( 'Code', 'basix-paperlight' ),
+					'table'     => __( 'Table', 'basix-paperlight' ),
+					'carousel'  => __( 'Featured posts', 'basix-paperlight' ),
 					/* translators: 1: number of this slide, 2: number of slides. */
-					'slide'     => __( 'Slide %1$d of %2$d', 'basix' ),
+					'slide'     => __( 'Slide %1$d of %2$d', 'basix-paperlight' ),
 				]
 			)
 		);
@@ -564,12 +564,12 @@ add_filter(
 		?>
 	<form action="<?php echo esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ); ?>" class="post-password-form" method="post">
 		<input type="hidden" name="redirect_to" value="<?php echo esc_attr( get_permalink( $post ) ); ?>">
-		<div class="alert alert-info"><?php esc_html_e( 'This content is password-protected. To view it, please enter the password below.', 'basix' ); ?></div>
+		<div class="alert alert-info"><?php esc_html_e( 'This content is password-protected. To view it, please enter the password below.', 'basix-paperlight' ); ?></div>
 		<div class="form-group<?php echo $invalid_password ? ' error' : ''; ?>">
-			<label for="<?php echo esc_attr( $id ); ?>"><?php esc_html_e( 'Password', 'basix' ); ?></label>
+			<label for="<?php echo esc_attr( $id ); ?>"><?php esc_html_e( 'Password', 'basix-paperlight' ); ?></label>
 			<div class="input-group">
 				<input name="post_password" id="<?php echo esc_attr( $id ); ?>" type="password" spellcheck="false" required<?php echo $invalid_password ? ' aria-invalid="true" aria-describedby="error-' . esc_attr( $id ) . '"' : ''; ?>>
-				<button type="submit" class="button button-primary"><?php echo esc_html_x( 'Enter', 'post password form', 'basix' ); ?></button>
+				<button type="submit" class="button button-primary"><?php echo esc_html_x( 'Enter', 'post password form', 'basix-paperlight' ); ?></button>
 			</div>
 			<?php if ( $invalid_password ) : ?>
 				<div class="form-hint" id="error-<?php echo esc_attr( $id ); ?>" role="alert"><?php echo esc_html( $invalid_password ); ?></div>

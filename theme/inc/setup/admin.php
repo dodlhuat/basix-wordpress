@@ -18,7 +18,7 @@ add_action(
 add_action(
 	'admin_menu',
 	function () {
-		add_theme_page( __( 'Basix setup', 'basix' ), __( 'Basix setup', 'basix' ), 'edit_theme_options', 'basix-setup', 'basix_setup_page' );
+		add_theme_page( __( 'Basix setup', 'basix-paperlight' ), __( 'Basix setup', 'basix-paperlight' ), 'edit_theme_options', 'basix-setup', 'basix_setup_page' );
 	}
 );
 
@@ -35,10 +35,10 @@ add_action(
 		$dismiss = wp_nonce_url( admin_url( 'admin-post.php?action=basix_dismiss_welcome' ), 'basix_dismiss_welcome' );
 		?>
 		<div class="notice notice-info">
-			<p><strong><?php esc_html_e( 'Thank you for choosing Basix.', 'basix' ); ?></strong> <?php esc_html_e( 'Pick a look and a starter site in a minute, or start from scratch.', 'basix' ); ?></p>
+			<p><strong><?php esc_html_e( 'Thank you for choosing Basix.', 'basix-paperlight' ); ?></strong> <?php esc_html_e( 'Pick a look and a starter site in a minute, or start from scratch.', 'basix-paperlight' ); ?></p>
 			<p>
-				<a class="button button-primary" href="<?php echo esc_url( admin_url( 'themes.php?page=basix-setup' ) ); ?>"><?php esc_html_e( 'Set up your site', 'basix' ); ?></a>
-				<a class="button" href="<?php echo esc_url( $dismiss ); ?>"><?php esc_html_e( 'Not now', 'basix' ); ?></a>
+				<a class="button button-primary" href="<?php echo esc_url( admin_url( 'themes.php?page=basix-setup' ) ); ?>"><?php esc_html_e( 'Set up your site', 'basix-paperlight' ); ?></a>
+				<a class="button" href="<?php echo esc_url( $dismiss ); ?>"><?php esc_html_e( 'Not now', 'basix-paperlight' ); ?></a>
 			</p>
 		</div>
 		<?php
@@ -82,7 +82,7 @@ add_action(
 	function () {
 		check_admin_referer( 'basix_setup' );
 		if ( ! current_user_can( 'edit_theme_options' ) ) {
-			wp_die( esc_html__( 'You are not allowed to do this.', 'basix' ), '', array( 'response' => 403 ) );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'basix-paperlight' ), '', array( 'response' => 403 ) );
 		}
 		$starter = isset( $_POST['starter'] ) ? sanitize_key( wp_unslash( $_POST['starter'] ) ) : '';
 		$look    = isset( $_POST['look'] ) ? sanitize_key( wp_unslash( $_POST['look'] ) ) : '';
@@ -107,7 +107,7 @@ add_action(
 	function () {
 		check_admin_referer( 'basix_setup_undo' );
 		if ( ! current_user_can( 'edit_theme_options' ) ) {
-			wp_die( esc_html__( 'You are not allowed to do this.', 'basix' ), '', array( 'response' => 403 ) );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'basix-paperlight' ), '', array( 'response' => 403 ) );
 		}
 		$record = basix_starter_undo();
 		basix_setup_redirect( 'undo', (string) ( $record['slug'] ?? '' ) );
@@ -170,23 +170,23 @@ function basix_setup_page(): void {
 			.basix-setup .undo{background:#fff;border:1px solid #c3c4c7;border-left:4px solid #dba617;padding:.5rem 1rem 1rem;margin:1rem 0}
 			.basix-setup ul.links{list-style:disc;margin-inline-start:1.25rem}
 		</style>
-		<h1><?php esc_html_e( 'Set up Basix', 'basix' ); ?></h1>
-		<p><?php esc_html_e( 'Choose how your site looks, and start from a ready-made site if you like. Nothing you have made is deleted: an import only adds, and Undo removes exactly what it added.', 'basix' ); ?></p>
+		<h1><?php esc_html_e( 'Set up Basix', 'basix-paperlight' ); ?></h1>
+		<p><?php esc_html_e( 'Choose how your site looks, and start from a ready-made site if you like. Nothing you have made is deleted: an import only adds, and Undo removes exactly what it added.', 'basix-paperlight' ); ?></p>
 
 		<?php if ( 'import' === $done && $done_name ) : ?>
 			<div class="notice notice-success"><p>
 				<?php
 				/* translators: %s: name of the starter site. */
-				echo esc_html( sprintf( __( 'The %s starter site is ready.', 'basix' ), $done_name ) );
+				echo esc_html( sprintf( __( 'The %s starter site is ready.', 'basix-paperlight' ), $done_name ) );
 				?>
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'View your site', 'basix' ); ?></a>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'View your site', 'basix-paperlight' ); ?></a>
 			</p></div>
 		<?php elseif ( 'look' === $done ) : ?>
-			<div class="notice notice-success"><p><?php esc_html_e( 'The look is set.', 'basix' ); ?> <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'View your site', 'basix' ); ?></a></p></div>
+			<div class="notice notice-success"><p><?php esc_html_e( 'The look is set.', 'basix-paperlight' ); ?> <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'View your site', 'basix-paperlight' ); ?></a></p></div>
 		<?php elseif ( 'undo' === $done ) : ?>
-			<div class="notice notice-success"><p><?php esc_html_e( 'The import was undone. Your settings are back as they were.', 'basix' ); ?></p></div>
+			<div class="notice notice-success"><p><?php esc_html_e( 'The import was undone. Your settings are back as they were.', 'basix-paperlight' ); ?></p></div>
 		<?php elseif ( 'error' === $done ) : ?>
-			<div class="notice notice-error"><p><?php esc_html_e( 'That did not work. Nothing was changed that you cannot undo here.', 'basix' ); ?></p></div>
+			<div class="notice notice-error"><p><?php esc_html_e( 'That did not work. Nothing was changed that you cannot undo here.', 'basix-paperlight' ); ?></p></div>
 		<?php endif; ?>
 
 		<?php if ( $record && $starter ) : ?>
@@ -194,18 +194,18 @@ function basix_setup_page(): void {
 			$made = (array) $record['created']['posts'];
 			?>
 			<div class="undo">
-				<h2><?php esc_html_e( 'Your current starter site', 'basix' ); ?></h2>
+				<h2><?php esc_html_e( 'Your current starter site', 'basix-paperlight' ); ?></h2>
 				<p>
 					<?php
 					/* translators: 1: starter site name, 2: number of pages, posts, events and pictures added. */
-					echo esc_html( sprintf( __( '%1$s was added on %2$s with %3$d items (pages, posts, events and pictures).', 'basix' ), $starter['title'], wp_date( get_option( 'date_format' ), (int) $record['time'] ), count( $made ) ) );
+					echo esc_html( sprintf( __( '%1$s was added on %2$s with %3$d items (pages, posts, events and pictures).', 'basix-paperlight' ), $starter['title'], wp_date( get_option( 'date_format' ), (int) $record['time'] ), count( $made ) ) );
 					?>
 				</p>
-				<p><?php esc_html_e( 'Undo removes what it added and puts your settings back. Changes you made to the added pages and posts are lost with them.', 'basix' ); ?></p>
+				<p><?php esc_html_e( 'Undo removes what it added and puts your settings back. Changes you made to the added pages and posts are lost with them.', 'basix-paperlight' ); ?></p>
 				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 					<input type="hidden" name="action" value="basix_setup_undo">
 					<?php wp_nonce_field( 'basix_setup_undo' ); ?>
-					<button class="button" type="submit"><?php esc_html_e( 'Undo this import', 'basix' ); ?></button>
+					<button class="button" type="submit"><?php esc_html_e( 'Undo this import', 'basix-paperlight' ); ?></button>
 				</form>
 			</div>
 		<?php endif; ?>
@@ -214,12 +214,12 @@ function basix_setup_page(): void {
 			<input type="hidden" name="action" value="basix_setup">
 			<?php wp_nonce_field( 'basix_setup' ); ?>
 
-			<h2><?php esc_html_e( '1. Pick a look', 'basix' ); ?></h2>
+			<h2><?php esc_html_e( '1. Pick a look', 'basix-paperlight' ); ?></h2>
 			<ul class="cards">
 				<li><label class="card-choice">
 					<input type="radio" name="look" value="" checked>
-					<strong><?php esc_html_e( "The starter site's own look", 'basix' ); ?></strong>
-					<p><?php esc_html_e( 'Each starter site suggests one. Without a starter, your current look stays.', 'basix' ); ?></p>
+					<strong><?php esc_html_e( "The starter site's own look", 'basix-paperlight' ); ?></strong>
+					<p><?php esc_html_e( 'Each starter site suggests one. Without a starter, your current look stays.', 'basix-paperlight' ); ?></p>
 				</label></li>
 				<?php foreach ( basix_looks() as $slug => $look ) : ?>
 					<li><label class="card-choice">
@@ -231,12 +231,12 @@ function basix_setup_page(): void {
 				<?php endforeach; ?>
 			</ul>
 
-			<h2><?php esc_html_e( '2. Pick a starter site', 'basix' ); ?></h2>
+			<h2><?php esc_html_e( '2. Pick a starter site', 'basix-paperlight' ); ?></h2>
 			<ul class="cards">
 				<li><label class="card-choice">
 					<input type="radio" name="starter" value="" checked>
-					<strong><?php esc_html_e( 'No content, only the look', 'basix' ); ?></strong>
-					<p><?php esc_html_e( 'Keep your site as it is and only change how it looks.', 'basix' ); ?></p>
+					<strong><?php esc_html_e( 'No content, only the look', 'basix-paperlight' ); ?></strong>
+					<p><?php esc_html_e( 'Keep your site as it is and only change how it looks.', 'basix-paperlight' ); ?></p>
 				</label></li>
 				<?php foreach ( basix_starters() as $slug => $def ) : ?>
 					<?php $counts = basix_starter_counts( $def ); ?>
@@ -248,33 +248,33 @@ function basix_setup_page(): void {
 							<li>
 								<?php
 								/* translators: 1: number of pages, 2: number of sample posts, 3: number of sample events. */
-								echo esc_html( sprintf( __( '%1$d pages, %2$d posts, %3$d events', 'basix' ), $counts['pages'], $counts['posts'], $counts['events'] ) );
+								echo esc_html( sprintf( __( '%1$d pages, %2$d posts, %3$d events', 'basix-paperlight' ), $counts['pages'], $counts['posts'], $counts['events'] ) );
 								?>
 							</li>
-							<li><?php echo esc_html( sprintf( /* translators: %s: look name. */ __( 'Look: %s', 'basix' ), basix_looks()[ $def['look'] ]['title'] ?? $def['look'] ) ); ?></li>
+							<li><?php echo esc_html( sprintf( /* translators: %s: look name. */ __( 'Look: %s', 'basix-paperlight' ), basix_looks()[ $def['look'] ]['title'] ?? $def['look'] ) ); ?></li>
 						</ul>
 					</label></li>
 				<?php endforeach; ?>
 			</ul>
-			<p><button class="button button-primary button-hero" type="submit"><?php esc_html_e( 'Set up my site', 'basix' ); ?></button></p>
+			<p><button class="button button-primary button-hero" type="submit"><?php esc_html_e( 'Set up my site', 'basix-paperlight' ); ?></button></p>
 		</form>
 
-		<h2><?php esc_html_e( '3. Make it yours', 'basix' ); ?></h2>
+		<h2><?php esc_html_e( '3. Make it yours', 'basix-paperlight' ); ?></h2>
 		<ul class="links">
-			<li><a href="<?php echo esc_url( admin_url( 'customize.php?autofocus[section]=title_tagline' ) ); ?>"><?php esc_html_e( 'Site name, tagline and logo', 'basix' ); ?></a></li>
-			<li><a href="<?php echo esc_url( admin_url( 'nav-menus.php' ) ); ?>"><?php esc_html_e( 'Menus', 'basix' ); ?></a></li>
-			<li><a href="<?php echo esc_url( admin_url( 'customize.php?autofocus[panel]=basix' ) ); ?>"><?php esc_html_e( 'Colours, fonts, header, layout and more (Basix options)', 'basix' ); ?></a></li>
-			<li><a href="<?php echo esc_url( admin_url( 'widgets.php' ) ); ?>"><?php esc_html_e( 'Sidebar and footer widgets', 'basix' ); ?></a></li>
+			<li><a href="<?php echo esc_url( admin_url( 'customize.php?autofocus[section]=title_tagline' ) ); ?>"><?php esc_html_e( 'Site name, tagline and logo', 'basix-paperlight' ); ?></a></li>
+			<li><a href="<?php echo esc_url( admin_url( 'nav-menus.php' ) ); ?>"><?php esc_html_e( 'Menus', 'basix-paperlight' ); ?></a></li>
+			<li><a href="<?php echo esc_url( admin_url( 'customize.php?autofocus[panel]=basix' ) ); ?>"><?php esc_html_e( 'Colours, fonts, header, layout and more (Basix options)', 'basix-paperlight' ); ?></a></li>
+			<li><a href="<?php echo esc_url( admin_url( 'widgets.php' ) ); ?>"><?php esc_html_e( 'Sidebar and footer widgets', 'basix-paperlight' ); ?></a></li>
 		</ul>
 
-		<h2><?php esc_html_e( '4. Learn more', 'basix' ); ?></h2>
+		<h2><?php esc_html_e( '4. Learn more', 'basix-paperlight' ); ?></h2>
 		<ul class="links">
-			<li><?php esc_html_e( 'In the editor, open the block inserter, choose Patterns and look for the groups that start with Basix.', 'basix' ); ?></li>
+			<li><?php esc_html_e( 'In the editor, open the block inserter, choose Patterns and look for the groups that start with Basix.', 'basix-paperlight' ); ?></li>
 			<?php if ( $pattern ) : ?>
-				<li><a href="<?php echo esc_url( get_permalink( $pattern ) ); ?>"><?php esc_html_e( 'See every pattern on one page', 'basix' ); ?></a></li>
+				<li><a href="<?php echo esc_url( get_permalink( $pattern ) ); ?>"><?php esc_html_e( 'See every pattern on one page', 'basix-paperlight' ); ?></a></li>
 			<?php endif; ?>
 			<?php if ( wp_get_theme()->get( 'ThemeURI' ) ) : ?>
-				<li><a href="<?php echo esc_url( wp_get_theme()->get( 'ThemeURI' ) ); ?>"><?php esc_html_e( 'Documentation and support', 'basix' ); ?></a></li>
+				<li><a href="<?php echo esc_url( wp_get_theme()->get( 'ThemeURI' ) ); ?>"><?php esc_html_e( 'Documentation and support', 'basix-paperlight' ); ?></a></li>
 			<?php endif; ?>
 		</ul>
 	</div>

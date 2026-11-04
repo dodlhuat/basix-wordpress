@@ -38,7 +38,7 @@ function basix_gallery_config( int $page_id ): array {
 		'restUrl' => rest_url( 'wp/v2/media' ),
 		'perPage' => BASIX_GALLERY_PAGE_SIZE,
 		'parent'  => $page_id,
-		'error'   => __( 'The images could not be loaded. Please try again.', 'basix' ),
+		'error'   => __( 'The images could not be loaded. Please try again.', 'basix-paperlight' ),
 	);
 }
 

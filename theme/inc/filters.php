@@ -141,10 +141,10 @@ function basix_active_filters(): array {
 			$label = $from . ' – ' . $to;
 		} elseif ( $from ) {
 			/* translators: %s: date. */
-			$label = sprintf( __( 'From %s', 'basix' ), $from );
+			$label = sprintf( __( 'From %s', 'basix-paperlight' ), $from );
 		} else {
 			/* translators: %s: date. */
-			$label = sprintf( __( 'Until %s', 'basix' ), $to );
+			$label = sprintf( __( 'Until %s', 'basix-paperlight' ), $to );
 		}
 		$active[] = array(
 			'label' => $label,
@@ -236,15 +236,15 @@ function basix_filter_config(): array {
 		'days'       => array_values( $wp_locale->weekday_abbrev ),
 		'months'     => array_values( $wp_locale->month ),
 		'text'       => array(
-			'title'      => __( 'Filter posts', 'basix' ),
-			'search'     => __( 'Search categories…', 'basix' ),
-			'selectAll'  => __( 'Select all', 'basix' ),
-			'clear'      => __( 'Clear', 'basix' ),
-			'empty'      => __( 'No categories found', 'basix' ),
-			'none'       => __( 'Any category', 'basix' ),
-			'dateRange'  => __( 'Choose a date range', 'basix' ),
-			'categories' => __( 'Categories', 'basix' ),
-			'dates'      => __( 'Published between', 'basix' ),
+			'title'      => __( 'Filter posts', 'basix-paperlight' ),
+			'search'     => __( 'Search categories…', 'basix-paperlight' ),
+			'selectAll'  => __( 'Select all', 'basix-paperlight' ),
+			'clear'      => __( 'Clear', 'basix-paperlight' ),
+			'empty'      => __( 'No categories found', 'basix-paperlight' ),
+			'none'       => __( 'Any category', 'basix-paperlight' ),
+			'dateRange'  => __( 'Choose a date range', 'basix-paperlight' ),
+			'categories' => __( 'Categories', 'basix-paperlight' ),
+			'dates'      => __( 'Published between', 'basix-paperlight' ),
 		),
 	);
 }

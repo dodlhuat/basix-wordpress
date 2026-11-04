@@ -15,15 +15,15 @@
 
 <!-- wp:group {"className":"timeline-content"} -->
 <div class="wp-block-group timeline-content"><!-- wp:paragraph {"className":"timeline-time"} -->
-<p class="timeline-time"><?php echo esc_html_x( 'January 2026', 'Timeline pattern', 'basix' ); ?></p>
+<p class="timeline-time"><?php echo esc_html_x( 'January 2026', 'Timeline pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":4,"className":"timeline-title"} -->
-<h4 class="wp-block-heading timeline-title"><?php echo esc_html_x( 'The beginning', 'Timeline pattern', 'basix' ); ?></h4>
+<h4 class="wp-block-heading timeline-title"><?php echo esc_html_x( 'The beginning', 'Timeline pattern', 'basix-paperlight' ); ?></h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><?php echo esc_html_x( 'What happened, in a sentence.', 'Timeline pattern', 'basix' ); ?></p>
+<p><?php echo esc_html_x( 'What happened, in a sentence.', 'Timeline pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -35,15 +35,15 @@
 
 <!-- wp:group {"className":"timeline-content"} -->
 <div class="wp-block-group timeline-content"><!-- wp:paragraph {"className":"timeline-time"} -->
-<p class="timeline-time"><?php echo esc_html_x( 'April 2026', 'Timeline pattern', 'basix' ); ?></p>
+<p class="timeline-time"><?php echo esc_html_x( 'April 2026', 'Timeline pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":4,"className":"timeline-title"} -->
-<h4 class="wp-block-heading timeline-title"><?php echo esc_html_x( 'A big step forward', 'Timeline pattern', 'basix' ); ?></h4>
+<h4 class="wp-block-heading timeline-title"><?php echo esc_html_x( 'A big step forward', 'Timeline pattern', 'basix-paperlight' ); ?></h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><?php echo esc_html_x( 'What happened, in a sentence.', 'Timeline pattern', 'basix' ); ?></p>
+<p><?php echo esc_html_x( 'What happened, in a sentence.', 'Timeline pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
@@ -55,15 +55,15 @@
 
 <!-- wp:group {"className":"timeline-content"} -->
 <div class="wp-block-group timeline-content"><!-- wp:paragraph {"className":"timeline-time"} -->
-<p class="timeline-time"><?php echo esc_html_x( 'Today', 'Timeline pattern', 'basix' ); ?></p>
+<p class="timeline-time"><?php echo esc_html_x( 'Today', 'Timeline pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":4,"className":"timeline-title"} -->
-<h4 class="wp-block-heading timeline-title"><?php echo esc_html_x( 'Where we are now', 'Timeline pattern', 'basix' ); ?></h4>
+<h4 class="wp-block-heading timeline-title"><?php echo esc_html_x( 'Where we are now', 'Timeline pattern', 'basix-paperlight' ); ?></h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><?php echo esc_html_x( 'What is happening now, in a sentence.', 'Timeline pattern', 'basix' ); ?></p>
+<p><?php echo esc_html_x( 'What is happening now, in a sentence.', 'Timeline pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>

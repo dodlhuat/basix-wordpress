@@ -9,11 +9,11 @@
 	<?php basix_post_meta(); ?>
 	<div class="card-excerpt"><?php the_excerpt(); ?></div>
 	<div class="card-footer">
-		<a class="button button-primary" href="<?php the_permalink(); ?>"><?php esc_html_e( 'Read more', 'basix' ); ?>
+		<a class="button button-primary" href="<?php the_permalink(); ?>"><?php esc_html_e( 'Read more', 'basix-paperlight' ); ?>
 			<span class="screen-reader-text">
 			<?php
 			/* translators: %s: post title. */
-			echo esc_html( sprintf( __( 'about “%s”', 'basix' ), get_the_title() ) );
+			echo esc_html( sprintf( __( 'about “%s”', 'basix-paperlight' ), get_the_title() ) );
 			?>
 			</span></a>
 	</div>

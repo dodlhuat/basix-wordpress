@@ -12,7 +12,7 @@ if ( ! basix_feature( 'basix_show_author_box' ) || '' === trim( (string) $basix_
 	return;
 }
 ?>
-<aside class="author-box card card-bordered" aria-label="<?php esc_attr_e( 'About the author', 'basix' ); ?>">
+<aside class="author-box card card-bordered" aria-label="<?php esc_attr_e( 'About the author', 'basix-paperlight' ); ?>">
 	<?php echo get_avatar( $basix_author_id, 72, '', '', array( 'class' => 'author-avatar' ) ); ?>
 	<div class="author-details">
 		<p class="author-name"><a href="<?php echo esc_url( get_author_posts_url( $basix_author_id ) ); ?>"><?php echo esc_html( get_the_author() ); ?></a></p>

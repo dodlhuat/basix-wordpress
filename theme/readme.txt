@@ -1,4 +1,4 @@
-=== Basix ===
+=== Basix Paperlight ===
 Contributors: dodlhuat
 Requires at least: 6.5
 Tested up to: 7.1
@@ -6,7 +6,7 @@ Requires PHP: 8.1
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Tags: blog, news, grid-layout, right-sidebar, two-columns, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, threaded-comments, translation-ready, block-patterns, block-styles, wide-blocks, editor-style, accessibility-ready
+Tags: blog, news, grid-layout, right-sidebar, two-columns, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, threaded-comments, translation-ready, block-patterns, block-styles, wide-blocks, editor-style
 
 A fast, accessible blog and magazine theme built entirely from the Basix component library.
 
@@ -18,7 +18,7 @@ Basix is a classic WordPress theme made from the components of the Basix library
 * Sticky header with an accessible flyout menu on small screens
 * Image cards, a hero section and a sidebar with widgets
 * Styled comments, password-protected posts, search and 404 pages
-* Events through the optional companion plugin Basix Events (events, repeats, time zones, a calendar block and shortcode, a calendar feed); header layouts, a featured-post slider, a gallery and portfolio page, and post filters
+* Events through the optional companion plugin Basix Paperlight Events (events, repeats, time zones, a calendar block and shortcode, a calendar feed); header layouts, a featured-post slider, a gallery and portfolio page, and post filters
 * Forty block patterns in 14 groups (hero, features, pricing, testimonials, team, logos, numbers, call to action, newsletter, contact, portfolio, blog, questions, about) and block styles, plus starter content for new sites
 * Five looks (Basix, Editorial, Bold, Calm, Paper) that set colours for light and dark mode, corners and fonts together, with a choice of fonts and text size on top
 * A setup screen (Appearance > Basix setup) with four ready-made starter sites (Blog, Magazine, Business, Events) that can be imported and undone
@@ -37,7 +37,7 @@ Basix is a classic WordPress theme made from the components of the Basix library
 
 = Does it need a plugin? =
 
-No. Basix works without any plugin. For events (with repeats, time zones and a calendar feed) install the companion plugin Basix Events; the theme then styles the events and shows the calendar.
+No. Basix Paperlight works without any plugin. For events (with repeats, time zones and a calendar feed) install the companion plugin Basix Paperlight Events; the theme then styles the events and shows the calendar.
 
 = Does it support dark mode? =
 
@@ -54,8 +54,8 @@ Yes. It follows the visitor's system preference, and the toggle in the header le
 
 == Copyright ==
 
-Basix WordPress theme, (C) 2026 Andi Bauer
-Basix is distributed under the terms of the GNU GPL v2 or later.
+Basix Paperlight WordPress theme, (C) 2026 Andi Bauer
+Basix Paperlight is distributed under the terms of the GNU GPL v2 or later.
 
 == Resources ==
 

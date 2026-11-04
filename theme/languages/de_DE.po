@@ -2,9 +2,9 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Basix 0.1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/basix\n"
-"POT-Creation-Date: 2026-11-04T09:05:10+00:00\n"
+"Project-Id-Version: Basix Paperlight 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/basix-paperlight\n"
+"POT-Creation-Date: 2026-11-04T10:10:22+00:00\n"
 "PO-Revision-Date: 2026-10-28 12:00+0000\n"
 "Last-Translator: Andi Bauer\n"
 "Language-Team: German\n"
@@ -17,9 +17,9 @@ msgstr ""
 "X-Generator: WP-CLI 2.12.0\n"
 
 #. Theme Name of the theme
-#: style.css functions.php:106 inc/customizer.php:72 inc/looks.php:86
-msgid "Basix"
-msgstr ""
+#: style.css
+msgid "Basix Paperlight"
+msgstr "Basix Paperlight"
 
 #. Theme URI of the theme
 #: style.css
@@ -32,7 +32,11 @@ msgid ""
 "A fast, accessible blog and magazine theme built entirely from the Basix "
 "component library, with light and dark mode, five looks, header and footer "
 "options, forty block patterns, four starter sites and right-to-left support."
-msgstr "Ein schnelles, barrierefreies Blog- und Magazin-Theme, ganz aus der Komponentenbibliothek Basix gebaut, mit hellem und dunklem Modus, fünf Looks, Optionen für Kopf- und Fußbereich, vierzig Block-Mustern, vier Starter-Websites und Unterstützung für Sprachen von rechts nach links."
+msgstr ""
+"Ein schnelles, barrierefreies Blog- und Magazin-Theme, ganz aus der "
+"Komponentenbibliothek Basix gebaut, mit hellem und dunklem Modus, fünf "
+"Looks, Optionen für Kopf- und Fußbereich, vierzig Block-Mustern, vier "
+"Starter-Websites und Unterstützung für Sprachen von rechts nach links."
 
 #. Author of the theme
 #: style.css
@@ -101,210 +105,214 @@ msgstr "Noch nichts veröffentlicht."
 msgid "(no title)"
 msgstr "(kein Titel)"
 
-#: functions.php:108
+#: functions.php:107 inc/customizer.php:72 inc/looks.php:86
+msgid "Basix"
+msgstr ""
+
+#: functions.php:109
 msgid "Basix: Hero"
 msgstr "Basix: Hero"
 
-#: functions.php:109
+#: functions.php:110
 msgid "Basix: Features"
 msgstr "Basix: Funktionen"
 
-#: functions.php:110
+#: functions.php:111
 msgid "Basix: Pricing"
 msgstr "Basix: Preise"
 
-#: functions.php:111
+#: functions.php:112
 msgid "Basix: Testimonials"
 msgstr "Basix: Stimmen"
 
-#: functions.php:112
+#: functions.php:113
 msgid "Basix: Team"
 msgstr "Basix: Team"
 
-#: functions.php:113
+#: functions.php:114
 msgid "Basix: Logos"
 msgstr "Basix: Logos"
 
-#: functions.php:114
+#: functions.php:115
 msgid "Basix: Numbers"
 msgstr "Basix: Zahlen"
 
-#: functions.php:115
+#: functions.php:116
 msgid "Basix: Call to action"
 msgstr "Basix: Handlungsaufruf"
 
-#: functions.php:116
+#: functions.php:117
 msgid "Basix: Newsletter"
 msgstr "Basix: Newsletter"
 
-#: functions.php:117
+#: functions.php:118
 msgid "Basix: Contact"
 msgstr "Basix: Kontakt"
 
-#: functions.php:118
+#: functions.php:119
 msgid "Basix: Portfolio and pictures"
 msgstr "Basix: Portfolio und Bilder"
 
-#: functions.php:119
+#: functions.php:120
 msgid "Basix: Blog"
 msgstr "Basix: Blog"
 
-#: functions.php:120
+#: functions.php:121
 msgid "Basix: Questions"
 msgstr "Basix: Fragen"
 
-#: functions.php:121
+#: functions.php:122
 msgid "Basix: About"
 msgstr "Basix: Über uns"
 
-#: functions.php:130
+#: functions.php:131
 msgid "Card"
 msgstr "Karte"
 
-#: functions.php:137
+#: functions.php:138
 msgid "Bordered card"
 msgstr "Karte mit Rahmen"
 
-#: functions.php:144
+#: functions.php:145
 msgid "Lead text"
 msgstr "Einleitungstext"
 
-#: functions.php:151
+#: functions.php:152
 msgid "Sortable"
 msgstr "Sortierbar"
 
-#: functions.php:158
+#: functions.php:159
 msgid "Masonry"
 msgstr "Mauerwerk"
 
-#: functions.php:165
+#: functions.php:166
 msgid "Framed"
 msgstr "Mit Rahmen"
 
-#: functions.php:172
+#: functions.php:173
 msgid "Soft shadow"
 msgstr "Weicher Schatten"
 
-#: functions.php:179
+#: functions.php:180
 msgid "Circle"
 msgstr "Kreis"
 
-#: functions.php:207 inc/customizer.php:193 inc/header.php:370 sidebar.php:4
+#: functions.php:208 inc/customizer.php:193 inc/header.php:370 sidebar.php:4
 msgid "Sidebar"
 msgstr "Seitenleiste"
 
-#: functions.php:209
+#: functions.php:210
 msgid "Shown next to blog posts and archives."
 msgstr "Wird neben Beiträgen und Archiven angezeigt."
 
 #. translators: %d: column number.
-#: functions.php:223
+#: functions.php:224
 #, php-format
 msgid "Footer column %d"
 msgstr "Footer-Spalte %d"
 
-#: functions.php:227
+#: functions.php:228
 msgid "Shown in the footer."
 msgstr "Wird im Footer angezeigt."
 
-#: functions.php:280
+#: functions.php:281
 msgid "Category"
 msgstr "Kategorie"
 
-#: functions.php:281
+#: functions.php:282
 msgid "Tag"
 msgstr "Schlagwort"
 
-#: functions.php:282
+#: functions.php:283
 msgid "Author"
 msgstr "Autor"
 
-#: functions.php:283 functions.php:285 functions.php:286
+#: functions.php:284 functions.php:286 functions.php:287
 msgid "Archive"
 msgstr "Archiv"
 
-#: functions.php:284 inc/schema.php:114 inc/schema.php:137 inc/schema.php:140
+#: functions.php:285 inc/schema.php:114 inc/schema.php:137 inc/schema.php:140
 #: inc/setup/importer.php:374 starters/events.php:9
 msgid "Events"
 msgstr "Veranstaltungen"
 
 #. translators: %s: the event's time in the site's time zone.
-#: functions.php:352
+#: functions.php:353
 #, php-format
 msgid "%s in site time"
 msgstr "%s in der Zeit der Website"
 
-#: functions.php:388 inc/schema.php:93 inc/setup/importer.php:380
+#: functions.php:389 inc/schema.php:93 inc/setup/importer.php:380
 msgid "Home"
 msgstr "Startseite"
 
-#: functions.php:402
+#: functions.php:403
 msgid "Not found"
 msgstr "Nicht gefunden"
 
-#: functions.php:404 inc/schema.php:151
+#: functions.php:405 inc/schema.php:151
 msgid "Search results"
 msgstr "Suchergebnisse"
 
-#: functions.php:412
+#: functions.php:413
 msgid "Breadcrumb"
 msgstr "Brotkrumennavigation"
 
-#: functions.php:431
+#: functions.php:432
 msgid "Pagination"
 msgstr "Seitennavigation"
 
-#: functions.php:469
+#: functions.php:470
 msgid "Your comment is awaiting moderation."
 msgstr "Dein Kommentar wartet auf Freischaltung."
 
-#: functions.php:519
+#: functions.php:520
 msgid "Your comment could not be submitted"
 msgstr "Dein Kommentar konnte nicht gesendet werden"
 
-#: functions.php:521
+#: functions.php:522
 msgid "Go back"
 msgstr "Zurück"
 
-#: functions.php:541
+#: functions.php:542
 msgid "Please fill out this field."
 msgstr "Bitte fülle dieses Feld aus."
 
-#: functions.php:542
+#: functions.php:543
 msgid "Please enter a valid email address."
 msgstr "Bitte gib eine gültige E-Mail-Adresse ein."
 
-#: functions.php:543
+#: functions.php:544
 msgid "Please enter a valid URL."
 msgstr "Bitte gib eine gültige URL ein."
 
-#: functions.php:544
+#: functions.php:545
 msgid "View larger image"
 msgstr "Bild vergrößern"
 
-#: functions.php:545
+#: functions.php:546
 msgid "Open image"
 msgstr "Bild öffnen"
 
-#: functions.php:546
+#: functions.php:547
 msgid "Code"
 msgstr "Code"
 
-#: functions.php:547
+#: functions.php:548
 msgid "Table"
 msgstr "Tabelle"
 
-#: functions.php:548
+#: functions.php:549
 msgid "Featured posts"
 msgstr "Ausgewählte Beiträge"
 
 #. translators: 1: number of this slide, 2: number of slides.
-#: functions.php:550
+#: functions.php:551
 #, php-format
 msgid "Slide %1$d of %2$d"
 msgstr "Folie %1$d von %2$d"
 
-#: functions.php:566
+#: functions.php:567
 msgid ""
 "This content is password-protected. To view it, please enter the password "
 "below."
@@ -312,11 +320,11 @@ msgstr ""
 "Dieser Inhalt ist passwortgeschützt. Gib unten das Passwort ein, um ihn zu "
 "sehen."
 
-#: functions.php:568
+#: functions.php:569
 msgid "Password"
 msgstr "Passwort"
 
-#: functions.php:571
+#: functions.php:572
 msgctxt "post password form"
 msgid "Enter"
 msgstr "Öffnen"

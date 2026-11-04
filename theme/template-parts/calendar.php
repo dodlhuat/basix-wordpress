@@ -73,7 +73,7 @@ echo basix_component_attrs(
 				<?php endforeach; ?>
 			</ul>
 		<?php else : ?>
-			<p><?php echo esc_html( 'events' === $basix_source ? __( 'No events this month.', 'basix' ) : __( 'No posts this month.', 'basix' ) ); ?></p>
+			<p><?php echo esc_html( 'events' === $basix_source ? __( 'No events this month.', 'basix-paperlight' ) : __( 'No posts this month.', 'basix-paperlight' ) ); ?></p>
 		<?php endif; ?>
 	</noscript>
 </div>

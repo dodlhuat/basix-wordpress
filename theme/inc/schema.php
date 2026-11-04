@@ -90,7 +90,7 @@ function basix_breadcrumb_trail(): array {
 	}
 	$trail = array(
 		array(
-			'name' => __( 'Home', 'basix' ),
+			'name' => __( 'Home', 'basix-paperlight' ),
 			'url'  => home_url( '/' ),
 		),
 	);
@@ -111,7 +111,7 @@ function basix_breadcrumb_trail(): array {
 
 	if ( is_singular( BASIX_EVENT ) ) {
 		$trail[] = array(
-			'name' => __( 'Events', 'basix' ),
+			'name' => __( 'Events', 'basix-paperlight' ),
 			'url'  => get_post_type_archive_link( BASIX_EVENT ),
 		);
 		$last    = get_the_title();
@@ -134,10 +134,10 @@ function basix_breadcrumb_trail(): array {
 		}
 		$last = get_the_title();
 	} elseif ( is_post_type_archive( BASIX_EVENT ) ) {
-		$last = __( 'Events', 'basix' );
+		$last = __( 'Events', 'basix-paperlight' );
 	} elseif ( is_tax( BASIX_EVENT_CAT ) ) {
 		$trail[] = array(
-			'name' => __( 'Events', 'basix' ),
+			'name' => __( 'Events', 'basix-paperlight' ),
 			'url'  => get_post_type_archive_link( BASIX_EVENT ),
 		);
 		$trail   = array_merge( $trail, $terms( get_queried_object_id(), BASIX_EVENT_CAT ) );
@@ -148,7 +148,7 @@ function basix_breadcrumb_trail(): array {
 	} elseif ( is_home() ) {
 		$last = get_the_title( (int) get_option( 'page_for_posts' ) );
 	} elseif ( is_search() ) {
-		$last = __( 'Search results', 'basix' );
+		$last = __( 'Search results', 'basix-paperlight' );
 	} else {
 		$last = wp_strip_all_tags( get_the_archive_title() );
 	}

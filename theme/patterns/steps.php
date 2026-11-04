@@ -14,11 +14,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><?php echo esc_html_x( 'Sign up', 'Steps pattern', 'basix' ); ?></h3>
+<h3 class="wp-block-heading"><?php echo esc_html_x( 'Sign up', 'Steps pattern', 'basix-paperlight' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><?php echo esc_html_x( 'Explain the first step.', 'Steps pattern', 'basix' ); ?></p>
+<p><?php echo esc_html_x( 'Explain the first step.', 'Steps pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -28,11 +28,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><?php echo esc_html_x( 'Set things up', 'Steps pattern', 'basix' ); ?></h3>
+<h3 class="wp-block-heading"><?php echo esc_html_x( 'Set things up', 'Steps pattern', 'basix-paperlight' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><?php echo esc_html_x( 'Explain the second step.', 'Steps pattern', 'basix' ); ?></p>
+<p><?php echo esc_html_x( 'Explain the second step.', 'Steps pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -42,11 +42,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><?php echo esc_html_x( 'Go live', 'Steps pattern', 'basix' ); ?></h3>
+<h3 class="wp-block-heading"><?php echo esc_html_x( 'Go live', 'Steps pattern', 'basix-paperlight' ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><?php echo esc_html_x( 'Explain the third step.', 'Steps pattern', 'basix' ); ?></p>
+<p><?php echo esc_html_x( 'Explain the third step.', 'Steps pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

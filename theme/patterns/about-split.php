@@ -16,20 +16,20 @@
 
 <!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"className":"text-overline"} -->
-<p class="text-overline"><?php echo esc_html_x( 'About us', 'About pattern', 'basix' ); ?></p>
+<p class="text-overline"><?php echo esc_html_x( 'About us', 'About pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
-<h2 class="wp-block-heading"><?php echo esc_html_x( 'A small team with a clear idea', 'About pattern', 'basix' ); ?></h2>
+<h2 class="wp-block-heading"><?php echo esc_html_x( 'A small team with a clear idea', 'About pattern', 'basix-paperlight' ); ?></h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><?php echo esc_html_x( 'Tell your story in a few short paragraphs: why you started, what you care about and who you do it for.', 'About pattern', 'basix' ); ?></p>
+<p><?php echo esc_html_x( 'Tell your story in a few short paragraphs: why you started, what you care about and who you do it for.', 'About pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#"><?php echo esc_html_x( 'Meet the team', 'About pattern', 'basix' ); ?></a></div>
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#"><?php echo esc_html_x( 'Meet the team', 'About pattern', 'basix-paperlight' ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div>

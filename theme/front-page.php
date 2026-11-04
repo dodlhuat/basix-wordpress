@@ -6,15 +6,15 @@ get_header();
 <?php $basix_hero = get_theme_mod( 'basix_hero_style', 'card' ); ?>
 <?php if ( ! is_paged() && 'none' !== $basix_hero ) : ?>
 <section class="<?php echo 'minimal' === $basix_hero ? 'hero-minimal' : 'hero card card-flat'; ?><?php echo has_header_image() ? ' has-image' : ''; ?>"<?php echo apply_filters( 'basix_hero_attributes', '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built from escaped parts. ?>>
-	<p class="text-overline"><?php esc_html_e( 'Welcome', 'basix' ); ?></p>
+	<p class="text-overline"><?php esc_html_e( 'Welcome', 'basix-paperlight' ); ?></p>
 	<h1 class="hero-title"><?php bloginfo( 'name' ); ?></h1>
 	<?php if ( get_bloginfo( 'description' ) ) : ?>
 		<p class="hero-lead"><?php bloginfo( 'description' ); ?></p>
 	<?php endif; ?>
 	<p class="hero-actions">
-		<a class="button button-primary" href="#latest"><?php esc_html_e( 'Latest posts', 'basix' ); ?></a>
+		<a class="button button-primary" href="#latest"><?php esc_html_e( 'Latest posts', 'basix-paperlight' ); ?></a>
 		<?php if ( $basix_static_front && get_option( 'page_for_posts' ) ) : ?>
-			<a class="button" href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php esc_html_e( 'All posts', 'basix' ); ?></a>
+			<a class="button" href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php esc_html_e( 'All posts', 'basix-paperlight' ); ?></a>
 		<?php endif; ?>
 	</p>
 </section>
@@ -34,7 +34,7 @@ get_header();
 <?php get_template_part( 'template-parts/featured' ); ?>
 
 <section id="latest" class="front-latest">
-	<h2><?php esc_html_e( 'Latest posts', 'basix' ); ?></h2>
+	<h2><?php esc_html_e( 'Latest posts', 'basix-paperlight' ); ?></h2>
 	<?php if ( $basix_static_front ) : ?>
 		<?php
 		$basix_latest = new WP_Query(
@@ -54,7 +54,7 @@ endwhile;
 				?>
 			</div>
 		<?php else : ?>
-			<div class="alert alert-info"><?php esc_html_e( 'Nothing published yet.', 'basix' ); ?></div>
+			<div class="alert alert-info"><?php esc_html_e( 'Nothing published yet.', 'basix-paperlight' ); ?></div>
 			<?php
 		endif;
 		wp_reset_postdata();

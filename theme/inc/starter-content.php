@@ -23,28 +23,28 @@ add_action(
 				'posts'     => array(
 					'home'    => array(
 						'post_type'    => 'page',
-						'post_title'   => _x( 'Welcome', 'Starter content page title', 'basix' ),
-						'post_content' => $heading( _x( 'Say hello', 'Starter content', 'basix' ) )
-							. "\n\n" . $text( _x( 'This is your front page. Edit it to say what your site is about, or add one of the ready-made sections from the Basix patterns.', 'Starter content', 'basix' ) ),
+						'post_title'   => _x( 'Welcome', 'Starter content page title', 'basix-paperlight' ),
+						'post_content' => $heading( _x( 'Say hello', 'Starter content', 'basix-paperlight' ) )
+							. "\n\n" . $text( _x( 'This is your front page. Edit it to say what your site is about, or add one of the ready-made sections from the Basix patterns.', 'Starter content', 'basix-paperlight' ) ),
 					),
 					'about'   => array(
 						'post_type'    => 'page',
-						'post_title'   => _x( 'About', 'Starter content page title', 'basix' ),
-						'post_content' => $text( _x( 'Tell visitors who you are and what they will find here.', 'Starter content', 'basix' ) ),
+						'post_title'   => _x( 'About', 'Starter content page title', 'basix-paperlight' ),
+						'post_content' => $text( _x( 'Tell visitors who you are and what they will find here.', 'Starter content', 'basix-paperlight' ) ),
 					),
 					'blog'    => array(
 						'post_type'  => 'page',
-						'post_title' => _x( 'Blog', 'Starter content page title', 'basix' ),
+						'post_title' => _x( 'Blog', 'Starter content page title', 'basix-paperlight' ),
 					),
 					'contact' => array(
 						'post_type'    => 'page',
-						'post_title'   => _x( 'Contact', 'Starter content page title', 'basix' ),
-						'post_content' => $text( _x( 'Say how people can reach you.', 'Starter content', 'basix' ) ),
+						'post_title'   => _x( 'Contact', 'Starter content page title', 'basix-paperlight' ),
+						'post_content' => $text( _x( 'Say how people can reach you.', 'Starter content', 'basix-paperlight' ) ),
 					),
 					'first'   => array(
 						'post_type'    => 'post',
-						'post_title'   => _x( 'Your first post', 'Starter content post title', 'basix' ),
-						'post_content' => $text( _x( 'Write something worth reading. Headings, images, code and tables all have a place in this theme.', 'Starter content', 'basix' ) ),
+						'post_title'   => _x( 'Your first post', 'Starter content post title', 'basix-paperlight' ),
+						'post_content' => $text( _x( 'Write something worth reading. Headings, images, code and tables all have a place in this theme.', 'Starter content', 'basix-paperlight' ) ),
 					),
 				),
 				'options'   => array(
@@ -54,11 +54,11 @@ add_action(
 				),
 				'nav_menus' => array(
 					'primary' => array(
-						'name'  => __( 'Primary menu', 'basix' ),
+						'name'  => __( 'Primary menu', 'basix-paperlight' ),
 						'items' => array( 'page_home', 'page_about', 'page_blog', 'page_contact' ),
 					),
 					'footer'  => array(
-						'name'  => __( 'Footer menu', 'basix' ),
+						'name'  => __( 'Footer menu', 'basix-paperlight' ),
 						'items' => array( 'page_about', 'page_contact' ),
 					),
 				),
@@ -68,8 +68,8 @@ add_action(
 						'text_about' => array(
 							'text',
 							array(
-								'title' => _x( 'About', 'Starter content widget title', 'basix' ),
-								'text'  => _x( 'A few words about this site.', 'Starter content', 'basix' ),
+								'title' => _x( 'About', 'Starter content widget title', 'basix-paperlight' ),
+								'text'  => _x( 'A few words about this site.', 'Starter content', 'basix-paperlight' ),
 							),
 						),
 					),

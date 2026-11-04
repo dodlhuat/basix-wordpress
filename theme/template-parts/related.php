@@ -20,7 +20,7 @@ $basix_related = new WP_Query(
 );
 ?>
 <section class="related" aria-labelledby="related-title">
-	<h2 id="related-title"><?php esc_html_e( 'Related posts', 'basix' ); ?></h2>
+	<h2 id="related-title"><?php esc_html_e( 'Related posts', 'basix-paperlight' ); ?></h2>
 	<div class="grid post-grid">
 		<?php
 		while ( $basix_related->have_posts() ) {

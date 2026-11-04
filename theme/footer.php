@@ -8,10 +8,10 @@
 ?>
 </main>
 
-<template id="basix-search-template" data-title="<?php esc_attr_e( 'Search', 'basix' ); ?>">
+<template id="basix-search-template" data-title="<?php esc_attr_e( 'Search', 'basix-paperlight' ); ?>">
 	<div class="search-overlay">
 		<?php get_search_form(); ?>
-		<p class="search-overlay-hint text-caption"><?php esc_html_e( 'Press Enter to search, Esc to close.', 'basix' ); ?></p>
+		<p class="search-overlay-hint text-caption"><?php esc_html_e( 'Press Enter to search, Esc to close.', 'basix-paperlight' ); ?></p>
 	</div>
 </template>
 
@@ -34,7 +34,7 @@
 			<?php basix_footer_menus(); ?>
 		</div>
 		<?php if ( get_theme_mod( 'basix_back_to_top', true ) ) : ?>
-			<button type="button" class="back-to-top button" aria-label="<?php esc_attr_e( 'Back to top', 'basix' ); ?>">
+			<button type="button" class="back-to-top button" aria-label="<?php esc_attr_e( 'Back to top', 'basix-paperlight' ); ?>">
 				<svg class="icon-svg" aria-hidden="true"><use href="<?php echo esc_url( get_theme_file_uri( BASIX_VENDOR . '/svg-icons/icons.svg#arrow_upward' ) ); ?>"/></svg>
 			</button>
 		<?php endif; ?>
