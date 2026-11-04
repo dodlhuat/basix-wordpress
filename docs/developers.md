@@ -5,7 +5,7 @@ make up        # npm install, start WordPress at http://localhost:8090 (admin / 
 make seed      # demo pages, posts, events and the Pattern library page
 make lint      # PHP coding standard (phpcs; `vendor/bin/phpcbf` fixes the formatting) and ESLint
 make check     # lint and every check (see below)
-make zip       # dist/basix-<version>.zip and dist/basix-events-<version>.zip
+make zip       # dist/basix-paperlight-<version>.zip and dist/basix-paperlight-events-<version>.zip
 ```
 
 Needs Docker, Node 20 or newer, Composer and Chrome. `npm run sync` copies the parts of the Basix library the theme uses into `theme/assets/vendor/basix` (generated, not committed), and `npm run rtl` makes the mirrored stylesheets.
@@ -25,7 +25,7 @@ theme/                   the theme
   patterns/              the block patterns (PHP files with a header comment)
   template-parts/        pieces of templates
   assets/                css, js, fonts, images
-basix-events/            the companion plugin (events, repeats, feed, calendar block and shortcode)
+basix-paperlight-events/            the companion plugin (events, repeats, feed, calendar block and shortcode)
 scripts/                 setup, seeding, build, and every check
 ```
 

@@ -126,7 +126,7 @@ try {
 <p><a href="#3fgfhgfh">an anchor that is not a selector</a> <a href="#%">a broken escape</a></p>
 <!-- /wp:html -->
 <!-- wp:html -->
-<p><a class="picture-link" href="/wp-content/themes/basix/assets/images/square-1.jpg"><img src="/wp-content/themes/basix/assets/images/square-1.jpg" alt="" width="120" height="120"></a></p>
+<p><a class="picture-link" href="/wp-content/themes/basix-paperlight/assets/images/square-1.jpg"><img src="/wp-content/themes/basix-paperlight/assets/images/square-1.jpg" alt="" width="120" height="120"></a></p>
 <!-- /wp:html -->
 <!-- wp:html -->
 <blockquote class="wp-block-quote has-text-color has-background" style="color:#1a1a1a;background-color:#abb8c3"><p>A quote on a colour of its own.</p><cite>Someone</cite></blockquote>
@@ -135,7 +135,7 @@ try {
 <nav class="wp-block-query-pagination"><a class="wp-block-query-pagination-previous" href="#a">Previous page</a><a class="page-numbers" href="#b">2</a><span class="page-numbers current">3</span><a class="wp-block-query-pagination-next" href="#c">Next page</a></nav>
 <!-- /wp:html -->
 <!-- wp:navigation --><!-- wp:page-list /--><!-- /wp:navigation -->
-<!-- wp:cover {"url":"/wp-content/themes/basix/assets/images/wide-1.jpg","hasParallax":true,"dimRatio":50} --><div class="wp-block-cover has-parallax"><span aria-hidden="true" class="wp-block-cover__background has-background-dim"></span><div role="img" class="wp-block-cover__image-background has-parallax" style="background-position:50% 50%;background-image:url(/wp-content/themes/basix/assets/images/wide-1.jpg)"></div><div class="wp-block-cover__inner-container"><!-- wp:paragraph --><p>Text over a picture</p><!-- /wp:paragraph --></div></div><!-- /wp:cover -->
+<!-- wp:cover {"url":"/wp-content/themes/basix-paperlight/assets/images/wide-1.jpg","hasParallax":true,"dimRatio":50} --><div class="wp-block-cover has-parallax"><span aria-hidden="true" class="wp-block-cover__background has-background-dim"></span><div role="img" class="wp-block-cover__image-background has-parallax" style="background-position:50% 50%;background-image:url(/wp-content/themes/basix-paperlight/assets/images/wide-1.jpg)"></div><div class="wp-block-cover__inner-container"><!-- wp:paragraph --><p>Text over a picture</p><!-- /wp:paragraph --></div></div><!-- /wp:cover -->
 <!-- wp:html -->
 <dl id="attachment_9" class="wp-caption aligncenter" style="width:650px;"><dt class="wp-caption-dt"></dt></dl>
 <!-- /wp:html -->`;

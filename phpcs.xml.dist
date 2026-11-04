@@ -3,7 +3,7 @@
     <description>Coding standards for the Basix WordPress theme and the Basix Events plugin.</description>
 
     <file>theme</file>
-    <file>basix-events</file>
+    <file>basix-paperlight-events</file>
     <exclude-pattern>*/assets/vendor/*</exclude-pattern>
 
     <arg name="extensions" value="php"/>
@@ -24,8 +24,8 @@
     <rule ref="WordPress.WP.I18n">
         <properties>
             <property name="text_domain" type="array">
-                <element value="basix"/>
-                <element value="basix-events"/>
+                <element value="basix-paperlight"/>
+                <element value="basix-paperlight-events"/>
             </property>
         </properties>
     </rule>

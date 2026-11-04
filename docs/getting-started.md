@@ -2,7 +2,7 @@
 
 ## Install
 
-1. Build the zips with `make zip`, or take the files from a release: `basix-<version>.zip` is the theme and `basix-events-<version>.zip` is the optional events plugin.
+1. Build the zips with `make zip`, or take the files from a release: `basix-paperlight-<version>.zip` is the theme and `basix-paperlight-events-<version>.zip` is the optional events plugin.
 2. In the admin, go to **Appearance > Themes > Add New > Upload Theme**, choose the theme zip and activate it.
 3. For events, go to **Plugins > Add New > Upload Plugin**, choose the plugin zip and activate it. The theme works without it; see [Events](events.md).
 

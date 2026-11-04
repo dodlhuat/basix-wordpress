@@ -163,7 +163,7 @@ try {
   }
 
   // The header image behind the front page introduction.
-  mod('header_image', `${url}/wp-content/themes/basix/assets/images/wide-1.jpg`);
+  mod('header_image', `${url}/wp-content/themes/basix-paperlight/assets/images/wide-1.jpg`);
   page = await open('/');
   check(await page.$eval('.hero.has-image', (h) => getComputedStyle(h).backgroundImage.includes('wide-1.jpg') && getComputedStyle(h.querySelector('.hero-title')).color === 'rgb(255, 255, 255)'), 'a header image becomes the backdrop of the front page introduction, with light text');
   await page.close();

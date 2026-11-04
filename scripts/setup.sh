@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Installs WordPress in the running container and activates the basix theme.
+# Installs WordPress in the running container and activates the Basix Paperlight theme.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -13,8 +13,8 @@ if ! wp core is-installed 2>/dev/null; then
 fi
 # Don't cache theme files (patterns, theme.json) while developing.
 wp config set WP_DEVELOPMENT_MODE theme --type=constant
-wp theme activate basix
-wp plugin activate basix-events
+wp theme activate basix-paperlight
+wp plugin activate basix-paperlight-events
 if [ -z "$(wp widget list sidebar-1 --format=ids)" ]; then
   wp widget add search sidebar-1
   wp widget add recent-posts sidebar-1 --number=5

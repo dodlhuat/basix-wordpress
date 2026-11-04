@@ -3,7 +3,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-slug="basix"
+slug="basix-paperlight"
 version=$(sed -n 's/^Version: *//p' theme/style.css | head -1)
 [ -n "$version" ] || { echo "No Version found in theme/style.css" >&2; exit 1; }
 
@@ -24,12 +24,12 @@ rm -rf "$stage"
 echo "Built $out ($(du -h "$out" | cut -f1))"
 
 # The companion plugin, as its own zip.
-plugin_version=$(sed -n 's/^ \* Version: *//p' basix-events/basix-events.php | head -1)
-[ -n "$plugin_version" ] || { echo "No Version found in basix-events/basix-events.php" >&2; exit 1; }
-plugin_out="dist/basix-events-${plugin_version}.zip"
+plugin_version=$(sed -n 's/^ \* Version: *//p' basix-paperlight-events/basix-paperlight-events.php | head -1)
+[ -n "$plugin_version" ] || { echo "No Version found in basix-paperlight-events/basix-paperlight-events.php" >&2; exit 1; }
+plugin_out="dist/basix-paperlight-events-${plugin_version}.zip"
 mkdir -p "$stage"
-cp -R basix-events "$stage/basix-events"
+cp -R basix-paperlight-events "$stage/basix-paperlight-events"
 find "$stage" \( -name '.DS_Store' -o -name '*.map' -o -name '*.pot' \) -delete
-(cd "$stage" && zip -qr "../basix-events-${plugin_version}.zip" basix-events)
+(cd "$stage" && zip -qr "../basix-paperlight-events-${plugin_version}.zip" basix-paperlight-events)
 rm -rf "$stage"
 echo "Built $plugin_out ($(du -h "$plugin_out" | cut -f1))"

@@ -38,7 +38,7 @@ try {
   let page = await open('/everything-in-one-post/');
   const state = await page.evaluate(() => {
     const box = (s) => document.querySelector(s)?.getBoundingClientRect();
-    const sheets = [...document.styleSheets].map((s) => s.href ?? '').filter((h) => h.includes('/themes/basix/'));
+    const sheets = [...document.styleSheets].map((s) => s.href ?? '').filter((h) => h.includes('/themes/basix-paperlight/'));
     return {
       dir: document.documentElement.dir,
       rtlSheets: sheets.filter((h) => h.includes('-rtl.css')).length,

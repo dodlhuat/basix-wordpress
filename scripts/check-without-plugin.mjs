@@ -19,10 +19,10 @@ const check = (ok, what) => {
 };
 const wp = (...args) => execFileSync('docker', ['compose', 'run', '--rm', '-T', 'wpcli', 'wp', ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
 
-const wasActive = wp('plugin', 'is-installed', 'basix-events') === '' && wp('plugin', 'list', '--status=active', '--field=name').split('\n').includes('basix-events');
+const wasActive = wp('plugin', 'is-installed', 'basix-paperlight-events') === '' && wp('plugin', 'list', '--status=active', '--field=name').split('\n').includes('basix-paperlight-events');
 const browser = await puppeteer.launch({ executablePath: chrome, headless: true });
 try {
-  wp('plugin', 'deactivate', 'basix-events');
+  wp('plugin', 'deactivate', 'basix-paperlight-events');
   wp('rewrite', 'flush');
   check(wp('eval', 'echo basix_has_events() ? "yes" : "no";') === 'no', 'the theme knows the plugin is off');
 
@@ -64,7 +64,7 @@ try {
   wp('basix', 'starter', 'undo');
 } finally {
   if (wasActive) {
-    wp('plugin', 'activate', 'basix-events');
+    wp('plugin', 'activate', 'basix-paperlight-events');
     wp('rewrite', 'flush');
   }
   await browser.close();

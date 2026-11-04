@@ -47,7 +47,7 @@ require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
 $manager = new WP_Customize_Manager();
 do_action( 'customize_register', $manager );
 $texts   = array();
-foreach ( $theme_xml->query( '//admin-texts/key[@name="theme_mods_basix"]/key' ) as $node ) {
+foreach ( $theme_xml->query( '//admin-texts/key[@name="theme_mods_basix-paperlight"]/key' ) as $node ) {
 	$texts[] = $node->getAttribute( 'name' );
 }
 $gone = array_filter( $texts, static function ( $name ) use ( $manager ) {

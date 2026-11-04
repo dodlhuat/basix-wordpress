@@ -193,3 +193,6 @@ Context menu, Chat bubbles, Editor (WYSIWYG), File uploader, Color picker, and T
 - Settings scope creep (keep the Customizer small).
 - Core-block styling must be tested against real editor content.
 - Basix class names may change between versions; pin the version in `package.json`.
+
+## Rename to Basix Paperlight
+The directory's Theme Check reported that "Basix" has 200+ active installations (another publisher's plugins), so the theme is now **Basix Paperlight** (slug and text domain `basix-paperlight`) and the plugin **Basix Paperlight Events** (`basix-paperlight-events`). Code prefixes (`basix_`, `BASIX_`) and the `basix` wp-cli command stay. Theme mods are stored per theme slug, so a site that used the old slug must copy `theme_mods_basix` to `theme_mods_basix-paperlight`.

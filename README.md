@@ -2,7 +2,7 @@
 
 A fast, accessible blog and magazine theme built from the [Basix](https://github.com/dodlhuat/basix) component library. Light and dark mode, five looks, header and footer options, a featured slider, calendar, gallery and filter components, forty block patterns, four starter sites, right-to-left support and a German translation.
 
-The theme lives in `theme/`. Events (repeats, time zones, the calendar block and shortcode, the calendar feed) come from the companion plugin in `basix-events/`: the WordPress.org directory does not let a theme register a post type. The theme works without it. Everything else in this repository is the development setup.
+The theme lives in `theme/`. Events (repeats, time zones, the calendar block and shortcode, the calendar feed) come from the companion plugin in `basix-paperlight-events/`: the WordPress.org directory does not let a theme register a post type. The theme works without it. Everything else in this repository is the development setup.
 
 Documentation for users and developers is in [docs/](docs/README.md).
 
@@ -16,7 +16,7 @@ Documentation for users and developers is in [docs/](docs/README.md).
 Build the zips. Upload the theme under Appearance > Themes > Add New > Upload Theme, and the plugin (optional, for events) under Plugins > Add New > Upload Plugin:
 
 ```sh
-make zip        # writes dist/basix-<version>.zip and dist/basix-events-<version>.zip
+make zip        # writes dist/basix-paperlight-<version>.zip and dist/basix-paperlight-events-<version>.zip
 ```
 
 On a new site, open the Customizer to preview the starter content (pages, menus and widgets).
@@ -36,7 +36,7 @@ Other commands:
 - `npm run sync` copies the Basix files the theme needs from `node_modules` into `theme/assets/vendor/basix` (also runs on `npm install`).
 - `node scripts/audit-lighthouse.mjs` runs Lighthouse on key pages.
 - `make lint` runs only PHPCS.
-- `docker compose run --rm -T wpcli wp theme-check run basix` runs Theme Check.
+- `docker compose run --rm -T wpcli wp theme-check run basix-paperlight` runs Theme Check.
 
 ## Structure
 
@@ -50,7 +50,7 @@ theme/
   styles/                    the five looks (theme.json variations)
   assets/                    css, js, fonts, images; vendor/basix and the RTL copies of Basix are generated and gitignored
   languages/                 basix.pot and the German translation
-basix-events/                the companion plugin: events, repeats, time zones, calendar block and shortcode, calendar feed
+basix-paperlight-events/                the companion plugin: events, repeats, time zones, calendar block and shortcode, calendar feed
 scripts/                     setup, seeding, asset sync, zip build, browser checks
 ROADMAP.md                   plan and status per milestone
 ```

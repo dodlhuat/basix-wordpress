@@ -8,7 +8,7 @@ The long version of every milestone (results, deviations, limits) is in [docs/de
 
 - **Distribution:** the WordPress.org theme directory (GPL theme; Basix is MIT; the fonts are OFL). No licence keys or update server.
 - **Editor:** hybrid. PHP templates that use Basix markup, plus `theme.json`, styled core blocks and block patterns. Whether to add block templates for the Site Editor is open (see below).
-- **Events:** the companion plugin `basix-events/`. The directory does not let a theme register a post type, a taxonomy, a block or a shortcode, so those live in the plugin; the theme works without it.
+- **Events:** the companion plugin `basix-paperlight-events/`. The directory does not let a theme register a post type, a taxonomy, a block or a shortcode, so those live in the plugin; the theme works without it.
 - **WooCommerce:** out of scope; a known gap.
 - **Principle:** only Basix components and tokens; theme CSS stays layout glue.
 
@@ -36,7 +36,7 @@ The long version of every milestone (results, deviations, limits) is in [docs/de
 
 Needs a person:
 
-- Submit `dist/basix-1.0.0.zip` to the theme directory, following [the checklist](docs/submission-checklist.md) (the review is manual; the `accessibility-ready` tag adds an accessibility review). Decide whether `basix-events` is also submitted as a plugin.
+- Submit `dist/basix-paperlight-1.0.0.zip` to the theme directory, following [the checklist](docs/submission-checklist.md) (the review is manual; the `accessibility-ready` tag is left out for now). Decide whether `basix-paperlight-events` is also submitted as a plugin.
 - Open the main pages in Firefox, Safari and Edge by hand (the checks only use Chrome), and optionally try the WordPress nightly with the Beta Tester plugin.
 - Try the integrations by hand once: Contact Form 7, WPForms, Fluent Forms, Gravity Forms, Polylang, WPML and Elementor. The checks use their markup or stand-ins, not the plugins.
 - Import the calendar feed into Apple, Google and Outlook calendars (the checks use an independent parser only).
