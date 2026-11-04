@@ -73,6 +73,22 @@ A file in `theme/starters/<slug>.php` that returns an array: `title`, `descripti
 
 A PHP file in `theme/patterns/` with a header comment (`Title`, `Slug: basix/<name>`, `Description`, `Categories`, `Keywords`). Write the blocks as the editor saves them; `scripts/check-editor.mjs` inserts every pattern in the real editor and fails on invalid blocks. Wrap texts in `esc_html_x( 'Text', 'Context pattern', 'basix' )`.
 
+## Testing with the official test data
+
+The theme handbook asks every theme to be tried with the WordPress theme review team's Theme Unit Test data: about 120 posts, pages and comments full of awkward cases (a title with no words, a very long title, ten levels of comments, every post format, old gallery markup, broken anchors, obsolete HTML tags). It is not part of `make check`, because it fills the site with content. On the Docker site:
+
+```sh
+mkdir -p /tmp/unit && curl -sL -o /tmp/unit/unit.xml https://raw.githubusercontent.com/WPTT/theme-unit-test/master/themeunittestdata.wordpress.xml
+docker compose run --rm -T wpcli wp db export - > /tmp/unit/backup.sql           # to put the site back afterwards
+docker compose run --rm -T wpcli wp plugin install wordpress-importer --activate
+docker compose run --rm -T -v /tmp/unit:/import:ro wpcli wp import /import/unit.xml --authors=create
+node scripts/audit-unit-data.mjs                                                  # sets the edge-case settings, visits every page, puts them back
+docker compose run --rm -T wpcli wp plugin delete wordpress-importer --deactivate
+docker compose run --rm -T -v /tmp/unit:/import:ro wpcli wp db import /import/backup.sql
+```
+
+`audit-unit-data.mjs` sets a very long site title and tagline, five posts per page, threaded and paged comments and no large image size, then reports every address that is not found or prints a PHP message, every page that sticks out sideways on a phone or a desktop, script errors, broken pictures and serious axe problems. The axe problems that are left come from the content itself (an author's red paragraph with light grey text, a cover picture without a description, old definition list markup) and are listed so you can judge them.
+
 ## The checks
 
 `make check` runs `scripts/check.sh`, which sets the site to English, runs everything, and puts the language back:

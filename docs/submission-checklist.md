@@ -32,6 +32,28 @@ Things a reviewer may ask about (so you are ready):
 - [ ] **The `accessibility-ready` tag.** Using it starts a separate, stricter accessibility review. If you want a faster first approval, remove the tag from `style.css` and `readme.txt` and add it again later in a version update.
 - [ ] **The plugin.** A theme may not require a plugin. Basix does not: the readme only says that events need the optional plugin. Do not add a notice that nags for it.
 
+## 2b. The theme handbook's testing page, item by item
+
+From https://developer.wordpress.org/themes/releasing-your-theme/testing/. Status as of 2026-11-04.
+
+| Item on the page | Status |
+| --- | --- |
+| Set up a development environment | Done: Docker, WordPress 7.1.4, PHP 8.3 |
+| Import the Theme Unit Test data | Done: 123 items imported; 329 addresses visited (posts, pages, categories, tags, authors, pagination, search, date archives). All load, none prints a PHP message, none sticks out sideways at 390 or 1280 px, no script error, no broken picture. Re-run any time with `scripts/audit-unit-data.mjs` (see the developer guide). |
+| Very long site title and tagline | Done. The header shows at most two lines of the name; the front page shows it whole. |
+| Five posts per page (pagination) | Done |
+| Threaded comments three levels deep, and comments in pages of five | Done (the test data goes ten levels deep) |
+| No large image size (`$content_width`) | Done; the theme sets `$content_width` |
+| Change the permalink structure several times | Done: plain, day and name, `/index.php/%postname%/`, post id, category and name; home, posts, a page, category, author, search, the events list and feed, pagination and a date archive all load |
+| WordPress Beta Tester plugin (next version) | Not done: tested on the latest release (7.1.4) only. Try the nightly before submitting if you want to. |
+| Theme Check plugin | Done: no required items (see section 2) |
+| Developer plugin | Not used |
+| Debug Bar plugin | Not used. Instead the dev site runs with `WP_DEBUG` on and every response is scanned for PHP messages. |
+| Log Deprecated Notices plugin | Done: installed, all 330 addresses visited, nothing logged |
+| Browser testing | Partly: Chrome (Chromium) in light, dark, right-to-left, on a phone and a desktop, with axe. **Not done: Firefox, Safari, Edge.** Firefox 157 is installed on the dev Mac but could not be launched from the test tooling; try the main pages by hand in Firefox and Safari. |
+| HTML5 validation (validator.w3.org/nu) | Done on twelve pages (home, a post, a page, a category, search, 404, the events list and an event, the calendar, the Pattern library, the landing demo, the block showcase): no errors and no warnings after two small fixes. The only errors found are in the test data's own content (obsolete `acronym`, `big`, `strike` and `tt` tags it contains on purpose). |
+| CSS validation (jigsaw.w3.org) | `forms.css` is valid. The others report only modern CSS the validator does not know yet: container queries, view transitions, `line-clamp`, the `mask` shorthand, and a vendor-prefixed `-webkit-box`. These are deliberate and work in current browsers. |
+
 ## 3. Upload
 
 1. Create an account at wordpress.org and turn on two-factor authentication (it is required to publish).
@@ -52,6 +74,7 @@ The plugin can stay a separate download from your own site, or be listed in the 
 
 These cannot be checked here and are worth an hour before you submit:
 
+- [ ] Open the main pages in Firefox and Safari (and Edge if you can): the header and menu, the slider, the calendar, a post with a picture, dark mode, and a phone width.
 - [ ] Install the built zips on a site that is not the dev site, with the default theme's content, and activate the theme, then the plugin.
 - [ ] Walk through the setup screen: import a starter site, look at it, undo it.
 - [ ] Try each plugin once: Contact Form 7, WPForms, Fluent Forms, Gravity Forms (forms), Polylang or WPML (the language switcher in the top bar and event translations), Elementor (the Canvas template and the theme builder's locations).
