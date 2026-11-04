@@ -5,7 +5,7 @@
  * The calendar itself (its markup, script and styles) belongs to the Basix theme. With another theme the block and
  * the shortcode show a plain list of the coming events instead.
  *
- * @package basix-events
+ * @package basix-paperlight-events
  */
 
 /**
@@ -23,7 +23,7 @@ function basix_events_calendar_html( string $view, string $source, string $categ
 	// Another theme: a plain list of what is coming, which needs no script.
 	$posts = basix_events_upcoming_posts( basix_event_category_slugs( $category ), 20 );
 	if ( ! $posts ) {
-		return '<p>' . esc_html__( 'No events are planned.', 'basix-events' ) . '</p>';
+		return '<p>' . esc_html__( 'No events are planned.', 'basix-paperlight-events' ) . '</p>';
 	}
 	$out = '<ul class="basix-events-list">';
 	foreach ( $posts as $post ) {

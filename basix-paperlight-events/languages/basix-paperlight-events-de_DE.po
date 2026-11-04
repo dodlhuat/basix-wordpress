@@ -1,383 +1,396 @@
 # Copyright (C) 2026 Andi Bauer
-# This file is distributed under the GPL v2 or later.
+# This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Basix Events 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/basix-events\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: Basix Paperlight Events 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/basix-paperlight-"
+"events\n"
+"POT-Creation-Date: 2026-11-04T10:10:23+00:00\n"
+"PO-Revision-Date: 2026-10-28 12:00+0000\n"
+"Last-Translator: Andi Bauer\n"
+"Language-Team: German\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-02T15:40:19+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.12.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Domain: basix-events\n"
+"X-Generator: WP-CLI 2.12.0\n"
 
 #. Plugin Name of the plugin
-#: basix-events.php
-msgid "Basix Events"
-msgstr ""
+#: basix-paperlight-events.php
+msgid "Basix Paperlight Events"
+msgstr "Basix Paperlight Events"
 
 #. Description of the plugin
-#: basix-events.php
-msgid "Events with dates, times, time zones, repeats and categories, an events calendar block and shortcode, a calendar feed (ICS), and the data for event search results. Made for the Basix theme; the events work with any theme."
+#: basix-paperlight-events.php
+msgid ""
+"Events with dates, times, time zones, repeats and categories, an events "
+"calendar block and shortcode, a calendar feed (ICS), and the data for event "
+"search results. Made for the Basix theme; the events work with any theme."
 msgstr ""
+"Veranstaltungen mit Datum, Uhrzeit, Zeitzone, Wiederholungen und Kategorien, "
+"ein Block und Shortcode für den Veranstaltungskalender, ein Kalender-Feed "
+"(ICS) und die Daten für Suchergebnisse zu Veranstaltungen. Gemacht für das "
+"Theme Basix; die Veranstaltungen funktionieren mit jedem Theme."
 
 #. Author of the plugin
-#: basix-events.php
+#: basix-paperlight-events.php
 msgid "Andi Bauer"
 msgstr ""
 
 #: inc/calendar.php:26
 msgid "No events are planned."
-msgstr ""
+msgstr "Es sind keine Veranstaltungen geplant."
 
-#: inc/events.php:35
-#: inc/events.php:176
+#: inc/events.php:35 inc/events.php:176
 msgid "Starts on"
-msgstr ""
+msgstr "Beginnt am"
 
-#: inc/events.php:36
-#: inc/events.php:180
+#: inc/events.php:36 inc/events.php:180
 msgid "Start time"
-msgstr ""
+msgstr "Beginn"
 
-#: inc/events.php:37
-#: inc/events.php:184
-#: inc/recurrence.php:578
+#: inc/events.php:37 inc/events.php:184 inc/recurrence.php:578
 msgid "Ends on"
-msgstr ""
+msgstr "Endet am"
 
-#: inc/events.php:38
-#: inc/events.php:188
+#: inc/events.php:38 inc/events.php:188
 msgid "End time"
-msgstr ""
+msgstr "Ende"
 
-#: inc/events.php:39
-#: inc/events.php:192
+#: inc/events.php:39 inc/events.php:192
 msgid "Time zone"
-msgstr ""
+msgstr "Zeitzone"
 
-#: inc/events.php:40
-#: inc/events.php:202
+#: inc/events.php:40 inc/events.php:202
 msgid "Location"
-msgstr ""
+msgstr "Ort"
 
-#: inc/events.php:41
-#: inc/recurrence.php:553
-#: inc/recurrence.php:556
+#: inc/events.php:41 inc/recurrence.php:553 inc/recurrence.php:556
 msgid "Repeat"
-msgstr ""
+msgstr "Wiederholung"
 
-#: inc/events.php:77
-#: inc/events.php:88
+#: inc/events.php:77 inc/events.php:88
 msgid "Events"
-msgstr ""
+msgstr "Veranstaltungen"
 
 #: inc/events.php:78
 msgid "Event"
-msgstr ""
+msgstr "Veranstaltung"
 
 #: inc/events.php:79
 msgid "Add new"
-msgstr ""
+msgstr "Neu hinzufügen"
 
 #: inc/events.php:80
 msgid "Add new event"
-msgstr ""
+msgstr "Neue Veranstaltung hinzufügen"
 
 #: inc/events.php:81
 msgid "Edit event"
-msgstr ""
+msgstr "Veranstaltung bearbeiten"
 
 #: inc/events.php:82
 msgid "New event"
-msgstr ""
+msgstr "Neue Veranstaltung"
 
 #: inc/events.php:83
 msgid "View event"
-msgstr ""
+msgstr "Veranstaltung ansehen"
 
 #: inc/events.php:84
 msgid "Search events"
-msgstr ""
+msgstr "Veranstaltungen suchen"
 
 #: inc/events.php:85
 msgid "No events found"
-msgstr ""
+msgstr "Keine Veranstaltungen gefunden"
 
 #: inc/events.php:86
 msgid "No events found in the bin"
-msgstr ""
+msgstr "Keine Veranstaltungen im Papierkorb gefunden"
 
 #: inc/events.php:87
 msgid "All events"
-msgstr ""
+msgstr "Alle Veranstaltungen"
 
 #: inc/events.php:105
 msgid "Event categories"
-msgstr ""
+msgstr "Veranstaltungskategorien"
 
 #: inc/events.php:106
 msgid "Event category"
-msgstr ""
+msgstr "Veranstaltungskategorie"
 
 #: inc/events.php:107
 msgid "Search event categories"
-msgstr ""
+msgstr "Veranstaltungskategorien suchen"
 
 #: inc/events.php:108
 msgid "All event categories"
-msgstr ""
+msgstr "Alle Veranstaltungskategorien"
 
 #: inc/events.php:109
 msgid "Edit event category"
-msgstr ""
+msgstr "Veranstaltungskategorie bearbeiten"
 
 #: inc/events.php:110
 msgid "Update event category"
-msgstr ""
+msgstr "Veranstaltungskategorie aktualisieren"
 
 #: inc/events.php:111
 msgid "Add new event category"
-msgstr ""
+msgstr "Neue Veranstaltungskategorie hinzufügen"
 
 #: inc/events.php:112
 msgid "New event category name"
-msgstr ""
+msgstr "Name der neuen Veranstaltungskategorie"
 
 #: inc/events.php:113
 msgid "Categories"
-msgstr ""
+msgstr "Kategorien"
 
 #: inc/events.php:158
 msgid "Event details"
-msgstr ""
+msgstr "Details zur Veranstaltung"
 
 #. translators: %s: the site's time zone, for example Europe/Vienna.
 #: inc/events.php:195
 #, php-format
 msgid "Site time zone (%s)"
-msgstr ""
+msgstr "Zeitzone der Website (%s)"
 
 #: inc/events.php:207
-msgid "Leave the times empty for an all-day event. Leave the end date empty for an event on one day. The time zone applies to timed events; all-day events follow the site."
+msgid ""
+"Leave the times empty for an all-day event. Leave the end date empty for an "
+"event on one day. The time zone applies to timed events; all-day events "
+"follow the site."
 msgstr ""
+"Lass die Uhrzeiten leer für eine ganztägige Veranstaltung. Lass das Enddatum "
+"leer für eine Veranstaltung an einem Tag. Die Zeitzone gilt für "
+"Veranstaltungen mit Uhrzeit; ganztägige Veranstaltungen folgen der Website."
 
 #. translators: %s: a date, for example November 5, 2026.
 #: inc/events.php:675
 #, php-format
 msgid "Events on %s"
-msgstr ""
+msgstr "Veranstaltungen am %s"
 
 #. translators: %s: the site name.
 #: inc/ics.php:372
 #, php-format
 msgid "%s – events"
-msgstr ""
+msgstr "%s – Veranstaltungen"
 
 #. translators: %d: number of days, more than one.
-#: inc/recurrence.php:31
-#: inc/recurrence.php:375
+#: inc/recurrence.php:31 inc/recurrence.php:375
 msgid "Every day"
-msgstr ""
+msgstr "Jeden Tag"
 
 #: inc/recurrence.php:32
 msgid "Every week"
-msgstr ""
+msgstr "Jede Woche"
 
 #: inc/recurrence.php:33
 msgid "Every month, on the same date"
-msgstr ""
+msgstr "Jeden Monat, am gleichen Datum"
 
 #: inc/recurrence.php:34
 msgid "Every month, on the same weekday"
-msgstr ""
+msgstr "Jeden Monat, am gleichen Wochentag"
 
 #: inc/recurrence.php:35
 msgid "Every year"
-msgstr ""
+msgstr "Jedes Jahr"
 
 #. translators: %d: number of days, more than one.
 #: inc/recurrence.php:375
 #, php-format
 msgid "Every %d days"
-msgstr ""
+msgstr "Alle %d Tage"
 
 #. translators: %s: weekday names, for example "Tuesday and Thursday".
 #: inc/recurrence.php:384
 #, php-format
 msgid "Every week on %s"
-msgstr ""
+msgstr "Jede Woche am %s"
 
 #. translators: %s: weekday names, for example "Tuesday and Thursday".
 #: inc/recurrence.php:384
 #, php-format
 msgid "Every %1$d weeks on %2$s"
-msgstr ""
+msgstr "Alle %1$d Wochen am %2$s"
 
 #. translators: %d: day of the month, for example 5.
 #: inc/recurrence.php:388
 #, php-format
 msgid "Every month on day %d"
-msgstr ""
+msgstr "Jeden Monat am %d."
 
 #. translators: %d: day of the month, for example 5.
 #: inc/recurrence.php:388
 #, php-format
 msgid "Every %1$d months on day %2$d"
-msgstr ""
+msgstr "Alle %1$d Monate am %2$d."
 
 #: inc/recurrence.php:392
 msgid "first"
-msgstr ""
+msgstr "ersten"
 
 #: inc/recurrence.php:393
 msgid "second"
-msgstr ""
+msgstr "zweiten"
 
 #: inc/recurrence.php:394
 msgid "third"
-msgstr ""
+msgstr "dritten"
 
 #: inc/recurrence.php:395
 msgid "fourth"
-msgstr ""
+msgstr "vierten"
 
 #: inc/recurrence.php:396
 msgid "last"
-msgstr ""
+msgstr "letzten"
 
 #. translators: 1: ordinal such as first or last, 2: weekday name.
 #: inc/recurrence.php:402
 #, php-format
 msgid "Every month on the %1$s %2$s"
-msgstr ""
+msgstr "Jeden Monat am %1$s %2$s"
 
 #. translators: 1: ordinal such as first or last, 2: weekday name.
 #: inc/recurrence.php:402
 #, php-format
 msgid "Every %1$d months on the %2$s %3$s"
-msgstr ""
+msgstr "Alle %1$d Monate am %2$s %3$s"
 
 #: inc/recurrence.php:405
 msgctxt "yearly repeat date"
 msgid "M j"
-msgstr ""
+msgstr "j. M"
 
 #. translators: %s: the date without a year, for example "Nov 5".
 #: inc/recurrence.php:407
 #, php-format
 msgid "Every year on %s"
-msgstr ""
+msgstr "Jedes Jahr am %s"
 
 #. translators: %s: the date without a year, for example "Nov 5".
 #: inc/recurrence.php:407
 #, php-format
 msgid "Every %1$d years on %2$s"
-msgstr ""
+msgstr "Alle %1$d Jahre am %2$s"
 
 #. translators: 1: the rule, for example "Every week on Tuesday", 2: the last date.
 #: inc/recurrence.php:411
 #, php-format
 msgid "%1$s, until %2$s"
-msgstr ""
+msgstr "%1$s, bis %2$s"
 
 #. translators: %s: the rule, for example "Every week on Tuesday".
 #: inc/recurrence.php:415
 #, php-format
 msgid "%s, once"
-msgstr ""
+msgstr "%s, einmal"
 
 #. translators: %s: the rule, for example "Every week on Tuesday".
 #: inc/recurrence.php:415
 #, php-format
 msgid "%1$s, %2$d times"
-msgstr ""
+msgstr "%1$s, %2$d Mal"
 
 #: inc/recurrence.php:558
 msgid "Does not repeat"
-msgstr ""
+msgstr "Wiederholt sich nicht"
 
 #: inc/recurrence.php:566
 msgid "Every"
-msgstr ""
+msgstr "Alle"
 
 #: inc/recurrence.php:568
 msgid "times the unit above (2 means every second day, week, month or year)"
 msgstr ""
+"× die Einheit oben (2 heißt: jeden zweiten Tag, jede zweite Woche, jeden "
+"zweiten Monat oder jedes zweite Jahr)"
 
 #: inc/recurrence.php:574
 msgid "None ticked: the weekday of the start date."
-msgstr ""
+msgstr "Nichts gewählt: der Wochentag des Startdatums."
 
 #: inc/recurrence.php:577
 msgid "Never ends"
-msgstr ""
+msgstr "Endet nie"
 
 #: inc/recurrence.php:579
 msgid "Last date"
-msgstr ""
+msgstr "Letztes Datum"
 
 #: inc/recurrence.php:580
 msgid "Ends after"
-msgstr ""
+msgstr "Endet nach"
 
 #: inc/recurrence.php:581
 msgid "Number of times"
-msgstr ""
+msgstr "Anzahl der Wiederholungen"
 
 #: inc/recurrence.php:582
 msgid "times"
-msgstr ""
+msgstr "Mal"
 
 #: inc/recurrence.php:585
 msgid "Skipped dates"
-msgstr ""
+msgstr "Ausgelassene Termine"
 
 #: inc/recurrence.php:587
 msgid "One date (YYYY-MM-DD) per line. These dates do not happen."
 msgstr ""
+"Ein Datum (JJJJ-MM-TT) pro Zeile. An diesen Tagen findet der Termin nicht "
+"statt."
 
 #: inc/recurrence.php:654
 msgid "Repeats"
-msgstr ""
+msgstr "Wiederholt sich"
 
 #: inc/recurrence.php:658
 msgid "Next dates"
-msgstr ""
+msgstr "Nächste Termine"
 
 #: inc/recurrence.php:669
 msgid "All dates of this event are over."
-msgstr ""
+msgstr "Alle Termine dieser Veranstaltung sind vorbei."
 
 #: blocks/calendar/block.json
 msgctxt "block title"
 msgid "Events calendar"
-msgstr ""
+msgstr "Veranstaltungskalender"
 
 #: blocks/calendar/block.json
 msgctxt "block description"
-msgid "A calendar of your events, or of your posts by publish date, with month, week and agenda views."
+msgid ""
+"A calendar of your events, or of your posts by publish date, with month, "
+"week and agenda views."
 msgstr ""
+"Ein Kalender deiner Veranstaltungen oder deiner Beiträge nach "
+"Veröffentlichungsdatum, mit Monats-, Wochen- und Agendaansicht."
 
 #: blocks/calendar/block.json
 msgctxt "block keyword"
 msgid "calendar"
-msgstr ""
+msgstr "Kalender"
 
 #: blocks/calendar/block.json
 msgctxt "block keyword"
 msgid "events"
-msgstr ""
+msgstr "Veranstaltungen"
 
 #: blocks/calendar/block.json
 msgctxt "block keyword"
 msgid "posts"
-msgstr ""
+msgstr "Beiträge"
 
 #: blocks/calendar/block.json
 msgctxt "block keyword"
 msgid "agenda"
-msgstr ""
+msgstr "Agenda"

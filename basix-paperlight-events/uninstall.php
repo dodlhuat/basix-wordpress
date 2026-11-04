@@ -2,7 +2,7 @@
 /**
  * Removes the plugin's settings when it is deleted. The events themselves stay: they are the site's content.
  *
- * @package basix-events
+ * @package basix-paperlight-events
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {

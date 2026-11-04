@@ -5,7 +5,7 @@
  * Dates are stored as plain local text (Y-m-d and H:i) in the site's own time zone, so what an editor types is
  * what the calendar shows. A missing time means an all-day event.
  *
- * @package basix-events
+ * @package basix-paperlight-events
  */
 
 // The theme defines the same two names for its templates, so that they also work while this plugin is off.
@@ -32,13 +32,13 @@ function basix_events_is_date( $value ): bool {
 /** The event fields saved with each event: meta key => label. */
 function basix_event_fields(): array {
 	return array(
-		'basix_event_start'      => __( 'Starts on', 'basix-events' ),
-		'basix_event_start_time' => __( 'Start time', 'basix-events' ),
-		'basix_event_end'        => __( 'Ends on', 'basix-events' ),
-		'basix_event_end_time'   => __( 'End time', 'basix-events' ),
-		'basix_event_timezone'   => __( 'Time zone', 'basix-events' ),
-		'basix_event_location'   => __( 'Location', 'basix-events' ),
-		'basix_event_repeat'     => __( 'Repeat', 'basix-events' ),
+		'basix_event_start'      => __( 'Starts on', 'basix-paperlight-events' ),
+		'basix_event_start_time' => __( 'Start time', 'basix-paperlight-events' ),
+		'basix_event_end'        => __( 'Ends on', 'basix-paperlight-events' ),
+		'basix_event_end_time'   => __( 'End time', 'basix-paperlight-events' ),
+		'basix_event_timezone'   => __( 'Time zone', 'basix-paperlight-events' ),
+		'basix_event_location'   => __( 'Location', 'basix-paperlight-events' ),
+		'basix_event_repeat'     => __( 'Repeat', 'basix-paperlight-events' ),
 	);
 }
 
@@ -74,18 +74,18 @@ add_action(
 			BASIX_EVENT,
 			array(
 				'labels'              => array(
-					'name'               => __( 'Events', 'basix-events' ),
-					'singular_name'      => __( 'Event', 'basix-events' ),
-					'add_new'            => __( 'Add new', 'basix-events' ),
-					'add_new_item'       => __( 'Add new event', 'basix-events' ),
-					'edit_item'          => __( 'Edit event', 'basix-events' ),
-					'new_item'           => __( 'New event', 'basix-events' ),
-					'view_item'          => __( 'View event', 'basix-events' ),
-					'search_items'       => __( 'Search events', 'basix-events' ),
-					'not_found'          => __( 'No events found', 'basix-events' ),
-					'not_found_in_trash' => __( 'No events found in the bin', 'basix-events' ),
-					'all_items'          => __( 'All events', 'basix-events' ),
-					'menu_name'          => __( 'Events', 'basix-events' ),
+					'name'               => __( 'Events', 'basix-paperlight-events' ),
+					'singular_name'      => __( 'Event', 'basix-paperlight-events' ),
+					'add_new'            => __( 'Add new', 'basix-paperlight-events' ),
+					'add_new_item'       => __( 'Add new event', 'basix-paperlight-events' ),
+					'edit_item'          => __( 'Edit event', 'basix-paperlight-events' ),
+					'new_item'           => __( 'New event', 'basix-paperlight-events' ),
+					'view_item'          => __( 'View event', 'basix-paperlight-events' ),
+					'search_items'       => __( 'Search events', 'basix-paperlight-events' ),
+					'not_found'          => __( 'No events found', 'basix-paperlight-events' ),
+					'not_found_in_trash' => __( 'No events found in the bin', 'basix-paperlight-events' ),
+					'all_items'          => __( 'All events', 'basix-paperlight-events' ),
+					'menu_name'          => __( 'Events', 'basix-paperlight-events' ),
 				),
 				'public'              => true,
 				'has_archive'         => 'events',
@@ -102,15 +102,15 @@ add_action(
 			BASIX_EVENT,
 			array(
 				'labels'            => array(
-					'name'          => __( 'Event categories', 'basix-events' ),
-					'singular_name' => __( 'Event category', 'basix-events' ),
-					'search_items'  => __( 'Search event categories', 'basix-events' ),
-					'all_items'     => __( 'All event categories', 'basix-events' ),
-					'edit_item'     => __( 'Edit event category', 'basix-events' ),
-					'update_item'   => __( 'Update event category', 'basix-events' ),
-					'add_new_item'  => __( 'Add new event category', 'basix-events' ),
-					'new_item_name' => __( 'New event category name', 'basix-events' ),
-					'menu_name'     => __( 'Categories', 'basix-events' ),
+					'name'          => __( 'Event categories', 'basix-paperlight-events' ),
+					'singular_name' => __( 'Event category', 'basix-paperlight-events' ),
+					'search_items'  => __( 'Search event categories', 'basix-paperlight-events' ),
+					'all_items'     => __( 'All event categories', 'basix-paperlight-events' ),
+					'edit_item'     => __( 'Edit event category', 'basix-paperlight-events' ),
+					'update_item'   => __( 'Update event category', 'basix-paperlight-events' ),
+					'add_new_item'  => __( 'Add new event category', 'basix-paperlight-events' ),
+					'new_item_name' => __( 'New event category name', 'basix-paperlight-events' ),
+					'menu_name'     => __( 'Categories', 'basix-paperlight-events' ),
 				),
 				'hierarchical'      => true,
 				'public'            => true,
@@ -139,7 +139,7 @@ add_action(
 	}
 );
 
-// Event addresses are flushed once after the plugin is switched on (see basix-events.php), when the post type exists.
+// Event addresses are flushed once after the plugin is switched on (see basix-paperlight-events.php), when the post type exists.
 add_action(
 	'init',
 	function () {
@@ -155,7 +155,7 @@ add_action(
 add_action(
 	'add_meta_boxes',
 	function () {
-		add_meta_box( 'basix_event_details', __( 'Event details', 'basix-events' ), 'basix_event_meta_box', BASIX_EVENT, 'normal', 'high' );
+		add_meta_box( 'basix_event_details', __( 'Event details', 'basix-paperlight-events' ), 'basix_event_meta_box', BASIX_EVENT, 'normal', 'high' );
 	}
 );
 
@@ -173,38 +173,38 @@ function basix_event_meta_box( WP_Post $post ): void {
 	<style>.basix-event-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:1rem}.basix-event-grid label{display:block;font-weight:600;margin-bottom:.25rem}.basix-event-grid input{width:100%}.basix-event-wide{grid-column:1/-1}</style>
 	<div class="basix-event-grid">
 		<div>
-			<label for="basix_event_start"><?php esc_html_e( 'Starts on', 'basix-events' ); ?></label>
+			<label for="basix_event_start"><?php esc_html_e( 'Starts on', 'basix-paperlight-events' ); ?></label>
 			<input type="date" id="basix_event_start" name="basix_event_start" value="<?php echo esc_attr( $value( 'basix_event_start' ) ); ?>" required>
 		</div>
 		<div>
-			<label for="basix_event_start_time"><?php esc_html_e( 'Start time', 'basix-events' ); ?></label>
+			<label for="basix_event_start_time"><?php esc_html_e( 'Start time', 'basix-paperlight-events' ); ?></label>
 			<input type="time" id="basix_event_start_time" name="basix_event_start_time" value="<?php echo esc_attr( $value( 'basix_event_start_time' ) ); ?>">
 		</div>
 		<div>
-			<label for="basix_event_end"><?php esc_html_e( 'Ends on', 'basix-events' ); ?></label>
+			<label for="basix_event_end"><?php esc_html_e( 'Ends on', 'basix-paperlight-events' ); ?></label>
 			<input type="date" id="basix_event_end" name="basix_event_end" value="<?php echo esc_attr( $value( 'basix_event_end' ) ); ?>">
 		</div>
 		<div>
-			<label for="basix_event_end_time"><?php esc_html_e( 'End time', 'basix-events' ); ?></label>
+			<label for="basix_event_end_time"><?php esc_html_e( 'End time', 'basix-paperlight-events' ); ?></label>
 			<input type="time" id="basix_event_end_time" name="basix_event_end_time" value="<?php echo esc_attr( $value( 'basix_event_end_time' ) ); ?>">
 		</div>
 		<div class="basix-event-wide">
-			<label for="basix_event_timezone"><?php esc_html_e( 'Time zone', 'basix-events' ); ?></label>
+			<label for="basix_event_timezone"><?php esc_html_e( 'Time zone', 'basix-paperlight-events' ); ?></label>
 			<select id="basix_event_timezone" name="basix_event_timezone">
 				<?php /* translators: %s: the site's time zone, for example Europe/Vienna. */ ?>
-				<option value=""><?php echo esc_html( sprintf( __( 'Site time zone (%s)', 'basix-events' ), wp_timezone_string() ) ); ?></option>
+				<option value=""><?php echo esc_html( sprintf( __( 'Site time zone (%s)', 'basix-paperlight-events' ), wp_timezone_string() ) ); ?></option>
 				<?php foreach ( timezone_identifiers_list() as $basix_zone ) : ?>
 					<option value="<?php echo esc_attr( $basix_zone ); ?>"<?php selected( $value( 'basix_event_timezone' ), $basix_zone ); ?>><?php echo esc_html( str_replace( '_', ' ', $basix_zone ) ); ?></option>
 				<?php endforeach; ?>
 			</select>
 		</div>
 		<div class="basix-event-wide">
-			<label for="basix_event_location"><?php esc_html_e( 'Location', 'basix-events' ); ?></label>
+			<label for="basix_event_location"><?php esc_html_e( 'Location', 'basix-paperlight-events' ); ?></label>
 			<input type="text" id="basix_event_location" name="basix_event_location" value="<?php echo esc_attr( $value( 'basix_event_location' ) ); ?>">
 		</div>
 	</div>
 	<?php basix_event_repeat_fields( $post ); ?>
-	<p class="description"><?php esc_html_e( 'Leave the times empty for an all-day event. Leave the end date empty for an event on one day. The time zone applies to timed events; all-day events follow the site.', 'basix-events' ); ?></p>
+	<p class="description"><?php esc_html_e( 'Leave the times empty for an all-day event. Leave the end date empty for an event on one day. The time zone applies to timed events; all-day events follow the site.', 'basix-paperlight-events' ); ?></p>
 	<?php
 }
 
@@ -672,7 +672,7 @@ add_filter(
 			return $title;
 		}
 		/* translators: %s: a date, for example November 5, 2026. */
-		return sprintf( __( 'Events on %s', 'basix-events' ), wp_date( get_option( 'date_format' ), strtotime( $day . ' 12:00:00 UTC' ), new DateTimeZone( 'UTC' ) ) );
+		return sprintf( __( 'Events on %s', 'basix-paperlight-events' ), wp_date( get_option( 'date_format' ), strtotime( $day . ' 12:00:00 UTC' ), new DateTimeZone( 'UTC' ) ) );
 	}
 );
 

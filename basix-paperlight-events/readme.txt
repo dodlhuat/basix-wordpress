@@ -1,4 +1,4 @@
-=== Basix Events ===
+=== Basix Paperlight Events ===
 Contributors: dodlhuat
 Requires at least: 6.5
 Tested up to: 7.1
@@ -12,7 +12,7 @@ Events with dates, times, time zones and repeats, an events calendar block and s
 
 == Description ==
 
-Basix Events adds an Events section to your site:
+Basix Paperlight Events adds an Events section to your site:
 
 * An Event post type with a start and end (date, optional time), a place, a time zone for each event and categories
 * Repeating events: daily, weekly (on chosen weekdays), monthly (by date or by weekday, such as the second Tuesday), yearly; every N times; an end date or a number of times; and dates to skip

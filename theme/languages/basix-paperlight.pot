@@ -1,0 +1,2912 @@
+# Copyright (C) 2026 Andi Bauer
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Basix Paperlight 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/basix-paperlight\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-04T10:10:22+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: basix-paperlight\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "Basix Paperlight"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://github.com/dodlhuat/basix"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "A fast, accessible blog and magazine theme built entirely from the Basix component library, with light and dark mode, five looks, header and footer options, forty block patterns, four starter sites and right-to-left support."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Andi Bauer"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://www.andibauer.at"
+msgstr ""
+
+#: 404.php:6
+msgid "This page could not be found."
+msgstr ""
+
+#: 404.php:7
+msgid "Search the site"
+msgstr ""
+
+#: 404.php:8
+msgid "Back to home"
+msgstr ""
+
+#. translators: %s: number of comments.
+#: comments.php:10
+#, php-format
+msgid "%s comment"
+msgid_plural "%s comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:29
+msgid "Comments are closed."
+msgstr ""
+
+#: footer.php:11
+#: header.php:69
+#: searchform.php:1
+#: searchform.php:3
+#: searchform.php:4
+msgid "Search"
+msgstr ""
+
+#: footer.php:14
+msgid "Press Enter to search, Esc to close."
+msgstr ""
+
+#: footer.php:37
+msgid "Back to top"
+msgstr ""
+
+#: front-page.php:9
+msgid "Welcome"
+msgstr ""
+
+#: front-page.php:15
+#: front-page.php:37
+#: inc/setup/importer.php:429
+msgid "Latest posts"
+msgstr ""
+
+#: front-page.php:17
+msgid "All posts"
+msgstr ""
+
+#: front-page.php:57
+msgid "Nothing published yet."
+msgstr ""
+
+#: functions.php:13
+msgid "(no title)"
+msgstr ""
+
+#: functions.php:107
+#: inc/customizer.php:72
+#: inc/looks.php:86
+msgid "Basix"
+msgstr ""
+
+#: functions.php:109
+msgid "Basix: Hero"
+msgstr ""
+
+#: functions.php:110
+msgid "Basix: Features"
+msgstr ""
+
+#: functions.php:111
+msgid "Basix: Pricing"
+msgstr ""
+
+#: functions.php:112
+msgid "Basix: Testimonials"
+msgstr ""
+
+#: functions.php:113
+msgid "Basix: Team"
+msgstr ""
+
+#: functions.php:114
+msgid "Basix: Logos"
+msgstr ""
+
+#: functions.php:115
+msgid "Basix: Numbers"
+msgstr ""
+
+#: functions.php:116
+msgid "Basix: Call to action"
+msgstr ""
+
+#: functions.php:117
+msgid "Basix: Newsletter"
+msgstr ""
+
+#: functions.php:118
+msgid "Basix: Contact"
+msgstr ""
+
+#: functions.php:119
+msgid "Basix: Portfolio and pictures"
+msgstr ""
+
+#: functions.php:120
+msgid "Basix: Blog"
+msgstr ""
+
+#: functions.php:121
+msgid "Basix: Questions"
+msgstr ""
+
+#: functions.php:122
+msgid "Basix: About"
+msgstr ""
+
+#: functions.php:131
+msgid "Card"
+msgstr ""
+
+#: functions.php:138
+msgid "Bordered card"
+msgstr ""
+
+#: functions.php:145
+msgid "Lead text"
+msgstr ""
+
+#: functions.php:152
+msgid "Sortable"
+msgstr ""
+
+#: functions.php:159
+msgid "Masonry"
+msgstr ""
+
+#: functions.php:166
+msgid "Framed"
+msgstr ""
+
+#: functions.php:173
+msgid "Soft shadow"
+msgstr ""
+
+#: functions.php:180
+msgid "Circle"
+msgstr ""
+
+#: functions.php:208
+#: inc/customizer.php:193
+#: inc/header.php:370
+#: sidebar.php:4
+msgid "Sidebar"
+msgstr ""
+
+#: functions.php:210
+msgid "Shown next to blog posts and archives."
+msgstr ""
+
+#. translators: %d: column number.
+#: functions.php:224
+#, php-format
+msgid "Footer column %d"
+msgstr ""
+
+#: functions.php:228
+msgid "Shown in the footer."
+msgstr ""
+
+#: functions.php:281
+msgid "Category"
+msgstr ""
+
+#: functions.php:282
+msgid "Tag"
+msgstr ""
+
+#: functions.php:283
+msgid "Author"
+msgstr ""
+
+#: functions.php:284
+#: functions.php:286
+#: functions.php:287
+msgid "Archive"
+msgstr ""
+
+#: functions.php:285
+#: inc/schema.php:114
+#: inc/schema.php:137
+#: inc/schema.php:140
+#: inc/setup/importer.php:374
+#: starters/events.php:9
+msgid "Events"
+msgstr ""
+
+#. translators: %s: the event's time in the site's time zone.
+#: functions.php:353
+#, php-format
+msgid "%s in site time"
+msgstr ""
+
+#: functions.php:389
+#: inc/schema.php:93
+#: inc/setup/importer.php:380
+msgid "Home"
+msgstr ""
+
+#: functions.php:403
+msgid "Not found"
+msgstr ""
+
+#: functions.php:405
+#: inc/schema.php:151
+msgid "Search results"
+msgstr ""
+
+#: functions.php:413
+msgid "Breadcrumb"
+msgstr ""
+
+#: functions.php:432
+msgid "Pagination"
+msgstr ""
+
+#: functions.php:470
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: functions.php:520
+msgid "Your comment could not be submitted"
+msgstr ""
+
+#: functions.php:522
+msgid "Go back"
+msgstr ""
+
+#: functions.php:542
+msgid "Please fill out this field."
+msgstr ""
+
+#: functions.php:543
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: functions.php:544
+msgid "Please enter a valid URL."
+msgstr ""
+
+#: functions.php:545
+msgid "View larger image"
+msgstr ""
+
+#: functions.php:546
+msgid "Open image"
+msgstr ""
+
+#: functions.php:547
+msgid "Code"
+msgstr ""
+
+#: functions.php:548
+msgid "Table"
+msgstr ""
+
+#: functions.php:549
+msgid "Featured posts"
+msgstr ""
+
+#. translators: 1: number of this slide, 2: number of slides.
+#: functions.php:551
+#, php-format
+msgid "Slide %1$d of %2$d"
+msgstr ""
+
+#: functions.php:567
+msgid "This content is password-protected. To view it, please enter the password below."
+msgstr ""
+
+#: functions.php:569
+msgid "Password"
+msgstr ""
+
+#: functions.php:572
+msgctxt "post password form"
+msgid "Enter"
+msgstr ""
+
+#: header.php:23
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:36
+#: inc/menus.php:13
+#: inc/menus.php:63
+#: inc/starter-content.php:57
+msgid "Primary menu"
+msgstr ""
+
+#: header.php:49
+msgid "Toggle menu"
+msgstr ""
+
+#: header.php:69
+msgid "Search (press /)"
+msgstr ""
+
+#: header.php:72
+msgid "Toggle dark mode"
+msgstr ""
+
+#: header.php:77
+msgid "Open menu"
+msgstr ""
+
+#: header.php:87
+msgid "Menu"
+msgstr ""
+
+#: inc/calendar.php:55
+msgid "Today"
+msgstr ""
+
+#: inc/calendar.php:56
+msgid "Month"
+msgstr ""
+
+#: inc/calendar.php:57
+msgid "Week"
+msgstr ""
+
+#: inc/calendar.php:58
+msgid "Agenda"
+msgstr ""
+
+#: inc/calendar.php:59
+msgid "All day"
+msgstr ""
+
+#: inc/calendar.php:60
+msgid "No posts"
+msgstr ""
+
+#: inc/calendar.php:61
+msgid "Previous"
+msgstr ""
+
+#: inc/calendar.php:62
+msgid "Next"
+msgstr ""
+
+#: inc/calendar.php:63
+msgid "Calendar view"
+msgstr ""
+
+#: inc/calendar.php:64
+msgid "Posts calendar"
+msgstr ""
+
+#: inc/calendar.php:65
+msgid "The posts could not be loaded. Please try again."
+msgstr ""
+
+#: inc/calendar.php:66
+#: template-parts/event-categories.php:15
+msgid "Event categories"
+msgstr ""
+
+#: inc/customizer.php:81
+#: inc/header.php:361
+msgid "Header"
+msgstr ""
+
+#: inc/customizer.php:96
+msgid "Menu layout"
+msgstr ""
+
+#: inc/customizer.php:97
+msgid "How the primary menu is shown."
+msgstr ""
+
+#: inc/customizer.php:100
+msgid "Inline links with dropdowns (menu button on small screens)"
+msgstr ""
+
+#: inc/customizer.php:101
+msgid "Menu button opening a side panel"
+msgstr ""
+
+#: inc/customizer.php:102
+msgid "Menu button pushing the page aside, with drill-down panels"
+msgstr ""
+
+#: inc/customizer.php:111
+msgid "Colours"
+msgstr ""
+
+#: inc/customizer.php:126
+msgid "Default colour mode"
+msgstr ""
+
+#: inc/customizer.php:127
+msgid "What visitors see first. They can always switch with the button in the header."
+msgstr ""
+
+#: inc/customizer.php:130
+msgid "Follow the visitor's device"
+msgstr ""
+
+#: inc/customizer.php:131
+msgid "Light"
+msgstr ""
+
+#: inc/customizer.php:132
+msgid "Dark"
+msgstr ""
+
+#: inc/customizer.php:150
+msgid "Accent colour (light mode)"
+msgstr ""
+
+#: inc/customizer.php:151
+msgid "Leave it as it is to use the look's own accent colour."
+msgstr ""
+
+#: inc/customizer.php:169
+msgid "Accent colour (dark mode)"
+msgstr ""
+
+#: inc/customizer.php:178
+msgid "Layout"
+msgstr ""
+
+#: inc/customizer.php:196
+msgid "Right"
+msgstr ""
+
+#: inc/customizer.php:197
+msgid "Left"
+msgstr ""
+
+#: inc/customizer.php:198
+msgid "No sidebar"
+msgstr ""
+
+#: inc/customizer.php:214
+msgid "Post list layout"
+msgstr ""
+
+#: inc/customizer.php:215
+msgid "How posts are shown on the blog, in archives and in search."
+msgstr ""
+
+#: inc/customizer.php:218
+msgid "Grid of cards"
+msgstr ""
+
+#: inc/customizer.php:219
+msgid "List, with the picture beside the text"
+msgstr ""
+
+#: inc/customizer.php:220
+msgid "Magazine: a large first post, then a grid"
+msgstr ""
+
+#: inc/customizer.php:229
+msgid "Front page"
+msgstr ""
+
+#: inc/customizer.php:244
+msgid "Introduction at the top"
+msgstr ""
+
+#: inc/customizer.php:245
+msgid "It shows the site title and tagline (Settings, General)."
+msgstr ""
+
+#: inc/customizer.php:248
+msgid "Centred, in a card"
+msgstr ""
+
+#: inc/customizer.php:249
+msgid "Left-aligned, without a card"
+msgstr ""
+
+#: inc/customizer.php:250
+#: inc/header.php:375
+msgid "None"
+msgstr ""
+
+#: inc/customizer.php:259
+#: inc/header.php:380
+#: inc/setup/importer.php:354
+msgid "Footer"
+msgstr ""
+
+#: inc/customizer.php:274
+msgid "Footer text"
+msgstr ""
+
+#: inc/customizer.php:275
+msgid "Leave empty for the default copyright line. {year} and {site} are replaced."
+msgstr ""
+
+#: inc/customizer.php:290
+msgid "Show the back to top button"
+msgstr ""
+
+#. translators: %s: date.
+#: inc/filters.php:144
+#, php-format
+msgid "From %s"
+msgstr ""
+
+#. translators: %s: date.
+#: inc/filters.php:147
+#, php-format
+msgid "Until %s"
+msgstr ""
+
+#: inc/filters.php:239
+msgid "Filter posts"
+msgstr ""
+
+#: inc/filters.php:240
+msgid "Search categories…"
+msgstr ""
+
+#: inc/filters.php:241
+msgid "Select all"
+msgstr ""
+
+#: inc/filters.php:242
+#: template-parts/filters.php:78
+msgid "Clear"
+msgstr ""
+
+#: inc/filters.php:243
+msgid "No categories found"
+msgstr ""
+
+#: inc/filters.php:244
+msgid "Any category"
+msgstr ""
+
+#: inc/filters.php:245
+msgid "Choose a date range"
+msgstr ""
+
+#: inc/filters.php:246
+#: template-parts/filters.php:26
+#: template-parts/filters.php:51
+msgid "Categories"
+msgstr ""
+
+#: inc/filters.php:247
+#: template-parts/filters.php:69
+msgid "Published between"
+msgstr ""
+
+#: inc/gallery.php:41
+msgid "The images could not be loaded. Please try again."
+msgstr ""
+
+#: inc/header.php:242
+msgid "Keep the header at the top while scrolling"
+msgstr ""
+
+#: inc/header.php:254
+msgid "Header style"
+msgstr ""
+
+#: inc/header.php:255
+msgid "A transparent header sits over the first section of the page, with light text until you scroll. Use it with a dark picture at the top, such as the Landing page template with a cover. A single page can choose its own."
+msgstr ""
+
+#: inc/header.php:258
+msgid "Solid"
+msgstr ""
+
+#: inc/header.php:259
+#: inc/header.php:364
+msgid "Transparent over the first section"
+msgstr ""
+
+#: inc/header.php:263
+msgid "Button text"
+msgstr ""
+
+#: inc/header.php:263
+msgid "A call-to-action button in the header. It needs a text and an address."
+msgstr ""
+
+#: inc/header.php:264
+msgid "Button address"
+msgstr ""
+
+#: inc/header.php:270
+msgid "Top bar"
+msgstr ""
+
+#: inc/header.php:271
+msgid "A thin line above the header for a short message, your social links and a language switcher."
+msgstr ""
+
+#: inc/header.php:275
+msgid "Show the top bar"
+msgstr ""
+
+#: inc/header.php:276
+msgid "Message"
+msgstr ""
+
+#: inc/header.php:277
+msgid "Show the social links menu"
+msgstr ""
+
+#: inc/header.php:277
+msgid "The menu in the location \"Social links\"."
+msgstr ""
+
+#: inc/header.php:278
+msgid "Show the language switcher"
+msgstr ""
+
+#: inc/header.php:278
+msgid "Shown when Polylang or WPML is active."
+msgstr ""
+
+#: inc/header.php:292
+msgid "Footer layout"
+msgstr ""
+
+#: inc/header.php:295
+msgid "Widget columns, then the footer line"
+msgstr ""
+
+#: inc/header.php:296
+msgid "Centred"
+msgstr ""
+
+#: inc/header.php:297
+msgid "Minimal: only the footer line and menus"
+msgstr ""
+
+#: inc/header.php:337
+msgid "Page layout"
+msgstr ""
+
+#: inc/header.php:363
+#: inc/header.php:382
+msgid "As in the Customizer"
+msgstr ""
+
+#: inc/header.php:365
+msgid "No header"
+msgstr ""
+
+#: inc/header.php:372
+msgid "Default (pages none, posts as in the Customizer)"
+msgstr ""
+
+#: inc/header.php:373
+msgid "On the right"
+msgstr ""
+
+#: inc/header.php:374
+msgid "On the left"
+msgstr ""
+
+#: inc/header.php:383
+msgid "No footer widgets and menus"
+msgstr ""
+
+#: inc/header.php:386
+msgid "Hide the title"
+msgstr ""
+
+#: inc/header.php:386
+msgid "It stays in the page for screen readers."
+msgstr ""
+
+#: inc/looks.php:86
+msgid "The shipped look: calm blue, Outfit type."
+msgstr ""
+
+#: inc/looks.php:87
+msgid "Editorial"
+msgstr ""
+
+#: inc/looks.php:87
+msgid "Warm paper, terracotta accent and serif type, for long reading."
+msgstr ""
+
+#: inc/looks.php:88
+msgid "Bold"
+msgstr ""
+
+#: inc/looks.php:88
+msgid "High contrast, violet accent and a geometric heading font."
+msgstr ""
+
+#: inc/looks.php:89
+msgid "Calm"
+msgstr ""
+
+#: inc/looks.php:89
+msgid "Soft greens, rounded corners and friendly Inter type."
+msgstr ""
+
+#: inc/looks.php:90
+msgid "Paper"
+msgstr ""
+
+#: inc/looks.php:90
+msgid "Black on white, square corners and a serif heading font."
+msgstr ""
+
+#: inc/looks.php:358
+#: inc/looks.php:375
+msgid "Look"
+msgstr ""
+
+#: inc/looks.php:359
+msgid "A look sets the colours (light and dark), corners and fonts together. Everything below can still be changed on top of it."
+msgstr ""
+
+#: inc/looks.php:381
+msgid "Follow the look's font"
+msgstr ""
+
+#: inc/looks.php:383
+msgid "System font (nothing to download)"
+msgstr ""
+
+#: inc/looks.php:388
+msgid "Typography"
+msgstr ""
+
+#: inc/looks.php:393
+msgid "Heading font"
+msgstr ""
+
+#: inc/looks.php:394
+msgid "Text font"
+msgstr ""
+
+#: inc/looks.php:424
+msgid "Text size"
+msgstr ""
+
+#: inc/looks.php:425
+msgid "Scales the whole page: text, spacing and buttons."
+msgstr ""
+
+#: inc/looks.php:428
+msgid "Small"
+msgstr ""
+
+#: inc/looks.php:429
+msgid "Medium"
+msgstr ""
+
+#: inc/looks.php:430
+msgid "Large"
+msgstr ""
+
+#: inc/menus.php:14
+#: inc/menus.php:104
+#: inc/starter-content.php:61
+msgid "Footer menu"
+msgstr ""
+
+#: inc/menus.php:15
+#: inc/menus.php:118
+msgid "Social links"
+msgstr ""
+
+#: inc/menus.php:120
+#: template-parts/top-bar.php:31
+msgid "Follow on"
+msgstr ""
+
+#: inc/post-features.php:16
+msgid "Show the reading time"
+msgstr ""
+
+#: inc/post-features.php:17
+msgid "Show a table of contents on long posts"
+msgstr ""
+
+#: inc/post-features.php:18
+msgid "Show a reading progress bar"
+msgstr ""
+
+#: inc/post-features.php:19
+msgid "Show share links"
+msgstr ""
+
+#: inc/post-features.php:20
+msgid "Show the author box (when the author has a biography)"
+msgstr ""
+
+#: inc/post-features.php:21
+msgid "Show related posts"
+msgstr ""
+
+#: inc/post-features.php:22
+msgid "Show sticky posts as a featured slider on the front page"
+msgstr ""
+
+#: inc/post-features.php:42
+msgid "Posts"
+msgstr ""
+
+#. translators: %s: number of minutes.
+#: inc/post-features.php:86
+#, php-format
+msgid "%s min read"
+msgstr ""
+
+#: inc/post-features.php:164
+msgid "On this page"
+msgstr ""
+
+#: inc/post-features.php:222
+msgid "Email"
+msgstr ""
+
+#: inc/setup/admin.php:21
+msgid "Basix setup"
+msgstr ""
+
+#: inc/setup/admin.php:38
+msgid "Thank you for choosing Basix."
+msgstr ""
+
+#: inc/setup/admin.php:38
+msgid "Pick a look and a starter site in a minute, or start from scratch."
+msgstr ""
+
+#: inc/setup/admin.php:40
+msgid "Set up your site"
+msgstr ""
+
+#: inc/setup/admin.php:41
+msgid "Not now"
+msgstr ""
+
+#: inc/setup/admin.php:85
+#: inc/setup/admin.php:110
+msgid "You are not allowed to do this."
+msgstr ""
+
+#: inc/setup/admin.php:173
+msgid "Set up Basix"
+msgstr ""
+
+#: inc/setup/admin.php:174
+msgid "Choose how your site looks, and start from a ready-made site if you like. Nothing you have made is deleted: an import only adds, and Undo removes exactly what it added."
+msgstr ""
+
+#. translators: %s: name of the starter site.
+#: inc/setup/admin.php:180
+#, php-format
+msgid "The %s starter site is ready."
+msgstr ""
+
+#: inc/setup/admin.php:182
+#: inc/setup/admin.php:185
+msgid "View your site"
+msgstr ""
+
+#: inc/setup/admin.php:185
+msgid "The look is set."
+msgstr ""
+
+#: inc/setup/admin.php:187
+msgid "The import was undone. Your settings are back as they were."
+msgstr ""
+
+#: inc/setup/admin.php:189
+msgid "That did not work. Nothing was changed that you cannot undo here."
+msgstr ""
+
+#: inc/setup/admin.php:197
+msgid "Your current starter site"
+msgstr ""
+
+#. translators: 1: starter site name, 2: number of pages, posts, events and pictures added.
+#: inc/setup/admin.php:201
+#, php-format
+msgid "%1$s was added on %2$s with %3$d items (pages, posts, events and pictures)."
+msgstr ""
+
+#: inc/setup/admin.php:204
+msgid "Undo removes what it added and puts your settings back. Changes you made to the added pages and posts are lost with them."
+msgstr ""
+
+#: inc/setup/admin.php:208
+msgid "Undo this import"
+msgstr ""
+
+#: inc/setup/admin.php:217
+msgid "1. Pick a look"
+msgstr ""
+
+#: inc/setup/admin.php:221
+msgid "The starter site's own look"
+msgstr ""
+
+#: inc/setup/admin.php:222
+msgid "Each starter site suggests one. Without a starter, your current look stays."
+msgstr ""
+
+#: inc/setup/admin.php:234
+msgid "2. Pick a starter site"
+msgstr ""
+
+#: inc/setup/admin.php:238
+msgid "No content, only the look"
+msgstr ""
+
+#: inc/setup/admin.php:239
+msgid "Keep your site as it is and only change how it looks."
+msgstr ""
+
+#. translators: 1: number of pages, 2: number of sample posts, 3: number of sample events.
+#: inc/setup/admin.php:251
+#, php-format
+msgid "%1$d pages, %2$d posts, %3$d events"
+msgstr ""
+
+#. translators: %s: look name.
+#: inc/setup/admin.php:254
+#, php-format
+msgid "Look: %s"
+msgstr ""
+
+#: inc/setup/admin.php:259
+msgid "Set up my site"
+msgstr ""
+
+#: inc/setup/admin.php:262
+msgid "3. Make it yours"
+msgstr ""
+
+#: inc/setup/admin.php:264
+msgid "Site name, tagline and logo"
+msgstr ""
+
+#: inc/setup/admin.php:265
+msgid "Menus"
+msgstr ""
+
+#: inc/setup/admin.php:266
+msgid "Colours, fonts, header, layout and more (Basix options)"
+msgstr ""
+
+#: inc/setup/admin.php:267
+msgid "Sidebar and footer widgets"
+msgstr ""
+
+#: inc/setup/admin.php:270
+msgid "4. Learn more"
+msgstr ""
+
+#: inc/setup/admin.php:272
+msgid "In the editor, open the block inserter, choose Patterns and look for the groups that start with Basix."
+msgstr ""
+
+#: inc/setup/admin.php:274
+msgid "See every pattern on one page"
+msgstr ""
+
+#: inc/setup/admin.php:277
+msgid "Documentation and support"
+msgstr ""
+
+#: inc/setup/importer.php:212
+msgid "That starter site does not exist."
+msgstr ""
+
+#: inc/setup/importer.php:354
+msgid "Primary"
+msgstr ""
+
+#: inc/setup/importer.php:420
+msgid "About"
+msgstr ""
+
+#: inc/setup/importer.php:421
+msgid "A small site built with the Basix theme. Say here what it is about."
+msgstr ""
+
+#: inc/setup/importer.php:436
+msgid "Tags"
+msgstr ""
+
+#: inc/starter-content.php:26
+msgctxt "Starter content page title"
+msgid "Welcome"
+msgstr ""
+
+#: inc/starter-content.php:27
+msgctxt "Starter content"
+msgid "Say hello"
+msgstr ""
+
+#: inc/starter-content.php:28
+msgctxt "Starter content"
+msgid "This is your front page. Edit it to say what your site is about, or add one of the ready-made sections from the Basix patterns."
+msgstr ""
+
+#: inc/starter-content.php:32
+msgctxt "Starter content page title"
+msgid "About"
+msgstr ""
+
+#: inc/starter-content.php:33
+msgctxt "Starter content"
+msgid "Tell visitors who you are and what they will find here."
+msgstr ""
+
+#: inc/starter-content.php:37
+msgctxt "Starter content page title"
+msgid "Blog"
+msgstr ""
+
+#: inc/starter-content.php:41
+msgctxt "Starter content page title"
+msgid "Contact"
+msgstr ""
+
+#: inc/starter-content.php:42
+msgctxt "Starter content"
+msgid "Say how people can reach you."
+msgstr ""
+
+#: inc/starter-content.php:46
+msgctxt "Starter content post title"
+msgid "Your first post"
+msgstr ""
+
+#: inc/starter-content.php:47
+msgctxt "Starter content"
+msgid "Write something worth reading. Headings, images, code and tables all have a place in this theme."
+msgstr ""
+
+#: inc/starter-content.php:71
+msgctxt "Starter content widget title"
+msgid "About"
+msgstr ""
+
+#: inc/starter-content.php:72
+msgctxt "Starter content"
+msgid "A few words about this site."
+msgstr ""
+
+#. Template Name of the theme
+msgid "Calendar"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Canvas"
+msgstr ""
+
+#. Template Name of the theme
+#: page-templates/docs.php:20
+msgid "Documentation"
+msgstr ""
+
+#: page-templates/docs.php:37
+msgid "Navigation"
+msgstr ""
+
+#: page-templates/docs.php:52
+msgid "Documentation pages"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Full width"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Photo gallery"
+msgstr ""
+
+#: page-templates/gallery.php:36
+msgid "Loading more…"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Landing page"
+msgstr ""
+
+#: patterns/about-split.php
+msgctxt "Pattern title"
+msgid "About, picture and text"
+msgstr ""
+
+#: patterns/about-split.php
+msgctxt "Pattern description"
+msgid "A picture beside a short story about you."
+msgstr ""
+
+#: patterns/about-split.php:19
+msgctxt "About pattern"
+msgid "About us"
+msgstr ""
+
+#: patterns/about-split.php:23
+msgctxt "About pattern"
+msgid "A small team with a clear idea"
+msgstr ""
+
+#: patterns/about-split.php:27
+msgctxt "About pattern"
+msgid "Tell your story in a few short paragraphs: why you started, what you care about and who you do it for."
+msgstr ""
+
+#: patterns/about-split.php:32
+msgctxt "About pattern"
+msgid "Meet the team"
+msgstr ""
+
+#: patterns/blog-latest.php
+msgctxt "Pattern title"
+msgid "Latest posts"
+msgstr ""
+
+#: patterns/blog-latest.php
+msgctxt "Pattern description"
+msgid "The three newest posts as cards."
+msgstr ""
+
+#: patterns/blog-list.php
+msgctxt "Pattern title"
+msgid "Latest posts as a list"
+msgstr ""
+
+#: patterns/blog-list.php
+msgctxt "Pattern description"
+msgid "The five newest posts as a simple list."
+msgstr ""
+
+#: patterns/contact-cta.php
+msgctxt "Pattern title"
+msgid "Contact with a button"
+msgstr ""
+
+#: patterns/contact-cta.php
+msgctxt "Pattern description"
+msgid "A friendly invitation to write, with a button."
+msgstr ""
+
+#: patterns/contact-cta.php:12
+msgctxt "Contact pattern"
+msgid "Questions? Write to us."
+msgstr ""
+
+#: patterns/contact-cta.php:16
+msgctxt "Contact pattern"
+msgid "We answer within one working day."
+msgstr ""
+
+#: patterns/contact-cta.php:21
+msgctxt "Contact pattern"
+msgid "Send an email"
+msgstr ""
+
+#: patterns/contact-details.php
+msgctxt "Pattern title"
+msgid "Contact details"
+msgstr ""
+
+#: patterns/contact-details.php
+msgctxt "Pattern description"
+msgid "Address, email and opening hours in three columns."
+msgstr ""
+
+#: patterns/contact-details.php:13
+msgctxt "Contact pattern"
+msgid "Visit"
+msgstr ""
+
+#: patterns/contact-details.php:17
+msgctxt "Contact pattern"
+msgid "Example Street 1"
+msgstr ""
+
+#: patterns/contact-details.php:17
+msgctxt "Contact pattern"
+msgid "1010 Vienna"
+msgstr ""
+
+#: patterns/contact-details.php:23
+msgctxt "Contact pattern"
+msgid "Write"
+msgstr ""
+
+#: patterns/contact-details.php:27
+msgctxt "Contact pattern"
+msgid "hello@example.com"
+msgstr ""
+
+#: patterns/contact-details.php:27
+msgctxt "Contact pattern"
+msgid "+43 1 234 5678"
+msgstr ""
+
+#: patterns/contact-details.php:33
+msgctxt "Contact pattern"
+msgid "Hours"
+msgstr ""
+
+#: patterns/contact-details.php:37
+msgctxt "Contact pattern"
+msgid "Monday to Friday"
+msgstr ""
+
+#: patterns/contact-details.php:37
+msgctxt "Contact pattern"
+msgid "9:00 to 17:00"
+msgstr ""
+
+#: patterns/cta-band.php
+msgctxt "Pattern title"
+msgid "Call to action band"
+msgstr ""
+
+#: patterns/cta-band.php
+msgctxt "Pattern description"
+msgid "A short line with one button on a tinted band."
+msgstr ""
+
+#: patterns/cta-band.php:12
+msgctxt "Call to action pattern"
+msgid "Start your project today."
+msgstr ""
+
+#: patterns/cta-band.php:17
+msgctxt "Call to action pattern"
+msgid "Get in touch"
+msgstr ""
+
+#: patterns/cta-newsletter.php
+msgctxt "Pattern title"
+msgid "Newsletter sign-up"
+msgstr ""
+
+#: patterns/cta-newsletter.php
+msgctxt "Pattern description"
+msgid "A headline and an email field. Replace the form with your newsletter plugin."
+msgstr ""
+
+#: patterns/cta-newsletter.php:12
+msgctxt "Call to action pattern"
+msgid "Stay in the loop"
+msgstr ""
+
+#: patterns/cta-newsletter.php:16
+msgctxt "Call to action pattern"
+msgid "One short email when something new is published. No spam."
+msgstr ""
+
+#: patterns/cta-newsletter.php:20
+msgctxt "Call to action pattern"
+msgid "you@example.com"
+msgstr ""
+
+#: patterns/cta-newsletter.php:20
+msgctxt "Call to action pattern"
+msgid "Email address"
+msgstr ""
+
+#: patterns/cta-newsletter.php:20
+msgctxt "Call to action pattern"
+msgid "Subscribe"
+msgstr ""
+
+#: patterns/cta-split.php
+msgctxt "Pattern title"
+msgid "Call to action, text and button"
+msgstr ""
+
+#: patterns/cta-split.php
+msgctxt "Pattern description"
+msgid "A headline on the left and a button on the right."
+msgstr ""
+
+#: patterns/cta-split.php:14
+msgctxt "Call to action pattern"
+msgid "Ready when you are"
+msgstr ""
+
+#: patterns/cta-split.php:18
+msgctxt "Call to action pattern"
+msgid "One sentence that makes the next step easy."
+msgstr ""
+
+#: patterns/cta-split.php:25
+msgctxt "Call to action pattern"
+msgid "Get started"
+msgstr ""
+
+#: patterns/cta-split.php:29
+msgctxt "Call to action pattern"
+msgid "Talk to us"
+msgstr ""
+
+#: patterns/cta.php
+msgctxt "Pattern title"
+msgid "Call to action"
+msgstr ""
+
+#: patterns/cta.php
+msgctxt "Pattern description"
+msgid "A highlighted box with a headline, a sentence and a button."
+msgstr ""
+
+#: patterns/cta.php:12
+msgctxt "CTA pattern"
+msgid "Ready when you are"
+msgstr ""
+
+#: patterns/cta.php:16
+msgctxt "CTA pattern"
+msgid "One sentence that makes the next step feel easy."
+msgstr ""
+
+#: patterns/cta.php:21
+msgctxt "CTA pattern"
+msgid "Get in touch"
+msgstr ""
+
+#: patterns/faq-columns.php
+msgctxt "Pattern title"
+msgid "FAQ with a heading beside"
+msgstr ""
+
+#: patterns/faq-columns.php
+msgctxt "Pattern description"
+msgid "A heading and intro on the left, questions on the right."
+msgstr ""
+
+#: patterns/faq-columns.php:13
+msgctxt "FAQ pattern"
+msgid "Questions?"
+msgstr ""
+
+#: patterns/faq-columns.php:17
+msgctxt "FAQ pattern"
+msgid "The short answers to what people ask most."
+msgstr ""
+
+#: patterns/faq-columns.php:23
+#: patterns/faq.php:16
+msgctxt "FAQ pattern"
+msgid "What is this about?"
+msgstr ""
+
+#: patterns/faq-columns.php:24
+#: patterns/faq-columns.php:30
+#: patterns/faq-columns.php:36
+#: patterns/faq.php:17
+#: patterns/faq.php:23
+#: patterns/faq.php:29
+msgctxt "FAQ pattern"
+msgid "Give a short, direct answer."
+msgstr ""
+
+#: patterns/faq-columns.php:29
+#: patterns/faq.php:22
+msgctxt "FAQ pattern"
+msgid "How do I get started?"
+msgstr ""
+
+#: patterns/faq-columns.php:35
+#: patterns/faq.php:28
+msgctxt "FAQ pattern"
+msgid "Can I change my mind later?"
+msgstr ""
+
+#: patterns/faq.php
+msgctxt "Pattern title"
+msgid "FAQ"
+msgstr ""
+
+#: patterns/faq.php
+msgctxt "Pattern description"
+msgid "Frequently asked questions as collapsible items."
+msgstr ""
+
+#: patterns/faq.php:12
+msgctxt "FAQ pattern"
+msgid "Frequently asked questions"
+msgstr ""
+
+#: patterns/features-grid.php
+msgctxt "Pattern title"
+msgid "Features in a grid"
+msgstr ""
+
+#: patterns/features-grid.php
+msgctxt "Pattern description"
+msgid "Four features in two columns, each with a short heading and text."
+msgstr ""
+
+#: patterns/features-grid.php:13
+#: patterns/features.php:13
+msgctxt "Features pattern"
+msgid "Fast by default"
+msgstr ""
+
+#: patterns/features-grid.php:17
+#: patterns/features.php:17
+msgctxt "Features pattern"
+msgid "Describe the first benefit in a sentence or two."
+msgstr ""
+
+#: patterns/features-grid.php:23
+#: patterns/features.php:23
+msgctxt "Features pattern"
+msgid "Easy to use"
+msgstr ""
+
+#: patterns/features-grid.php:27
+#: patterns/features.php:27
+msgctxt "Features pattern"
+msgid "Describe the second benefit in a sentence or two."
+msgstr ""
+
+#: patterns/features-grid.php:33
+#: patterns/features.php:33
+msgctxt "Features pattern"
+msgid "Made to last"
+msgstr ""
+
+#: patterns/features-grid.php:37
+#: patterns/features.php:37
+msgctxt "Features pattern"
+msgid "Describe the third benefit in a sentence or two."
+msgstr ""
+
+#: patterns/features-grid.php:43
+msgctxt "Features pattern"
+msgid "Supported"
+msgstr ""
+
+#: patterns/features-grid.php:47
+msgctxt "Features pattern"
+msgid "Describe the fourth benefit in a sentence or two."
+msgstr ""
+
+#: patterns/features-numbered.php
+msgctxt "Pattern title"
+msgid "Numbered features"
+msgstr ""
+
+#: patterns/features-numbered.php
+msgctxt "Pattern description"
+msgid "Three features with large numbers."
+msgstr ""
+
+#: patterns/features-numbered.php:13
+msgctxt "Features pattern"
+msgid "01"
+msgstr ""
+
+#: patterns/features-numbered.php:17
+msgctxt "Features pattern"
+msgid "Plan"
+msgstr ""
+
+#: patterns/features-numbered.php:21
+msgctxt "Features pattern"
+msgid "Describe the first part of what you offer."
+msgstr ""
+
+#: patterns/features-numbered.php:27
+msgctxt "Features pattern"
+msgid "02"
+msgstr ""
+
+#: patterns/features-numbered.php:31
+msgctxt "Features pattern"
+msgid "Build"
+msgstr ""
+
+#: patterns/features-numbered.php:35
+msgctxt "Features pattern"
+msgid "Describe the second part of what you offer."
+msgstr ""
+
+#: patterns/features-numbered.php:41
+msgctxt "Features pattern"
+msgid "03"
+msgstr ""
+
+#: patterns/features-numbered.php:45
+msgctxt "Features pattern"
+msgid "Launch"
+msgstr ""
+
+#: patterns/features-numbered.php:49
+msgctxt "Features pattern"
+msgid "Describe the third part of what you offer."
+msgstr ""
+
+#: patterns/features-split.php
+msgctxt "Pattern title"
+msgid "Features beside a picture"
+msgstr ""
+
+#: patterns/features-split.php
+msgctxt "Pattern description"
+msgid "A list of benefits next to a picture."
+msgstr ""
+
+#: patterns/features-split.php:19
+msgctxt "Features pattern"
+msgid "Why choose us"
+msgstr ""
+
+#: patterns/features-split.php:23
+msgctxt "Features pattern"
+msgid "Everything you need, nothing you do not"
+msgstr ""
+
+#: patterns/features-split.php:28
+msgctxt "Features pattern"
+msgid "A clear first benefit"
+msgstr ""
+
+#: patterns/features-split.php:32
+msgctxt "Features pattern"
+msgid "A second benefit that matters"
+msgstr ""
+
+#: patterns/features-split.php:36
+msgctxt "Features pattern"
+msgid "A third reason to stay"
+msgstr ""
+
+#: patterns/features-split.php:42
+msgctxt "Features pattern"
+msgid "Learn more"
+msgstr ""
+
+#: patterns/features.php
+msgctxt "Pattern title"
+msgid "Features"
+msgstr ""
+
+#: patterns/features.php
+msgctxt "Pattern description"
+msgid "Three feature cards in a responsive grid."
+msgstr ""
+
+#: patterns/gallery-three.php
+msgctxt "Pattern title"
+msgid "Three pictures"
+msgstr ""
+
+#: patterns/gallery-three.php
+msgctxt "Pattern description"
+msgid "Three equal pictures in a row."
+msgstr ""
+
+#: patterns/hero-cover.php
+msgctxt "Pattern title"
+msgid "Hero on a picture"
+msgstr ""
+
+#: patterns/hero-cover.php
+msgctxt "Pattern description"
+msgid "A headline and a button on top of a full picture."
+msgstr ""
+
+#: patterns/hero-cover.php:14
+#: patterns/hero-minimal.php:16
+#: patterns/hero-split.php:19
+#: patterns/hero.php:16
+msgctxt "Hero pattern"
+msgid "A clear headline for your site"
+msgstr ""
+
+#: patterns/hero-cover.php:18
+#: patterns/hero-minimal.php:20
+#: patterns/hero-split.php:23
+#: patterns/hero.php:20
+msgctxt "Hero pattern"
+msgid "Say what you do in one or two sentences, and point people to the next step."
+msgstr ""
+
+#: patterns/hero-cover.php:23
+#: patterns/hero-minimal.php:25
+#: patterns/hero-split.php:28
+#: patterns/hero.php:25
+msgctxt "Hero pattern"
+msgid "Get started"
+msgstr ""
+
+#: patterns/hero-minimal.php
+msgctxt "Pattern title"
+msgid "Hero, minimal"
+msgstr ""
+
+#: patterns/hero-minimal.php
+msgctxt "Pattern description"
+msgid "A large left-aligned headline with no box around it."
+msgstr ""
+
+#: patterns/hero-minimal.php:12
+#: patterns/hero-split.php:15
+#: patterns/hero.php:12
+msgctxt "Hero pattern"
+msgid "Welcome"
+msgstr ""
+
+#: patterns/hero-minimal.php:29
+#: patterns/hero-split.php:32
+#: patterns/hero.php:29
+msgctxt "Hero pattern"
+msgid "Learn more"
+msgstr ""
+
+#: patterns/hero-split.php
+msgctxt "Pattern title"
+msgid "Hero with picture"
+msgstr ""
+
+#: patterns/hero-split.php
+msgctxt "Pattern description"
+msgid "A headline and two buttons beside a picture."
+msgstr ""
+
+#: patterns/hero.php
+msgctxt "Pattern title"
+msgid "Hero"
+msgstr ""
+
+#: patterns/hero.php
+msgctxt "Pattern description"
+msgid "A centred introduction with a headline, a short lead and two buttons."
+msgstr ""
+
+#: patterns/logos-grid.php
+msgctxt "Pattern title"
+msgid "Logo grid"
+msgstr ""
+
+#: patterns/logos-grid.php
+msgctxt "Pattern description"
+msgid "Six names or logos in a grid, with a heading."
+msgstr ""
+
+#: patterns/logos-grid.php:12
+msgctxt "Logos pattern"
+msgid "Our partners"
+msgstr ""
+
+#: patterns/logos-grid.php:17
+#: patterns/logos-strip.php:17
+msgctxt "Logos pattern"
+msgid "Acme"
+msgstr ""
+
+#: patterns/logos-grid.php:21
+#: patterns/logos-strip.php:21
+msgctxt "Logos pattern"
+msgid "Globex"
+msgstr ""
+
+#: patterns/logos-grid.php:25
+#: patterns/logos-strip.php:25
+msgctxt "Logos pattern"
+msgid "Initech"
+msgstr ""
+
+#: patterns/logos-grid.php:29
+#: patterns/logos-strip.php:29
+msgctxt "Logos pattern"
+msgid "Umbrella"
+msgstr ""
+
+#: patterns/logos-grid.php:33
+#: patterns/logos-strip.php:33
+msgctxt "Logos pattern"
+msgid "Hooli"
+msgstr ""
+
+#: patterns/logos-grid.php:37
+msgctxt "Logos pattern"
+msgid "Vandelay"
+msgstr ""
+
+#: patterns/logos-strip.php
+msgctxt "Pattern title"
+msgid "Logo strip"
+msgstr ""
+
+#: patterns/logos-strip.php
+msgctxt "Pattern description"
+msgid "A row of names or logos, as a quiet line of trust."
+msgstr ""
+
+#: patterns/logos-strip.php:12
+msgctxt "Logos pattern"
+msgid "Trusted by teams at"
+msgstr ""
+
+#: patterns/portfolio-feature.php
+msgctxt "Pattern title"
+msgid "Portfolio feature"
+msgstr ""
+
+#: patterns/portfolio-feature.php
+msgctxt "Pattern description"
+msgid "One large project with its story."
+msgstr ""
+
+#: patterns/portfolio-feature.php:19
+msgctxt "Portfolio pattern"
+msgid "Case study"
+msgstr ""
+
+#: patterns/portfolio-feature.php:23
+msgctxt "Portfolio pattern"
+msgid "Project name"
+msgstr ""
+
+#: patterns/portfolio-feature.php:27
+msgctxt "Portfolio pattern"
+msgid "Two or three sentences about the problem, the approach and the result."
+msgstr ""
+
+#: patterns/portfolio-feature.php:32
+msgctxt "Portfolio pattern"
+msgid "Read the story"
+msgstr ""
+
+#: patterns/portfolio-grid.php
+msgctxt "Pattern title"
+msgid "Portfolio grid"
+msgstr ""
+
+#: patterns/portfolio-grid.php
+msgctxt "Pattern description"
+msgid "Six projects with a picture, title and kind of work."
+msgstr ""
+
+#: patterns/portfolio-grid.php:17
+msgctxt "Portfolio pattern"
+msgid "Project one"
+msgstr ""
+
+#: patterns/portfolio-grid.php:21
+msgctxt "Portfolio pattern"
+msgid "Branding"
+msgstr ""
+
+#: patterns/portfolio-grid.php:31
+msgctxt "Portfolio pattern"
+msgid "Project two"
+msgstr ""
+
+#: patterns/portfolio-grid.php:35
+msgctxt "Portfolio pattern"
+msgid "Website"
+msgstr ""
+
+#: patterns/portfolio-grid.php:45
+msgctxt "Portfolio pattern"
+msgid "Project three"
+msgstr ""
+
+#: patterns/portfolio-grid.php:49
+msgctxt "Portfolio pattern"
+msgid "Editorial"
+msgstr ""
+
+#: patterns/portfolio-grid.php:59
+msgctxt "Portfolio pattern"
+msgid "Project four"
+msgstr ""
+
+#: patterns/portfolio-grid.php:63
+msgctxt "Portfolio pattern"
+msgid "Illustration"
+msgstr ""
+
+#: patterns/portfolio-grid.php:73
+msgctxt "Portfolio pattern"
+msgid "Project five"
+msgstr ""
+
+#: patterns/portfolio-grid.php:77
+msgctxt "Portfolio pattern"
+msgid "Packaging"
+msgstr ""
+
+#: patterns/portfolio-grid.php:87
+msgctxt "Portfolio pattern"
+msgid "Project six"
+msgstr ""
+
+#: patterns/portfolio-grid.php:91
+msgctxt "Portfolio pattern"
+msgid "Photography"
+msgstr ""
+
+#: patterns/pricing-single.php
+msgctxt "Pattern title"
+msgid "Pricing, one offer"
+msgstr ""
+
+#: patterns/pricing-single.php
+msgctxt "Pattern description"
+msgid "One price with everything included."
+msgstr ""
+
+#: patterns/pricing-single.php:13
+msgctxt "Pricing pattern"
+msgid "Lifetime licence"
+msgstr ""
+
+#: patterns/pricing-single.php:17
+msgctxt "Pricing pattern"
+msgid "$99"
+msgstr ""
+
+#: patterns/pricing-single.php:21
+msgctxt "Pricing pattern"
+msgid "One payment, every update, every site."
+msgstr ""
+
+#: patterns/pricing-single.php:26
+#: patterns/pricing-three.php:81
+msgctxt "Pricing pattern"
+msgid "All patterns and looks"
+msgstr ""
+
+#: patterns/pricing-single.php:30
+msgctxt "Pricing pattern"
+msgid "Free updates"
+msgstr ""
+
+#: patterns/pricing-single.php:34
+msgctxt "Pricing pattern"
+msgid "Support by email"
+msgstr ""
+
+#: patterns/pricing-single.php:40
+msgctxt "Pricing pattern"
+msgid "Buy now"
+msgstr ""
+
+#: patterns/pricing-three.php
+msgctxt "Pattern title"
+msgid "Pricing, three plans"
+msgstr ""
+
+#: patterns/pricing-three.php
+msgctxt "Pattern description"
+msgid "Three plans side by side with the middle one highlighted."
+msgstr ""
+
+#: patterns/pricing-three.php:12
+msgctxt "Pricing pattern"
+msgid "Simple, honest pricing"
+msgstr ""
+
+#: patterns/pricing-three.php:16
+msgctxt "Pricing pattern"
+msgid "Pick the plan that fits, change it any time."
+msgstr ""
+
+#: patterns/pricing-three.php:22
+msgctxt "Pricing pattern"
+msgid "Starter"
+msgstr ""
+
+#: patterns/pricing-three.php:26
+msgctxt "Pricing pattern"
+msgid "$9"
+msgstr ""
+
+#: patterns/pricing-three.php:30
+#: patterns/pricing-three.php:68
+#: patterns/pricing-three.php:102
+msgctxt "Pricing pattern"
+msgid "per month"
+msgstr ""
+
+#: patterns/pricing-three.php:35
+#: patterns/pricing-two.php:26
+msgctxt "Pricing pattern"
+msgid "One site"
+msgstr ""
+
+#: patterns/pricing-three.php:39
+msgctxt "Pricing pattern"
+msgid "Basic support"
+msgstr ""
+
+#: patterns/pricing-three.php:43
+msgctxt "Pricing pattern"
+msgid "Community access"
+msgstr ""
+
+#: patterns/pricing-three.php:49
+msgctxt "Pricing pattern"
+msgid "Choose Starter"
+msgstr ""
+
+#: patterns/pricing-three.php:56
+msgctxt "Pricing pattern"
+msgid "Most popular"
+msgstr ""
+
+#: patterns/pricing-three.php:60
+#: patterns/pricing-two.php:47
+msgctxt "Pricing pattern"
+msgid "Pro"
+msgstr ""
+
+#: patterns/pricing-three.php:64
+#: patterns/pricing-two.php:51
+msgctxt "Pricing pattern"
+msgid "$29"
+msgstr ""
+
+#: patterns/pricing-three.php:73
+msgctxt "Pricing pattern"
+msgid "Five sites"
+msgstr ""
+
+#: patterns/pricing-three.php:77
+#: patterns/pricing-two.php:64
+msgctxt "Pricing pattern"
+msgid "Priority support"
+msgstr ""
+
+#: patterns/pricing-three.php:87
+msgctxt "Pricing pattern"
+msgid "Choose Pro"
+msgstr ""
+
+#: patterns/pricing-three.php:94
+msgctxt "Pricing pattern"
+msgid "Agency"
+msgstr ""
+
+#: patterns/pricing-three.php:98
+msgctxt "Pricing pattern"
+msgid "$79"
+msgstr ""
+
+#: patterns/pricing-three.php:107
+#: patterns/pricing-two.php:60
+msgctxt "Pricing pattern"
+msgid "Unlimited sites"
+msgstr ""
+
+#: patterns/pricing-three.php:111
+msgctxt "Pricing pattern"
+msgid "Dedicated support"
+msgstr ""
+
+#: patterns/pricing-three.php:115
+msgctxt "Pricing pattern"
+msgid "White label"
+msgstr ""
+
+#: patterns/pricing-three.php:121
+msgctxt "Pricing pattern"
+msgid "Choose Agency"
+msgstr ""
+
+#: patterns/pricing-two.php
+msgctxt "Pattern title"
+msgid "Pricing, two plans"
+msgstr ""
+
+#: patterns/pricing-two.php
+msgctxt "Pattern description"
+msgid "Two plans, one free and one paid."
+msgstr ""
+
+#: patterns/pricing-two.php:13
+msgctxt "Pricing pattern"
+msgid "Free"
+msgstr ""
+
+#: patterns/pricing-two.php:17
+msgctxt "Pricing pattern"
+msgid "$0"
+msgstr ""
+
+#: patterns/pricing-two.php:21
+msgctxt "Pricing pattern"
+msgid "for personal projects"
+msgstr ""
+
+#: patterns/pricing-two.php:30
+msgctxt "Pricing pattern"
+msgid "Community support"
+msgstr ""
+
+#: patterns/pricing-two.php:36
+msgctxt "Pricing pattern"
+msgid "Start for free"
+msgstr ""
+
+#: patterns/pricing-two.php:43
+msgctxt "Pricing pattern"
+msgid "Recommended"
+msgstr ""
+
+#: patterns/pricing-two.php:55
+msgctxt "Pricing pattern"
+msgid "per month, billed yearly"
+msgstr ""
+
+#: patterns/pricing-two.php:68
+msgctxt "Pricing pattern"
+msgid "Early access"
+msgstr ""
+
+#: patterns/pricing-two.php:74
+msgctxt "Pricing pattern"
+msgid "Go Pro"
+msgstr ""
+
+#: patterns/process-four.php
+msgctxt "Pattern title"
+msgid "Process in four steps"
+msgstr ""
+
+#: patterns/process-four.php
+msgctxt "Pattern description"
+msgid "Four numbered steps from first call to launch."
+msgstr ""
+
+#: patterns/process-four.php:13
+msgctxt "Process pattern"
+msgid "1"
+msgstr ""
+
+#: patterns/process-four.php:17
+msgctxt "Process pattern"
+msgid "Talk"
+msgstr ""
+
+#: patterns/process-four.php:21
+msgctxt "Process pattern"
+msgid "We listen first."
+msgstr ""
+
+#: patterns/process-four.php:27
+msgctxt "Process pattern"
+msgid "2"
+msgstr ""
+
+#: patterns/process-four.php:31
+msgctxt "Process pattern"
+msgid "Plan"
+msgstr ""
+
+#: patterns/process-four.php:35
+msgctxt "Process pattern"
+msgid "We agree on a clear plan."
+msgstr ""
+
+#: patterns/process-four.php:41
+msgctxt "Process pattern"
+msgid "3"
+msgstr ""
+
+#: patterns/process-four.php:45
+msgctxt "Process pattern"
+msgid "Build"
+msgstr ""
+
+#: patterns/process-four.php:49
+msgctxt "Process pattern"
+msgid "We make it, with updates."
+msgstr ""
+
+#: patterns/process-four.php:55
+msgctxt "Process pattern"
+msgid "4"
+msgstr ""
+
+#: patterns/process-four.php:59
+msgctxt "Process pattern"
+msgid "Launch"
+msgstr ""
+
+#: patterns/process-four.php:63
+msgctxt "Process pattern"
+msgid "We go live, and stay."
+msgstr ""
+
+#: patterns/services-list.php
+msgctxt "Pattern title"
+msgid "Services list"
+msgstr ""
+
+#: patterns/services-list.php
+msgctxt "Pattern description"
+msgid "A plain list of services, each separated by a line."
+msgstr ""
+
+#: patterns/services-list.php:12
+msgctxt "Services pattern"
+msgid "What we do"
+msgstr ""
+
+#: patterns/services-list.php:17
+msgctxt "Services pattern"
+msgid "Strategy"
+msgstr ""
+
+#: patterns/services-list.php:21
+#: patterns/services-list.php:31
+#: patterns/services-list.php:41
+msgctxt "Services pattern"
+msgid "Describe this service in a sentence."
+msgstr ""
+
+#: patterns/services-list.php:27
+msgctxt "Services pattern"
+msgid "Design"
+msgstr ""
+
+#: patterns/services-list.php:37
+msgctxt "Services pattern"
+msgid "Development"
+msgstr ""
+
+#: patterns/stats-four.php
+msgctxt "Pattern title"
+msgid "Stats, four numbers"
+msgstr ""
+
+#: patterns/stats-four.php
+msgctxt "Pattern description"
+msgid "Four large numbers with labels."
+msgstr ""
+
+#: patterns/stats-four.php:13
+msgctxt "Stats pattern"
+msgid "12k"
+msgstr ""
+
+#: patterns/stats-four.php:17
+msgctxt "Stats pattern"
+msgid "Customers"
+msgstr ""
+
+#: patterns/stats-four.php:23
+msgctxt "Stats pattern"
+msgid "48"
+msgstr ""
+
+#: patterns/stats-four.php:27
+msgctxt "Stats pattern"
+msgid "Countries"
+msgstr ""
+
+#: patterns/stats-four.php:33
+msgctxt "Stats pattern"
+msgid "99.9%"
+msgstr ""
+
+#: patterns/stats-four.php:37
+msgctxt "Stats pattern"
+msgid "Uptime"
+msgstr ""
+
+#: patterns/stats-four.php:43
+msgctxt "Stats pattern"
+msgid "24/7"
+msgstr ""
+
+#: patterns/stats-four.php:47
+msgctxt "Stats pattern"
+msgid "Support"
+msgstr ""
+
+#: patterns/stats-split.php
+msgctxt "Pattern title"
+msgid "Stats beside a text"
+msgstr ""
+
+#: patterns/stats-split.php
+msgctxt "Pattern description"
+msgid "A short story on one side and three numbers on the other."
+msgstr ""
+
+#: patterns/stats-split.php:13
+msgctxt "Stats pattern"
+msgid "In numbers"
+msgstr ""
+
+#: patterns/stats-split.php:17
+msgctxt "Stats pattern"
+msgid "A track record you can check"
+msgstr ""
+
+#: patterns/stats-split.php:21
+msgctxt "Stats pattern"
+msgid "Say in two sentences what these figures mean for the people who use what you make."
+msgstr ""
+
+#: patterns/stats-split.php:29
+msgctxt "Stats pattern"
+msgid "120+"
+msgstr ""
+
+#: patterns/stats-split.php:33
+msgctxt "Stats pattern"
+msgid "Articles"
+msgstr ""
+
+#: patterns/stats-split.php:39
+msgctxt "Stats pattern"
+msgid "48k"
+msgstr ""
+
+#: patterns/stats-split.php:43
+msgctxt "Stats pattern"
+msgid "Readers"
+msgstr ""
+
+#: patterns/stats.php
+msgctxt "Pattern title"
+msgid "Stats"
+msgstr ""
+
+#: patterns/stats.php
+msgctxt "Pattern description"
+msgid "Three large numbers with short labels."
+msgstr ""
+
+#: patterns/stats.php:17
+msgctxt "Stats pattern"
+msgid "Articles published"
+msgstr ""
+
+#: patterns/stats.php:27
+msgctxt "Stats pattern"
+msgid "Monthly readers"
+msgstr ""
+
+#: patterns/stats.php:37
+msgctxt "Stats pattern"
+msgid "Reader satisfaction"
+msgstr ""
+
+#: patterns/steps.php
+msgctxt "Pattern title"
+msgid "Steps"
+msgstr ""
+
+#: patterns/steps.php
+msgctxt "Pattern description"
+msgid "Three numbered steps that explain how something works."
+msgstr ""
+
+#: patterns/steps.php:17
+msgctxt "Steps pattern"
+msgid "Sign up"
+msgstr ""
+
+#: patterns/steps.php:21
+msgctxt "Steps pattern"
+msgid "Explain the first step."
+msgstr ""
+
+#: patterns/steps.php:31
+msgctxt "Steps pattern"
+msgid "Set things up"
+msgstr ""
+
+#: patterns/steps.php:35
+msgctxt "Steps pattern"
+msgid "Explain the second step."
+msgstr ""
+
+#: patterns/steps.php:45
+msgctxt "Steps pattern"
+msgid "Go live"
+msgstr ""
+
+#: patterns/steps.php:49
+msgctxt "Steps pattern"
+msgid "Explain the third step."
+msgstr ""
+
+#: patterns/team-four.php
+msgctxt "Pattern title"
+msgid "Team, four people"
+msgstr ""
+
+#: patterns/team-four.php
+msgctxt "Pattern description"
+msgid "Four people in a row."
+msgstr ""
+
+#: patterns/team-four.php:17
+#: patterns/team-three.php:17
+msgctxt "Team pattern"
+msgid "Alex Morgan"
+msgstr ""
+
+#: patterns/team-four.php:21
+#: patterns/team-three.php:21
+msgctxt "Team pattern"
+msgid "Editor"
+msgstr ""
+
+#: patterns/team-four.php:31
+#: patterns/team-three.php:31
+msgctxt "Team pattern"
+msgid "Sam Lee"
+msgstr ""
+
+#: patterns/team-four.php:35
+#: patterns/team-three.php:35
+msgctxt "Team pattern"
+msgid "Designer"
+msgstr ""
+
+#: patterns/team-four.php:45
+#: patterns/team-three.php:45
+msgctxt "Team pattern"
+msgid "Jo Baker"
+msgstr ""
+
+#: patterns/team-four.php:49
+#: patterns/team-three.php:49
+msgctxt "Team pattern"
+msgid "Developer"
+msgstr ""
+
+#: patterns/team-four.php:59
+msgctxt "Team pattern"
+msgid "Kim Novak"
+msgstr ""
+
+#: patterns/team-four.php:63
+msgctxt "Team pattern"
+msgid "Publisher"
+msgstr ""
+
+#: patterns/team-three.php
+msgctxt "Pattern title"
+msgid "Team, three people"
+msgstr ""
+
+#: patterns/team-three.php
+msgctxt "Pattern description"
+msgid "Three people with a round picture, name and role."
+msgstr ""
+
+#: patterns/testimonial-picture.php
+msgctxt "Pattern title"
+msgid "Testimonial with a picture"
+msgstr ""
+
+#: patterns/testimonial-picture.php
+msgctxt "Pattern description"
+msgid "A quote beside a round portrait."
+msgstr ""
+
+#: patterns/testimonial-picture.php:20
+msgctxt "Testimonial pattern"
+msgid "A few sentences from a happy customer, in their own words."
+msgstr ""
+
+#: patterns/testimonial-picture.php:21
+#: patterns/testimonial-single.php:14
+msgctxt "Testimonial pattern"
+msgid "Alex Morgan, Editor"
+msgstr ""
+
+#: patterns/testimonial-single.php
+msgctxt "Pattern title"
+msgid "Testimonial"
+msgstr ""
+
+#: patterns/testimonial-single.php
+msgctxt "Pattern description"
+msgid "One large quote with a name."
+msgstr ""
+
+#: patterns/testimonial-single.php:13
+msgctxt "Testimonial pattern"
+msgid "This changed how we work. It was ready in an afternoon and our readers noticed at once."
+msgstr ""
+
+#: patterns/testimonials-three.php
+msgctxt "Pattern title"
+msgid "Testimonials, three cards"
+msgstr ""
+
+#: patterns/testimonials-three.php
+msgctxt "Pattern description"
+msgid "Three short quotes in cards."
+msgstr ""
+
+#: patterns/testimonials-three.php:14
+msgctxt "Testimonial pattern"
+msgid "Clear, fast and easy to read."
+msgstr ""
+
+#: patterns/testimonials-three.php:15
+msgctxt "Testimonial pattern"
+msgid "Sam Lee, Designer"
+msgstr ""
+
+#: patterns/testimonials-three.php:22
+msgctxt "Testimonial pattern"
+msgid "The best starting point we have used."
+msgstr ""
+
+#: patterns/testimonials-three.php:23
+msgctxt "Testimonial pattern"
+msgid "Jo Baker, Developer"
+msgstr ""
+
+#: patterns/testimonials-three.php:30
+msgctxt "Testimonial pattern"
+msgid "Our readers stay longer now."
+msgstr ""
+
+#: patterns/testimonials-three.php:31
+msgctxt "Testimonial pattern"
+msgid "Kim Novak, Publisher"
+msgstr ""
+
+#: patterns/timeline.php
+msgctxt "Pattern title"
+msgid "Timeline"
+msgstr ""
+
+#: patterns/timeline.php
+msgctxt "Pattern description"
+msgid "A vertical timeline of dated events."
+msgstr ""
+
+#: patterns/timeline.php:18
+msgctxt "Timeline pattern"
+msgid "January 2026"
+msgstr ""
+
+#: patterns/timeline.php:22
+msgctxt "Timeline pattern"
+msgid "The beginning"
+msgstr ""
+
+#: patterns/timeline.php:26
+#: patterns/timeline.php:46
+msgctxt "Timeline pattern"
+msgid "What happened, in a sentence."
+msgstr ""
+
+#: patterns/timeline.php:38
+msgctxt "Timeline pattern"
+msgid "April 2026"
+msgstr ""
+
+#: patterns/timeline.php:42
+msgctxt "Timeline pattern"
+msgid "A big step forward"
+msgstr ""
+
+#: patterns/timeline.php:58
+msgctxt "Timeline pattern"
+msgid "Today"
+msgstr ""
+
+#: patterns/timeline.php:62
+msgctxt "Timeline pattern"
+msgid "Where we are now"
+msgstr ""
+
+#: patterns/timeline.php:66
+msgctxt "Timeline pattern"
+msgid "What is happening now, in a sentence."
+msgstr ""
+
+#: patterns/values-three.php
+msgctxt "Pattern title"
+msgid "Our values"
+msgstr ""
+
+#: patterns/values-three.php
+msgctxt "Pattern description"
+msgid "Three values, each with a heading and a sentence."
+msgstr ""
+
+#: patterns/values-three.php:13
+msgctxt "About pattern"
+msgid "Clarity"
+msgstr ""
+
+#: patterns/values-three.php:17
+msgctxt "About pattern"
+msgid "Say it simply, and say it once."
+msgstr ""
+
+#: patterns/values-three.php:23
+msgctxt "About pattern"
+msgid "Care"
+msgstr ""
+
+#: patterns/values-three.php:27
+msgctxt "About pattern"
+msgid "Details are how people know you mean it."
+msgstr ""
+
+#: patterns/values-three.php:33
+msgctxt "About pattern"
+msgid "Craft"
+msgstr ""
+
+#: patterns/values-three.php:37
+msgctxt "About pattern"
+msgid "Make it well, then make it last."
+msgstr ""
+
+#. translators: %s: search query.
+#: search.php:11
+#, php-format
+msgid "Search results for “%s”"
+msgstr ""
+
+#: search.php:16
+msgid "Refine your search"
+msgstr ""
+
+#: searchform.php:3
+msgid "Search…"
+msgstr ""
+
+#: single-basix-event.php:13
+msgid "Event"
+msgstr ""
+
+#: single-basix-event.php:28
+msgid "Add to calendar"
+msgstr ""
+
+#: single-basix-event.php:31
+msgid "Back to the events"
+msgstr ""
+
+#: single-basix-event.php:32
+msgid "All events"
+msgstr ""
+
+#: single.php:42
+msgid "Post navigation"
+msgstr ""
+
+#: starters/blog.php:9
+msgid "Blog"
+msgstr ""
+
+#: starters/blog.php:10
+msgid "A classic blog: a welcome card, the latest posts in a grid, a sidebar, an About page and a Contact page."
+msgstr ""
+
+#: starters/blog.php:22
+#: starters/business.php:163
+#: starters/events.php:51
+#: starters/magazine.php:23
+msgctxt "Starter page title"
+msgid "About"
+msgstr ""
+
+#: starters/blog.php:36
+#: starters/business.php:186
+#: starters/events.php:72
+#: starters/magazine.php:44
+msgctxt "Starter page title"
+msgid "Contact"
+msgstr ""
+
+#: starters/business.php:9
+msgid "Business"
+msgstr ""
+
+#: starters/business.php:10
+msgid "A company site: a landing page with a hero, features, numbers, testimonials and prices, plus Services, Pricing, About, News and Contact pages."
+msgstr ""
+
+#: starters/business.php:23
+#: starters/events.php:22
+msgctxt "Starter page title"
+msgid "Home"
+msgstr ""
+
+#: starters/business.php:107
+msgctxt "Starter page title"
+msgid "Services"
+msgstr ""
+
+#: starters/business.php:123
+msgctxt "Starter page title"
+msgid "Pricing"
+msgstr ""
+
+#: starters/business.php:182
+msgctxt "Starter page title"
+msgid "News"
+msgstr ""
+
+#: starters/events.php:10
+msgid "A site for gatherings: sample events (one repeating every week), an agenda and a calendar, a subscribe link, and About and Contact pages."
+msgstr ""
+
+#: starters/events.php:34
+msgctxt "Starter content"
+msgid "What is on"
+msgstr ""
+
+#: starters/events.php:46
+msgctxt "Starter page title"
+msgid "Calendar"
+msgstr ""
+
+#: starters/magazine.php:9
+msgid "Magazine"
+msgstr ""
+
+#: starters/magazine.php:10
+msgid "An editorial site: warm paper and serif type, a slider of featured stories, a large first story and a sidebar."
+msgstr ""
+
+#: template-parts/author-box.php:15
+msgid "About the author"
+msgstr ""
+
+#: template-parts/calendar.php:76
+msgid "No events this month."
+msgstr ""
+
+#: template-parts/calendar.php:76
+msgid "No posts this month."
+msgstr ""
+
+#: template-parts/content-card.php:12
+msgid "Read more"
+msgstr ""
+
+#. translators: %s: post title.
+#: template-parts/content-card.php:16
+#, php-format
+msgid "about “%s”"
+msgstr ""
+
+#: template-parts/event-categories.php:16
+#: template-parts/filters.php:27
+msgid "All"
+msgstr ""
+
+#: template-parts/event-day-nav.php:18
+msgid "Days"
+msgstr ""
+
+#: template-parts/event-day-nav.php:20
+msgid "All coming events"
+msgstr ""
+
+#: template-parts/filters.php:37
+msgid "Filter"
+msgstr ""
+
+#: template-parts/filters.php:70
+msgid "From"
+msgstr ""
+
+#: template-parts/filters.php:72
+msgid "To"
+msgstr ""
+
+#: template-parts/filters.php:77
+msgid "Apply"
+msgstr ""
+
+#: template-parts/filters.php:85
+msgid "Active filters"
+msgstr ""
+
+#. translators: %s: filter, for example a category name.
+#: template-parts/filters.php:90
+#, php-format
+msgid "Remove filter: %s"
+msgstr ""
+
+#: template-parts/filters.php:94
+msgid "Clear all"
+msgstr ""
+
+#: template-parts/loop.php:8
+msgid "Subscribe in your calendar app"
+msgstr ""
+
+#: template-parts/loop.php:9
+msgid "Calendar file (.ics)"
+msgstr ""
+
+#: template-parts/loop.php:28
+msgid "No events on this day."
+msgstr ""
+
+#: template-parts/loop.php:30
+msgid "Nothing found."
+msgstr ""
+
+#: template-parts/related.php:23
+msgid "Related posts"
+msgstr ""
+
+#: template-parts/share.php:19
+msgid "Share"
+msgstr ""
+
+#: template-parts/share.php:20
+msgid "Copy link"
+msgstr ""
+
+#: template-parts/share.php:21
+msgid "Link copied"
+msgstr ""
+
+#: template-parts/share.php:26
+msgid "Share this post"
+msgstr ""
+
+#: template-parts/top-bar.php:18
+msgid "Notice and links"
+msgstr ""
+
+#: template-parts/top-bar.php:29
+msgid "Follow us"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Text"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Secondary text"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Background"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Surface"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Accent"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Accent tint"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Divider"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Success"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Warning"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Error"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Outfit"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Monospace"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Base"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Extra large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Huge"
+msgstr ""
+
+#: styles/basix.json
+msgctxt "Style variation name"
+msgid "Basix"
+msgstr ""
+
+#: styles/bold.json
+msgctxt "Style variation name"
+msgid "Bold"
+msgstr ""
+
+#: styles/calm.json
+msgctxt "Style variation name"
+msgid "Calm"
+msgstr ""
+
+#: styles/editorial.json
+msgctxt "Style variation name"
+msgid "Editorial"
+msgstr ""
+
+#: styles/paper.json
+msgctxt "Style variation name"
+msgid "Paper"
+msgstr ""

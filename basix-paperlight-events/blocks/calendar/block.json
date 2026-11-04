@@ -7,7 +7,7 @@
 	"icon": "calendar-alt",
 	"description": "A calendar of your events, or of your posts by publish date, with month, week and agenda views.",
 	"keywords": [ "calendar", "events", "posts", "agenda" ],
-	"textdomain": "basix-events",
+	"textdomain": "basix-paperlight-events",
 	"attributes": {
 		"view": {
 			"type": "string",

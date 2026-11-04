@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Basix Events
+ * Plugin Name: Basix Paperlight Events
  * Description: Events with dates, times, time zones, repeats and categories, an events calendar block and shortcode, a calendar feed (ICS), and the data for event search results. Made for the Basix theme; the events work with any theme.
  * Version: 1.0.0
  * Requires at least: 6.5
@@ -8,10 +8,10 @@
  * Author: Andi Bauer
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: basix-events
+ * Text Domain: basix-paperlight-events
  * Domain Path: /languages
  *
- * @package basix-events
+ * @package basix-paperlight-events
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -29,7 +29,7 @@ require_once BASIX_EVENTS_DIR . 'inc/calendar.php';
 add_action(
 	'init',
 	function () {
-		load_plugin_textdomain( 'basix-events', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'basix-paperlight-events', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	},
 	1
 );
