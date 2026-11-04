@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Basix 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/basix\n"
-"POT-Creation-Date: 2026-11-02T15:40:30+00:00\n"
+"POT-Creation-Date: 2026-11-04T09:05:10+00:00\n"
 "PO-Revision-Date: 2026-10-28 12:00+0000\n"
 "Last-Translator: Andi Bauer\n"
 "Language-Team: German\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: WP-CLI 2.12.0\n"
 
 #. Theme Name of the theme
-#: style.css functions.php:79 inc/customizer.php:72 inc/looks.php:86
+#: style.css functions.php:106 inc/customizer.php:72 inc/looks.php:86
 msgid "Basix"
 msgstr ""
 
@@ -30,12 +30,9 @@ msgstr ""
 #: style.css
 msgid ""
 "A fast, accessible blog and magazine theme built entirely from the Basix "
-"component library, with light and dark mode, a flyout menu, image cards and "
-"a sidebar with widgets."
-msgstr ""
-"Ein schnelles, barrierefreies Blog- und Magazin-Theme, komplett aus der "
-"Basix-Komponentenbibliothek gebaut, mit hellem und dunklem Modus, Flyout-"
-"Menü, Bildkarten und einer Seitenleiste mit Widgets."
+"component library, with light and dark mode, five looks, header and footer "
+"options, forty block patterns, four starter sites and right-to-left support."
+msgstr "Ein schnelles, barrierefreies Blog- und Magazin-Theme, ganz aus der Komponentenbibliothek Basix gebaut, mit hellem und dunklem Modus, fünf Looks, Optionen für Kopf- und Fußbereich, vierzig Block-Mustern, vier Starter-Websites und Unterstützung für Sprachen von rechts nach links."
 
 #. Author of the theme
 #: style.css
@@ -47,27 +44,27 @@ msgstr ""
 msgid "https://www.andibauer.at"
 msgstr ""
 
-#: 404.php:5
+#: 404.php:6
 msgid "This page could not be found."
 msgstr "Diese Seite wurde nicht gefunden."
 
-#: 404.php:6
+#: 404.php:7
 msgid "Search the site"
 msgstr "Website durchsuchen"
 
-#: 404.php:7
+#: 404.php:8
 msgid "Back to home"
 msgstr "Zurück zur Startseite"
 
 #. translators: %s: number of comments.
-#: comments.php:9
+#: comments.php:10
 #, php-format
 msgid "%s comment"
 msgid_plural "%s comments"
 msgstr[0] "%s Kommentar"
 msgstr[1] "%s Kommentare"
 
-#: comments.php:21
+#: comments.php:29
 msgid "Comments are closed."
 msgstr "Kommentare sind geschlossen."
 
@@ -88,7 +85,7 @@ msgstr "Nach oben"
 msgid "Welcome"
 msgstr "Willkommen"
 
-#: front-page.php:15 front-page.php:34 inc/setup/importer.php:429
+#: front-page.php:15 front-page.php:37 inc/setup/importer.php:429
 msgid "Latest posts"
 msgstr "Neueste Beiträge"
 
@@ -96,214 +93,218 @@ msgstr "Neueste Beiträge"
 msgid "All posts"
 msgstr "Alle Beiträge"
 
-#: front-page.php:43
+#: front-page.php:57
 msgid "Nothing published yet."
 msgstr "Noch nichts veröffentlicht."
 
-#: functions.php:81
+#: functions.php:13
+msgid "(no title)"
+msgstr "(kein Titel)"
+
+#: functions.php:108
 msgid "Basix: Hero"
 msgstr "Basix: Hero"
 
-#: functions.php:82
+#: functions.php:109
 msgid "Basix: Features"
 msgstr "Basix: Funktionen"
 
-#: functions.php:83
+#: functions.php:110
 msgid "Basix: Pricing"
 msgstr "Basix: Preise"
 
-#: functions.php:84
+#: functions.php:111
 msgid "Basix: Testimonials"
 msgstr "Basix: Stimmen"
 
-#: functions.php:85
+#: functions.php:112
 msgid "Basix: Team"
 msgstr "Basix: Team"
 
-#: functions.php:86
+#: functions.php:113
 msgid "Basix: Logos"
 msgstr "Basix: Logos"
 
-#: functions.php:87
+#: functions.php:114
 msgid "Basix: Numbers"
 msgstr "Basix: Zahlen"
 
-#: functions.php:88
+#: functions.php:115
 msgid "Basix: Call to action"
 msgstr "Basix: Handlungsaufruf"
 
-#: functions.php:89
+#: functions.php:116
 msgid "Basix: Newsletter"
 msgstr "Basix: Newsletter"
 
-#: functions.php:90
+#: functions.php:117
 msgid "Basix: Contact"
 msgstr "Basix: Kontakt"
 
-#: functions.php:91
+#: functions.php:118
 msgid "Basix: Portfolio and pictures"
 msgstr "Basix: Portfolio und Bilder"
 
-#: functions.php:92
+#: functions.php:119
 msgid "Basix: Blog"
 msgstr "Basix: Blog"
 
-#: functions.php:93
+#: functions.php:120
 msgid "Basix: Questions"
 msgstr "Basix: Fragen"
 
-#: functions.php:94
+#: functions.php:121
 msgid "Basix: About"
 msgstr "Basix: Über uns"
 
-#: functions.php:99
+#: functions.php:130
 msgid "Card"
 msgstr "Karte"
 
-#: functions.php:100
+#: functions.php:137
 msgid "Bordered card"
 msgstr "Karte mit Rahmen"
 
-#: functions.php:101
+#: functions.php:144
 msgid "Lead text"
 msgstr "Einleitungstext"
 
-#: functions.php:102
+#: functions.php:151
 msgid "Sortable"
 msgstr "Sortierbar"
 
-#: functions.php:103
+#: functions.php:158
 msgid "Masonry"
 msgstr "Mauerwerk"
 
-#: functions.php:104
+#: functions.php:165
 msgid "Framed"
 msgstr "Mit Rahmen"
 
-#: functions.php:105
+#: functions.php:172
 msgid "Soft shadow"
 msgstr "Weicher Schatten"
 
-#: functions.php:106
+#: functions.php:179
 msgid "Circle"
 msgstr "Kreis"
 
-#: functions.php:125 inc/customizer.php:191 inc/header.php:360 sidebar.php:3
+#: functions.php:207 inc/customizer.php:193 inc/header.php:370 sidebar.php:4
 msgid "Sidebar"
 msgstr "Seitenleiste"
 
-#: functions.php:127
+#: functions.php:209
 msgid "Shown next to blog posts and archives."
 msgstr "Wird neben Beiträgen und Archiven angezeigt."
 
 #. translators: %d: column number.
-#: functions.php:139
+#: functions.php:223
 #, php-format
 msgid "Footer column %d"
 msgstr "Footer-Spalte %d"
 
-#: functions.php:143
+#: functions.php:227
 msgid "Shown in the footer."
 msgstr "Wird im Footer angezeigt."
 
-#: functions.php:189
+#: functions.php:280
 msgid "Category"
 msgstr "Kategorie"
 
-#: functions.php:190
+#: functions.php:281
 msgid "Tag"
 msgstr "Schlagwort"
 
-#: functions.php:191
+#: functions.php:282
 msgid "Author"
 msgstr "Autor"
 
-#: functions.php:192 functions.php:194 functions.php:195
+#: functions.php:283 functions.php:285 functions.php:286
 msgid "Archive"
 msgstr "Archiv"
 
-#: functions.php:193 inc/schema.php:114 inc/schema.php:137 inc/schema.php:140
+#: functions.php:284 inc/schema.php:114 inc/schema.php:137 inc/schema.php:140
 #: inc/setup/importer.php:374 starters/events.php:9
 msgid "Events"
 msgstr "Veranstaltungen"
 
 #. translators: %s: the event's time in the site's time zone.
-#: functions.php:262
+#: functions.php:352
 #, php-format
 msgid "%s in site time"
 msgstr "%s in der Zeit der Website"
 
-#: functions.php:300 inc/schema.php:93 inc/setup/importer.php:380
+#: functions.php:388 inc/schema.php:93 inc/setup/importer.php:380
 msgid "Home"
 msgstr "Startseite"
 
-#: functions.php:314
+#: functions.php:402
 msgid "Not found"
 msgstr "Nicht gefunden"
 
-#: functions.php:316 inc/schema.php:151
+#: functions.php:404 inc/schema.php:151
 msgid "Search results"
 msgstr "Suchergebnisse"
 
-#: functions.php:324
+#: functions.php:412
 msgid "Breadcrumb"
 msgstr "Brotkrumennavigation"
 
-#: functions.php:338
+#: functions.php:431
 msgid "Pagination"
 msgstr "Seitennavigation"
 
-#: functions.php:375
+#: functions.php:469
 msgid "Your comment is awaiting moderation."
 msgstr "Dein Kommentar wartet auf Freischaltung."
 
-#: functions.php:412
+#: functions.php:519
 msgid "Your comment could not be submitted"
 msgstr "Dein Kommentar konnte nicht gesendet werden"
 
-#: functions.php:414
+#: functions.php:521
 msgid "Go back"
 msgstr "Zurück"
 
-#: functions.php:430
+#: functions.php:541
 msgid "Please fill out this field."
 msgstr "Bitte fülle dieses Feld aus."
 
-#: functions.php:431
+#: functions.php:542
 msgid "Please enter a valid email address."
 msgstr "Bitte gib eine gültige E-Mail-Adresse ein."
 
-#: functions.php:432
+#: functions.php:543
 msgid "Please enter a valid URL."
 msgstr "Bitte gib eine gültige URL ein."
 
-#: functions.php:433
+#: functions.php:544
 msgid "View larger image"
 msgstr "Bild vergrößern"
 
-#: functions.php:434
+#: functions.php:545
 msgid "Open image"
 msgstr "Bild öffnen"
 
-#: functions.php:435
+#: functions.php:546
 msgid "Code"
 msgstr "Code"
 
-#: functions.php:436
+#: functions.php:547
 msgid "Table"
 msgstr "Tabelle"
 
-#: functions.php:437
+#: functions.php:548
 msgid "Featured posts"
 msgstr "Ausgewählte Beiträge"
 
 #. translators: 1: number of this slide, 2: number of slides.
-#: functions.php:439
+#: functions.php:550
 #, php-format
 msgid "Slide %1$d of %2$d"
 msgstr "Folie %1$d von %2$d"
 
-#: functions.php:451
+#: functions.php:566
 msgid ""
 "This content is password-protected. To view it, please enter the password "
 "below."
@@ -311,11 +312,11 @@ msgstr ""
 "Dieser Inhalt ist passwortgeschützt. Gib unten das Passwort ein, um ihn zu "
 "sehen."
 
-#: functions.php:453
+#: functions.php:568
 msgid "Password"
 msgstr "Passwort"
 
-#: functions.php:456
+#: functions.php:571
 msgctxt "post password form"
 msgid "Enter"
 msgstr "Öffnen"
@@ -396,7 +397,7 @@ msgstr "Die Beiträge konnten nicht geladen werden. Bitte versuche es erneut."
 msgid "Event categories"
 msgstr "Veranstaltungskategorien"
 
-#: inc/customizer.php:81 inc/header.php:351
+#: inc/customizer.php:81 inc/header.php:361
 msgid "Header"
 msgstr "Header"
 
@@ -450,94 +451,94 @@ msgstr "Hell"
 msgid "Dark"
 msgstr "Dunkel"
 
-#: inc/customizer.php:149
+#: inc/customizer.php:150
 msgid "Accent colour (light mode)"
 msgstr "Akzentfarbe (heller Modus)"
 
-#: inc/customizer.php:150
+#: inc/customizer.php:151
 msgid "Leave it as it is to use the look's own accent colour."
 msgstr "So lassen, um die Akzentfarbe des Looks zu verwenden."
 
-#: inc/customizer.php:167
+#: inc/customizer.php:169
 msgid "Accent colour (dark mode)"
 msgstr "Akzentfarbe (dunkler Modus)"
 
-#: inc/customizer.php:176
+#: inc/customizer.php:178
 msgid "Layout"
 msgstr "Layout"
 
-#: inc/customizer.php:194
+#: inc/customizer.php:196
 msgid "Right"
 msgstr "Rechts"
 
-#: inc/customizer.php:195
+#: inc/customizer.php:197
 msgid "Left"
 msgstr "Links"
 
-#: inc/customizer.php:196
+#: inc/customizer.php:198
 msgid "No sidebar"
 msgstr "Keine Seitenleiste"
 
-#: inc/customizer.php:212
+#: inc/customizer.php:214
 msgid "Post list layout"
 msgstr "Layout der Beitragsliste"
 
-#: inc/customizer.php:213
+#: inc/customizer.php:215
 msgid "How posts are shown on the blog, in archives and in search."
 msgstr "Wie Beiträge im Blog, in Archiven und in der Suche angezeigt werden."
 
-#: inc/customizer.php:216
+#: inc/customizer.php:218
 msgid "Grid of cards"
 msgstr "Raster aus Karten"
 
-#: inc/customizer.php:217
+#: inc/customizer.php:219
 msgid "List, with the picture beside the text"
 msgstr "Liste, mit dem Bild neben dem Text"
 
-#: inc/customizer.php:218
+#: inc/customizer.php:220
 msgid "Magazine: a large first post, then a grid"
 msgstr "Magazin: ein großer erster Beitrag, dann ein Raster"
 
-#: inc/customizer.php:227
+#: inc/customizer.php:229
 msgid "Front page"
 msgstr "Startseite"
 
-#: inc/customizer.php:242
+#: inc/customizer.php:244
 msgid "Introduction at the top"
 msgstr "Einleitung oben"
 
-#: inc/customizer.php:243
+#: inc/customizer.php:245
 msgid "It shows the site title and tagline (Settings, General)."
 msgstr "Sie zeigt Titel und Untertitel der Website (Einstellungen, Allgemein)."
 
-#: inc/customizer.php:246
+#: inc/customizer.php:248
 msgid "Centred, in a card"
 msgstr "Zentriert, in einer Karte"
 
-#: inc/customizer.php:247
+#: inc/customizer.php:249
 msgid "Left-aligned, without a card"
 msgstr "Linksbündig, ohne Karte"
 
-#: inc/customizer.php:248 inc/header.php:365
+#: inc/customizer.php:250 inc/header.php:375
 msgid "None"
 msgstr "Keine"
 
-#: inc/customizer.php:257 inc/header.php:370 inc/setup/importer.php:354
+#: inc/customizer.php:259 inc/header.php:380 inc/setup/importer.php:354
 msgid "Footer"
 msgstr "Footer"
 
-#: inc/customizer.php:272
+#: inc/customizer.php:274
 msgid "Footer text"
 msgstr "Footer-Text"
 
-#: inc/customizer.php:273
+#: inc/customizer.php:275
 msgid ""
 "Leave empty for the default copyright line. {year} and {site} are replaced."
 msgstr ""
 "Leer lassen für die Standard-Copyright-Zeile. {year} und {site} werden "
 "ersetzt."
 
-#: inc/customizer.php:288
+#: inc/customizer.php:290
 msgid "Show the back to top button"
 msgstr "Den Nach-oben-Knopf anzeigen"
 
@@ -617,7 +618,7 @@ msgstr ""
 msgid "Solid"
 msgstr "Deckend"
 
-#: inc/header.php:259 inc/header.php:354
+#: inc/header.php:259 inc/header.php:364
 msgid "Transparent over the first section"
 msgstr "Transparent über dem ersten Abschnitt"
 
@@ -687,39 +688,39 @@ msgstr "Zentriert"
 msgid "Minimal: only the footer line and menus"
 msgstr "Minimal: nur Fußzeile und Menüs"
 
-#: inc/header.php:327
+#: inc/header.php:337
 msgid "Page layout"
 msgstr "Seitenlayout"
 
-#: inc/header.php:353 inc/header.php:372
+#: inc/header.php:363 inc/header.php:382
 msgid "As in the Customizer"
 msgstr "Wie im Customizer"
 
-#: inc/header.php:355
+#: inc/header.php:365
 msgid "No header"
 msgstr "Kein Kopfbereich"
 
-#: inc/header.php:362
+#: inc/header.php:372
 msgid "Default (pages none, posts as in the Customizer)"
 msgstr "Standard (Seiten keine, Beiträge wie im Customizer)"
 
-#: inc/header.php:363
+#: inc/header.php:373
 msgid "On the right"
 msgstr "Rechts"
 
-#: inc/header.php:364
+#: inc/header.php:374
 msgid "On the left"
 msgstr "Links"
 
-#: inc/header.php:373
+#: inc/header.php:383
 msgid "No footer widgets and menus"
 msgstr "Keine Widgets und Menüs im Fußbereich"
 
-#: inc/header.php:376
+#: inc/header.php:386
 msgid "Hide the title"
 msgstr "Titel ausblenden"
 
-#: inc/header.php:376
+#: inc/header.php:386
 msgid "It stays in the page for screen readers."
 msgstr "Er bleibt für Screenreader auf der Seite."
 
@@ -1146,15 +1147,15 @@ msgid "Canvas"
 msgstr ""
 
 #. Template Name of the theme
-#: page-templates/docs.php:18
+#: page-templates/docs.php:20
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: page-templates/docs.php:35
+#: page-templates/docs.php:37
 msgid "Navigation"
 msgstr "Navigation"
 
-#: page-templates/docs.php:50
+#: page-templates/docs.php:52
 msgid "Documentation pages"
 msgstr "Seiten der Dokumentation"
 
@@ -1166,7 +1167,7 @@ msgstr "Volle Breite"
 msgid "Photo gallery"
 msgstr "Fotogalerie"
 
-#: page-templates/gallery.php:34
+#: page-templates/gallery.php:36
 msgid "Loading more…"
 msgstr "Lade weitere …"
 
@@ -2592,12 +2593,12 @@ msgid "Make it well, then make it last."
 msgstr "Mach es gut, dann mach es haltbar."
 
 #. translators: %s: search query.
-#: search.php:10
+#: search.php:11
 #, php-format
 msgid "Search results for “%s”"
 msgstr "Suchergebnisse für „%s“"
 
-#: search.php:15
+#: search.php:16
 msgid "Refine your search"
 msgstr "Suche verfeinern"
 
@@ -2605,23 +2606,23 @@ msgstr "Suche verfeinern"
 msgid "Search…"
 msgstr "Suchen …"
 
-#: single-basix-event.php:9
+#: single-basix-event.php:13
 msgid "Event"
 msgstr "Veranstaltung"
 
-#: single-basix-event.php:24
+#: single-basix-event.php:28
 msgid "Add to calendar"
 msgstr "Zum Kalender hinzufügen"
 
-#: single-basix-event.php:27
+#: single-basix-event.php:31
 msgid "Back to the events"
 msgstr "Zurück zu den Veranstaltungen"
 
-#: single-basix-event.php:28
+#: single-basix-event.php:32
 msgid "All events"
 msgstr "Alle Veranstaltungen"
 
-#: single.php:38
+#: single.php:42
 msgid "Post navigation"
 msgstr "Beitragsnavigation"
 
@@ -2717,11 +2718,11 @@ msgstr ""
 msgid "About the author"
 msgstr "Über den Autor"
 
-#: template-parts/calendar.php:66
+#: template-parts/calendar.php:76
 msgid "No events this month."
 msgstr "Keine Veranstaltungen in diesem Monat."
 
-#: template-parts/calendar.php:66
+#: template-parts/calendar.php:76
 msgid "No posts this month."
 msgstr "Keine Beiträge in diesem Monat."
 
@@ -2797,19 +2798,19 @@ msgstr "Nichts gefunden."
 msgid "Related posts"
 msgstr "Ähnliche Beiträge"
 
-#: template-parts/share.php:15
+#: template-parts/share.php:19
 msgid "Share"
 msgstr "Teilen"
 
-#: template-parts/share.php:16
+#: template-parts/share.php:20
 msgid "Copy link"
 msgstr "Link kopieren"
 
-#: template-parts/share.php:17
+#: template-parts/share.php:21
 msgid "Link copied"
 msgstr "Link kopiert"
 
-#: template-parts/share.php:19
+#: template-parts/share.php:26
 msgid "Share this post"
 msgstr "Diesen Beitrag teilen"
 
