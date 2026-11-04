@@ -13,7 +13,7 @@
 			"defaultDuotone": false,
 			"custom": true,
 			"palette": [
-				{ "slug": "text", "name": "Text", "color": "var(--primary-text)" },
+				{ "slug": "foreground", "name": "Text", "color": "var(--primary-text)" },
 				{ "slug": "text-secondary", "name": "Secondary text", "color": "var(--secondary-text)" },
 				{ "slug": "background", "name": "Background", "color": "var(--background)" },
 				{ "slug": "surface", "name": "Surface", "color": "var(--secondary-background)" },

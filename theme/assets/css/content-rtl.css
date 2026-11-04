@@ -336,3 +336,8 @@ p.is-style-lead { font-size: 1.25rem; color: var(--secondary-text); }
 .wp-block-post-title a { color: var(--primary-text); text-decoration: none; }
 .wp-block-post-title a:hover { color: var(--accent-text, var(--accent-color)); }
 .newsletter-form .input-group input { flex: 1; min-width: 0; }
+
+/* Text with a colour chosen in the editor: what is inside follows that colour. Basix gives paragraphs, list items,
+   headings and citations their own text colour, which would otherwise win and, in dark mode, put light text on a
+   light background of the author's choice. */
+.has-text-color :is(p, li, h1, h2, h3, h4, h5, h6, cite) { color: inherit; }
