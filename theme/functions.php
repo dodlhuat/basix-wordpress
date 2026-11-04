@@ -38,6 +38,7 @@ require_once __DIR__ . '/inc/menus.php';
 require_once __DIR__ . '/inc/looks.php';
 require_once __DIR__ . '/inc/customizer.php';
 require_once __DIR__ . '/inc/header.php';
+require_once __DIR__ . '/inc/content-fixes.php';
 require_once __DIR__ . '/inc/docs.php';
 require_once __DIR__ . '/inc/post-features.php';
 require_once __DIR__ . '/inc/filters.php';
