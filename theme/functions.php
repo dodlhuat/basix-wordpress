@@ -5,6 +5,19 @@
 
 const BASIX_VENDOR = 'assets/vendor/basix';
 
+// A post without a title still needs something to link with: a link with no text has no name for a screen reader.
+add_filter(
+	'the_title',
+	function ( $title, $post_id = 0 ) {
+		if ( '' === trim( (string) $title ) && ! is_admin() && 'nav_menu_item' !== get_post_type( (int) $post_id ) ) {
+			return __( '(no title)', 'basix' );
+		}
+		return $title;
+	},
+	10,
+	2
+);
+
 // Events come from the companion plugin Basix Events (the directory does not let a theme register a post type). The
 // two names are defined here too, so the templates also work while the plugin is off.
 if ( ! defined( 'BASIX_EVENT' ) ) {
@@ -194,8 +207,8 @@ add_action(
 				'name'          => __( 'Sidebar', 'basix' ),
 				'id'            => 'sidebar-1',
 				'description'   => __( 'Shown next to blog posts and archives.', 'basix' ),
-				'before_widget' => '<section id="%1$s" class="widget card card-bordered %2$s">',
-				'after_widget'  => '</section>',
+				'before_widget' => '<div id="%1$s" class="widget card card-bordered %2$s">',
+				'after_widget'  => '</div>',
 				'before_title'  => '<h2 class="widget-title">',
 				'after_title'   => '</h2>',
 			]
@@ -212,8 +225,8 @@ add_action(
 					),
 					'id'            => 'footer-' . $column,
 					'description'   => __( 'Shown in the footer.', 'basix' ),
-					'before_widget' => '<section id="%1$s" class="widget footer-widget %2$s">',
-					'after_widget'  => '</section>',
+					'before_widget' => '<div id="%1$s" class="widget footer-widget %2$s">',
+					'after_widget'  => '</div>',
 					'before_title'  => '<h2 class="widget-title">',
 					'after_title'   => '</h2>',
 				]
@@ -446,7 +459,7 @@ add_filter(
 function basix_comment( $comment, $args, $depth ): void {
 	?>
 	<li <?php comment_class( 'comment' ); ?> id="comment-<?php comment_ID(); ?>">
-		<article class="card card-bordered">
+		<div class="card card-bordered">
 			<div class="card-header comment-head">
 				<?php echo get_avatar( $comment, 36, '', '', [ 'class' => 'comment-avatar' ] ); ?>
 				<strong><?php comment_author(); ?></strong>
@@ -469,7 +482,7 @@ function basix_comment( $comment, $args, $depth ): void {
 			);
 			?>
 										</div>
-		</article>
+		</div>
 	<?php
 }
 

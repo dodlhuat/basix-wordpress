@@ -52,6 +52,8 @@ input, textarea, select, button { font-family: inherit; }
 .custom-logo-link { display: inline-flex; margin-left: auto; }
 .custom-logo { display: block; width: auto; height: auto; max-height: 2.25rem; }
 .site-title { font-weight: 700; font-size: 1.25rem; letter-spacing: -.01em; text-decoration: none; color: var(--primary-text); margin-left: auto; }
+/* A very long site name takes at most two lines in the header (its full text stays for screen readers, and the front page shows it in full). */
+.site-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; max-width: min(22rem, 100%); line-height: 1.25; overflow-wrap: anywhere; }
 .site-nav-list { display: flex; gap: .25rem; list-style: none; margin: 0; padding: 0; }
 .site-nav-list a { display: block; padding: .4rem .8rem; border-radius: var(--radius-xl); text-decoration: none; color: var(--secondary-text); transition: background .2s, color .2s; }
 .site-nav-list a:hover { background: var(--hover); color: var(--primary-text); }
@@ -467,3 +469,13 @@ a.mega-heading:hover { color: var(--link-color); }
 .carousel-button--left { left: .75rem; right: auto; }
 .carousel-button--right { right: .75rem; left: auto; }
 .calendar-host :is(.cal__event-pill, .cal__span-bar, .cal__day-num) { unicode-bidi: plaintext; }
+
+/* Page number links of the Query Loop block and of comment pages (the theme's own pagination uses buttons). */
+:is(.wp-block-query-pagination, .wp-block-comments-pagination) a { color: var(--accent-text, var(--link-color)); }
+:is(a, span).page-numbers { display: inline-block; padding: .2rem .65rem; border-radius: var(--radius-md); color: var(--accent-text, var(--link-color)); text-decoration: none; }
+a.page-numbers:hover { background: var(--hover); text-decoration: underline; }
+span.page-numbers.current { background: var(--accent-color-tint); color: var(--accent-text, var(--link-color)); font-weight: 600; }
+span.page-numbers.dots { color: var(--secondary-text); }
+
+/* An old gallery's captions sit on the pictures; a scrolling caption cannot be reached with the keyboard, so it grows instead. */
+.wp-block-gallery:not(.has-nested-images) .blocks-gallery-item figcaption.blocks-gallery-item__caption { max-height: none; overflow: visible; }

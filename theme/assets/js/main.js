@@ -51,11 +51,35 @@ const scrollTo = async (target) => (await import('../vendor/basix/js/scroll.js')
 document.querySelector('.back-to-top')?.addEventListener('click', () => scrollTo(document.body));
 
 document.querySelectorAll('a[href^="#"]').forEach((a) => {
-    const target = a.getAttribute('href').length > 1 && document.querySelector(a.getAttribute('href'));
+    // By id, not as a selector: a link like #3fgfhgfh (or any text after the #) must not raise an error.
+    const id = a.getAttribute('href').slice(1);
+    let target = null;
+    if (id) {
+        try {
+            target = document.getElementById(decodeURIComponent(id));
+        } catch {
+            target = null; // a broken escape such as #%
+        }
+    }
     if (target) {
         a.addEventListener('click', (e) => {
             e.preventDefault();
             scrollTo(target);
         });
+    }
+});
+
+// A link around a picture without alt text has no name for a screen reader. Content should have alt text, but old
+// posts and galleries often do not, so such a link is named after its caption, its title or the picture's file name.
+document.querySelectorAll('.entry-content a, .entry-media a').forEach((link) => {
+    const image = link.querySelector('img');
+    if (!image || link.textContent.trim() || image.alt?.trim() || link.getAttribute('aria-label') || link.getAttribute('aria-labelledby') || link.title?.trim()) {
+        return;
+    }
+    const caption = (link.closest('figure')?.querySelector('figcaption') ?? link.closest('.wp-caption')?.querySelector('.wp-caption-text'))?.textContent.trim();
+    const file = decodeURIComponent((image.currentSrc || image.src).split('/').pop().split('?')[0].replace(/\.[a-z0-9]+$/i, '')).replace(/[-_]+/g, ' ').trim();
+    const label = caption || image.title?.trim() || file;
+    if (label) {
+        link.setAttribute('aria-label', label);
     }
 });
