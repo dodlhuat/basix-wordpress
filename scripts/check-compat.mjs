@@ -120,7 +120,8 @@ try {
   }
 
   // Awkward content that old posts and the official test data contain: broken anchors, a linked picture without alt text,
-  // a quote with colours chosen in the editor, and page numbers from the Query Loop block.
+  // a quote with colours chosen in the editor, page numbers from the Query Loop block, a Navigation block with a page list,
+  // a parallax cover without a description, and the empty definition list an old picture caption leaves.
   const awkward = `<!-- wp:html -->
 <p><a href="#3fgfhgfh">an anchor that is not a selector</a> <a href="#%">a broken escape</a></p>
 <!-- /wp:html -->
@@ -132,6 +133,11 @@ try {
 <!-- /wp:html -->
 <!-- wp:html -->
 <nav class="wp-block-query-pagination"><a class="wp-block-query-pagination-previous" href="#a">Previous page</a><a class="page-numbers" href="#b">2</a><span class="page-numbers current">3</span><a class="wp-block-query-pagination-next" href="#c">Next page</a></nav>
+<!-- /wp:html -->
+<!-- wp:navigation --><!-- wp:page-list /--><!-- /wp:navigation -->
+<!-- wp:cover {"url":"/wp-content/themes/basix/assets/images/wide-1.jpg","hasParallax":true,"dimRatio":50} --><div class="wp-block-cover has-parallax"><span aria-hidden="true" class="wp-block-cover__background has-background-dim"></span><div role="img" class="wp-block-cover__image-background has-parallax" style="background-position:50% 50%;background-image:url(/wp-content/themes/basix/assets/images/wide-1.jpg)"></div><div class="wp-block-cover__inner-container"><!-- wp:paragraph --><p>Text over a picture</p><!-- /wp:paragraph --></div></div><!-- /wp:cover -->
+<!-- wp:html -->
+<dl id="attachment_9" class="wp-caption aligncenter" style="width:650px;"><dt class="wp-caption-dt"></dt></dl>
 <!-- /wp:html -->`;
   const awkwardPage = link(create('Awkward content', awkward));
   for (const theme of ['light', 'dark']) {

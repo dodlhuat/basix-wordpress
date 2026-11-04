@@ -20,28 +20,40 @@ const setups = [
   { name: 'phone dark', width: 390, theme: 'dark' },
 ];
 
-const browser = await puppeteer.launch({ executablePath: chrome, headless: true });
+let browser = await puppeteer.launch({ executablePath: chrome, headless: true });
 const found = new Map(); // rule -> { impact, help, nodes: Set("setup path target") }
 let scanned = 0;
 try {
   for (const setup of setups) {
     for (const path of pages) {
-      const page = await (await browser.createBrowserContext()).newPage();
-      await page.setViewport({ width: setup.width, height: 900 });
-      // Reduced motion: the checks look at the finished page, not at things mid-fade.
-      await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
-      await page.evaluateOnNewDocument((theme) => localStorage.setItem('theme', theme), setup.theme);
-      await page.goto(`${url}${path}`, { waitUntil: 'networkidle0' });
-      await sleep(900);
-      await page.evaluate(axeSource);
-      const result = await page.evaluate(() => axe.run(document, { resultTypes: ['violations'] }));
-      scanned++;
-      for (const violation of result.violations) {
-        const entry = found.get(violation.id) ?? { impact: violation.impact, help: violation.help, nodes: new Set() };
-        violation.nodes.forEach((node) => entry.nodes.add(`${setup.name} | ${path} | ${node.target.join(' ')}`));
-        found.set(violation.id, entry);
+      // Chrome now and then drops a page or goes away when many are opened in a row; try again before giving up.
+      for (let attempt = 1; ; attempt++) {
+        let page;
+        try {
+          page = await (await browser.createBrowserContext()).newPage();
+          await page.setViewport({ width: setup.width, height: 900 });
+          // Reduced motion: the checks look at the finished page, not at things mid-fade.
+          await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+          await page.evaluateOnNewDocument((theme) => localStorage.setItem('theme', theme), setup.theme);
+          await page.goto(`${url}${path}`, { waitUntil: 'networkidle0' });
+          await sleep(900);
+          await page.evaluate(axeSource);
+          const result = await page.evaluate(() => axe.run(document, { resultTypes: ['violations'] }));
+          scanned++;
+          for (const violation of result.violations) {
+            const entry = found.get(violation.id) ?? { impact: violation.impact, help: violation.help, nodes: new Set() };
+            violation.nodes.forEach((node) => entry.nodes.add(`${setup.name} | ${path} | ${node.target.join(' ')}`));
+            found.set(violation.id, entry);
+          }
+          await page.close();
+          break;
+        } catch (error) {
+          if (attempt === 3) throw error;
+          await page?.close().catch(() => {});
+          if (!browser.connected) browser = await puppeteer.launch({ executablePath: chrome, headless: true });
+          await sleep(1000);
+        }
       }
-      await page.close();
     }
   }
 } finally {

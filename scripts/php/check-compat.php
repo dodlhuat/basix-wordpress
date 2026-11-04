@@ -158,6 +158,42 @@ $check( '' !== trim( get_the_title( $untitled ) ), 'a post without a title gets 
 $check( 'Real title' === apply_filters( 'the_title', 'Real title', $untitled ), 'and a real title is left alone' );
 wp_delete_post( $untitled, true );
 
+// Markup that old content and a few core blocks produce and that assistive technology cannot use.
+libxml_use_internal_errors( true );
+$parse = static function ( string $html ): DOMXPath {
+	$dom = new DOMDocument();
+	$dom->loadHTML( '<?xml encoding="utf-8"?><body>' . $html . '</body>' );
+	return new DOMXPath( $dom );
+};
+$nav = $parse( do_blocks( '<!-- wp:navigation --><!-- wp:page-list /--><!-- /wp:navigation -->' ) );
+$check( 0 === $nav->query( '//ul[contains(@class, "wp-block-navigation__container")]/ul' )->length && $nav->query( '//ul[contains(@class, "wp-block-navigation__container")]/li' )->length > 0, 'a Navigation block with a page list holds its page items directly, not a list in a list' );
+$lists_ok = true;
+foreach ( $nav->query( '//ul' ) as $list ) {
+	foreach ( $list->childNodes as $child ) {
+		if ( XML_ELEMENT_NODE === $child->nodeType && 'li' !== $child->nodeName ) {
+			$lists_ok = false;
+		}
+	}
+}
+$check( $lists_ok, 'and every list in it holds only list items' );
+$nested = basix_unwrap_nested_list( '<ul class="outer"><ul class="inner"><li>a<ul><li>b</li></ul></li><li>c</li></ul></ul><ul class="inner"><li>kept</li></ul>', 'outer', 'inner' );
+$check( '<ul class="outer"><li>a<ul><li>b</li></ul></li><li>c</li></ul><ul class="inner"><li>kept</li></ul>' === $nested, 'unwrapping keeps deeper lists, and leaves a list of the same class elsewhere alone' );
+
+$cover_open = '<!-- wp:cover {"url":"http://example.com/a.jpg","hasParallax":true} --><div class="wp-block-cover has-parallax"><span aria-hidden="true" class="wp-block-cover__background has-background-dim"></span>';
+$cover_end  = '<div class="wp-block-cover__inner-container"><!-- wp:paragraph --><p>Text</p><!-- /wp:paragraph --></div></div><!-- /wp:cover -->';
+$bare       = do_blocks( $cover_open . '<div role="img" class="wp-block-cover__image-background has-parallax" style="background-image:url(http://example.com/a.jpg)"></div>' . $cover_end );
+$bare_xpath = $parse( $bare );
+$bare_image = $bare_xpath->query( '//div[contains(@class, "wp-block-cover__image-background")]' )->item( 0 );
+$check( $bare_image && ! $bare_image->hasAttribute( 'role' ) && 'true' === $bare_image->getAttribute( 'aria-hidden' ), 'a parallax cover without a description hides its picture from assistive technology instead of calling it an unnamed image' );
+$named = do_blocks( $cover_open . '<div role="img" class="wp-block-cover__image-background has-parallax" aria-label="A harbour at dusk" style="background-image:url(http://example.com/a.jpg)"></div>' . $cover_end );
+$named_image = $parse( $named )->query( '//div[contains(@class, "wp-block-cover__image-background")]' )->item( 0 );
+$check( $named_image && 'img' === $named_image->getAttribute( 'role' ) && 'A harbour at dusk' === $named_image->getAttribute( 'aria-label' ) && ! $named_image->hasAttribute( 'aria-hidden' ), 'and one with a description keeps its role and name' );
+
+$empty_dl = apply_filters( 'the_content', '<dl id="attachment_9" class="wp-caption aligncenter" style="width:650px;"><dt class="wp-caption-dt"></dt></dl>&nbsp;<p>Text after.</p>' );
+$check( false === strpos( $empty_dl, '<dl' ) && false !== strpos( $empty_dl, 'Text after.' ), 'an empty definition list left by an old picture caption is removed' );
+$real_dl = apply_filters( 'the_content', '<dl class="wp-caption alignleft"><dt class="wp-caption-dt"><img src="x.jpg" alt="y"></dt><dd class="wp-caption-dd">A caption</dd></dl>' );
+$check( false !== strpos( $real_dl, '<dl' ) && false !== strpos( $real_dl, 'A caption' ), 'but a caption with a picture and a text is kept' );
+
 // Forms.
 $css = (string) file_get_contents( get_theme_file_path( 'assets/css/forms.css' ) );
 foreach ( array( 'wpcf7', 'wpforms', 'fluentform', 'gform' ) as $plugin ) {
