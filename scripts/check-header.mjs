@@ -148,6 +148,20 @@ try {
   check(await page.evaluate(() => !document.querySelector('.layout.has-sidebar') && !!document.querySelector('.site-footer') && !document.querySelector('.entry-header').classList.contains('screen-reader-text')), 'another page keeps the defaults: no sidebar, a footer and a visible title');
   await page.close();
 
+  // A very long site name takes two lines in the header at most, and the front page still shows it whole.
+  const longName = 'A very long site title that keeps going and going to see what the header does when the name is far too long for one line';
+  const oldName = wp('option', 'get', 'blogname');
+  wp('option', 'update', 'blogname', longName);
+  try {
+    page = await open('/');
+    const longHeader = await page.evaluate(() => ({ header: document.querySelector('.site-header').getBoundingClientRect().height, title: document.querySelector('.site-title').getBoundingClientRect().height, full: document.querySelector('.site-title').textContent.trim(), hero: document.querySelector('.hero-title, .hero-minimal .hero-title')?.textContent.trim() }));
+    check(longHeader.header < 110 && longHeader.title < 60 && longHeader.full.length > 100, `a very long site name stays within two lines of the header (${Math.round(longHeader.header)}px high)`);
+    check(!longHeader.hero || longHeader.hero.length > 100, 'and the front page introduction shows it whole');
+    await page.close();
+  } finally {
+    wp('option', 'update', 'blogname', oldName);
+  }
+
   // The header image behind the front page introduction.
   mod('header_image', `${url}/wp-content/themes/basix/assets/images/wide-1.jpg`);
   page = await open('/');

@@ -119,6 +119,42 @@ try {
     await page.close();
   }
 
+  // Awkward content that old posts and the official test data contain: broken anchors, a linked picture without alt text,
+  // a quote with colours chosen in the editor, and page numbers from the Query Loop block.
+  const awkward = `<!-- wp:html -->
+<p><a href="#3fgfhgfh">an anchor that is not a selector</a> <a href="#%">a broken escape</a></p>
+<!-- /wp:html -->
+<!-- wp:html -->
+<p><a class="picture-link" href="/wp-content/themes/basix/assets/images/square-1.jpg"><img src="/wp-content/themes/basix/assets/images/square-1.jpg" alt="" width="120" height="120"></a></p>
+<!-- /wp:html -->
+<!-- wp:html -->
+<blockquote class="wp-block-quote has-text-color has-background" style="color:#1a1a1a;background-color:#abb8c3"><p>A quote on a colour of its own.</p><cite>Someone</cite></blockquote>
+<!-- /wp:html -->
+<!-- wp:html -->
+<nav class="wp-block-query-pagination"><a class="wp-block-query-pagination-previous" href="#a">Previous page</a><a class="page-numbers" href="#b">2</a><span class="page-numbers current">3</span><a class="wp-block-query-pagination-next" href="#c">Next page</a></nav>
+<!-- /wp:html -->`;
+  const awkwardPage = link(create('Awkward content', awkward));
+  for (const theme of ['light', 'dark']) {
+    const errors = [];
+    const context = await browser.createBrowserContext();
+    const p = await context.newPage();
+    p.on('pageerror', (e) => errors.push(e.message.slice(0, 100)));
+    await p.setViewport({ width: 1280, height: 900 });
+    await p.evaluateOnNewDocument((t) => localStorage.setItem('theme', t), theme);
+    await p.goto(awkwardPage, { waitUntil: 'networkidle0' });
+    await sleep(500);
+    check(errors.length === 0, `${theme}: links to #3fgfhgfh and #% raise no script error${errors.length ? ` (${errors[0]})` : ''}`);
+    if (theme === 'light') {
+      check((await p.$eval('.picture-link', (a) => a.getAttribute('aria-label'))) === 'square 1', 'a picture link without alt text is named after the file');
+      check(await p.$eval('.wp-block-quote cite', (c) => getComputedStyle(c).color === 'rgb(26, 26, 26)'), 'the citation of a quote with its own colours follows that colour');
+    }
+    await p.evaluate(axeSource);
+    const awkwardAxe = await p.evaluate(() => axe.run(document, { resultTypes: ['violations'] }));
+    const awkwardBad = awkwardAxe.violations.filter((v) => ['serious', 'critical'].includes(v.impact));
+    check(awkwardBad.length === 0, `${theme}: axe finds nothing serious in that content${awkwardBad.length ? ` (${awkwardBad.map((v) => v.id)})` : ''}`);
+    await context.close();
+  }
+
   // The canvas for page builders.
   const canvas = link(create('Canvas fixture', '<!-- wp:paragraph --><p>Only this text.</p><!-- /wp:paragraph -->', 'page-templates/canvas.php'));
   const page = await open(canvas, 'light');

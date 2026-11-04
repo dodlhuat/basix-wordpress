@@ -152,6 +152,12 @@ foreach ( $cases as $template => $case ) {
 }
 $GLOBALS['basix_builder'] = array();
 
+// A post without a title still has something to link with.
+$untitled = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'publish', 'post_title' => '', 'post_content' => 'No title here.' ) );
+$check( '' !== trim( get_the_title( $untitled ) ), 'a post without a title gets a placeholder, so its link has a name' );
+$check( 'Real title' === apply_filters( 'the_title', 'Real title', $untitled ), 'and a real title is left alone' );
+wp_delete_post( $untitled, true );
+
 // Forms.
 $css = (string) file_get_contents( get_theme_file_path( 'assets/css/forms.css' ) );
 foreach ( array( 'wpcf7', 'wpforms', 'fluentform', 'gform' ) as $plugin ) {

@@ -324,7 +324,15 @@ $one_node = $nodes_for( $ny );
 $check( 1 === count( $one_node ) && '2026-11-05T19:00:00-05:00' === $one_node[0]['startDate'] && '2026-11-05T20:30:00-05:00' === $one_node[0]['endDate'], 'an event node carries the offset of the event\'s own zone' );
 $all_node = $nodes_for( $day );
 $check( '2026-11-10' === $all_node[0]['startDate'] && '2026-11-10' === $all_node[0]['endDate'], 'an all-day event node has dates only' );
-$check( 3 === count( $nodes_for( $weekly ) ) && count( array_unique( array_column( $nodes_for( $weekly ), 'url' ) ) ) === 3, 'a repeating event gives one node for each coming date, each with its own address' );
+// Starting tomorrow, so all four dates are still to come whenever this runs.
+$soon       = $make(
+	array(
+		'basix_event_start'  => wp_date( 'Y-m-d', time() + DAY_IN_SECONDS ),
+		'basix_event_repeat' => $repeat( array( 'freq' => 'weekly', 'end' => array( 'type' => 'count', 'count' => 4 ) ) ),
+	)
+);
+$soon_nodes = $nodes_for( $soon );
+$check( 4 === count( $soon_nodes ) && count( array_unique( array_column( $soon_nodes, 'url' ) ) ) === 4, 'a repeating event gives one node for each coming date, each with its own address' );
 update_post_meta( $plain, 'basix_event_location', 'Online' );
 $online = $nodes_for( $plain );
 $check( 'VirtualLocation' === $online[0]['location']['@type'] && false !== strpos( $online[0]['eventAttendanceMode'], 'Online' ), 'an online event has a virtual location' );
