@@ -39,7 +39,7 @@ From https://developer.wordpress.org/themes/releasing-your-theme/testing/. Statu
 | Item on the page | Status |
 | --- | --- |
 | Set up a development environment | Done: Docker, WordPress 7.1.4, PHP 8.3 |
-| Import the Theme Unit Test data | Done: 123 items imported; 329 addresses visited (posts, pages, categories, tags, authors, pagination, search, date archives). All load, none prints a PHP message, none sticks out sideways at 390 or 1280 px, no script error, no broken picture. Re-run any time with `scripts/audit-unit-data.mjs` (see the developer guide). |
+| Import the Theme Unit Test data | Done: 123 items imported; 329 addresses visited (posts, pages, categories, tags, authors, pagination, search, date archives). All load, none prints a PHP message, none sticks out sideways at 390 or 1280 px, no script error, no broken picture. Re-run any time with `scripts/audit-unit-data.mjs` (see the developer guide). One axe finding is left, from the test content itself: an author's red paragraph with light grey text at 4.43:1 (the theme does not override colours an author chose). |
 | Very long site title and tagline | Done. The header shows at most two lines of the name; the front page shows it whole. |
 | Five posts per page (pagination) | Done |
 | Threaded comments three levels deep, and comments in pages of five | Done (the test data goes ten levels deep) |

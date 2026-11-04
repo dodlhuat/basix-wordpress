@@ -87,7 +87,7 @@ docker compose run --rm -T wpcli wp plugin delete wordpress-importer --deactivat
 docker compose run --rm -T -v /tmp/unit:/import:ro wpcli wp db import /import/backup.sql
 ```
 
-`audit-unit-data.mjs` sets a very long site title and tagline, five posts per page, threaded and paged comments and no large image size, then reports every address that is not found or prints a PHP message, every page that sticks out sideways on a phone or a desktop, script errors, broken pictures and serious axe problems. The axe problems that are left come from the content itself (an author's red paragraph with light grey text, a cover picture without a description, old definition list markup) and are listed so you can judge them.
+`audit-unit-data.mjs` sets a very long site title and tagline, five posts per page, threaded and paged comments and no large image size, then reports every address that is not found or prints a PHP message, every page that sticks out sideways on a phone or a desktop, script errors, broken pictures and serious axe problems. The one axe problem that is left comes from the content itself: an author's red paragraph with light grey text (4.43:1, where 4.5 is needed). The theme does not change colours an author chose. Three others the data used to show are fixed in `inc/content-fixes.php`: the Navigation block's page list nested in a list, a parallax cover without a description (its picture is now hidden from assistive technology), and the empty definition list an old picture caption leaves.
 
 ## The checks
 
