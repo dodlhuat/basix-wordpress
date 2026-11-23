@@ -23,7 +23,7 @@ if ( ! $basix_featured->have_posts() ) {
 }
 ?>
 <section class="featured">
-	<div class="carousel" <?php echo basix_component_attrs( 'featured', array( 'loop' => true ) ); ?>>
+	<div class="carousel" <?php basix_component_attrs( 'featured', array( 'loop' => true ) ); ?>>
 		<?php
 		while ( $basix_featured->have_posts() ) :
 			$basix_featured->the_post();

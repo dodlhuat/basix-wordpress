@@ -22,7 +22,7 @@ if ( ! basix_builder_location( 'single' ) ) : // A theme builder can draw this p
 		<div class="entry-content"><?php the_content(); ?></div>
 
 		<div class="gallery-wrap">
-			<div id="media-gallery" class="gallery-host" <?php echo basix_component_attrs( 'media-gallery', basix_gallery_config( $basix_parent ) ); ?>>
+			<div id="media-gallery" class="gallery-host" <?php basix_component_attrs( 'media-gallery', basix_gallery_config( $basix_parent ) ); ?>>
 				<ul class="gallery-fallback">
 					<?php foreach ( basix_gallery_first_images( $basix_parent ) as $basix_image_id ) : ?>
 						<li>

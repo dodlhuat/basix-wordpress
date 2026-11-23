@@ -31,7 +31,7 @@ $basix_keep = array_diff_key( $basix_keep, array_flip( BASIX_FILTER_VARS ) );
 		</nav>
 	<?php endif; ?>
 
-	<details class="filter" <?php echo basix_component_attrs( 'filters', basix_filter_config() ); ?>>
+	<details class="filter" <?php basix_component_attrs( 'filters', basix_filter_config() ); ?>>
 		<summary class="button filter-toggle">
 			<svg class="icon-svg" aria-hidden="true"><use href="<?php echo esc_url( $basix_sprite . '#filter_list' ); ?>"/></svg>
 			<span><?php esc_html_e( 'Filter', 'basix-paperlight' ); ?></span>

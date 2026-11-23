@@ -11,7 +11,7 @@
  *   }
  *
  * Markup written by PHP uses data-basix="name" and an optional JSON config in data-config
- * (see basix_component_attrs() in functions.php); read it with readConfig().
+ * (printed by basix_component_attrs() in functions.php); read it with readConfig().
  */
 
 /** Where Basix components find their icon sprite (they all accept an iconBasePath option). */

@@ -293,21 +293,19 @@ add_action(
 );
 
 /**
- * Attributes that make assets/js/loader.js start a Basix component on an element.
+ * Prints the attributes that make assets/js/loader.js start a Basix component on an element.
  *
- * Usage: <div <?php echo basix_component_attrs('calendar', ['view' => 'month']); ?>>
+ * Usage: <div <?php basix_component_attrs( 'calendar', [ 'view' => 'month' ] ); ?>>
  * The component must have an entry in assets/js/components.js.
  *
  * @param string $name   Component key in components.js.
  * @param array  $config Optional settings, passed to the component as JSON.
- * @return string Escaped attributes.
  */
-function basix_component_attrs( string $name, array $config = [] ): string {
-	$attrs = sprintf( 'data-basix="%s"', esc_attr( $name ) );
+function basix_component_attrs( string $name, array $config = [] ): void {
+	printf( 'data-basix="%s"', esc_attr( $name ) );
 	if ( $config ) {
-		$attrs .= sprintf( ' data-config="%s"', esc_attr( wp_json_encode( $config ) ) );
+		printf( ' data-config="%s"', esc_attr( wp_json_encode( $config ) ) );
 	}
-	return $attrs;
 }
 
 /** Opening wrapper for templates with a sidebar; pair with basix_layout_close(). */
@@ -501,7 +499,7 @@ function basix_module( string $name ): void {
 add_filter(
 	'wp_die_handler',
 	function ( string|callable $handler ) {
-		if ( basename( $_SERVER['SCRIPT_NAME'] ?? '' ) !== 'wp-comments-post.php' ) {
+		if ( basename( sanitize_text_field( wp_unslash( $_SERVER['SCRIPT_NAME'] ?? '' ) ) ) !== 'wp-comments-post.php' ) {
 			return $handler;
 		}
 		return function ( $message, $title = '', $args = [] ) {
@@ -561,10 +559,14 @@ add_filter(
 	<form action="<?php echo esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ); ?>" class="post-password-form" method="post">
 		<input type="hidden" name="redirect_to" value="<?php echo esc_attr( get_permalink( $post ) ); ?>">
 		<div class="alert alert-info"><?php esc_html_e( 'This content is password-protected. To view it, please enter the password below.', 'basix-paperlight' ); ?></div>
-		<div class="form-group<?php echo $invalid_password ? ' error' : ''; ?>">
+		<div class="form-group<?php echo esc_attr( $invalid_password ? ' error' : '' ); ?>">
 			<label for="<?php echo esc_attr( $id ); ?>"><?php esc_html_e( 'Password', 'basix-paperlight' ); ?></label>
 			<div class="input-group">
-				<input name="post_password" id="<?php echo esc_attr( $id ); ?>" type="password" spellcheck="false" required<?php echo $invalid_password ? ' aria-invalid="true" aria-describedby="error-' . esc_attr( $id ) . '"' : ''; ?>>
+				<input name="post_password" id="<?php echo esc_attr( $id ); ?>" type="password" spellcheck="false" required
+				<?php if ( $invalid_password ) : ?>
+					aria-invalid="true" aria-describedby="error-<?php echo esc_attr( $id ); ?>"
+				<?php endif; ?>
+				>
 				<button type="submit" class="button button-primary"><?php echo esc_html_x( 'Enter', 'post password form', 'basix-paperlight' ); ?></button>
 			</div>
 			<?php if ( $invalid_password ) : ?>

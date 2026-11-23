@@ -30,7 +30,7 @@
 	<?php endif; ?>
 	<div class="container site-footer-inner">
 		<div class="site-footer-main">
-			<p class="text-caption site-footer-text"><?php echo basix_footer_text(); ?></p>
+			<p class="text-caption site-footer-text"><?php echo wp_kses_post( basix_footer_text() ); ?></p>
 			<?php basix_footer_menus(); ?>
 		</div>
 		<?php if ( get_theme_mod( 'basix_back_to_top', true ) ) : ?>

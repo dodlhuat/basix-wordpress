@@ -14,7 +14,7 @@ $basix_cats   = isset( $args['category'] ) ? $args['category'] : '';
 ?>
 <div class="calendar-wrap" 
 <?php
-echo basix_component_attrs(
+basix_component_attrs(
 	'calendar',
 	array_merge(
 		basix_calendar_config(),

@@ -154,7 +154,7 @@ class Basix_Dropdown_Walker extends Walker_Nav_Menu {
 	 * @return string
 	 */
 	private function title( $item ) {
-		return apply_filters( 'the_title', $item->title, $item->ID ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- core filter.
+		return apply_filters( 'the_title', $item->title, $item->ID ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound, WPThemeReview.CoreFunctionality.PrefixAllGlobals.NonPrefixedHooknameFound -- core's own filter, applied as Walker_Nav_Menu does.
 	}
 
 	/**

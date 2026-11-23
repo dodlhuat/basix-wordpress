@@ -16,7 +16,7 @@ if ( ! basix_builder_location( 'single' ) ) : // A theme builder can draw this p
 	$basix_sprite    = get_theme_file_uri( BASIX_VENDOR . '/svg-icons/icons.svg' );
 	?>
 
-<div class="sidebar-layout docs-layout" <?php echo basix_component_attrs( 'docs' ); ?>>
+<div class="sidebar-layout docs-layout" <?php basix_component_attrs( 'docs' ); ?>>
 	<aside class="sidebar-nav docs-sidebar" id="docs-sidebar" aria-label="<?php esc_attr_e( 'Documentation', 'basix-paperlight' ); ?>">
 		<div class="sidebar-scroll">
 			<p class="docs-nav-title"><a href="<?php echo esc_url( get_permalink( $basix_docs_tree['page'] ) ); ?>"><?php echo esc_html( get_the_title( $basix_docs_tree['page'] ) ); ?></a></p>

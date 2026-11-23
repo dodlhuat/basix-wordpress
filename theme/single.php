@@ -8,7 +8,7 @@
 		the_post();
 		?>
 		<?php if ( basix_feature( 'basix_show_progress' ) ) : ?>
-		<div class="reading-progress" <?php echo basix_component_attrs( 'reading-progress' ); ?> aria-hidden="true">
+		<div class="reading-progress" <?php basix_component_attrs( 'reading-progress' ); ?> aria-hidden="true">
 			<div class="progress"><div class="progress-bar accent" style="width:0"></div></div>
 		</div>
 	<?php endif; ?>
@@ -42,7 +42,7 @@
 		 */
 		do_action( 'basix_entry_after_content' );
 		?>
-		<?php get_template_part( 'template-parts/author-box' ); ?>
+		<?php get_template_part( 'template-parts/post-author' ); ?>
 	</article>
 
 	<nav class="post-nav" aria-label="<?php esc_attr_e( 'Post navigation', 'basix-paperlight' ); ?>">
