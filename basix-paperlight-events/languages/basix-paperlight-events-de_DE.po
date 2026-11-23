@@ -3,9 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Basix Paperlight Events 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/basix-paperlight-"
-"events\n"
-"POT-Creation-Date: 2026-11-04T10:10:23+00:00\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/basix-paperlight-events\n"
+"POT-Creation-Date: 2026-11-23T10:48:05+00:00\n"
 "PO-Revision-Date: 2026-10-28 12:00+0000\n"
 "Last-Translator: Andi Bauer\n"
 "Language-Team: German\n"
@@ -24,15 +23,8 @@ msgstr "Basix Paperlight Events"
 
 #. Description of the plugin
 #: basix-paperlight-events.php
-msgid ""
-"Events with dates, times, time zones, repeats and categories, an events "
-"calendar block and shortcode, a calendar feed (ICS), and the data for event "
-"search results. Made for the Basix theme; the events work with any theme."
-msgstr ""
-"Veranstaltungen mit Datum, Uhrzeit, Zeitzone, Wiederholungen und Kategorien, "
-"ein Block und Shortcode für den Veranstaltungskalender, ein Kalender-Feed "
-"(ICS) und die Daten für Suchergebnisse zu Veranstaltungen. Gemacht für das "
-"Theme Basix; die Veranstaltungen funktionieren mit jedem Theme."
+msgid "Events with dates, times, time zones, repeats and categories, an events calendar block and shortcode, a calendar feed (ICS), the data for event search results, structured data and social tags, a meta description, share links, and starter sites for the Basix Paperlight theme. The events work with any theme."
+msgstr "Veranstaltungen mit Datum, Uhrzeit, Zeitzone, Wiederholungen und Kategorien, ein Veranstaltungskalender als Block und Shortcode, ein Kalender-Feed (ICS), die Daten für Veranstaltungen in Suchergebnissen, strukturierte Daten und Social-Media-Tags, eine Meta-Beschreibung, Teilen-Links und Starter-Websites für das Theme Basix Paperlight. Die Veranstaltungen funktionieren mit jedem Theme."
 
 #. Author of the plugin
 #: basix-paperlight-events.php
@@ -71,7 +63,8 @@ msgstr "Ort"
 msgid "Repeat"
 msgstr "Wiederholung"
 
-#: inc/events.php:77 inc/events.php:88
+#: inc/events.php:77 inc/events.php:88 inc/schema.php:114 inc/schema.php:137
+#: inc/schema.php:140 inc/setup/importer.php:374 starters/events.php:9
 msgid "Events"
 msgstr "Veranstaltungen"
 
@@ -162,14 +155,8 @@ msgid "Site time zone (%s)"
 msgstr "Zeitzone der Website (%s)"
 
 #: inc/events.php:207
-msgid ""
-"Leave the times empty for an all-day event. Leave the end date empty for an "
-"event on one day. The time zone applies to timed events; all-day events "
-"follow the site."
-msgstr ""
-"Lass die Uhrzeiten leer für eine ganztägige Veranstaltung. Lass das Enddatum "
-"leer für eine Veranstaltung an einem Tag. Die Zeitzone gilt für "
-"Veranstaltungen mit Uhrzeit; ganztägige Veranstaltungen folgen der Website."
+msgid "Leave the times empty for an all-day event. Leave the end date empty for an event on one day. The time zone applies to timed events; all-day events follow the site."
+msgstr "Lass die Uhrzeiten leer für eine ganztägige Veranstaltung. Lass das Enddatum leer für eine Veranstaltung an einem Tag. Die Zeitzone gilt für Veranstaltungen mit Uhrzeit; ganztägige Veranstaltungen folgen der Website."
 
 #. translators: %s: a date, for example November 5, 2026.
 #: inc/events.php:675
@@ -311,9 +298,7 @@ msgstr "Alle"
 
 #: inc/recurrence.php:568
 msgid "times the unit above (2 means every second day, week, month or year)"
-msgstr ""
-"× die Einheit oben (2 heißt: jeden zweiten Tag, jede zweite Woche, jeden "
-"zweiten Monat oder jedes zweite Jahr)"
+msgstr "× die Einheit oben (2 heißt: jeden zweiten Tag, jede zweite Woche, jeden zweiten Monat oder jedes zweite Jahr)"
 
 #: inc/recurrence.php:574
 msgid "None ticked: the weekday of the start date."
@@ -345,9 +330,7 @@ msgstr "Ausgelassene Termine"
 
 #: inc/recurrence.php:587
 msgid "One date (YYYY-MM-DD) per line. These dates do not happen."
-msgstr ""
-"Ein Datum (JJJJ-MM-TT) pro Zeile. An diesen Tagen findet der Termin nicht "
-"statt."
+msgstr "Ein Datum (JJJJ-MM-TT) pro Zeile. An diesen Tagen findet der Termin nicht statt."
 
 #: inc/recurrence.php:654
 msgid "Repeats"
@@ -361,6 +344,284 @@ msgstr "Nächste Termine"
 msgid "All dates of this event are over."
 msgstr "Alle Termine dieser Veranstaltung sind vorbei."
 
+#: inc/schema.php:93 inc/setup/importer.php:380
+msgid "Home"
+msgstr "Startseite"
+
+#: inc/schema.php:151
+msgid "Search results"
+msgstr "Suchergebnisse"
+
+#: inc/setup/admin.php:21
+msgid "Basix setup"
+msgstr "Basix einrichten"
+
+#: inc/setup/admin.php:38
+msgid "Thank you for choosing Basix."
+msgstr "Danke, dass du dich für Basix entschieden hast."
+
+#: inc/setup/admin.php:38
+msgid "Pick a look and a starter site in a minute, or start from scratch."
+msgstr "Wähle in einer Minute einen Look und eine Starter-Website, oder fang bei null an."
+
+#: inc/setup/admin.php:40
+msgid "Set up your site"
+msgstr "Website einrichten"
+
+#: inc/setup/admin.php:41
+msgid "Not now"
+msgstr "Jetzt nicht"
+
+#: inc/setup/admin.php:85 inc/setup/admin.php:110
+msgid "You are not allowed to do this."
+msgstr "Du darfst das nicht tun."
+
+#: inc/setup/admin.php:173
+msgid "Set up Basix"
+msgstr "Basix einrichten"
+
+#: inc/setup/admin.php:174
+msgid "Choose how your site looks, and start from a ready-made site if you like. Nothing you have made is deleted: an import only adds, and Undo removes exactly what it added."
+msgstr "Wähle, wie deine Website aussieht, und starte auf Wunsch mit einer fertigen Website. Nichts von dir wird gelöscht: Ein Import fügt nur hinzu, und „Rückgängig“ entfernt genau das, was hinzugefügt wurde."
+
+#. translators: %s: name of the starter site.
+#: inc/setup/admin.php:180
+#, php-format
+msgid "The %s starter site is ready."
+msgstr "Die Starter-Website „%s“ ist bereit."
+
+#: inc/setup/admin.php:182 inc/setup/admin.php:185
+msgid "View your site"
+msgstr "Website ansehen"
+
+#: inc/setup/admin.php:185
+msgid "The look is set."
+msgstr "Der Look ist eingestellt."
+
+#: inc/setup/admin.php:187
+msgid "The import was undone. Your settings are back as they were."
+msgstr "Der Import wurde rückgängig gemacht. Deine Einstellungen sind wieder wie vorher."
+
+#: inc/setup/admin.php:189
+msgid "That did not work. Nothing was changed that you cannot undo here."
+msgstr "Das hat nicht geklappt. Es wurde nichts geändert, was du hier nicht rückgängig machen kannst."
+
+#: inc/setup/admin.php:197
+msgid "Your current starter site"
+msgstr "Deine aktuelle Starter-Website"
+
+#. translators: 1: starter site name, 2: number of pages, posts, events and pictures added.
+#: inc/setup/admin.php:201
+#, php-format
+msgid "%1$s was added on %2$s with %3$d items (pages, posts, events and pictures)."
+msgstr "%1$s wurde am %2$s mit %3$d Elementen hinzugefügt (Seiten, Beiträge, Veranstaltungen und Bilder)."
+
+#: inc/setup/admin.php:204
+msgid "Undo removes what it added and puts your settings back. Changes you made to the added pages and posts are lost with them."
+msgstr "„Rückgängig“ entfernt, was hinzugefügt wurde, und stellt deine Einstellungen wieder her. Änderungen an den hinzugefügten Seiten und Beiträgen gehen damit verloren."
+
+#: inc/setup/admin.php:208
+msgid "Undo this import"
+msgstr "Diesen Import rückgängig machen"
+
+#: inc/setup/admin.php:217
+msgid "1. Pick a look"
+msgstr "1. Look wählen"
+
+#: inc/setup/admin.php:221
+msgid "The starter site's own look"
+msgstr "Der Look der Starter-Website"
+
+#: inc/setup/admin.php:222
+msgid "Each starter site suggests one. Without a starter, your current look stays."
+msgstr "Jede Starter-Website schlägt einen vor. Ohne Starter bleibt dein aktueller Look."
+
+#: inc/setup/admin.php:234
+msgid "2. Pick a starter site"
+msgstr "2. Starter-Website wählen"
+
+#: inc/setup/admin.php:238
+msgid "No content, only the look"
+msgstr "Kein Inhalt, nur der Look"
+
+#: inc/setup/admin.php:239
+msgid "Keep your site as it is and only change how it looks."
+msgstr "Deine Website bleibt, wie sie ist; nur das Aussehen ändert sich."
+
+#. translators: 1: number of pages, 2: number of sample posts, 3: number of sample events.
+#: inc/setup/admin.php:251
+#, php-format
+msgid "%1$d pages, %2$d posts, %3$d events"
+msgstr "%1$d Seiten, %2$d Beiträge, %3$d Veranstaltungen"
+
+#. translators: %s: look name.
+#: inc/setup/admin.php:254
+#, php-format
+msgid "Look: %s"
+msgstr "Look: %s"
+
+#: inc/setup/admin.php:259
+msgid "Set up my site"
+msgstr "Meine Website einrichten"
+
+#: inc/setup/admin.php:262
+msgid "3. Make it yours"
+msgstr "3. Mach sie zu deiner"
+
+#: inc/setup/admin.php:264
+msgid "Site name, tagline and logo"
+msgstr "Name, Untertitel und Logo der Website"
+
+#: inc/setup/admin.php:265
+msgid "Menus"
+msgstr "Menüs"
+
+#: inc/setup/admin.php:266
+msgid "Colours, fonts, header, layout and more (Basix options)"
+msgstr "Farben, Schriften, Kopfbereich, Layout und mehr (Basix-Optionen)"
+
+#: inc/setup/admin.php:267
+msgid "Sidebar and footer widgets"
+msgstr "Widgets für Seitenleiste und Fußbereich"
+
+#: inc/setup/admin.php:270
+msgid "4. Learn more"
+msgstr "4. Mehr erfahren"
+
+#: inc/setup/admin.php:272
+msgid "In the editor, open the block inserter, choose Patterns and look for the groups that start with Basix."
+msgstr "Öffne im Editor die Block-Auswahl, wähle „Muster“ und such die Gruppen, die mit Basix beginnen."
+
+#: inc/setup/admin.php:274
+msgid "See every pattern on one page"
+msgstr "Alle Muster auf einer Seite ansehen"
+
+#: inc/setup/admin.php:277
+msgid "Documentation and support"
+msgstr "Dokumentation und Support"
+
+#: inc/setup/importer.php:212
+msgid "That starter site does not exist."
+msgstr "Diese Starter-Website gibt es nicht."
+
+#: inc/setup/importer.php:354
+msgid "Primary"
+msgstr "Hauptmenü"
+
+#: inc/setup/importer.php:354
+msgid "Footer"
+msgstr "Footer"
+
+#: inc/setup/importer.php:420
+msgid "About"
+msgstr "Über uns"
+
+#: inc/setup/importer.php:421
+msgid "A small site built with the Basix theme. Say here what it is about."
+msgstr "Eine kleine Website mit dem Theme Basix. Schreib hier, worum es geht."
+
+#: inc/setup/importer.php:429
+msgid "Latest posts"
+msgstr "Neueste Beiträge"
+
+#: inc/setup/importer.php:436
+msgid "Tags"
+msgstr "Schlagwörter"
+
+#: inc/share.php:23
+msgid "Email"
+msgstr "E-Mail"
+
+#: inc/share.php:50
+msgid "Share"
+msgstr "Teilen"
+
+#: inc/share.php:51
+msgid "Copy link"
+msgstr "Link kopieren"
+
+#: inc/share.php:52
+msgid "Link copied"
+msgstr "Link kopiert"
+
+#: inc/share.php:56
+msgid "Share this post"
+msgstr "Diesen Beitrag teilen"
+
+#: inc/share.php:85
+msgid "Show share links"
+msgstr "Teilen-Links anzeigen"
+
+#: starters/blog.php:9
+msgid "Blog"
+msgstr "Blog"
+
+#: starters/blog.php:10
+msgid "A classic blog: a welcome card, the latest posts in a grid, a sidebar, an About page and a Contact page."
+msgstr "Ein klassischer Blog: eine Willkommenskarte, die neuesten Beiträge im Raster, eine Seitenleiste sowie eine Seite „Über uns“ und eine Kontaktseite."
+
+#: starters/blog.php:22 starters/business.php:163 starters/events.php:51
+#: starters/magazine.php:23
+msgctxt "Starter page title"
+msgid "About"
+msgstr "Über uns"
+
+#: starters/blog.php:36 starters/business.php:186 starters/events.php:72
+#: starters/magazine.php:44
+msgctxt "Starter page title"
+msgid "Contact"
+msgstr "Kontakt"
+
+#: starters/business.php:9
+msgid "Business"
+msgstr "Unternehmen"
+
+#: starters/business.php:10
+msgid "A company site: a landing page with a hero, features, numbers, testimonials and prices, plus Services, Pricing, About, News and Contact pages."
+msgstr "Eine Firmenwebsite: eine Startseite mit Hero, Funktionen, Zahlen, Kundenstimmen und Preisen sowie Seiten für Leistungen, Preise, Über uns, Neuigkeiten und Kontakt."
+
+#: starters/business.php:23 starters/events.php:22
+msgctxt "Starter page title"
+msgid "Home"
+msgstr "Startseite"
+
+#: starters/business.php:107
+msgctxt "Starter page title"
+msgid "Services"
+msgstr "Leistungen"
+
+#: starters/business.php:123
+msgctxt "Starter page title"
+msgid "Pricing"
+msgstr "Preise"
+
+#: starters/business.php:182
+msgctxt "Starter page title"
+msgid "News"
+msgstr "Neuigkeiten"
+
+#: starters/events.php:10
+msgid "A site for gatherings: sample events (one repeating every week), an agenda and a calendar, a subscribe link, and About and Contact pages."
+msgstr "Eine Website für Treffen: Beispielveranstaltungen (eine wiederholt sich jede Woche), eine Agenda und ein Kalender, ein Abo-Link sowie Seiten „Über uns“ und Kontakt."
+
+#: starters/events.php:34
+msgctxt "Starter content"
+msgid "What is on"
+msgstr "Was ansteht"
+
+#: starters/events.php:46
+msgctxt "Starter page title"
+msgid "Calendar"
+msgstr "Kalender"
+
+#: starters/magazine.php:9
+msgid "Magazine"
+msgstr "Magazin"
+
+#: starters/magazine.php:10
+msgid "An editorial site: warm paper and serif type, a slider of featured stories, a large first story and a sidebar."
+msgstr "Eine redaktionelle Website: warmes Papier und Serifenschrift, ein Slider mit Top-Geschichten, eine große erste Geschichte und eine Seitenleiste."
+
 #: blocks/calendar/block.json
 msgctxt "block title"
 msgid "Events calendar"
@@ -368,12 +629,8 @@ msgstr "Veranstaltungskalender"
 
 #: blocks/calendar/block.json
 msgctxt "block description"
-msgid ""
-"A calendar of your events, or of your posts by publish date, with month, "
-"week and agenda views."
-msgstr ""
-"Ein Kalender deiner Veranstaltungen oder deiner Beiträge nach "
-"Veröffentlichungsdatum, mit Monats-, Wochen- und Agendaansicht."
+msgid "A calendar of your events, or of your posts by publish date, with month, week and agenda views."
+msgstr "Ein Kalender deiner Veranstaltungen oder deiner Beiträge nach Veröffentlichungsdatum, mit Monats-, Wochen- und Agendaansicht."
 
 #: blocks/calendar/block.json
 msgctxt "block keyword"
@@ -394,3 +651,9 @@ msgstr "Beiträge"
 msgctxt "block keyword"
 msgid "agenda"
 msgstr "Agenda"
+
+#~ msgid "Events with dates, times, time zones, repeats and categories, an events calendar block and shortcode, a calendar feed (ICS), the data for event search results, structured data and social tags, a meta description, and starter sites for the Basix Paperlight theme. The events work with any theme."
+#~ msgstr "Veranstaltungen mit Datum, Uhrzeit, Zeitzone, Wiederholungen und Kategorien, ein Veranstaltungskalender als Block und Shortcode, ein Kalender-Feed (ICS), die Daten für Veranstaltungen in Suchergebnissen, strukturierte Daten und Social-Media-Tags, eine Meta-Beschreibung und Starter-Websites für das Theme Basix Paperlight. Die Veranstaltungen funktionieren mit jedem Theme."
+
+#~ msgid "Events with dates, times, time zones, repeats and categories, an events calendar block and shortcode, a calendar feed (ICS), and the data for event search results. Made for the Basix theme; the events work with any theme."
+#~ msgstr "Veranstaltungen mit Datum, Uhrzeit, Zeitzone, Wiederholungen und Kategorien, ein Block und Shortcode für den Veranstaltungskalender, ein Kalender-Feed (ICS) und die Daten für Suchergebnisse zu Veranstaltungen. Gemacht für das Theme Basix; die Veranstaltungen funktionieren mit jedem Theme."

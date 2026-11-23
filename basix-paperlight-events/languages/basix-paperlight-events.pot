@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-04T10:10:23+00:00\n"
+"POT-Creation-Date: 2026-11-23T10:48:05+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: basix-paperlight-events\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #. Description of the plugin
 #: basix-paperlight-events.php
-msgid "Events with dates, times, time zones, repeats and categories, an events calendar block and shortcode, a calendar feed (ICS), and the data for event search results. Made for the Basix theme; the events work with any theme."
+msgid "Events with dates, times, time zones, repeats and categories, an events calendar block and shortcode, a calendar feed (ICS), the data for event search results, structured data and social tags, a meta description, share links, and starter sites for the Basix Paperlight theme. The events work with any theme."
 msgstr ""
 
 #. Author of the plugin
@@ -72,6 +72,11 @@ msgstr ""
 
 #: inc/events.php:77
 #: inc/events.php:88
+#: inc/schema.php:114
+#: inc/schema.php:137
+#: inc/schema.php:140
+#: inc/setup/importer.php:374
+#: starters/events.php:9
 msgid "Events"
 msgstr ""
 
@@ -350,6 +355,292 @@ msgstr ""
 
 #: inc/recurrence.php:669
 msgid "All dates of this event are over."
+msgstr ""
+
+#: inc/schema.php:93
+#: inc/setup/importer.php:380
+msgid "Home"
+msgstr ""
+
+#: inc/schema.php:151
+msgid "Search results"
+msgstr ""
+
+#: inc/setup/admin.php:21
+msgid "Basix setup"
+msgstr ""
+
+#: inc/setup/admin.php:38
+msgid "Thank you for choosing Basix."
+msgstr ""
+
+#: inc/setup/admin.php:38
+msgid "Pick a look and a starter site in a minute, or start from scratch."
+msgstr ""
+
+#: inc/setup/admin.php:40
+msgid "Set up your site"
+msgstr ""
+
+#: inc/setup/admin.php:41
+msgid "Not now"
+msgstr ""
+
+#: inc/setup/admin.php:85
+#: inc/setup/admin.php:110
+msgid "You are not allowed to do this."
+msgstr ""
+
+#: inc/setup/admin.php:173
+msgid "Set up Basix"
+msgstr ""
+
+#: inc/setup/admin.php:174
+msgid "Choose how your site looks, and start from a ready-made site if you like. Nothing you have made is deleted: an import only adds, and Undo removes exactly what it added."
+msgstr ""
+
+#. translators: %s: name of the starter site.
+#: inc/setup/admin.php:180
+#, php-format
+msgid "The %s starter site is ready."
+msgstr ""
+
+#: inc/setup/admin.php:182
+#: inc/setup/admin.php:185
+msgid "View your site"
+msgstr ""
+
+#: inc/setup/admin.php:185
+msgid "The look is set."
+msgstr ""
+
+#: inc/setup/admin.php:187
+msgid "The import was undone. Your settings are back as they were."
+msgstr ""
+
+#: inc/setup/admin.php:189
+msgid "That did not work. Nothing was changed that you cannot undo here."
+msgstr ""
+
+#: inc/setup/admin.php:197
+msgid "Your current starter site"
+msgstr ""
+
+#. translators: 1: starter site name, 2: number of pages, posts, events and pictures added.
+#: inc/setup/admin.php:201
+#, php-format
+msgid "%1$s was added on %2$s with %3$d items (pages, posts, events and pictures)."
+msgstr ""
+
+#: inc/setup/admin.php:204
+msgid "Undo removes what it added and puts your settings back. Changes you made to the added pages and posts are lost with them."
+msgstr ""
+
+#: inc/setup/admin.php:208
+msgid "Undo this import"
+msgstr ""
+
+#: inc/setup/admin.php:217
+msgid "1. Pick a look"
+msgstr ""
+
+#: inc/setup/admin.php:221
+msgid "The starter site's own look"
+msgstr ""
+
+#: inc/setup/admin.php:222
+msgid "Each starter site suggests one. Without a starter, your current look stays."
+msgstr ""
+
+#: inc/setup/admin.php:234
+msgid "2. Pick a starter site"
+msgstr ""
+
+#: inc/setup/admin.php:238
+msgid "No content, only the look"
+msgstr ""
+
+#: inc/setup/admin.php:239
+msgid "Keep your site as it is and only change how it looks."
+msgstr ""
+
+#. translators: 1: number of pages, 2: number of sample posts, 3: number of sample events.
+#: inc/setup/admin.php:251
+#, php-format
+msgid "%1$d pages, %2$d posts, %3$d events"
+msgstr ""
+
+#. translators: %s: look name.
+#: inc/setup/admin.php:254
+#, php-format
+msgid "Look: %s"
+msgstr ""
+
+#: inc/setup/admin.php:259
+msgid "Set up my site"
+msgstr ""
+
+#: inc/setup/admin.php:262
+msgid "3. Make it yours"
+msgstr ""
+
+#: inc/setup/admin.php:264
+msgid "Site name, tagline and logo"
+msgstr ""
+
+#: inc/setup/admin.php:265
+msgid "Menus"
+msgstr ""
+
+#: inc/setup/admin.php:266
+msgid "Colours, fonts, header, layout and more (Basix options)"
+msgstr ""
+
+#: inc/setup/admin.php:267
+msgid "Sidebar and footer widgets"
+msgstr ""
+
+#: inc/setup/admin.php:270
+msgid "4. Learn more"
+msgstr ""
+
+#: inc/setup/admin.php:272
+msgid "In the editor, open the block inserter, choose Patterns and look for the groups that start with Basix."
+msgstr ""
+
+#: inc/setup/admin.php:274
+msgid "See every pattern on one page"
+msgstr ""
+
+#: inc/setup/admin.php:277
+msgid "Documentation and support"
+msgstr ""
+
+#: inc/setup/importer.php:212
+msgid "That starter site does not exist."
+msgstr ""
+
+#: inc/setup/importer.php:354
+msgid "Primary"
+msgstr ""
+
+#: inc/setup/importer.php:354
+msgid "Footer"
+msgstr ""
+
+#: inc/setup/importer.php:420
+msgid "About"
+msgstr ""
+
+#: inc/setup/importer.php:421
+msgid "A small site built with the Basix theme. Say here what it is about."
+msgstr ""
+
+#: inc/setup/importer.php:429
+msgid "Latest posts"
+msgstr ""
+
+#: inc/setup/importer.php:436
+msgid "Tags"
+msgstr ""
+
+#: inc/share.php:23
+msgid "Email"
+msgstr ""
+
+#: inc/share.php:50
+msgid "Share"
+msgstr ""
+
+#: inc/share.php:51
+msgid "Copy link"
+msgstr ""
+
+#: inc/share.php:52
+msgid "Link copied"
+msgstr ""
+
+#: inc/share.php:56
+msgid "Share this post"
+msgstr ""
+
+#: inc/share.php:85
+msgid "Show share links"
+msgstr ""
+
+#: starters/blog.php:9
+msgid "Blog"
+msgstr ""
+
+#: starters/blog.php:10
+msgid "A classic blog: a welcome card, the latest posts in a grid, a sidebar, an About page and a Contact page."
+msgstr ""
+
+#: starters/blog.php:22
+#: starters/business.php:163
+#: starters/events.php:51
+#: starters/magazine.php:23
+msgctxt "Starter page title"
+msgid "About"
+msgstr ""
+
+#: starters/blog.php:36
+#: starters/business.php:186
+#: starters/events.php:72
+#: starters/magazine.php:44
+msgctxt "Starter page title"
+msgid "Contact"
+msgstr ""
+
+#: starters/business.php:9
+msgid "Business"
+msgstr ""
+
+#: starters/business.php:10
+msgid "A company site: a landing page with a hero, features, numbers, testimonials and prices, plus Services, Pricing, About, News and Contact pages."
+msgstr ""
+
+#: starters/business.php:23
+#: starters/events.php:22
+msgctxt "Starter page title"
+msgid "Home"
+msgstr ""
+
+#: starters/business.php:107
+msgctxt "Starter page title"
+msgid "Services"
+msgstr ""
+
+#: starters/business.php:123
+msgctxt "Starter page title"
+msgid "Pricing"
+msgstr ""
+
+#: starters/business.php:182
+msgctxt "Starter page title"
+msgid "News"
+msgstr ""
+
+#: starters/events.php:10
+msgid "A site for gatherings: sample events (one repeating every week), an agenda and a calendar, a subscribe link, and About and Contact pages."
+msgstr ""
+
+#: starters/events.php:34
+msgctxt "Starter content"
+msgid "What is on"
+msgstr ""
+
+#: starters/events.php:46
+msgctxt "Starter page title"
+msgid "Calendar"
+msgstr ""
+
+#: starters/magazine.php:9
+msgid "Magazine"
+msgstr ""
+
+#: starters/magazine.php:10
+msgid "An editorial site: warm paper and serif type, a slider of featured stories, a large first story and a sidebar."
 msgstr ""
 
 #: blocks/calendar/block.json
