@@ -127,3 +127,5 @@ if (failures.length) {
   process.exit(1);
 }
 console.log('\nStarter sites check passed.');
+// A Chrome left over from a restart can keep Node waiting for ever, so end here.
+process.exit(process.exitCode ?? 0);

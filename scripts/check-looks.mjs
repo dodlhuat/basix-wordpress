@@ -99,3 +99,5 @@ if (failures.length) {
   process.exit(1);
 }
 console.log('\nLooks browser check passed.');
+// A Chrome left over from a restart can keep Node waiting for ever, so end here.
+process.exit(0);

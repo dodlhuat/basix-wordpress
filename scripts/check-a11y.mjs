@@ -82,3 +82,5 @@ if (blocking) {
 } else {
   console.log('\nAccessibility check passed (no serious or critical violations).');
 }
+// A Chrome left over from a restart can keep Node waiting for ever, so end here.
+process.exit(process.exitCode ?? 0);
