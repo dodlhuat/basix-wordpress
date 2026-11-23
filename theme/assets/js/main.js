@@ -1,6 +1,8 @@
 import { Theme } from '../vendor/basix/js/theme.js';
 import { loadComponents } from './loader.js';
 import { components } from './components.js';
+import { trapOverlays } from './focus-trap.js';
+import { strings } from './loader.js';
 
 // Dark/light mode is needed on every page, so it is the only Basix module loaded up front.
 Theme.init();
@@ -17,6 +19,9 @@ if (defaultMode && !Theme.hasSavedPreference()) {
 }
 
 loadComponents(components);
+
+// Keyboard focus stays inside the share sheet and the picture lightbox while they are open.
+trapOverlays(strings.close ?? 'Close');
 
 // The header gets a shadow once the page scrolls underneath it.
 const header = document.querySelector('.site-header');

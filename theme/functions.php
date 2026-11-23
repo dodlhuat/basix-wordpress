@@ -549,6 +549,8 @@ add_action(
 					'carousel'  => __( 'Featured posts', 'basix-paperlight' ),
 					/* translators: 1: number of this slide, 2: number of slides. */
 					'slide'     => __( 'Slide %1$d of %2$d', 'basix-paperlight' ),
+					'close'     => __( 'Close', 'basix-paperlight' ),
+					'closeMenu' => __( 'Close menu', 'basix-paperlight' ),
 				]
 			)
 		);

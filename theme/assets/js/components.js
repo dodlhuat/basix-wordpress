@@ -2,6 +2,7 @@ import { iconBasePath, readConfig, strings } from './loader.js';
 import { makeSortable } from './sortable-table.js';
 import { buildFilterForm } from './filters.js';
 import { bindLightbox, makeItemsAccessible, neverResolves } from './masonry.js';
+import { makeCloseReachable, trapFocus, whenRemoved } from './focus-trap.js';
 
 /**
  * Components the theme can load. Add an entry here when a template or block uses a new one;
@@ -33,7 +34,33 @@ export const components = {
     push: {
         selector: '.push-menu',
         load: () => import('../vendor/basix/js/push-menu.js'),
-        init: ({ PushMenu }) => PushMenu.init({ iconBasePath }),
+        init: ({ PushMenu }) => {
+            PushMenu.init({ iconBasePath });
+
+            // The menu button is a checkbox. While the menu is open, focus goes round between it and the menu, and
+            // Escape closes it.
+            const toggle = document.getElementById('menu-navigation');
+            const nav = document.querySelector('.push-menu');
+            if (!toggle || !nav) {
+                return;
+            }
+            let trap = null;
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.addEventListener('change', () => {
+                toggle.setAttribute('aria-expanded', String(toggle.checked));
+                trap?.release(false);
+                trap = null;
+                if (toggle.checked) {
+                    trap = trapFocus([toggle, nav], { initial: toggle, restore: toggle });
+                }
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && toggle.checked) {
+                    toggle.click();
+                    toggle.focus();
+                }
+            });
+        },
     },
 
     // Search overlay: the header button (a plain link to the search page without JavaScript) or the "/" key.
@@ -52,18 +79,18 @@ export const components = {
 
                 const wrapper = document.querySelector('.modal-wrapper');
                 const dialog = wrapper?.querySelector('.modal');
-                dialog?.setAttribute('role', 'dialog');
-                dialog?.setAttribute('aria-modal', 'true');
-                dialog?.setAttribute('aria-label', template.dataset.title ?? 'Search');
-                wrapper?.querySelector('input[type="search"]')?.focus();
+                if (!dialog) {
+                    return;
+                }
+                wrapper.dataset.focusTrap = 'search';
+                dialog.setAttribute('role', 'dialog');
+                dialog.setAttribute('aria-modal', 'true');
+                dialog.setAttribute('aria-label', template.dataset.title ?? 'Search');
+                makeCloseReachable(wrapper, strings.close ?? 'Close');
 
-                // Give focus back to whatever opened the overlay once it is gone.
-                new MutationObserver((records, observer) => {
-                    if (!document.body.contains(wrapper)) {
-                        observer.disconnect();
-                        opener?.focus?.();
-                    }
-                }).observe(document.body, { childList: true });
+                // Focus stays in the overlay while it is open, and goes back to whatever opened it once it is gone.
+                const trap = trapFocus(dialog, { initial: dialog.querySelector('input[type="search"]'), restore: opener });
+                whenRemoved(wrapper, () => trap.release());
             };
 
             triggers.forEach((trigger) => trigger.addEventListener('click', open));
@@ -80,7 +107,34 @@ export const components = {
     // Documentation template: the Basix sidebar nav gives the mobile drawer, backdrop and swipe.
     docs: {
         load: () => import('../vendor/basix/js/sidebar-nav.js'),
-        init: ({ SidebarNav }, [layout]) => new SidebarNav(layout, { iconBasePath }),
+        init: ({ SidebarNav }, [layout]) => {
+            const nav = new SidebarNav(layout, { iconBasePath });
+            // On phones the navigation is a drawer: focus goes round in it while it is open (its close button is
+            // last), and goes back to the toggle when it closes.
+            const drawer = layout.querySelector('.sidebar-nav');
+            const toggle = document.querySelector('.docs-toggle');
+            nav.closeBtn?.setAttribute('aria-label', strings.close ?? 'Close');
+            let trap = null;
+            const open = nav.open.bind(nav);
+            const close = nav.close.bind(nav);
+            nav.open = () => {
+                open();
+                toggle?.setAttribute('aria-expanded', 'true');
+                trap?.release(false);
+                trap = drawer ? trapFocus(drawer, { restore: toggle }) : null;
+            };
+            nav.close = () => {
+                close();
+                toggle?.setAttribute('aria-expanded', 'false');
+                trap?.release(document.activeElement === document.body || Boolean(drawer?.contains(document.activeElement)));
+                trap = null;
+            };
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && trap) {
+                    nav.close();
+                }
+            });
+        },
     },
 
     // Reading progress bar at the top of a post: CSS only (Basix progress), this just moves the bar.
@@ -112,7 +166,8 @@ export const components = {
         },
     },
 
-    // Share: a button with a popover on wide screens, a bottom sheet on small ones; the toast confirms "copy link".
+    // Share links from the Basix Paperlight Events plugin: a button with a popover on wide screens, a bottom sheet on
+    // small ones; the toast confirms "copy link". Without the plugin there is nothing to enhance.
     share: {
         load: async () => Object.assign({}, ...(await Promise.all([
             import('../vendor/basix/js/popover.js'),
@@ -297,13 +352,28 @@ export const components = {
                     import('../vendor/basix/js/group-picker.js'),
                     import('../vendor/basix/js/datepicker.js'),
                 ]);
+                const opener = document.activeElement;
                 const options = { content: '<div class="filter-host"></div>', header: escape(config.text.title), iconBasePath };
                 if (window.matchMedia('(max-width: 768px)').matches) {
                     new BottomSheet({ ...options, snapHeight: 'full' }).show();
                 } else {
                     new Modal(options).show();
                 }
-                document.querySelector('.filter-host')?.append(buildFilterForm(details, config, { GroupPicker, DatePicker, iconBasePath }));
+                const host = document.querySelector('.filter-host');
+                host?.append(buildFilterForm(details, config, { GroupPicker, DatePicker, iconBasePath }));
+
+                // Keyboard focus stays in the dialog until it is closed.
+                const wrapper = host?.closest('.modal-wrapper, .bottom-sheet-wrapper');
+                const dialog = host?.closest('.modal, .bottom-sheet');
+                if (wrapper && dialog) {
+                    wrapper.dataset.focusTrap = 'filters';
+                    dialog.setAttribute('role', 'dialog');
+                    dialog.setAttribute('aria-modal', 'true');
+                    dialog.setAttribute('aria-label', config.text.title ?? '');
+                    makeCloseReachable(wrapper, strings.close ?? 'Close');
+                    const trap = trapFocus(dialog, { restore: opener });
+                    whenRemoved(wrapper, () => trap.release());
+                }
             });
         },
     },
@@ -624,7 +694,7 @@ export const components = {
         selector: '#site-flyout li',
         load: () => import('../vendor/basix/js/flyout-menu.js'),
         init: ({ FlyoutMenu }) => {
-            new FlyoutMenu({
+            const menu = new FlyoutMenu({
                 triggerSelector: '.site-menu-trigger',
                 menuSelector: '#site-flyout',
                 overlaySelector: '#site-flyout-overlay',
@@ -633,8 +703,35 @@ export const components = {
                 enableHeader: true,
                 enableFooter: false,
             });
-            // Hidden and static until now so the drawer doesn't slide in on page load.
             const drawer = document.getElementById('site-flyout');
+            const trigger = document.querySelector('.site-menu-trigger');
+            drawer.querySelector('.close-menu')?.setAttribute('aria-label', strings.closeMenu ?? 'Close menu');
+            trigger?.setAttribute('aria-expanded', 'false');
+            trigger?.setAttribute('aria-controls', 'site-flyout');
+
+            // While the drawer is open, focus goes round in it: the close button comes first, so Tab on the last
+            // item goes to it, and Shift+Tab on it goes to the last item. Closing gives focus back to the menu
+            // button, unless a link was followed.
+            let trap = null;
+            let followed = false;
+            drawer.addEventListener('click', (event) => {
+                followed = Boolean(event.target.closest('a'));
+            }, true);
+            const open = menu.open.bind(menu);
+            const close = menu.close.bind(menu);
+            menu.open = () => {
+                open();
+                followed = false;
+                trap?.release(false);
+                trap = trapFocus(drawer, { initial: drawer.querySelector('.close-menu'), restore: trigger });
+            };
+            menu.close = () => {
+                close();
+                trap?.release(!followed);
+                trap = null;
+            };
+
+            // Hidden and static until now so the drawer doesn't slide in on page load.
             requestAnimationFrame(() => requestAnimationFrame(() => drawer.classList.add('is-ready')));
         },
     },
