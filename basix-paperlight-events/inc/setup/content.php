@@ -4,7 +4,7 @@
  *
  * Page text comes from the theme's patterns, so it is in the site's language. The sample posts are English demo text.
  *
- * @package basix
+ * @package basix-paperlight-events
  */
 
 /**

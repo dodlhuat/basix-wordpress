@@ -2,12 +2,12 @@
 /**
  * Starter site: events.
  *
- * @package basix
+ * @package basix-paperlight-events
  */
 
 return array(
-	'title'       => __( 'Events', 'basix-paperlight' ),
-	'description' => __( 'A site for gatherings: sample events (one repeating every week), an agenda and a calendar, a subscribe link, and About and Contact pages.', 'basix-paperlight' ),
+	'title'       => __( 'Events', 'basix-paperlight-events' ),
+	'description' => __( 'A site for gatherings: sample events (one repeating every week), an agenda and a calendar, a subscribe link, and About and Contact pages.', 'basix-paperlight-events' ),
 	'look'        => 'calm',
 	'mods'        => array(
 		'basix_hero_style'       => 'none',
@@ -19,7 +19,7 @@ return array(
 	'sticky'      => 0,
 	'pages'       => array(
 		'home'     => array(
-			'title'   => _x( 'Home', 'Starter page title', 'basix-paperlight' ),
+			'title'   => _x( 'Home', 'Starter page title', 'basix-paperlight-events' ),
 			'content' => static function (): string {
 				return basix_sc_pattern(
 					'basix/hero-minimal',
@@ -31,7 +31,7 @@ return array(
 						'Learn more'                     => 'About us',
 					)
 				) . "\n\n"
-					. basix_sc_h( _x( 'What is on', 'Starter content', 'basix-paperlight' ) ) . "\n\n"
+					. basix_sc_h( _x( 'What is on', 'Starter content', 'basix-paperlight-events' ) ) . "\n\n"
 					. "<!-- wp:shortcode -->\n[basix_calendar view=\"agenda\"]\n<!-- /wp:shortcode -->\n\n"
 					. basix_sc_pattern(
 						'basix/cta-newsletter',
@@ -43,12 +43,12 @@ return array(
 			},
 		),
 		'calendar' => array(
-			'title'    => _x( 'Calendar', 'Starter page title', 'basix-paperlight' ),
+			'title'    => _x( 'Calendar', 'Starter page title', 'basix-paperlight-events' ),
 			'template' => 'page-templates/calendar.php',
 			'content'  => '',
 		),
 		'about'    => array(
-			'title'   => _x( 'About', 'Starter page title', 'basix-paperlight' ),
+			'title'   => _x( 'About', 'Starter page title', 'basix-paperlight-events' ),
 			'content' => static function (): string {
 				return basix_sc_pattern(
 					'basix/about-split',
@@ -69,7 +69,7 @@ return array(
 			},
 		),
 		'contact'  => array(
-			'title'   => _x( 'Contact', 'Starter page title', 'basix-paperlight' ),
+			'title'   => _x( 'Contact', 'Starter page title', 'basix-paperlight-events' ),
 			'content' => static function (): string {
 				return basix_sc_pattern( 'basix/contact-details' ) . "\n\n" . basix_sc_pattern(
 					'basix/faq-columns',

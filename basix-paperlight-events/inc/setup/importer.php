@@ -6,7 +6,7 @@
  * posts and events). Importing it creates content, marks everything it creates, and records what it changed, so that
  * undoing it removes exactly what was added and puts the changed settings back. Nothing the owner made is touched.
  *
- * @package basix
+ * @package basix-paperlight-events
  */
 
 /** Marks a post, page, attachment or event created by a starter site; the value is the starter's slug. */
@@ -31,7 +31,7 @@ function basix_starters(): array {
 		if ( 'events' === $slug && ! basix_has_events() ) {
 			continue;
 		}
-		$file = get_theme_file_path( 'starters/' . $slug . '.php' );
+		$file = BASIX_EVENTS_DIR . 'starters/' . $slug . '.php';
 		if ( file_exists( $file ) ) {
 			$definition = include $file;
 			if ( is_array( $definition ) ) {
@@ -209,7 +209,7 @@ function basix_starter_post( array &$record, array $args ): int {
 function basix_starter_import( string $slug, string $look = '' ) {
 	$starters = basix_starters();
 	if ( ! isset( $starters[ $slug ] ) ) {
-		return new WP_Error( 'basix_starter', __( 'That starter site does not exist.', 'basix-paperlight' ) );
+		return new WP_Error( 'basix_starter', __( 'That starter site does not exist.', 'basix-paperlight-events' ) );
 	}
 	$def = $starters[ $slug ];
 	if ( '' === $look || ! isset( basix_looks()[ $look ] ) ) {
@@ -351,7 +351,7 @@ function basix_starter_import( string $slug, string $look = '' ) {
 	$locations = (array) get_theme_mod( 'nav_menu_locations', array() );
 	basix_starter_remember( $record, 'mods', 'nav_menu_locations' );
 	foreach ( (array) $def['menus'] as $location => $items ) {
-		$menu = wp_create_nav_menu( sprintf( '%s (%s)', $def['title'], 'primary' === $location ? __( 'Primary', 'basix-paperlight' ) : __( 'Footer', 'basix-paperlight' ) ) );
+		$menu = wp_create_nav_menu( sprintf( '%s (%s)', $def['title'], 'primary' === $location ? __( 'Primary', 'basix-paperlight-events' ) : __( 'Footer', 'basix-paperlight-events' ) ) );
 		if ( is_wp_error( $menu ) ) {
 			// A menu with that name exists already (an earlier import); take a unique one.
 			$menu = wp_create_nav_menu( sprintf( '%s (%s) %d', $def['title'], $location, time() ) );
@@ -371,13 +371,13 @@ function basix_starter_import( string $slug, string $look = '' ) {
 			} elseif ( 'events-archive' === $item ) {
 				$args += array(
 					'menu-item-type'  => 'custom',
-					'menu-item-title' => __( 'Events', 'basix-paperlight' ),
+					'menu-item-title' => __( 'Events', 'basix-paperlight-events' ),
 					'menu-item-url'   => get_post_type_archive_link( BASIX_EVENT ),
 				);
 			} elseif ( 'home' === $item ) {
 				$args += array(
 					'menu-item-type'  => 'custom',
-					'menu-item-title' => __( 'Home', 'basix-paperlight' ),
+					'menu-item-title' => __( 'Home', 'basix-paperlight-events' ),
 					'menu-item-url'   => home_url( '/' ),
 				);
 			} else {
@@ -417,8 +417,8 @@ function basix_starter_widgets( array &$record ): void {
 		'footer-1' => array(
 			'text',
 			array(
-				'title'  => __( 'About', 'basix-paperlight' ),
-				'text'   => __( 'A small site built with the Basix theme. Say here what it is about.', 'basix-paperlight' ),
+				'title'  => __( 'About', 'basix-paperlight-events' ),
+				'text'   => __( 'A small site built with the Basix theme. Say here what it is about.', 'basix-paperlight-events' ),
 				'filter' => false,
 				'visual' => false,
 			),
@@ -426,14 +426,14 @@ function basix_starter_widgets( array &$record ): void {
 		'footer-2' => array(
 			'recent-posts',
 			array(
-				'title'  => __( 'Latest posts', 'basix-paperlight' ),
+				'title'  => __( 'Latest posts', 'basix-paperlight-events' ),
 				'number' => 3,
 			),
 		),
 		'footer-3' => array(
 			'tag_cloud',
 			array(
-				'title'    => __( 'Tags', 'basix-paperlight' ),
+				'title'    => __( 'Tags', 'basix-paperlight-events' ),
 				'taxonomy' => 'post_tag',
 			),
 		),

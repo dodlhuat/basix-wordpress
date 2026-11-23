@@ -2,12 +2,12 @@
 /**
  * Starter site: a personal blog.
  *
- * @package basix
+ * @package basix-paperlight-events
  */
 
 return array(
-	'title'       => __( 'Blog', 'basix-paperlight' ),
-	'description' => __( 'A classic blog: a welcome card, the latest posts in a grid, a sidebar, an About page and a Contact page.', 'basix-paperlight' ),
+	'title'       => __( 'Blog', 'basix-paperlight-events' ),
+	'description' => __( 'A classic blog: a welcome card, the latest posts in a grid, a sidebar, an About page and a Contact page.', 'basix-paperlight-events' ),
 	'look'        => 'basix',
 	'mods'        => array(
 		'basix_hero_style'       => 'card',
@@ -19,7 +19,7 @@ return array(
 	'sticky'      => 0,
 	'pages'       => array(
 		'about'   => array(
-			'title'   => _x( 'About', 'Starter page title', 'basix-paperlight' ),
+			'title'   => _x( 'About', 'Starter page title', 'basix-paperlight-events' ),
 			'content' => static function (): string {
 				return basix_sc_pattern(
 					'basix/about-split',
@@ -33,7 +33,7 @@ return array(
 			},
 		),
 		'contact' => array(
-			'title'   => _x( 'Contact', 'Starter page title', 'basix-paperlight' ),
+			'title'   => _x( 'Contact', 'Starter page title', 'basix-paperlight-events' ),
 			'content' => static function (): string {
 				return basix_sc_pattern(
 					'basix/contact-cta',

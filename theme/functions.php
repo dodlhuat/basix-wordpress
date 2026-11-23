@@ -44,13 +44,7 @@ require_once __DIR__ . '/inc/post-features.php';
 require_once __DIR__ . '/inc/filters.php';
 require_once __DIR__ . '/inc/calendar.php';
 require_once __DIR__ . '/inc/gallery.php';
-require_once __DIR__ . '/inc/seo.php';
-require_once __DIR__ . '/inc/schema.php';
 require_once __DIR__ . '/inc/starter-content.php';
-require_once __DIR__ . '/inc/setup/content.php';
-require_once __DIR__ . '/inc/setup/importer.php';
-require_once __DIR__ . '/inc/setup/class-basix-starter-command.php';
-require_once __DIR__ . '/inc/setup/admin.php';
 
 add_action(
 	'after_setup_theme',

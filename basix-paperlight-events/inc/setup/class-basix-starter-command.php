@@ -2,7 +2,7 @@
 /**
  * WP-CLI: wp basix starter list | import <slug> [--look=<look>] | undo | status
  *
- * @package basix
+ * @package basix-paperlight-events
  */
 
 if ( ! defined( 'WP_CLI' ) || ! WP_CLI ) {

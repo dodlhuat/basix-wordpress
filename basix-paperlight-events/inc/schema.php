@@ -6,7 +6,7 @@
  * are left to a well-known SEO plugin when one is active, except for events: plugins do not know about them, so
  * those are always written. The basix_schema_graph filter changes the JSON-LD, and basix_open_graph the tags.
  *
- * @package basix
+ * @package basix-paperlight-events
  */
 
 /**
@@ -90,7 +90,7 @@ function basix_breadcrumb_trail(): array {
 	}
 	$trail = array(
 		array(
-			'name' => __( 'Home', 'basix-paperlight' ),
+			'name' => __( 'Home', 'basix-paperlight-events' ),
 			'url'  => home_url( '/' ),
 		),
 	);
@@ -111,7 +111,7 @@ function basix_breadcrumb_trail(): array {
 
 	if ( is_singular( BASIX_EVENT ) ) {
 		$trail[] = array(
-			'name' => __( 'Events', 'basix-paperlight' ),
+			'name' => __( 'Events', 'basix-paperlight-events' ),
 			'url'  => get_post_type_archive_link( BASIX_EVENT ),
 		);
 		$last    = get_the_title();
@@ -134,10 +134,10 @@ function basix_breadcrumb_trail(): array {
 		}
 		$last = get_the_title();
 	} elseif ( is_post_type_archive( BASIX_EVENT ) ) {
-		$last = __( 'Events', 'basix-paperlight' );
+		$last = __( 'Events', 'basix-paperlight-events' );
 	} elseif ( is_tax( BASIX_EVENT_CAT ) ) {
 		$trail[] = array(
-			'name' => __( 'Events', 'basix-paperlight' ),
+			'name' => __( 'Events', 'basix-paperlight-events' ),
 			'url'  => get_post_type_archive_link( BASIX_EVENT ),
 		);
 		$trail   = array_merge( $trail, $terms( get_queried_object_id(), BASIX_EVENT_CAT ) );
@@ -148,7 +148,7 @@ function basix_breadcrumb_trail(): array {
 	} elseif ( is_home() ) {
 		$last = get_the_title( (int) get_option( 'page_for_posts' ) );
 	} elseif ( is_search() ) {
-		$last = __( 'Search results', 'basix-paperlight' );
+		$last = __( 'Search results', 'basix-paperlight-events' );
 	} else {
 		$last = wp_strip_all_tags( get_the_archive_title() );
 	}

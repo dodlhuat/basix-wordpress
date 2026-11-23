@@ -5,7 +5,7 @@
  * It is skipped when a well-known SEO plugin is active, and can be changed or switched off with the
  * basix_meta_description filter (return an empty string for none).
  *
- * @package basix
+ * @package basix-paperlight-events
  */
 
 /**

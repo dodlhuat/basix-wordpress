@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Basix Paperlight Events
- * Description: Events with dates, times, time zones, repeats and categories, an events calendar block and shortcode, a calendar feed (ICS), and the data for event search results. Made for the Basix theme; the events work with any theme.
+ * Description: Events with dates, times, time zones, repeats and categories, an events calendar block and shortcode, a calendar feed (ICS), the data for event search results, structured data and social tags, a meta description, and starter sites for the Basix Paperlight theme. The events work with any theme.
  * Version: 1.0.0
  * Requires at least: 6.5
  * Requires PHP: 8.1
@@ -25,6 +25,24 @@ require_once BASIX_EVENTS_DIR . 'inc/events.php';
 require_once BASIX_EVENTS_DIR . 'inc/recurrence.php';
 require_once BASIX_EVENTS_DIR . 'inc/ics.php';
 require_once BASIX_EVENTS_DIR . 'inc/calendar.php';
+require_once BASIX_EVENTS_DIR . 'inc/seo.php';
+require_once BASIX_EVENTS_DIR . 'inc/schema.php';
+
+// The setup screen and the starter sites are built from the Basix Paperlight theme's looks, patterns and pictures,
+// so they are only there while that theme (or a child of it) is active.
+add_action(
+	'after_setup_theme',
+	function () {
+		if ( ! function_exists( 'basix_looks' ) ) {
+			return;
+		}
+		require_once BASIX_EVENTS_DIR . 'inc/setup/content.php';
+		require_once BASIX_EVENTS_DIR . 'inc/setup/importer.php';
+		require_once BASIX_EVENTS_DIR . 'inc/setup/class-basix-starter-command.php';
+		require_once BASIX_EVENTS_DIR . 'inc/setup/admin.php';
+	},
+	20
+);
 
 add_action(
 	'init',
