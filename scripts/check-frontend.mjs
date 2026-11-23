@@ -30,6 +30,16 @@ const open = async (path, viewport = { width: 1280, height: 800 }, { reducedMoti
   return page;
 };
 const overlayOpen = (page) => page.$('.modal-wrapper .search-overlay').then(Boolean);
+// Presses Tab (or Shift+Tab) a number of times and says whether focus stayed inside the element every time.
+const tabStaysIn = async (page, selector, times = 10, shift = false) => {
+  for (let i = 0; i < times; i++) {
+    if (shift) await page.keyboard.down('Shift');
+    await page.keyboard.press('Tab');
+    if (shift) await page.keyboard.up('Shift');
+    if (!(await page.evaluate((sel) => Boolean(document.activeElement?.closest(sel)), selector))) return false;
+  }
+  return true;
+};
 
 try {
   // Search overlay: button, focus, Escape, focus returns, the "/" key, submitting.
@@ -39,6 +49,36 @@ try {
   check(await overlayOpen(page), 'search button opens the overlay');
   check(await page.evaluate(() => document.activeElement?.matches('.modal-wrapper input[type="search"]')), 'search field has focus');
   check(await page.evaluate(() => document.querySelector('.modal-wrapper .modal')?.getAttribute('role') === 'dialog'), 'overlay is marked as a dialog');
+
+  // Focus stays in the overlay: Tab and Shift+Tab go round its controls (the field, the search button, the close
+  // button) and never reach the page behind it.
+  const inOverlay = () => page.evaluate(() => Boolean(document.activeElement?.closest('.modal-wrapper .modal')));
+  let trapped = true;
+  const reached = new Set();
+  for (let i = 0; i < 8; i++) {
+    await page.keyboard.press('Tab');
+    trapped &&= await inOverlay();
+    reached.add(await page.evaluate(() => document.activeElement?.outerHTML.slice(0, 60)));
+  }
+  check(trapped, 'Tab keeps focus inside the search overlay');
+  check(await page.evaluate(() => Boolean(document.querySelector('.modal-wrapper .close[tabindex="0"]'))), 'the overlay\'s close button can be reached with the keyboard');
+  check(reached.size >= 2, `Tab moves between the overlay's controls (${reached.size} reached)`);
+  trapped = true;
+  for (let i = 0; i < 8; i++) {
+    await page.keyboard.down('Shift');
+    await page.keyboard.press('Tab');
+    await page.keyboard.up('Shift');
+    trapped &&= await inOverlay();
+  }
+  check(trapped, 'Shift+Tab keeps focus inside the search overlay');
+  await page.$eval('.modal-wrapper .close', (close) => close.focus());
+  await page.keyboard.press('Enter');
+  await sleep(600);
+  check(!(await overlayOpen(page)), 'Enter on the close button closes the overlay');
+  check(await page.evaluate(() => document.activeElement?.classList.contains('site-search-trigger')), 'focus returns to the search button after closing');
+
+  await page.click('.site-search-trigger');
+  await sleep(500);
   await page.keyboard.press('Escape');
   await sleep(600);
   check(!(await overlayOpen(page)), 'Escape closes the overlay');
@@ -62,6 +102,52 @@ try {
   const href = await page.$eval('.site-search-trigger', (a) => a.getAttribute('href'));
   check(href.endsWith('/?s='), 'search button is a plain link without JavaScript');
 
+  // Mobile menu: focus starts on the close button and goes round in the drawer. Tab past the last item goes to the
+  // close button, Shift+Tab on the first item goes to the close button, and Shift+Tab on it goes to the last item.
+  page = await open('/', { width: 390, height: 800 });
+  await page.click('.site-menu-trigger');
+  await sleep(600);
+  const drawerFocus = () => page.evaluate(() => {
+    const items = [...document.querySelectorAll('#site-flyout :is(a[href], button)')].filter((e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden');
+    const active = document.activeElement;
+    return { inside: Boolean(active?.closest('#site-flyout')), close: active?.matches('.close-menu') ?? false, first: active === items[1], last: active === items.at(-1) };
+  });
+  check((await drawerFocus()).close, 'opening the mobile menu puts focus on its close button');
+  await page.keyboard.down('Shift');
+  await page.keyboard.press('Tab');
+  await page.keyboard.up('Shift');
+  check((await drawerFocus()).last, 'Shift+Tab on the close button goes to the last menu item');
+  await page.keyboard.press('Tab');
+  check((await drawerFocus()).close, 'Tab past the last menu item goes to the close button');
+  await page.keyboard.press('Tab');
+  check((await drawerFocus()).first, 'Tab on the close button goes to the first menu item');
+  await page.keyboard.down('Shift');
+  await page.keyboard.press('Tab');
+  await page.keyboard.up('Shift');
+  check((await drawerFocus()).close, 'Shift+Tab on the first menu item goes to the close button');
+  let inDrawer = true;
+  for (let i = 0; i < 15; i++) {
+    await page.keyboard.press('Tab');
+    inDrawer &&= (await drawerFocus()).inside;
+  }
+  check(inDrawer, 'Tab never leaves the open mobile menu');
+  await page.keyboard.press('Escape');
+  await sleep(600);
+  check(await page.evaluate(() => document.activeElement?.classList.contains('site-menu-trigger')), 'closing the mobile menu gives focus back to the menu button');
+
+  // A long title, even one long word, wraps inside the content column instead of running out of it.
+  page = await open('/');
+  const overflow = await page.evaluate(() => {
+    const h1 = document.createElement('h1');
+    h1.textContent = 'Antidisestablishmentarianism'.repeat(4) + ' and a title that goes on for a good while longer';
+    const main = document.querySelector('.site-main');
+    main.prepend(h1);
+    const result = h1.scrollWidth > main.clientWidth || h1.getBoundingClientRect().right > main.getBoundingClientRect().right + 1;
+    h1.remove();
+    return result;
+  });
+  check(!overflow, 'a long title wraps inside the content column');
+
   // Dropdown link navigates.
   page = await open('/');
   await page.click('.dropdown-trigger');
@@ -79,6 +165,14 @@ try {
   await page.click('.docs-toggle');
   await sleep(500);
   check(await page.$eval('#docs-sidebar', (e) => e.getBoundingClientRect().left >= 0 && e.classList.contains('is-open')), 'docs toggle opens the drawer');
+  check(await tabStaysIn(page, '#docs-sidebar', 25), 'Tab keeps focus inside the open docs drawer');
+  check(await tabStaysIn(page, '#docs-sidebar', 25, true), 'Shift+Tab keeps focus inside the open docs drawer');
+  await page.keyboard.press('Escape');
+  await sleep(500);
+  check(await page.$eval('#docs-sidebar', (e) => !e.classList.contains('is-open')), 'Escape closes the docs drawer');
+  check(await page.evaluate(() => document.activeElement?.classList.contains('docs-toggle')), 'focus returns to the docs toggle');
+  await page.click('.docs-toggle');
+  await sleep(500);
   await page.mouse.click(375, 400); // the strip of backdrop to the right of the drawer
   await sleep(500);
   check(await page.$eval('#docs-sidebar', (e) => !e.classList.contains('is-open')), 'backdrop closes the drawer');
@@ -134,6 +228,7 @@ try {
   const lightboxSrc = () => page.$eval('.lightbox-img', (e) => e.getAttribute('src')).catch(() => null);
   const firstSrc = await lightboxSrc();
   check(Boolean(firstSrc), 'clicking an image opens the lightbox');
+  check(await tabStaysIn(page, '.lightbox-wrapper', 8), 'Tab keeps focus inside the lightbox');
   await page.keyboard.press('ArrowRight');
   await sleep(500);
   check((await lightboxSrc()) !== firstSrc, 'arrow key moves to the next image');
@@ -161,6 +256,8 @@ try {
   await page.click('.share-button');
   await sleep(700);
   check(await page.$eval('.bottom-sheet', (e) => e.textContent.includes('Copy link')).catch(() => false), 'share opens a bottom sheet on a phone');
+  check(await tabStaysIn(page, '.bottom-sheet', 10) && await tabStaysIn(page, '.bottom-sheet', 10, true), 'Tab and Shift+Tab keep focus inside the share sheet');
+  check(await page.evaluate(() => Boolean(document.querySelector('.bottom-sheet .close[tabindex="0"]'))), 'the share sheet\'s close button can be reached with the keyboard');
 
   // Featured slider on the front page.
   page = await open('/');
@@ -421,3 +518,5 @@ if (failures.length) {
 } else {
   console.log('\nFront-end check passed.');
 }
+// A Chrome left over from a restart can keep Node waiting for ever, so end here.
+process.exit(process.exitCode ?? 0);

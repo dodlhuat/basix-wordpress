@@ -1,4 +1,4 @@
-// The theme must work when the Basix Events plugin is off (that is how it is reviewed for the directory, and how many
+// The theme must work when the Basix Paperlight Events plugin is off (that is how it is reviewed for the directory, and how many
 // sites will run it): the plugin is switched off for the run, the main pages are visited, and it is switched on again.
 // Needs the local site running (make up).
 //   node scripts/check-without-plugin.mjs
@@ -56,12 +56,22 @@ try {
     check(response.status === 404, `${path}: is not found without the plugin`);
   }
 
-  // The setup screen offers the starters that need no plugin.
-  const starters = JSON.parse(wp('basix', 'starter', 'list', '--format=json')).map((s) => s.slug);
-  check(starters.join(',') === 'blog,magazine,business', `the events starter is left out (${starters.join(', ')})`);
-  const imported = wp('basix', 'starter', 'import', 'blog');
-  check(/Imported blog/.test(imported), 'a starter can still be imported');
-  wp('basix', 'starter', 'undo');
+  // Structured data, the meta description, share links and the setup screen with the starter sites belong to the plugin (the
+  // directory counts them as plugin territory), so without it the theme writes and offers none of them.
+  const home = await (await fetch(`${url}/`)).text();
+  check(!home.includes('application/ld+json'), 'no structured data without the plugin');
+  const post = await (await fetch(`${url}/everything-in-one-post/`)).text();
+  check(!post.includes('class="share"'), 'no share links without the plugin');
+  check(!/<meta name="description"/.test(home) && !/<meta property="og:/.test(home), 'no meta description or social tags without the plugin');
+  let starters = true;
+  try {
+    wp('basix', 'starter', 'list');
+  } catch {
+    starters = false;
+  }
+  check(!starters, 'no starter sites without the plugin');
+  const setup = await fetch(`${url}/wp-admin/themes.php?page=basix-setup`, { redirect: 'manual' });
+  check(setup.status !== 200 || !(await setup.text()).includes('basix-setup'), 'no setup screen without the plugin');
 } finally {
   if (wasActive) {
     wp('plugin', 'activate', 'basix-paperlight-events');
@@ -74,3 +84,5 @@ if (failures.length) {
   process.exit(1);
 }
 console.log('\nWithout-plugin check passed.');
+// A Chrome left over from a restart can keep Node waiting for ever, so end here.
+process.exit(process.exitCode ?? 0);

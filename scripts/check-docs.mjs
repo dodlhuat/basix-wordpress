@@ -41,7 +41,7 @@ for (const file of docs) {
       check(existsSync(name), `${file}: ${name} does not exist`);
     } else if (/^wp basix starter (list|import|undo)/.test(name)) {
       checked++;
-      check(code.includes(`'basix starter'`) || existsSync('theme/inc/setup/class-basix-starter-command.php'), `${file}: the command ${name} is gone`);
+      check(code.includes(`'basix starter'`) || existsSync('basix-paperlight-events/inc/setup/class-basix-starter-command.php'), `${file}: the command ${name} is gone`);
     }
   }
 }
