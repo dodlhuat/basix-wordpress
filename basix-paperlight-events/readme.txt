@@ -6,9 +6,9 @@ Requires PHP: 8.1
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Tags: events, calendar, recurring events, ics, time zones
+Tags: events, calendar, recurring events, schema, starter sites
 
-Events with dates, times, time zones and repeats, an events calendar block and shortcode, and a calendar feed. Made for the Basix theme.
+Events with dates, times, time zones and repeats, an events calendar block and shortcode, a calendar feed, structured data and starter sites. Made for the Basix theme.
 
 == Description ==
 
@@ -21,8 +21,11 @@ Basix Paperlight Events adds an Events section to your site:
 * A public list of events for a range of days at /wp-json/basix/v1/events
 * The Events calendar block and the [basix_calendar] shortcode. With the Basix theme they show a month, week and agenda calendar; with another theme they show a plain list of the coming events
 * Password protected and private events are never listed in the feed
+* Structured data (schema.org JSON-LD for the site, breadcrumbs, articles and events), Open Graph and Twitter tags, and a meta description. They step aside for a well-known SEO plugin, except for events, which SEO plugins do not know
+* Share links under posts (email, X, LinkedIn, Facebook, Bluesky, and copy link), with a switch under Customize > Basix > Posts
+* With the Basix Paperlight theme: a setup screen (Appearance > Basix setup) with four ready-made starter sites (Blog, Magazine, Business, Events) that can be imported and undone, also from WP-CLI (wp basix starter)
 
-The Basix theme styles the events, adds the structured data (schema.org Event) and the calendar. With another theme the events work, and you style them yourself.
+The Basix theme styles the events and adds the calendar. With another theme the events work, and you style them yourself.
 
 == Installation ==
 
@@ -48,3 +51,4 @@ Each event can have its own; without one it uses the site's time zone. All-day e
 
 = 1.0.0 =
 * First release: events, repeats, time zones, categories, the day list, the calendar feed and the calendar block and shortcode.
+* Structured data, social tags, the meta description, the share links and the starter sites moved here from the theme.

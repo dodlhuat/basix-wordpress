@@ -15,19 +15,19 @@ A list to work through before and after you upload. What I could check here is t
 Checked here:
 
 - [x] **Theme Check** (`docker compose run --rm -T wpcli wp theme-check run basix-paperlight`): no required items. Left are three information lines and two recommendations (`custom-background` and `wp-block-styles`, left out on purpose: a background image would fight the looks' contrast guarantees, and the theme styles core blocks itself).
-- [x] **Plugin territory:** the theme registers no post type, taxonomy, block or shortcode. Events live in `basix-paperlight-events/`, and `scripts/check-without-plugin.mjs` proves the theme works without it.
+- [x] **Plugin territory:** the theme registers no post type, taxonomy, block or shortcode, writes no structured data, meta description or share buttons, and has no admin screen of its own. Events, schema, SEO tags, share links and the setup screen with the starter sites live in `basix-paperlight-events/` (moved there after the first review, 2026-11), and `scripts/check-without-plugin.mjs` proves the theme works without it and writes none of them.
 - [x] **Coding standards:** PHPCS with the WordPress rules passes for the theme and the plugin (escaping, sanitising, nonces, prefixes, text domains).
 - [x] **Screenshot:** `theme/screenshot.png` is 1200 x 900.
 - [x] **Licence:** the theme is GPL v2 or later (`theme/license.txt`, headers in `style.css` and `readme.txt`). Bundled third-party parts are listed in `theme/readme.txt` with their licences: the Basix library (MIT), five typefaces (SIL OFL 1.1, with their licence texts in `theme/assets/fonts`) and Material icons (Apache 2.0).
 - [x] **Tags** in `style.css` come from the allowed list (Theme Check accepts them).
 - [x] **Translation-ready:** one text domain (`basix`, the theme's slug), a `.pot` file and a German translation.
-- [x] **No forbidden code:** no `eval`, `base64_decode` or `document.write` in the theme's own code; no update URI; no top-level admin menu (the setup screen is under Appearance).
+- [x] **No forbidden code:** no `eval`, `base64_decode` or `document.write` in the theme's own code; no update URI; no admin menu or options page of its own (theme options are in the Customizer only).
 - [x] **Accessibility:** axe finds nothing serious or critical on the main pages in light and dark, on a desktop and a phone, in every look.
+- [x] **Keyboard:** the search and filter dialogs, the mobile menus, the docs drawer, the share sheet and the lightbox keep focus inside while open (Tab on the last item goes to the close button, Shift+Tab on the close button goes to the last item), Escape closes them, and focus goes back to the button that opened them.
 
 Things a reviewer may ask about (so you are ready):
 
-- [ ] **Minified files.** `theme/assets/vendor/basix/css/style.min.css` (and its mirrored copy) is the Basix library's minified stylesheet. The directory wants the source or a link to it: the readme names the project (https://github.com/dodlhuat/basix), and the files are produced by `npm run sync` from the package `@dodlhuat/basix`. If asked, point to that, or add the unminified file.
-- [ ] **The setup screen's content import.** It is started by the user, adds only content it can remove again, and is under Appearance. Reviewers sometimes object to themes that create posts and pages. If that happens, the easy answers are: keep the look picker and move the starter import into a plugin, or restrict the import to the Customizer's own "starter content" feature.
+- [x] **Minified files.** `theme/assets/vendor/basix/css/style.min.css` (and its mirrored copy) ships with its readable original `style.css` (and `style-rtl.css`), written by `npm run sync` and `npm run rtl`; the readme points to the SCSS sources on GitHub.
 - [ ] **Apache 2.0 icons with a GPL v2 theme.** Apache 2.0 is compatible with GPL v3 and so with "GPL v2 or later"; this is normally accepted. If a reviewer disagrees, state the "or later" and the licences in the readme (already done).
 - [x] **The `accessibility-ready` tag** is left out for the first submission, so it gets the normal review. Add it to `style.css` and `readme.txt` in a later version update if you want the separate accessibility review.
 - [ ] **The plugin.** A theme may not require a plugin. Basix does not: the readme only says that events need the optional plugin. Do not add a notice that nags for it.
@@ -76,7 +76,7 @@ These cannot be checked here and are worth an hour before you submit:
 
 - [ ] Open the main pages in Firefox and Safari (and Edge if you can): the header and menu, the slider, the calendar, a post with a picture, dark mode, and a phone width.
 - [ ] Install the built zips on a site that is not the dev site, with the default theme's content, and activate the theme, then the plugin.
-- [ ] Walk through the setup screen: import a starter site, look at it, undo it.
+- [ ] With the plugin active, walk through the setup screen: import a starter site, look at it, undo it.
 - [ ] Try each plugin once: Contact Form 7, WPForms, Fluent Forms, Gravity Forms (forms), Polylang or WPML (the language switcher in the top bar and event translations), Elementor (the Canvas template and the theme builder's locations).
 - [ ] Import `/events/feed.ics` into Apple Calendar, Google Calendar and Outlook; check a repeating event and an event in another time zone.
 - [ ] Look at the site on a phone, in dark mode, and with the keyboard only.

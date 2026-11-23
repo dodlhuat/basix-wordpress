@@ -2,7 +2,7 @@
 
 ## Translation
 
-Basix is translation-ready and ships a German translation; the plugin has its own. Change the site language in **Settings > General**, or translate with Loco Translate or Poedit from `languages/basix.pot`. The demo posts of the starter sites are English.
+Basix is translation-ready and ships a German translation; the plugin has its own. Change the site language in **Settings > General**, or translate with Loco Translate or Poedit from `languages/basix-paperlight.pot`. The demo posts of the starter sites are English.
 
 Polylang and WPML read the `wpml-config.xml` files of the theme and the plugin: events and their categories are translatable, event dates and the per-page layout choices are copied between translations, and the place of an event, the footer line, the top bar message and the header button are translated.
 
@@ -24,4 +24,4 @@ Forms from **Contact Form 7**, **WPForms**, **Fluent Forms** and **Gravity Forms
 
 ## SEO plugins
 
-Without an SEO plugin Basix writes a meta description, Open Graph and Twitter tags and schema.org data (organisation, website, breadcrumbs, articles, events). When Yoast SEO, Rank Math, All in One SEO, SEOPress, Slim SEO or The SEO Framework is active, Basix leaves those to it and only adds the event data, which those plugins do not know.
+Without an SEO plugin the Basix Paperlight Events plugin writes a meta description, Open Graph and Twitter tags and schema.org data (organisation, website, breadcrumbs, articles, events). When Yoast SEO, Rank Math, All in One SEO, SEOPress, Slim SEO or The SEO Framework is active, it leaves those to it and only adds the event data, which those plugins do not know.

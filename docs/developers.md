@@ -18,14 +18,16 @@ theme/                   the theme
   inc/looks.php          looks, fonts, the CSS they write
   inc/customizer.php     Customizer settings and the colour maths
   inc/header.php         header, footer and per-page options, builder locations
-  inc/schema.php         structured data and social tags
-  inc/setup/             the setup screen, starter sites import and undo, WP-CLI command
-  starters/              the four starter site definitions
   styles/                the five looks
   patterns/              the block patterns (PHP files with a header comment)
   template-parts/        pieces of templates
   assets/                css, js, fonts, images
-basix-paperlight-events/            the companion plugin (events, repeats, feed, calendar block and shortcode)
+basix-paperlight-events/ the companion plugin (events, repeats, feed, calendar block and shortcode)
+  inc/schema.php         structured data and social tags
+  inc/seo.php            the meta description
+  inc/share.php          share links under posts
+  inc/setup/             the setup screen, starter sites import and undo, WP-CLI command (with the theme only)
+  starters/              the four starter site definitions
 scripts/                 setup, seeding, build, and every check
 ```
 
@@ -38,6 +40,8 @@ Design rule: only Basix components and tokens. Theme CSS stays layout glue, so c
 | `basix_meta_description` | filter | The page's meta description (return an empty string for none) |
 | `basix_schema_graph` | filter | The list of schema.org nodes written in the page head |
 | `basix_open_graph` | filter | The Open Graph and Twitter tags, as property => content |
+| `basix_share_links` | filter | The share links under a post, as label => URL (plugin) |
+| `basix_entry_after_content` | action | In a single post, after the content and tags and before the author box (the plugin prints its share links here) |
 | `basix_language_switcher` | filter | The HTML of the top bar's language switcher |
 | `basix_builder_location` | filter | Whether a page builder drew a part of the page (`header`, `footer`, `single`, `archive`); when it does, the theme leaves its own out |
 | `basix_hero_attributes` | filter | Extra attributes on the front page introduction |
@@ -67,7 +71,7 @@ A look is a file in `theme/styles/<slug>.json`: a theme.json style variation wit
 
 ## Adding a starter site
 
-A file in `theme/starters/<slug>.php` that returns an array: `title`, `description`, `look`, `mods` (Customizer values), `front` (`posts` or a page key), optional `blog` (the posts page), `sticky` (how many sample posts to make sticky), `pages` (title, `content` as a string or a function, optional `template`), `menus` (`primary` and `footer`, as lists of page keys, `home` and `events-archive`), `posts` (keys of the sample post library in `inc/setup/content.php`), `events` and `widgets`. Add the slug to the list in `basix_starters()`. `basix_sc_pattern( $slug, $texts )` returns a pattern with some of its texts replaced by demo copy.
+A file in `basix-paperlight-events/starters/<slug>.php` that returns an array: `title`, `description`, `look`, `mods` (Customizer values), `front` (`posts` or a page key), optional `blog` (the posts page), `sticky` (how many sample posts to make sticky), `pages` (title, `content` as a string or a function, optional `template`), `menus` (`primary` and `footer`, as lists of page keys, `home` and `events-archive`), `posts` (keys of the sample post library in `basix-paperlight-events/inc/setup/content.php`), `events` and `widgets`. Add the slug to the list in `basix_starters()`. `basix_sc_pattern( $slug, $texts )` returns a pattern with some of its texts replaced by demo copy.
 
 ## Adding a pattern
 

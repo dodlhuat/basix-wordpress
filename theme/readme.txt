@@ -3,7 +3,7 @@ Contributors: dodlhuat
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, news, grid-layout, right-sidebar, two-columns, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, threaded-comments, translation-ready, block-patterns, block-styles, wide-blocks, editor-style
@@ -18,10 +18,9 @@ Basix is a classic WordPress theme made from the components of the Basix library
 * Sticky header with an accessible flyout menu on small screens
 * Image cards, a hero section and a sidebar with widgets
 * Styled comments, password-protected posts, search and 404 pages
-* Events through the optional companion plugin Basix Paperlight Events (events, repeats, time zones, a calendar block and shortcode, a calendar feed); header layouts, a featured-post slider, a gallery and portfolio page, and post filters
+* Events, structured data, a meta description, share links and ready-made starter sites through the optional companion plugin Basix Paperlight Events (events, repeats, time zones, a calendar block and shortcode, a calendar feed); header layouts, a featured-post slider, a gallery and portfolio page, and post filters
 * Forty block patterns in 14 groups (hero, features, pricing, testimonials, team, logos, numbers, call to action, newsletter, contact, portfolio, blog, questions, about) and block styles, plus starter content for new sites
 * Five looks (Basix, Editorial, Bold, Calm, Paper) that set colours for light and dark mode, corners and fonts together, with a choice of fonts and text size on top
-* A setup screen (Appearance > Basix setup) with four ready-made starter sites (Blog, Magazine, Business, Events) that can be imported and undone
 * Header options: sticky or static, transparent over a cover, a call-to-action button, a top bar with social links and language switcher, a mega menu, three footer layouts and a header image; per-page choices for header, sidebar, title and footer
 * Right-to-left languages (mirrored stylesheets), a Canvas template for page builders, header and footer locations for Elementor's theme builder, a configuration file for WPML and Polylang, and form styling for Contact Form 7, WPForms, Fluent Forms and Gravity Forms
 * Accent colour, logo and layout options in the Customizer
@@ -37,13 +36,21 @@ Basix is a classic WordPress theme made from the components of the Basix library
 
 = Does it need a plugin? =
 
-No. Basix Paperlight works without any plugin. For events (with repeats, time zones and a calendar feed) install the companion plugin Basix Paperlight Events; the theme then styles the events and shows the calendar.
+No. Basix Paperlight works without any plugin. The companion plugin Basix Paperlight Events adds events (with repeats, time zones and a calendar feed), structured data and social tags, a meta description, share links, and a setup screen with four ready-made starter sites (Blog, Magazine, Business, Events) that can be imported and undone; the theme then styles the events and shows the calendar.
 
 = Does it support dark mode? =
 
 Yes. It follows the visitor's system preference, and the toggle in the header lets them choose.
 
 == Changelog ==
+
+= 1.0.1 =
+* Structured data, the meta description, the share links and the setup screen with the starter sites moved to the companion plugin; the theme's options are in the Customizer only.
+* Keyboard focus stays inside the search and filter dialogs, the mobile menus, the documentation drawer, the share sheet and the picture lightbox while they are open.
+* The readable original of the bundled minified stylesheet is included.
+* The sticky header, sidebars and menus no longer sit under the WordPress toolbar.
+* Long titles wrap inside the content column, also in breadcrumbs.
+* Numbers in the Stats and Steps patterns and the 404 heading are translatable.
 
 = 1.0.0 =
 * First public release.
@@ -63,6 +70,7 @@ Basix component library
 Copyright (C) Andi Bauer
 License: MIT (GPL-compatible)
 Source: https://github.com/dodlhuat/basix
+Files: assets/vendor/basix. The minified stylesheet style.min.css (and style.min-rtl.css) ships with its readable original style.css (and style-rtl.css) in the same folder; the SCSS sources are in the repository above (css/*.scss). The JavaScript files are not minified.
 
 Outfit typeface
 Copyright The Outfit Project Authors
