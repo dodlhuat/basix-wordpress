@@ -10,7 +10,7 @@
 <!-- wp:group {"align":"wide","className":"grid cols-3"} -->
 <div class="wp-block-group alignwide grid cols-3"><!-- wp:group {"className":"card card-flat"} -->
 <div class="wp-block-group card card-flat"><!-- wp:paragraph {"className":"stat-value"} -->
-<p class="stat-value">120+</p>
+<p class="stat-value"><?php echo esc_html_x( '120+', 'Stats pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"stat-label text-secondary"} -->
@@ -20,7 +20,7 @@
 
 <!-- wp:group {"className":"card card-flat"} -->
 <div class="wp-block-group card card-flat"><!-- wp:paragraph {"className":"stat-value"} -->
-<p class="stat-value">48k</p>
+<p class="stat-value"><?php echo esc_html_x( '48k', 'Stats pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"stat-label text-secondary"} -->
@@ -30,7 +30,7 @@
 
 <!-- wp:group {"className":"card card-flat"} -->
 <div class="wp-block-group card card-flat"><!-- wp:paragraph {"className":"stat-value"} -->
-<p class="stat-value">99%</p>
+<p class="stat-value"><?php echo esc_html_x( '99%', 'Stats pattern', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"stat-label text-secondary"} -->

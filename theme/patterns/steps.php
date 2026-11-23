@@ -10,7 +10,7 @@
 <!-- wp:group {"align":"wide","className":"grid cols-3"} -->
 <div class="wp-block-group alignwide grid cols-3"><!-- wp:group {"className":"card card-bordered"} -->
 <div class="wp-block-group card card-bordered"><!-- wp:paragraph {"className":"stepper-indicator"} -->
-<p class="stepper-indicator">1</p>
+<p class="stepper-indicator"><?php echo esc_html_x( '1', 'Steps pattern: step number', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
@@ -24,7 +24,7 @@
 
 <!-- wp:group {"className":"card card-bordered"} -->
 <div class="wp-block-group card card-bordered"><!-- wp:paragraph {"className":"stepper-indicator"} -->
-<p class="stepper-indicator">2</p>
+<p class="stepper-indicator"><?php echo esc_html_x( '2', 'Steps pattern: step number', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
@@ -38,7 +38,7 @@
 
 <!-- wp:group {"className":"card card-bordered"} -->
 <div class="wp-block-group card card-bordered"><!-- wp:paragraph {"className":"stepper-indicator"} -->
-<p class="stepper-indicator">3</p>
+<p class="stepper-indicator"><?php echo esc_html_x( '3', 'Steps pattern: step number', 'basix-paperlight' ); ?></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
