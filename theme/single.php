@@ -35,7 +35,13 @@
 			</footer>
 		<?php endif; ?>
 
-		<?php get_template_part( 'template-parts/share' ); ?>
+		<?php
+		/**
+		 * After a post's content and tags, before the author box. The Basix Paperlight Events plugin prints its share
+		 * links here.
+		 */
+		do_action( 'basix_entry_after_content' );
+		?>
 		<?php get_template_part( 'template-parts/author-box' ); ?>
 	</article>
 

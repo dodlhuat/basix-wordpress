@@ -1,7 +1,7 @@
 <?php
 /**
- * Features of single posts and the front page: reading time, table of contents, related posts,
- * share links and featured posts. Each one can be switched off in the Customizer.
+ * Features of single posts and the front page: reading time, table of contents, related posts
+ * and featured posts. Each one can be switched off in the Customizer.
  *
  * @package basix
  */
@@ -16,7 +16,6 @@ function basix_feature_switches(): array {
 		'basix_show_reading_time' => __( 'Show the reading time', 'basix-paperlight' ),
 		'basix_show_toc'          => __( 'Show a table of contents on long posts', 'basix-paperlight' ),
 		'basix_show_progress'     => __( 'Show a reading progress bar', 'basix-paperlight' ),
-		'basix_show_share'        => __( 'Show share links', 'basix-paperlight' ),
 		'basix_show_author_box'   => __( 'Show the author box (when the author has a biography)', 'basix-paperlight' ),
 		'basix_show_related'      => __( 'Show related posts', 'basix-paperlight' ),
 		'basix_show_featured'     => __( 'Show sticky posts as a featured slider on the front page', 'basix-paperlight' ),
@@ -208,23 +207,6 @@ function basix_related_posts( int $count = 3 ): array {
 		}
 	}
 	return $found;
-}
-
-/**
- * Where a post can be shared: label => URL. Email is first; the rest are common networks.
- *
- * @return array<string, string>
- */
-function basix_share_links(): array {
-	$url   = rawurlencode( get_permalink() );
-	$title = rawurlencode( wp_strip_all_tags( get_the_title() ) );
-	return array(
-		__( 'Email', 'basix-paperlight' ) => 'mailto:?subject=' . $title . '&body=' . $url,
-		'X'                               => 'https://twitter.com/intent/tweet?url=' . $url . '&text=' . $title,
-		'LinkedIn'                        => 'https://www.linkedin.com/sharing/share-offsite/?url=' . $url,
-		'Facebook'                        => 'https://www.facebook.com/sharer/sharer.php?u=' . $url,
-		'Bluesky'                         => 'https://bsky.app/intent/compose?text=' . $title . '%20' . $url,
-	);
 }
 
 /**
