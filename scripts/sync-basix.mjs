@@ -87,6 +87,9 @@ await mkdir(path.join(dest, 'svg-icons'), { recursive: true });
 await cp(path.join(src, 'fonts'), path.join(dest, 'fonts'), { recursive: true });
 const css = await read(path.join(src, 'css/style.min.css'));
 await writeFile(path.join(dest, 'css/style.min.css'), css);
+// The directory wants the readable original next to every minified file (its SCSS source is on GitHub, see readme.txt).
+const readable = (await read(path.join(src, 'css/style.css'))).replace(/\n?\/\*# sourceMappingURL=[^*]*\*\/\s*$/, '\n');
+await writeFile(path.join(dest, 'css/style.css'), readable);
 
 // The CSS refers to a few icons as standalone files (../svg-icons/x.svg); keep the directory layout.
 for (const file of new Set(matches(css, /svg-icons\/([a-z0-9_-]+\.svg)/g))) {

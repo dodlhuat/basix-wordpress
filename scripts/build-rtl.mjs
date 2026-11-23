@@ -20,7 +20,10 @@ const files = [
   ['assets/css/polish.css', 'assets/css/polish-rtl.css'],
   ['assets/css/forms.css', 'assets/css/forms-rtl.css'],
 ];
-const vendor = [['assets/vendor/basix/css/style.min.css', 'assets/vendor/basix/css/style.min-rtl.css']];
+const vendor = [
+  ['assets/vendor/basix/css/style.min.css', 'assets/vendor/basix/css/style.min-rtl.css'],
+  ['assets/vendor/basix/css/style.css', 'assets/vendor/basix/css/style-rtl.css'],
+];
 
 const flip = (css) => rtlcss.process(css);
 let stale = 0;
